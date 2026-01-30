@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="MuzicMania - Juego de Ritmo Estilo Mania con EstÃÂ©tica Futurista">
+    <title>MuzicMania - Rhythm Game Futurista</title>
+    <link rel="icon" type="image/png" href="assets/logo.png">
+    <link rel="apple-touch-icon" href="assets/logo.png">
+    <link rel="stylesheet" href="styles.css?v=898223035">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <!-- Advertencia de Zoom -->
+    <div class="zoom-warning">
+        <div style="display: flex; align-items: center; gap: 10px;">
+            <i class="fas fa-search-plus"></i>
+            <span id="zoom-warning-text">El zoom es demasiado alto. Algunas opciones se han movido al menÃÂº.</span>
+        </div>
+        <button class="close-warning" onclick="AdaptiveNav.closeWarning()" title="Cerrar">&times;</button>
+    </div>
+
+    <!-- MenÃÂº Lateral Full (Hamburger Overlay) -->
+    <div class="menu-backdrop" onclick="AdaptiveNav.toggleMenu(false)"></div>
+    <div class="nav-overlay">
+        <div class="nav-overlay-header">
+            <h3>MENÃÂ PRINCIPAL</h3>
+            <button class="close-menu-btn"><i class="fas fa-times"></i></button>
+        </div>
+        <div class="nav-overlay-content">
+            <a href="index.html" class="nav-menu-item">
+                <div class="nav-menu-item-header"><i class="fas fa-home"></i> <span>Inicio</span></div>
+                <p>Volver a la base. Noticias y estadÃÂ­sticas globales.</p>
+            </a>
+            <a href="game.html" class="nav-menu-item">
+                <div class="nav-menu-item-header"><i class="fas fa-gamepad"></i> <span>Jugar</span></div>
+                <p>Pon a prueba tu ritmo con nuestra selecciÃÂ³n de canciones.</p>
+            </a>
+            <a href="leaderboard.html" class="nav-menu-item">
+                <div class="nav-menu-item-header"><i class="fas fa-trophy"></i> <span>Leaderboard</span></div>
+                <p>Compite por el top mundial de puntuaciones.</p>
+            </a>
+            <a href="changelog.html" class="nav-menu-item">
+                <div class="nav-menu-item-header"><i class="fas fa-list-ul"></i> <span>Changelog</span></div>
+                <p>Historial de actualizaciones, parches y novedades.</p>
+            </a>
+            <a href="soporte.html" class="nav-menu-item">
+                <div class="nav-menu-item-header"><i class="fas fa-headset"></i> <span>Soporte</span></div>
+                <p>ÃÂ¿Tienes problemas ← Nuestro equipo de ayuda estÃÂ¡ aquÃÂ­.</p>
+            </a>
+            <a href="contactanos.html" class="nav-menu-item">
+                <div class="nav-menu-item-header"><i class="fas fa-envelope"></i> <span>Contacto</span></div>
+                <p>EnvÃÂ­anos tus sugerencias o propuestas de negocio.</p>
+            </a>
+            <a href="terms.html" class="nav-menu-item">
+                <div class="nav-menu-item-header"><i class="fas fa-file-contract"></i> <span>TÃÂ©rminos</span></div>
+                <p>Reglas de la comunidad y polÃÂ­ticas de privacidad.</p>
+            </a>
+        </div>
+    </div>
+    <!-- Header con Logo y NavegaciÃÂ³n -->
+    <header>
+        <div class="header-content">
+            <a href="index.html" class="logo-container">
+                <img src="assets/logo.png" alt="MuzicMania Logo" class="logo-img">
+                <span class="logo-text">MUZICMANIA</span>
+            </a>
+            <nav>
+                <ul>
+                    <li><a href="index.html" class="active"><i class="fas fa-home"></i> Inicio</a></li>
+                    <li><a href="game.html"><i class="fas fa-gamepad"></i> Jugar</a></li>
+                    <li><a href="leaderboard.html"><i class="fas fa-trophy"></i> Leaderboard</a></li>
+                    <li><a href="changelog.html"><i class="fas fa-list-ul"></i> Changelog</a></li>
+                    <li><a href="soporte.html"><i class="fas fa-headset"></i> Soporte</a></li>
+                    <li><a href="contactanos.html"><i class="fas fa-envelope"></i> Contacto</a></li>
+                    <li><a href="terms.html"><i class="fas fa-file-contract"></i> TÃÂ©rminos</a></li>
+                </ul>
+                <div id="auth-section">
+                    <!-- DinÃÂ¡mico: Login o Perfil -->
+                </div>
+                    <div class="search-wrapper">
+                        <button class="search-btn" title="Buscar"><i class="fas fa-search"></i></button>
+                        <div class="search-input-container">
+                            <input type="text" class="search-input" placeholder="Buscar en MuzicMania...">
+                        </div>
+                        <div class="search-results-dropdown"></div>
+                        <button class="menu-toggle-btn" title="MenÃÂº"><i class="fas fa-bars"></i></button>
+                    </div>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main>
+        <!-- Hero Section -->
+        <section class="hero">
+            <div class="container">
+                <h1 class="hero-title" data-text="MUZICMANIA">MUZICMANIA</h1>
+                <p class="hero-subtitle">- Juego de Ritmo Definitivo. Domina el beat en una dimensiÃÂ³n web online.</p>
+                <div class="hero-cta" style="display: flex; justify-content: center; gap: 1.5rem;">
+                    <button class="btn" onclick="window.location.href='game.html'">
+                        Ã¢ÂÂÃ°ÂÂÂ® JUGAR AHORA
+                    </button>
+                    <button class="btn" onclick="document.querySelector('#auth-section').scrollIntoView({behavior: 'smooth'})">
+                        REGISTRARTE
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- EstadÃÂ­sticas en Vivo -->
+        <section class="container mt-3">
+            <h2 class="text-center mb-2">EstadÃÂ­sticas en Vivo</h2>
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-icon">Ã°ÂÂÂ®</div>
+                    <div class="stat-value" id="active-players">0</div>
+                    <div class="stat-label">Jugadores Activos</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon">Ã°ÂÂÂ®</div>
+                    <div class="stat-value" id="games-today">0</div>
+                    <div class="stat-label">Partidas Hoy</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon">Ã°ÂÂÂ®</div>
+                    <div class="stat-value" id="global-record">0</div>
+                    <div class="stat-label">RÃÂ©cord Global</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon">Ã°ÂÂÂ®</div>
+                    <div class="stat-value" id="total-users">0</div>
+                    <div class="stat-label">Usuarios Totales</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Top 5 Jugadores -->
+        <section class="container mt-3">
+            <h2 class="text-center mb-2">Top 5 Mejores Jugadores</h2>
+            <div class="card">
+                <div id="top-players-list"></div>
+            </div>
+        </section>
+
+        <!-- Features Section -->
+        <section class="container mt-3">
+            <h2 class="text-center mb-2">CaracterÃÂ­sticas</h2>
+            <div class="grid">
+                <div class="card">
+                    <div class="card-header">
+                        <h3>Ã°ÂÂÂµ Visualizadores de Audio</h3>
+                    </div>
+                    <p>Espectrogramas en tiempo real y barras de frecuencia que reaccionan a cada beat de la mÃÂºsica.</p>
+                </div>
+
+                <div class="card">
+                    <div class="card-header">
+                        <h3>Ã°ÂÂÂµ MecÃÂ¡nica Mania</h3>
+                    </div>
+                    <p>Sistema de flechas descendentes con detecciÃÂ³n de precisiÃÂ³n: Perfect, Great, Good, Miss.</p>
+                </div>
+
+                <div class="card">
+                    <div class="card-header">
+                        <h3>Ã°ÂÂÂµ Sistema de PuntuaciÃÂ³n</h3>
+                    </div>
+                    <p>Combos, multiplicadores y leaderboard global para competir con otros jugadores.</p>
+                </div>
+
+                <div class="card">
+                    <div class="card-header">
+                        <h3>Ã°ÂÂÂµ EstÃÂ©tica Futurista</h3>
+                    </div>
+                    <p>DiseÃÂ±o moderno con neones vibrantes, efectos glow y animaciones que te transportan al futuro.</p>
+                </div>
+
+                <div class="card">
+                    <div class="card-header">
+                        <h3>Ã°ÂÂÂµ Controles Simples</h3>
+                    </div>
+                    <p>Usa las flechas del teclado o WASD para jugar. FÃÂ¡cil de aprender, difÃÂ­cil de dominar.</p>
+                </div>
+
+                <div class="card">
+                    <div class="card-header">
+                        <h3>Ã°ÂÂÂµ Progreso Guardado</h3>
+                    </div>
+                    <p>Tus puntuaciones y estadÃÂ­sticas se guardan automÃÂ¡ticamente para trackear tu progreso.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- CÃÂ³mo Jugar -->
+        <section class="container mt-3">
+            <h2 class="text-center mb-2">CÃÂ³mo Jugar</h2>
+            <div class="card" style="max-width: 900px; margin: 0 auto;">
+                <ol style="padding-left: 2rem; line-height: 2.2; font-size: 1.1rem;">
+                    <li>Selecciona una canciÃÂ³n de la lista</li>
+                    <li>Las flechas caerÃÂ¡n desde arriba sincronizadas con la mÃÂºsica</li>
+                    <li>Presiona la tecla correspondiente cuando la flecha llegue a la zona de hit</li>
+                    <li>Acumula combos para multiplicar tu puntuaciÃÂ³n</li>
+                    <li>ÃÂ¡Completa la canciÃÂ³n y establece tu rÃÂ©cord!</li>
+                </ol>
+                <div class="text-center mt-2">
+                    <p style="font-size: 1.2rem;"><strong>Controles:</strong> Flechas del teclado Ã¢ÂÂ Ã¢ÂÂ Ã¢ÂÂ Ã¢ÂÂ o WASD</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-grid">
+                <!-- Logo y DescripciÃÂ³n -->
+                <div class="footer-section">
+                    <a href="index.html" class="footer-brand">
+                        <img src="assets/logo.png" alt="Logo" class="footer-logo">
+                        <h3>MUZICMANIA</h3>
+                    </a>
+                    <p style="margin-top: 0.5rem; color: #888;">El mejor juego de ritmo futurista. Pon a prueba tus habilidades y compite con jugadores de todo el mundo.</p>
+                </div>
+
+                <!-- MenÃÂº de NavegaciÃÂ³n -->
+                <div class="footer-section">
+                    <h4>NavegaciÃÂ³n</h4>
+                    <ul>
+                        <li><a href="index.html">Inicio</a></li>
+                        <li><a href="game.html">Jugar</a></li>
+                        <li><a href="leaderboard.html">Leaderboard</a></li>
+                        <li><a href="terms.html">TÃÂ©rminos y Condiciones</a></li>
+                        <li><a href="changelog.html">Blog de Cambios</a></li>
+                    </ul>
+                </div>
+
+                <!-- Redes Sociales -->
+                <div class="footer-section">
+                    <h4>SÃÂ­guenos</h4>
+                    <div class="social-icons">
+                        <a href="#" title="Twitter"><i class="fab fa-twitter"></i></a>
+                        <a href="#" title="Discord"><i class="fab fa-discord"></i></a>
+                        <a href="#" title="YouTube"><i class="fab fa-youtube"></i></a>
+                        <a href="#" title="Instagram"><i class="fab fa-instagram"></i></a>
+                        <a href="#" title="TikTok"><i class="fab fa-tiktok"></i></a>
+                    </div>
+                    <p style="margin-top: 1rem; color: #888;">ÃÂnete a nuestra comunidad y mantente al dÃÂ­a con las ÃÂºltimas novedades.</p>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p>&copy; 2026 MuzicMania. Todos los derechos reservados. | Desarrollado con Antigravity</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="auth.js?v=1"></script>
+    <script src="script.js?v=898223035"></script>
+    <script>
+        // Generar estadÃÂ­sticas dinÃÂ¡micas
+        function updateStats() {
+            // Jugadores activos (simulado)
+            const activePlayers = Math.floor(Math.random() * 500) + 800;
+            document.getElementById('active-players').textContent = activePlayers.toLocaleString();
+
+            // Partidas jugadashoy (simulado)
+            const gamesToday = Math.floor(Math.random() * 2000) + 5000;
+            document.getElementById('games-today').textContent = gamesToday.toLocaleString();
+
+            // RÃÂ©cord global (del leaderboard)
+            const leaderboard = AuthSystem.getLeaderboard();
+            const globalRecord = leaderboard.length > 0 ← leaderboard[0].highScore : 0;
+            document.getElementById('global-record').textContent = globalRecord.toLocaleString();
+
+            // Usuarios totales
+            const totalUsers = leaderboard.length;
+            document.getElementById('total-users').textContent = totalUsers;
+        }
+
+        // Mostrar Top 5 jugadores
+        function displayTopPlayers() {
+            const leaderboard = AuthSystem.getLeaderboard();
+            const top5 = leaderboard.slice(0, 5);
+            const container = document.getElementById('top-players-list');
+
+            if (top5.length === 0) {
+                container.innerHTML = '<p class="text-center" style="padding: 2rem; color: #888;">No hay jugadores aÃÂºn. ÃÂ¡SÃÂ© el primero!</p>';
+                return;
+            }
+
+            let html = '<div style="display: grid; gap: 1rem;">';
+            top5.forEach((player, index) => {
+                const rankColors = ['#FFD700', '#C0C0C0', '#CD7F32', '#00d4ff', '#ffb3d9'];
+                const color = rankColors[index] || '#00d4ff';
+                
+                html += `
+                    <div style="display: flex; align-items: center; gap: 1.5rem; padding: 1rem; background: rgba(0, 153, 255, 0.05); border-radius: 10px; border: 2px solid ${color}30;">
+                        <div style="font-size: 2rem; font-weight: 900; color: ${color}; min-width: 50px;">#${index + 1}</div>
+                        <div style="flex: 1;">
+                            <div style="font-size: 1.3rem; font-weight: 700; color: var(--neon-cyan);">${player.isBot Ã¢ÂÂ 'Ã¢ÂÂÃ¢ÂÂ ' : ''}${player.username}</div>
+                            <div style="font-size: 1rem; color: #888;">${player.accuracy}% precisiÃÂ³n Ã¢ÂÂ ${player.gamesPlayed} partidas</div>
+                        </div>
+                        <div style="font-size: 1.5rem; font-weight: 900; color: ${color};">${player.highScore.toLocaleString()}</div>
+                    </div>
+                `;
+            });
+            html += '</div>';
+
+            container.innerHTML = html;
+        }
+
+        // Inicializar al cargar
+        document.addEventListener('DOMContentLoaded', () => {
+            setTimeout(() => {
+                updateStats();
+                displayTopPlayers();
+            }, 500);
+
+            // Actualizar stats cada 30 segundos
+            setInterval(updateStats, 30000);
+        });
+    </script>
+    <!-- Login Modal -->
+    <div id="modal-login" class="modal-overlay" style="display: none;">
+        <div class="modal-content">
+            <button class="close-modal" onclick="AuthSystem.closeModal('login')">&times;</button>
+            <h2 class="modal-title">INICIAR SESIÃÂN</h2>
+            
+            <form onsubmit="event.preventDefault(); AuthSystem.login(this.username.value, this.password.value);">
+                <div class="form-group">
+                    <label>Usuario o Email</label>
+                    <input type="text" name="username" placeholder="@usuario o email" required>
+                </div>
+                
+                <div class="form-group">
+                    <label>ContraseÃÂ±a</label>
+                    <input type="password" name="password" placeholder="Ã¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂ" required>
+                </div>
+
+                <!-- Fake Recaptcha -->
+                <div class="fake-recaptcha" onclick="toggleRecaptcha(this)">
+                    <div class="recaptcha-checkbox"></div>
+                    <span>I'm not a robot</span>
+                    <img src="https://www.gstatic.com/recaptcha/api2/logo_48.png" alt="Recaptcha Logo" class="recaptcha-logo">
+                </div>
+
+                <button type="submit" class="btn btn-full">ENTRAR</button>
+            </form>
+            
+            <p class="modal-footer">
+                ÃÂ¿No tienes cuenta← <a href="#" onclick="AuthSystem.closeModal('login'); AuthSystem.openModal('register')">RegÃÂ­strate</a>
+            </p>
+        </div>
+    </div>
+
+    <!-- Register Modal -->
+    <div id="modal-register" class="modal-overlay" style="display: none;">
+        <div class="modal-content">
+            <button class="close-modal" onclick="AuthSystem.closeModal('register')">&times;</button>
+            <h2 class="modal-title">CREAR CUENTA</h2>
+            
+            <form onsubmit="event.preventDefault(); AuthSystem.register(this.displayName.value, this.username.value, this.email.value, this.password.value);">
+                <div class="form-group">
+                    <label>Display Name (Visible)</label>
+                    <input type="text" name="displayName" placeholder="Ej: TU NOMBRE PRO" required>
+                    <small style="color: #888; font-size: 0.8rem;">Puede tener mayÃÂºsculas y espacios.</small>
+                </div>
+
+                <div class="form-group">
+                    <label>Username (ÃÂnico)</label>
+                    <input type="text" name="username" placeholder="usuario" required>
+                    <small style="color: #888; font-size: 0.8rem;">Se aÃÂ±adirÃÂ¡ @ automÃÂ¡ticamente. Inmutable por 7 dÃÂ­as.</small>
+                </div>
+
+                <div class="form-group">
+                    <label>Email</label>
+                    <input type="email" name="email" placeholder="tu@email.com" required>
+                </div>
+                
+                <div class="form-group">
+                    <label>ContraseÃÂ±a</label>
+                    <input type="password" name="password" placeholder="Ã¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂ" required>
+                </div>
+
+                <!-- Fake Recaptcha -->
+                <div class="fake-recaptcha" onclick="toggleRecaptcha(this)">
+                    <div class="recaptcha-checkbox"></div>
+                    <span>I'm not a robot</span>
+                    <img src="https://www.gstatic.com/recaptcha/api2/logo_48.png" alt="Recaptcha Logo" class="recaptcha-logo">
+                </div>
+
+                <button type="submit" class="btn btn-full">REGISTRARSE</button>
+            </form>
+            
+            <p class="modal-footer">
+                ÃÂ¿Ya tienes cuenta← <a href="#" onclick="AuthSystem.closeModal('register'); AuthSystem.openModal('login')">Inicia SesiÃÂ³n</a>
+            </p>
+        </div>
+    </div>
+
+    <script src="auth.js?v=2"></script>
+    <script src="search.js?v=1"></script>
+    <script src="init_debug_bots.js"></script>
+    <script src="navigation.js?v=898223035"></script>
+</body>
+</html>

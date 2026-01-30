@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MuzicMania - Soporte</title>
+    <link rel="icon" type="image/png" href="assets/logo.png">
+    <link rel="apple-touch-icon" href="assets/logo.png">
+    <link rel="stylesheet" href="styles.css?v=1479427991">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        .help-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: var(--spacing-md);
+            margin-top: var(--spacing-md);
+        }
+
+        .help-card {
+            background: rgba(0, 50, 100, 0.3);
+            border: 2px solid rgba(0, 255, 255, 0.1);
+            border-radius: 12px;
+            padding: 1.5rem;
+            transition: var(--transition-normal);
+            text-align: center;
+        }
+
+        .help-card:hover {
+            border-color: var(--neon-cyan);
+            background: rgba(0, 50, 100, 0.5);
+            transform: translateY(-5px);
+        }
+
+        .help-icon {
+            font-size: 3rem;
+            color: var(--neon-cyan);
+            margin-bottom: 1rem;
+        }
+
+        .help-title {
+            color: #fff;
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
+            font-weight: 700;
+        }
+
+        .help-desc {
+            color: #ccc;
+            font-size: 0.95rem;
+            margin-bottom: 1.5rem;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Main -->
+    <main class="container mt-3">
+        <h1 class="text-center" style="margin-bottom: 1rem;">Centro de Ayuda</h1>
+        <p class="text-center" style="color: #888; max-width: 600px; margin: 0 auto 2rem;">¿En qué podemos ayudarte hoy? Selecciona una categoría o contáctanos directamente.</p>
+
+        <!-- Buscador de Ayuda -->
+        <div style="max-width: 600px; margin: 0 auto 3rem; position: relative;">
+            <input type="text" placeholder="Buscar ayuda (ej: recuperar cuenta, lag, bugs)..." 
+                   style="width: 100%; padding: 1rem 1.5rem; border-radius: 50px; background: rgba(0,0,0,0.5); border: 2px solid var(--neon-blue); color: white; font-family: var(--font-body);">
+            <button style="position: absolute; right: 10px; top: 50%; transform: translateY(-50%); background: none; border: none; color: var(--neon-cyan); font-size: 1.2rem; cursor: pointer;">
+                <i class="fas fa-search"></i>
+            </button>
+        </div>
+
+        <h2 class="section-title">Categorías Populares</h2>
+        
+        <div class="help-grid">
+            <a href="#" class="help-card" onclick="alert('Funcionalidad en desarrollo. Por favor usa el formulario de contacto.')">
+                <div class="help-icon"><i class="fas fa-user-shield"></i></div>
+                <div class="help-title">Mi Cuenta</div>
+                <div class="help-desc">Recuperar contraseña, cambiar nombre de usuario, problemas de login.</div>
+                <span class="btn btn-sm btn-secondary">Ver Artículos</span>
+            </a>
+
+            <a href="#" class="help-card" onclick="alert('Funcionalidad en desarrollo. Por favor usa el formulario de contacto.')">
+                <div class="help-icon"><i class="fas fa-gamepad"></i></div>
+                <div class="help-title">Problemas del Juego</div>
+                <div class="help-desc">Lag, controles no responden, pantalla negra, errores de carga.</div>
+                <span class="btn btn-sm btn-secondary">Ver Artículos</span>
+            </a>
+
+            <a href="#" class="help-card" onclick="alert('Funcionalidad en desarrollo. Por favor usa el formulario de contacto.')">
+                <div class="help-icon"><i class="fas fa-coins"></i></div>
+                <div class="help-title">Puntuaciones</div>
+                <div class="help-desc">Leaderboard no actualiza, scores perdidos, cálculo de precisión.</div>
+                <span class="btn btn-sm btn-secondary">Ver Artículos</span>
+            </a>
+
+            <a href="contactanos.html" class="help-card" style="border-color: var(--neon-pink);">
+                <div class="help-icon" style="color: var(--neon-pink);"><i class="fas fa-life-ring"></i></div>
+                <div class="help-title">Soporte Directo</div>
+                <div class="help-desc">¿No encuentras lo que buscas? Habla con nuestro equipo humano.</div>
+                <span class="btn btn-sm btn-primary">Contactar</span>
+            </a>
+        </div>
+
+        <section class="mt-3">
+            <h2 class="text-center mb-2">Estado del Servidor</h2>
+            <div class="card" style="text-align: center; border: 1px solid var(--neon-green);">
+                <div style="font-size: 3rem; color: var(--neon-green); margin-bottom: 1rem;"><i class="fas fa-check-circle"></i></div>
+                <h3 style="color: var(--neon-green);">Todos los servicios operativos</h3>
+                <p class="mt-1">MuzicMania Game Server: <strong>ONLINE</strong> (Ping: 45ms)</p>
+                <p>Base de Datos: <strong>ONLINE</strong></p>
+                <p>Autenticación: <strong>ONLINE</strong></p>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Layout System -->
+    <script src="layout.js?v=1"></script>
+
+    <script src="auth.js?v=2"></script>
+    <script src="script.js?v=1"></script>
+    <script src="search.js?v=1"></script>
+    <script src="navigation.js?v=1479427990"></script>
+</body>
+</html>

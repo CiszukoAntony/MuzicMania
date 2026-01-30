@@ -1,0 +1,446 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MuzicMania - Contacto</title>
+    <link rel="icon" type="image/png" href="assets/logo.png">
+    <link rel="apple-touch-icon" href="assets/logo.png">
+    <link rel="stylesheet" href="styles.css?v=898223035">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        .contact-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: var(--spacing-md);
+            margin: var(--spacing-md) 0;
+        }
+
+        .team-member {
+            text-align: center;
+            padding: var(--spacing-md);
+        }
+
+        .team-avatar {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            background: var(--gradient-accent);
+            margin: 0 auto var(--spacing-sm);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+            border: 3px solid var(--neon-blue);
+        }
+
+        .contact-form input,
+        .contact-form textarea,
+        .contact-form select {
+            width: 100%;
+            padding: 1rem;
+            margin-bottom: 1rem;
+            background: rgba(0, 0, 0, 0.5);
+            border: 2px solid var(--neon-blue);
+            color: #fff;
+            font-family: var(--font-body);
+            font-size: 1.1rem;
+            border-radius: 8px;
+        }
+
+        .contact-form textarea {
+            min-height: 150px;
+            resize: vertical;
+        }
+
+        .rating-stars {
+            display: flex;
+            gap: 0.5rem;
+            justify-content: center;
+            margin: var(--spacing-sm) 0;
+        }
+
+        .rating-stars i {
+            font-size: 2rem;
+            color: #FFD700;
+            cursor: pointer;
+            transition: var(--transition-fast);
+        }
+
+        .rating-stars i:hover {
+            transform: scale(1.2);
+        }
+
+        .review-card {
+            background: rgba(0, 153, 255, 0.05);
+            border-left: 4px solid var(--neon-blue);
+            padding: var(--spacing-md);
+            margin-bottom: var(--spacing-sm);
+            border-radius: 8px;
+        }
+
+        .review-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: var(--spacing-sm);
+        }
+
+        .contact-info-item {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: var(--spacing-sm);
+            padding: 1rem;
+            background: rgba(0, 153, 255, 0.05);
+            border-radius: 8px;
+        }
+
+        .contact-info-item i {
+            font-size: 1.5rem;
+            color: var(--neon-cyan);
+        }
+    </style>
+</head>
+<body>
+    <!-- Advertencia de Zoom -->
+    <div class="zoom-warning">
+        <div style="display: flex; align-items: center; gap: 10px;">
+            <i class="fas fa-search-plus"></i>
+            <span id="zoom-warning-text">El zoom es demasiado alto. Algunas opciones se han movido al menÃÂÃÂº.</span>
+        </div>
+        <button class="close-warning" onclick="AdaptiveNav.closeWarning()" title="Cerrar">&times;</button>
+    </div>
+
+    <!-- MenÃÂÃÂº Lateral Full (Hamburger Overlay) -->
+    <div class="menu-backdrop" onclick="AdaptiveNav.toggleMenu(false)"></div>
+    <div class="nav-overlay">
+        <div class="nav-overlay-header">
+            <h3>MENÃÂÃÂ PRINCIPAL</h3>
+            <button class="close-menu-btn"><i class="fas fa-times"></i></button>
+        </div>
+        <div class="nav-overlay-content">
+            <a href="index.html" class="nav-menu-item">
+                <div class="nav-menu-item-header"><i class="fas fa-home"></i> <span>Inicio</span></div>
+                <p>Volver a la base. Noticias y estadÃÂÃÂ­sticas globales.</p>
+            </a>
+            <a href="game.html" class="nav-menu-item">
+                <div class="nav-menu-item-header"><i class="fas fa-gamepad"></i> <span>Jugar</span></div>
+                <p>Pon a prueba tu ritmo con nuestra selecciÃÂÃÂ³n de canciones.</p>
+            </a>
+            <a href="leaderboard.html" class="nav-menu-item">
+                <div class="nav-menu-item-header"><i class="fas fa-trophy"></i> <span>Leaderboard</span></div>
+                <p>Compite por el top mundial de puntuaciones.</p>
+            </a>
+            <a href="changelog.html" class="nav-menu-item">
+                <div class="nav-menu-item-header"><i class="fas fa-list-ul"></i> <span>Changelog</span></div>
+                <p>Historial de actualizaciones, parches y novedades.</p>
+            </a>
+            <a href="soporte.html" class="nav-menu-item">
+                <div class="nav-menu-item-header"><i class="fas fa-headset"></i> <span>Soporte</span></div>
+                <p>ÃÂÃÂ¿Tienes problemas ← Nuestro equipo de ayuda estÃÂÃÂ¡ aquÃÂÃÂ­.</p>
+            </a>
+            <a href="contactanos.html" class="nav-menu-item">
+                <div class="nav-menu-item-header"><i class="fas fa-envelope"></i> <span>Contacto</span></div>
+                <p>EnvÃÂÃÂ­anos tus sugerencias o propuestas de negocio.</p>
+            </a>
+            <a href="terms.html" class="nav-menu-item">
+                <div class="nav-menu-item-header"><i class="fas fa-file-contract"></i> <span>TÃÂÃÂ©rminos</span></div>
+                <p>Reglas de la comunidad y polÃÂÃÂ­ticas de privacidad.</p>
+            </a>
+        </div>
+    </div>
+    <!-- Header -->
+    <header>
+        <div class="header-content">
+            <a href="index.html" class="logo-container">
+                <img src="assets/logo.png" alt="MuzicMania Logo" class="logo-img">
+                <span class="logo-text">MUZICMANIA</span>
+            </a>
+            <nav>
+                <ul>
+                    <li><a href="index.html"><i class="fas fa-home"></i> Inicio</a></li>
+                    <li><a href="game.html"><i class="fas fa-gamepad"></i> Jugar</a></li>
+                    <li><a href="leaderboard.html"><i class="fas fa-trophy"></i> Leaderboard</a></li>
+                    <li><a href="changelog.html"><i class="fas fa-list-ul"></i> Changelog</a></li>
+                    <li><a href="soporte.html"><i class="fas fa-headset"></i> Soporte</a></li>
+                    <li><a href="contactanos.html" class="active"><i class="fas fa-envelope"></i> Contacto</a></li>
+                    <li><a href="terms.html"><i class="fas fa-file-contract"></i> TÃÂÃÂ©rminos</a></li>
+                </ul>
+                <div id="auth-section"></div>
+                <div class="search-wrapper">
+                    <button class="search-btn" title="Buscar"><i class="fas fa-search"></i></button>
+                    <div class="search-input-container">
+                        <input type="text" class="search-input" placeholder="Buscar en MuzicMania...">
+                    </div>
+                    <div class="search-results-dropdown"></div>
+                    <button class="menu-toggle-btn" title="MenÃÂÃÂº"><i class="fas fa-bars"></i></button>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Main -->
+    <main>
+        <div class="container">
+            <h1 class="text-center mb-3">Contacto y Soporte</h1>
+
+            <!-- InformaciÃÂÃÂ³n del Equipo -->
+            <section class="mt-3">
+                <h2 class="text-center mb-2">Nuestro Equipo</h2>
+                <div class="contact-grid">
+                    <div class="card team-member">
+                        <div class="team-avatar">ÃÂ°ÃÂÃÂÃÂ¨ÃÂ¢ÃÂÃÂÃÂ°ÃÂÃÂÃÂ¼</div>
+                        <h3>Alex Rivera</h3>
+                        <p style="color: var(--neon-sky); margin: 0.5rem 0;">Creador y Director</p>
+                        <p style="font-size: 1rem; color: #888;">VisiÃÂÃÂ³n y direcciÃÂÃÂ³n del proyecto</p>
+                    </div>
+
+                    <div class="card team-member">
+                        <div class="team-avatar">ÃÂ°ÃÂÃÂÃÂ»</div>
+                        <h3>Sam Chen</h3>
+                        <p style="color: var(--neon-sky); margin: 0.5rem 0;">Programador Principal</p>
+                        <p style="font-size: 1rem; color: #888;">Desarrollo y arquitectura del juego</p>
+                    </div>
+
+                    <div class="card team-member">
+                        <div class="team-avatar">ÃÂ°ÃÂÃÂÃÂ¨</div>
+                        <h3>Luna Starlight</h3>
+                        <p style="color: var(--neon-sky); margin: 0.5rem 0;">DiseÃÂÃÂ±adora UI/UX</p>
+                        <p style="font-size: 1rem; color: #888;">DiseÃÂÃÂ±o visual y experiencia de usuario</p>
+                    </div>
+
+                    <div class="card team-member">
+                        <div class="team-avatar">ÃÂ°ÃÂÃÂÃÂ¨</div>
+                        <h3>DJ NeonWave</h3>
+                        <p style="color: var(--neon-sky); margin: 0.5rem 0;">Compositor Musical</p>
+                        <p style="font-size: 1rem; color: #888;">Bandas sonoras y efectos de audio</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- InformaciÃÂÃÂ³n de Contacto -->
+            <section class="mt-3">
+                <h2 class="text-center mb-2">InformaciÃÂÃÂ³n de Contacto</h2>
+                <div class="card">
+                    <div class="contact-info-item">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <div>
+                            <strong>DirecciÃÂÃÂ³n:</strong><br>
+                            Calle Neon Boulevard 123, Piso 42<br>
+                            Ciudad Synthwave, Estado Futuro 12345
+                        </div>
+                    </div>
+
+                    <div class="contact-info-item">
+                        <i class="fas fa-envelope"></i>
+                        <div>
+                            <strong>Email:</strong><br>
+                            <a href="mailto:contact@muzicmania.game" style="color: var(--neon-cyan);">contact@muzicmania.game</a>
+                        </div>
+                    </div>
+
+                    <div class="contact-info-item">
+                        <i class="fas fa-phone"></i>
+                        <div>
+                            <strong>TelÃÂÃÂ©fono:</strong><br>
+                            +1 (555) NEON-GAME <span style="color: #888;">(+1 555-6366-4263)</span>
+                        </div>
+                    </div>
+
+                    <div class="contact-info-item">
+                        <i class="fas fa-clock"></i>
+                        <div>
+                            <strong>Horario de AtenciÃÂÃÂ³n:</strong><br>
+                            Lunes a Viernes: 9:00 AM - 6:00 PM (PST)<br>
+                            SÃÂÃÂ¡bados: 10:00 AM - 2:00 PM (PST)
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Formulario de Contacto -->
+            <section class="mt-3">
+                <h2 class="text-center mb-2">EnvÃÂÃÂ­anos un Mensaje</h2>
+                <div class="card" style="max-width: 800px; margin: 0 auto;">
+                    <form class="contact-form" id="contact-form">
+                        <input type="text" placeholder="Nombre completo" required>
+                        <input type="email" placeholder="Email" required>
+                        <select required>
+                            <option value="">Selecciona un asunto</option>
+                            <option value="support">Soporte TÃÂÃÂ©cnico</option>
+                            <option value="bug">Reporte de Bug</option>
+                            <option value="suggestion">Sugerencia</option>
+                            <option value="partnership">Propuesta de ColaboraciÃÂÃÂ³n</option>
+                            <option value="other">Otro</option>
+                        </select>
+                        <textarea placeholder="Escribe tu mensaje aquÃÂÃÂ­..." required></textarea>
+                        <button type="submit" class="btn btn-primary" style="width: 100%;">Enviar Mensaje</button>
+                    </form>
+                </div>
+            </section>
+
+            <!-- ValoraciÃÂÃÂ³n y ReseÃÂÃÂ±as -->
+            <section class="mt-3">
+                <h2 class="text-center mb-2">ValoraciÃÂÃÂ³n de Usuarios</h2>
+                <div class="card text-center" style="max-width: 600px; margin: 0 auto 2rem;">
+                    <h3 style="margin-bottom: 1rem;">Califica tu experiencia</h3>
+                    <div class="rating-stars" id="user-rating">
+                        <i class="fas fa-star" data-rating="1"></i>
+                        <i class="fas fa-star" data-rating="2"></i>
+                        <i class="fas fa-star" data-rating="3"></i>
+                        <i class="fas fa-star" data-rating="4"></i>
+                        <i class="fas fa-star" data-rating="5"></i>
+                    </div>
+                    <p style="color: #888; margin-top: 1rem;">Promedio: <span style="color: var(--neon-cyan); font-size: 1.5rem; font-weight: 700;">4.8</span> / 5.0 (1,247 valoraciones)</p>
+                </div>
+
+                <h3 class="mb-2">ReseÃÂÃÂ±as Recientes</h3>
+                <div class="review-card">
+                    <div class="review-header">
+                        <div>
+                            <strong style="color: var(--neon-cyan);">CyberGamer42</strong>
+                            <div class="rating-stars" style="font-size: 1rem; justify-content: flex-start;">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
+                        </div>
+                        <span style="color: #888; font-size: 0.9rem;">Hace 2 dÃÂÃÂ­as</span>
+                    </div>
+                    <p>"ÃÂÃÂ¡IncreÃÂÃÂ­ble juego! Los visuales son espectaculares y la mecÃÂÃÂ¡nica de juego es sÃÂÃÂºper adictiva. Lo recomiendo 100%."</p>
+                </div>
+
+                <div class="review-card">
+                    <div class="review-header">
+                        <div>
+                            <strong style="color: var(--neon-cyan);">NeonQueen</strong>
+                            <div class="rating-stars" style="font-size: 1rem; justify-content: flex-start;">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="far fa-star"></i>
+                            </div>
+                        </div>
+                        <span style="color: #888; font-size: 0.9rem;">Hace 5 dÃÂÃÂ­as</span>
+                    </div>
+                    <p>"Me encanta la estÃÂÃÂ©tica futurista y las canciones estÃÂÃÂ¡n geniales. Solo le falta mÃÂÃÂ¡s variedad de temas musicales."</p>
+                </div>
+
+                <div class="review-card">
+                    <div class="review-header">
+                        <div>
+                            <strong style="color: var(--neon-cyan);">RhythmMaster</strong>
+                            <div class="rating-stars" style="font-size: 1rem; justify-content: flex-start;">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
+                        </div>
+                        <span style="color: #888; font-size: 0.9rem;">Hace 1 semana</span>
+                    </div>
+                    <p>"El mejor juego de ritmo que he jugado en aÃÂÃÂ±os. La detecciÃÂÃÂ³n de teclas es perfecta y el sistema de combos es muy satisfactorio."</p>
+                </div>
+            </section>
+
+            <!-- FAQ / Preguntas Frecuentes -->
+            <section class="mt-3">
+                <h2 class="text-center mb-2">Preguntas Frecuentes</h2>
+                <div class="card">
+                    <h3 style="color: var(--neon-sky);">ÃÂÃÂ¿CÃÂÃÂ³mo reporto un bugÃ¢ÂÂ</h3>
+                    <p class="mb-2">Puedes reportar bugs usando el formulario de contacto seleccionando "Reporte de Bug" como asunto, o enviando un email directo a bugs@muzicmania.game con una descripciÃÂÃÂ³n detallada del problema.</p>
+
+                    <h3 style="color: var(--neon-sky); margin-top: 2rem;">ÃÂÃÂ¿Puedo sugerir nuevas canciones?</h3>
+                    <p class="mb-2">ÃÂÃÂ¡Por supuesto! Nos encantarÃÂÃÂ­a escuchar tus sugerencias. Utiliza el formulario de contacto o envÃÂÃÂ­a un email a suggestions@muzicmania.game.</p>
+
+                    <h3 style="color: var(--neon-sky); margin-top: 2rem;">ÃÂÃÂ¿El juego es gratuito?</h3>
+                    <p class="mb-2">SÃÂÃÂ­, MuzicMania es completamente gratuito. Estamos comprometidos a mantener el juego accesible para todos los jugadores.</p>
+
+                    <h3 style="color: var(--neon-sky); margin-top: 2rem;">ÃÂÃÂ¿HabrÃÂÃÂ¡ versiÃÂÃÂ³n mÃÂÃÂ³vilÃ¢ÂÂ</h3>
+                    <p>Estamos trabajando en una versiÃÂÃÂ³n mÃÂÃÂ³vil que esperamos lanzar en 2026. Mantente atento a nuestras redes sociales para mÃÂÃÂ¡s informaciÃÂÃÂ³n.</p>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-grid">
+                <div class="footer-section">
+                    <a href="index.html" class="footer-brand">
+                        <img src="assets/logo.png" alt="Logo" class="footer-logo">
+                        <h3>MUZICMANIA</h3>
+                    </a>
+                    <p style="margin-top: 0.5rem; color: #888;">El mejor juego de ritmo futurista. Pon a prueba tus habilidades y compite con jugadores de todo el mundo.</p>
+                </div>
+
+                <div class="footer-section">
+                    <h4>NavegaciÃÂÃÂ³n</h4>
+                    <ul>
+                        <li><a href="index.html">Inicio</a></li>
+                        <li><a href="game.html">Jugar</a></li>
+                        <li><a href="leaderboard.html">Leaderboard</a></li>
+                        <li><a href="contactanos.html">Contacto</a></li>
+                        <li><a href="profile.html">Mi Perfil</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-section">
+                    <h4>SÃÂÃÂ­guenos</h4>
+                    <div class="social-icons">
+                        <a href="#" title="Twitter"><i class="fab fa-twitter"></i></a>
+                        <a href="#" title="Discord"><i class="fab fa-discord"></i></a>
+                        <a href="#" title="YouTube"><i class="fab fa-youtube"></i></a>
+                        <a href="#" title="Instagram"><i class="fab fa-instagram"></i></a>
+                        <a href="#" title="TikTok"><i class="fab fa-tiktok"></i></a>
+                    </div>
+                    <p style="margin-top: 1rem; color: #888;">ÃÂÃÂnete a nuestra comunidad y mantente al dÃÂÃÂ­a con las ÃÂÃÂºltimas novedades.</p>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p>&copy; 2026 MuzicMania. Todos los derechos reservados. | Desarrollado con Antigravity</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Manejar envÃÂÃÂ­o de formulario
+        document.getElementById('contact-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('ÃÂÃÂ¡Gracias por tu mensaje! Nos pondremos en contacto contigo pronto.');
+            this.reset();
+        });
+
+        // Manejar sistema de calificaciÃÂÃÂ³n
+        const stars = document.querySelectorAll('#user-rating i');
+        stars.forEach(star => {
+            star.addEventListener('click', function() {
+                const rating = this.getAttribute('data-rating');
+                alert(`ÃÂÃÂ¡Gracias por tu calificaciÃÂÃÂ³n de ${rating} ${rating == 1 ? 'estrella' :' estrellas'}!`);
+                
+                // Actualizar estrellas visualmente
+                stars.forEach((s, index) => {
+                    if (index < rating) {
+                        s.classList.remove('far');
+                        s.classList.add('fas');
+                    } else {
+                        s.classList.remove('fas');
+                        s.classList.add('far');
+                    }
+                });
+            });
+        });
+    </script>
+    <script src="auth.js?v=2"></script>
+    <script src="script.js?v=1"></script>
+    <script src="search.js?v=1"></script>
+    <script src="navigation.js?v=898223035"></script>
+</body>
+</html>
