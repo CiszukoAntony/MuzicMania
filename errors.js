@@ -44,7 +44,7 @@ const MuzicError = {
         if (fatal) {
             // Give time for the "ping" to hit the server before redirecting
             setTimeout(() => {
-                window.location.href = `${this.basePath}debug/404.html?error=${encodeURIComponent(message)}`;
+                window.location.href = `${this.basePath}404.html?error=${encodeURIComponent(message)}`;
             }, 300);
         }
     }

@@ -91,6 +91,7 @@ powershell -Command "(gc ..\contactanos.html) -replace 'styles\.css\?v=\d+', 'st
 powershell -Command "(gc ..\profile.html) -replace 'styles\.css\?v=\d+', 'styles.css?v=%CACHE_VERSION%' | Out-File -encoding UTF8 ..\profile.html" >> ..\logs\%LOG_NAME% 2>&1
 powershell -Command "(gc ..\changelog.html) -replace 'styles\.css\?v=\d+', 'styles.css?v=%CACHE_VERSION%' | Out-File -encoding UTF8 ..\changelog.html" >> ..\logs\%LOG_NAME% 2>&1
 powershell -Command "(gc ..\terms.html) -replace 'styles\.css\?v=\d+', 'styles.css?v=%CACHE_VERSION%' | Out-File -encoding UTF8 ..\terms.html" >> ..\logs\%LOG_NAME% 2>&1
+powershell -Command "(gc ..\404.html) -replace 'styles\.css\?v=\d+', 'styles.css?v=%CACHE_VERSION%' | Out-File -encoding UTF8 ..\404.html" >> ..\logs\%LOG_NAME% 2>&1
 powershell -Command "Get-ChildItem -Path ..\ -Filter *.html | ForEach-Object { (Get-Content $_.FullName) -replace 'navigation\.js\?v=\d+', 'navigation.js?v=%CACHE_VERSION%' | Set-Content $_.FullName }" >> ..\logs\%LOG_NAME% 2>&1
 
 echo.
