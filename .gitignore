@@ -4,10 +4,10 @@ Thumbs.db
 ehthumbs.db
 [Dd]esktop.ini
 
-# IDE & Editors
+# IDE & Configs
 .vscode/
-.vscode
 .idea/
+.editorconfig
 *.swp
 *.swo
 *.tmp
