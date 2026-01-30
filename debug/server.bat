@@ -43,15 +43,15 @@ echo [*] Aplicando cache busting (v%CACHE_VERSION%)...
 
 REM Actualizar referencias CSS/JS en archivos HTML
 REM Actualizar referencias CSS/JS en archivos HTML - Usando UTF8 para preservar caracteres especiales
-powershell -Command "(gc index.html) -replace 'styles\.css\?v=\d+', 'styles.css?v=%CACHE_VERSION%' | Out-File -encoding UTF8 index.html"
-powershell -Command "(gc index.html) -replace 'script\.js\?v=\d+', 'script.js?v=%CACHE_VERSION%' | Out-File -encoding UTF8 index.html"
-powershell -Command "(gc game.html) -replace 'styles\.css\?v=\d+', 'styles.css?v=%CACHE_VERSION%' | Out-File -encoding UTF8 game.html"
-powershell -Command "(gc leaderboard.html) -replace 'styles\.css\?v=\d+', 'styles.css?v=%CACHE_VERSION%' | Out-File -encoding UTF8 leaderboard.html"
-powershell -Command "(gc contactanos.html) -replace 'styles\.css\?v=\d+', 'styles.css?v=%CACHE_VERSION%' | Out-File -encoding UTF8 contactanos.html"
-powershell -Command "(gc profile.html) -replace 'styles\.css\?v=\d+', 'styles.css?v=%CACHE_VERSION%' | Out-File -encoding UTF8 profile.html"
-powershell -Command "(gc changelog.html) -replace 'styles\.css\?v=\d+', 'styles.css?v=%CACHE_VERSION%' | Out-File -encoding UTF8 changelog.html"
-powershell -Command "(gc terms.html) -replace 'styles\.css\?v=\d+', 'styles.css?v=%CACHE_VERSION%' | Out-File -encoding UTF8 terms.html"
-powershell -Command "Get-ChildItem -Filter *.html | ForEach-Object { (Get-Content $_.FullName) -replace 'navigation\.js\?v=\d+', 'navigation.js?v=%CACHE_VERSION%' | Set-Content $_.FullName }"
+powershell -Command "(gc ..\index.html) -replace 'styles\.css\?v=\d+', 'styles.css?v=%CACHE_VERSION%' | Out-File -encoding UTF8 ..\index.html"
+powershell -Command "(gc ..\index.html) -replace 'script\.js\?v=\d+', 'script.js?v=%CACHE_VERSION%' | Out-File -encoding UTF8 ..\index.html"
+powershell -Command "(gc ..\game.html) -replace 'styles\.css\?v=\d+', 'styles.css?v=%CACHE_VERSION%' | Out-File -encoding UTF8 ..\game.html"
+powershell -Command "(gc ..\leaderboard.html) -replace 'styles\.css\?v=\d+', 'styles.css?v=%CACHE_VERSION%' | Out-File -encoding UTF8 ..\leaderboard.html"
+powershell -Command "(gc ..\contactanos.html) -replace 'styles\.css\?v=\d+', 'styles.css?v=%CACHE_VERSION%' | Out-File -encoding UTF8 ..\contactanos.html"
+powershell -Command "(gc ..\profile.html) -replace 'styles\.css\?v=\d+', 'styles.css?v=%CACHE_VERSION%' | Out-File -encoding UTF8 ..\profile.html"
+powershell -Command "(gc ..\changelog.html) -replace 'styles\.css\?v=\d+', 'styles.css?v=%CACHE_VERSION%' | Out-File -encoding UTF8 ..\changelog.html"
+powershell -Command "(gc ..\terms.html) -replace 'styles\.css\?v=\d+', 'styles.css?v=%CACHE_VERSION%' | Out-File -encoding UTF8 ..\terms.html"
+powershell -Command "Get-ChildItem -Path ..\ -Filter *.html | ForEach-Object { (Get-Content $_.FullName) -replace 'navigation\.js\?v=\d+', 'navigation.js?v=%CACHE_VERSION%' | Set-Content $_.FullName }"
 
 echo ✓ Cache busting aplicado correctamente
 echo ✓ Servidor corriendo en: http://localhost:8000
@@ -60,7 +60,9 @@ echo Presiona Ctrl+C para detenerlo y volver al menú
 echo ════════════════════════════════════════════
 echo.
 
+cd ..
 python -m http.server 8000
+cd debug
 
 echo.
 echo [INFO] Servidor detenido.
