@@ -142,26 +142,26 @@
     <div class="zoom-warning">
         <div style="display: flex; align-items: center; gap: 10px;">
             <i class="fas fa-search-plus"></i>
-            <span id="zoom-warning-text">El zoom es demasiado alto. Algunas opciones se han movido al menú.</span>
+            <span id="zoom-warning-text">El zoom es demasiado alto. Algunas opciones se han movido al menÃÂº.</span>
         </div>
         <button class="close-warning" onclick="AdaptiveNav.closeWarning()" title="Cerrar">&times;</button>
     </div>
 
-    <!-- Menú Lateral Full (Hamburger Overlay) -->
+    <!-- MenÃÂº Lateral Full (Hamburger Overlay) -->
     <div class="menu-backdrop" onclick="AdaptiveNav.toggleMenu(false)"></div>
     <div class="nav-overlay">
         <div class="nav-overlay-header">
-            <h3>MENÚ PRINCIPAL</h3>
+            <h3>MENÃÂ PRINCIPAL</h3>
             <button class="close-menu-btn"><i class="fas fa-times"></i></button>
         </div>
         <div class="nav-overlay-content">
             <a href="index.html" class="nav-menu-item">
                 <div class="nav-menu-item-header"><i class="fas fa-home"></i> <span>Inicio</span></div>
-                <p>Volver a la base. Noticias y estadísticas globales.</p>
+                <p>Volver a la base. Noticias y estadÃÂ­sticas globales.</p>
             </a>
             <a href="game.html" class="nav-menu-item">
                 <div class="nav-menu-item-header"><i class="fas fa-gamepad"></i> <span>Jugar</span></div>
-                <p>Pon a prueba tu ritmo con nuestra selección de canciones.</p>
+                <p>Pon a prueba tu ritmo con nuestra selecciÃÂ³n de canciones.</p>
             </a>
             <a href="leaderboard.html" class="nav-menu-item">
                 <div class="nav-menu-item-header"><i class="fas fa-trophy"></i> <span>Leaderboard</span></div>
@@ -173,15 +173,15 @@
             </a>
             <a href="soporte.html" class="nav-menu-item">
                 <div class="nav-menu-item-header"><i class="fas fa-headset"></i> <span>Soporte</span></div>
-                <p>¿Tienes problemas ? Nuestro equipo de ayuda está aquí.</p>
+                <p>ÃÂ¿Tienes problemas ? Nuestro equipo de ayuda estÃÂ¡ aquÃÂ­.</p>
             </a>
             <a href="contactanos.html" class="nav-menu-item">
                 <div class="nav-menu-item-header"><i class="fas fa-envelope"></i> <span>Contacto</span></div>
-                <p>Envíanos tus sugerencias o propuestas de negocio.</p>
+                <p>EnvÃÂ­anos tus sugerencias o propuestas de negocio.</p>
             </a>
             <a href="terms.html" class="nav-menu-item">
-                <div class="nav-menu-item-header"><i class="fas fa-file-contract"></i> <span>Términos</span></div>
-                <p>Reglas de la comunidad y políticas de privacidad.</p>
+                <div class="nav-menu-item-header"><i class="fas fa-file-contract"></i> <span>TÃÂ©rminos</span></div>
+                <p>Reglas de la comunidad y polÃÂ­ticas de privacidad.</p>
             </a>
         </div>
     </div>
@@ -200,7 +200,7 @@
                     <li><a href="changelog.html"><i class="fas fa-list-ul"></i> Changelog</a></li>
                     <li><a href="soporte.html"><i class="fas fa-headset"></i> Soporte</a></li>
                     <li><a href="contactanos.html"><i class="fas fa-envelope"></i> Contacto</a></li>
-                    <li><a href="terms.html"><i class="fas fa-file-contract"></i> Términos</a></li>
+                    <li><a href="terms.html"><i class="fas fa-file-contract"></i> TÃÂ©rminos</a></li>
                 </ul>
                 <div id="auth-section"></div>
                 <div class="search-wrapper">
@@ -209,7 +209,7 @@
                         <input type="text" class="search-input" placeholder="Buscar en MuzicMania...">
                     </div>
                     <div class="search-results-dropdown"></div>
-                    <button class="menu-toggle-btn" title="Menú"><i class="fas fa-bars"></i></button>
+                    <button class="menu-toggle-btn" title="MenÃÂº"><i class="fas fa-bars"></i></button>
                 </div>
             </nav>
         </div>
@@ -218,7 +218,7 @@
     <!-- Main -->
     <main>
         <div class="leaderboard-container">
-            <h1 class="text-center mb-3">←← Leaderboard Global</h1>
+            <h1 class="text-center mb-3">Ã¢ÂÂÃ¢ÂÂ Leaderboard Global</h1>
 
             <!-- Stats Summary -->
             <div class="stats-summary">
@@ -231,7 +231,7 @@
                     <p class="stat-value" id="total-games">0</p>
                 </div>
                 <div class="card">
-                    <h3>Puntuación Más Alta</h3>
+                    <h3>PuntuaciÃÂ³n MÃÂ¡s Alta</h3>
                     <p class="stat-value" id="highest-score">0</p>
                 </div>
             </div>
@@ -252,9 +252,9 @@
                         <tr>
                             <th style="width: 80px;">Rank</th>
                             <th>Jugador</th>
-                            <th>Puntuación</th>
-                            <th>Precisión</th>
-                            <th>Canción</th>
+                            <th>PuntuaciÃÂ³n</th>
+                            <th>PrecisiÃÂ³n</th>
+                            <th>CanciÃÂ³n</th>
                             <th>Fecha</th>
                         </tr>
                     </thead>
@@ -266,7 +266,7 @@
 
             <!-- Back Button -->
             <div class="text-center mt-3">
-                <button class="btn" onclick="window.location.href='index.html'">←← Volver al Inicio</button>
+                <button class="btn" onclick="window.location.href='index.html'">Ã¢ÂÂÃ¢ÂÂ Volver al Inicio</button>
             </div>
         </div>
     </main>
@@ -283,7 +283,7 @@
                     <p style="margin-top: 0.5rem; color: #888;">El mejor juego de ritmo futurista.</p>
                 </div>
                 <div class="footer-section">
-                    <h4>Navegación</h4>
+                    <h4>NavegaciÃÂ³n</h4>
                     <ul>
                         <li><a href="index.html">Inicio</a></li>
                         <li><a href="game.html">Jugar</a></li>
@@ -293,7 +293,7 @@
                     </ul>
                 </div>
                 <div class="footer-section">
-                    <h4>Síguenos</h4>
+                    <h4>SÃÂ­guenos</h4>
                     <div class="social-icons">
                         <a href="#"><i class="fab fa-twitter"></i></a>
                         <a href="#"><i class="fab fa-discord"></i></a>

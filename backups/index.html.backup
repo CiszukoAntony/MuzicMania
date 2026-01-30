@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="MuzicMania - Juego de Ritmo Estilo Mania con Est�tica Futurista">
+    <meta name="description" content="MuzicMania - Juego de Ritmo Estilo Mania con EstÃ©tica Futurista">
     <title>MuzicMania - Rhythm Game Futurista</title>
     <link rel="icon" type="image/png" href="assets/logo.png">
     <link rel="apple-touch-icon" href="assets/logo.png">
@@ -15,26 +15,26 @@
     <div class="zoom-warning">
         <div style="display: flex; align-items: center; gap: 10px;">
             <i class="fas fa-search-plus"></i>
-            <span id="zoom-warning-text">El zoom es demasiado alto. Algunas opciones se han movido al men�.</span>
+            <span id="zoom-warning-text">El zoom es demasiado alto. Algunas opciones se han movido al menÃº.</span>
         </div>
         <button class="close-warning" onclick="AdaptiveNav.closeWarning()" title="Cerrar">&times;</button>
     </div>
 
-    <!-- Men� Lateral Full (Hamburger Overlay) -->
+    <!-- MenÃº Lateral Full (Hamburger Overlay) -->
     <div class="menu-backdrop" onclick="AdaptiveNav.toggleMenu(false)"></div>
     <div class="nav-overlay">
         <div class="nav-overlay-header">
-            <h3>MEN� PRINCIPAL</h3>
+            <h3>MENÃ PRINCIPAL</h3>
             <button class="close-menu-btn"><i class="fas fa-times"></i></button>
         </div>
         <div class="nav-overlay-content">
             <a href="index.html" class="nav-menu-item">
                 <div class="nav-menu-item-header"><i class="fas fa-home"></i> <span>Inicio</span></div>
-                <p>Volver a la base. Noticias y estad�sticas globales.</p>
+                <p>Volver a la base. Noticias y estadÃ­sticas globales.</p>
             </a>
             <a href="game.html" class="nav-menu-item">
                 <div class="nav-menu-item-header"><i class="fas fa-gamepad"></i> <span>Jugar</span></div>
-                <p>Pon a prueba tu ritmo con nuestra selecci�n de canciones.</p>
+                <p>Pon a prueba tu ritmo con nuestra selecciÃ³n de canciones.</p>
             </a>
             <a href="leaderboard.html" class="nav-menu-item">
                 <div class="nav-menu-item-header"><i class="fas fa-trophy"></i> <span>Leaderboard</span></div>
@@ -46,19 +46,19 @@
             </a>
             <a href="soporte.html" class="nav-menu-item">
                 <div class="nav-menu-item-header"><i class="fas fa-headset"></i> <span>Soporte</span></div>
-                <p>�Tienes problemas ? Nuestro equipo de ayuda est� aqu�.</p>
+                <p>Â¿Tienes problemas ? Nuestro equipo de ayuda estÃ¡ aquÃ­.</p>
             </a>
             <a href="contactanos.html" class="nav-menu-item">
                 <div class="nav-menu-item-header"><i class="fas fa-envelope"></i> <span>Contacto</span></div>
-                <p>Env�anos tus sugerencias o propuestas de negocio.</p>
+                <p>EnvÃ­anos tus sugerencias o propuestas de negocio.</p>
             </a>
             <a href="terms.html" class="nav-menu-item">
-                <div class="nav-menu-item-header"><i class="fas fa-file-contract"></i> <span>T�rminos</span></div>
-                <p>Reglas de la comunidad y pol�ticas de privacidad.</p>
+                <div class="nav-menu-item-header"><i class="fas fa-file-contract"></i> <span>TÃ©rminos</span></div>
+                <p>Reglas de la comunidad y polÃ­ticas de privacidad.</p>
             </a>
         </div>
     </div>
-    <!-- Header con Logo y Navegaci�n -->
+    <!-- Header con Logo y NavegaciÃ³n -->
     <header>
         <div class="header-content">
             <a href="index.html" class="logo-container">
@@ -73,10 +73,10 @@
                     <li><a href="changelog.html"><i class="fas fa-list-ul"></i> Changelog</a></li>
                     <li><a href="soporte.html"><i class="fas fa-headset"></i> Soporte</a></li>
                     <li><a href="contactanos.html"><i class="fas fa-envelope"></i> Contacto</a></li>
-                    <li><a href="terms.html"><i class="fas fa-file-contract"></i> T�rminos</a></li>
+                    <li><a href="terms.html"><i class="fas fa-file-contract"></i> TÃ©rminos</a></li>
                 </ul>
                 <div id="auth-section">
-                    <!-- Din�mico: Login o Perfil -->
+                    <!-- DinÃ¡mico: Login o Perfil -->
                 </div>
                     <div class="search-wrapper">
                         <button class="search-btn" title="Buscar"><i class="fas fa-search"></i></button>
@@ -84,7 +84,7 @@
                             <input type="text" class="search-input" placeholder="Buscar en MuzicMania...">
                         </div>
                         <div class="search-results-dropdown"></div>
-                        <button class="menu-toggle-btn" title="Men�"><i class="fas fa-bars"></i></button>
+                        <button class="menu-toggle-btn" title="MenÃº"><i class="fas fa-bars"></i></button>
                     </div>
             </nav>
         </div>
@@ -96,10 +96,10 @@
         <section class="hero">
             <div class="container">
                 <h1 class="hero-title" data-text="MUZICMANIA">MUZICMANIA</h1>
-                <p class="hero-subtitle">- Juego de Ritmo Definitivo. Domina el beat en una dimensi�n web online.</p>
+                <p class="hero-subtitle">- Juego de Ritmo Definitivo. Domina el beat en una dimensiÃ³n web online.</p>
                 <div class="hero-cta" style="display: flex; justify-content: center; gap: 1.5rem;">
                     <button class="btn" onclick="window.location.href='game.html'">
-                        ?? JUGAR AHORA
+                        âð® JUGAR AHORA
                     </button>
                     <button class="btn" onclick="document.querySelector('#auth-section').scrollIntoView({behavior: 'smooth'})">
                         REGISTRARTE
@@ -108,27 +108,27 @@
             </div>
         </section>
 
-        <!-- Estad�sticas en Vivo -->
+        <!-- EstadÃ­sticas en Vivo -->
         <section class="container mt-3">
-            <h2 class="text-center mb-2">Estad�sticas en Vivo</h2>
+            <h2 class="text-center mb-2">EstadÃ­sticas en Vivo</h2>
             <div class="stats-grid">
                 <div class="stat-card">
-                    <div class="stat-icon">??</div>
+                    <div class="stat-icon">ð®</div>
                     <div class="stat-value" id="active-players">0</div>
                     <div class="stat-label">Jugadores Activos</div>
                 </div>
                 <div class="stat-card">
-                    <div class="stat-icon">??</div>
+                    <div class="stat-icon">ð®</div>
                     <div class="stat-value" id="games-today">0</div>
                     <div class="stat-label">Partidas Hoy</div>
                 </div>
                 <div class="stat-card">
-                    <div class="stat-icon">??</div>
+                    <div class="stat-icon">ð®</div>
                     <div class="stat-value" id="global-record">0</div>
-                    <div class="stat-label">R�cord Global</div>
+                    <div class="stat-label">RÃ©cord Global</div>
                 </div>
                 <div class="stat-card">
-                    <div class="stat-icon">??</div>
+                    <div class="stat-icon">ð®</div>
                     <div class="stat-value" id="total-users">0</div>
                     <div class="stat-label">Usuarios Totales</div>
                 </div>
@@ -145,65 +145,65 @@
 
         <!-- Features Section -->
         <section class="container mt-3">
-            <h2 class="text-center mb-2">Caracter�sticas</h2>
+            <h2 class="text-center mb-2">CaracterÃ­sticas</h2>
             <div class="grid">
                 <div class="card">
                     <div class="card-header">
-                        <h3>?? Visualizadores de Audio</h3>
+                        <h3>ðµ Visualizadores de Audio</h3>
                     </div>
-                    <p>Espectrogramas en tiempo real y barras de frecuencia que reaccionan a cada beat de la m�sica.</p>
+                    <p>Espectrogramas en tiempo real y barras de frecuencia que reaccionan a cada beat de la mÃºsica.</p>
                 </div>
 
                 <div class="card">
                     <div class="card-header">
-                        <h3>?? Mec�nica Mania</h3>
+                        <h3>ðµ MecÃ¡nica Mania</h3>
                     </div>
-                    <p>Sistema de flechas descendentes con detecci�n de precisi�n: Perfect, Great, Good, Miss.</p>
+                    <p>Sistema de flechas descendentes con detecciÃ³n de precisiÃ³n: Perfect, Great, Good, Miss.</p>
                 </div>
 
                 <div class="card">
                     <div class="card-header">
-                        <h3>?? Sistema de Puntuaci�n</h3>
+                        <h3>ðµ Sistema de PuntuaciÃ³n</h3>
                     </div>
                     <p>Combos, multiplicadores y leaderboard global para competir con otros jugadores.</p>
                 </div>
 
                 <div class="card">
                     <div class="card-header">
-                        <h3>?? Est�tica Futurista</h3>
+                        <h3>ðµ EstÃ©tica Futurista</h3>
                     </div>
-                    <p>Dise�o moderno con neones vibrantes, efectos glow y animaciones que te transportan al futuro.</p>
+                    <p>DiseÃ±o moderno con neones vibrantes, efectos glow y animaciones que te transportan al futuro.</p>
                 </div>
 
                 <div class="card">
                     <div class="card-header">
-                        <h3>?? Controles Simples</h3>
+                        <h3>ðµ Controles Simples</h3>
                     </div>
-                    <p>Usa las flechas del teclado o WASD para jugar. F�cil de aprender, dif�cil de dominar.</p>
+                    <p>Usa las flechas del teclado o WASD para jugar. FÃ¡cil de aprender, difÃ­cil de dominar.</p>
                 </div>
 
                 <div class="card">
                     <div class="card-header">
-                        <h3>?? Progreso Guardado</h3>
+                        <h3>ðµ Progreso Guardado</h3>
                     </div>
-                    <p>Tus puntuaciones y estad�sticas se guardan autom�ticamente para trackear tu progreso.</p>
+                    <p>Tus puntuaciones y estadÃ­sticas se guardan automÃ¡ticamente para trackear tu progreso.</p>
                 </div>
             </div>
         </section>
 
-        <!-- C�mo Jugar -->
+        <!-- CÃ³mo Jugar -->
         <section class="container mt-3">
-            <h2 class="text-center mb-2">C�mo Jugar</h2>
+            <h2 class="text-center mb-2">CÃ³mo Jugar</h2>
             <div class="card" style="max-width: 900px; margin: 0 auto;">
                 <ol style="padding-left: 2rem; line-height: 2.2; font-size: 1.1rem;">
-                    <li>Selecciona una canci�n de la lista</li>
-                    <li>Las flechas caer�n desde arriba sincronizadas con la m�sica</li>
+                    <li>Selecciona una canciÃ³n de la lista</li>
+                    <li>Las flechas caerÃ¡n desde arriba sincronizadas con la mÃºsica</li>
                     <li>Presiona la tecla correspondiente cuando la flecha llegue a la zona de hit</li>
-                    <li>Acumula combos para multiplicar tu puntuaci�n</li>
-                    <li>�Completa la canci�n y establece tu r�cord!</li>
+                    <li>Acumula combos para multiplicar tu puntuaciÃ³n</li>
+                    <li>Â¡Completa la canciÃ³n y establece tu rÃ©cord!</li>
                 </ol>
                 <div class="text-center mt-2">
-                    <p style="font-size: 1.2rem;"><strong>Controles:</strong> Flechas del teclado ? ? ? ? o WASD</p>
+                    <p style="font-size: 1.2rem;"><strong>Controles:</strong> Flechas del teclado â â â â o WASD</p>
                 </div>
             </div>
         </section>
@@ -213,7 +213,7 @@
     <footer>
         <div class="footer-content">
             <div class="footer-grid">
-                <!-- Logo y Descripci�n -->
+                <!-- Logo y DescripciÃ³n -->
                 <div class="footer-section">
                     <a href="index.html" class="footer-brand">
                         <img src="assets/logo.png" alt="Logo" class="footer-logo">
@@ -222,21 +222,21 @@
                     <p style="margin-top: 0.5rem; color: #888;">El mejor juego de ritmo futurista. Pon a prueba tus habilidades y compite con jugadores de todo el mundo.</p>
                 </div>
 
-                <!-- Men� de Navegaci�n -->
+                <!-- MenÃº de NavegaciÃ³n -->
                 <div class="footer-section">
-                    <h4>Navegaci�n</h4>
+                    <h4>NavegaciÃ³n</h4>
                     <ul>
                         <li><a href="index.html">Inicio</a></li>
                         <li><a href="game.html">Jugar</a></li>
                         <li><a href="leaderboard.html">Leaderboard</a></li>
-                        <li><a href="terms.html">T�rminos y Condiciones</a></li>
+                        <li><a href="terms.html">TÃ©rminos y Condiciones</a></li>
                         <li><a href="changelog.html">Blog de Cambios</a></li>
                     </ul>
                 </div>
 
                 <!-- Redes Sociales -->
                 <div class="footer-section">
-                    <h4>S�guenos</h4>
+                    <h4>SÃ­guenos</h4>
                     <div class="social-icons">
                         <a href="#" title="Twitter"><i class="fab fa-twitter"></i></a>
                         <a href="#" title="Discord"><i class="fab fa-discord"></i></a>
@@ -244,7 +244,7 @@
                         <a href="#" title="Instagram"><i class="fab fa-instagram"></i></a>
                         <a href="#" title="TikTok"><i class="fab fa-tiktok"></i></a>
                     </div>
-                    <p style="margin-top: 1rem; color: #888;">�nete a nuestra comunidad y mantente al d�a con las �ltimas novedades.</p>
+                    <p style="margin-top: 1rem; color: #888;">Ãnete a nuestra comunidad y mantente al dÃ­a con las Ãºltimas novedades.</p>
                 </div>
             </div>
 
@@ -257,7 +257,7 @@
     <script src="auth.js?v=1"></script>
     <script src="script.js?v=898223035"></script>
     <script>
-        // Generar estad�sticas din�micas
+        // Generar estadÃ­sticas dinÃ¡micas
         function updateStats() {
             // Jugadores activos (simulado)
             const activePlayers = Math.floor(Math.random() * 500) + 800;
@@ -267,7 +267,7 @@
             const gamesToday = Math.floor(Math.random() * 2000) + 5000;
             document.getElementById('games-today').textContent = gamesToday.toLocaleString();
 
-            // R�cord global (del leaderboard)
+            // RÃ©cord global (del leaderboard)
             const leaderboard = AuthSystem.getLeaderboard();
             const globalRecord = leaderboard.length > 0 ? leaderboard[0].highScore : 0;
             document.getElementById('global-record').textContent = globalRecord.toLocaleString();
@@ -284,7 +284,7 @@
             const container = document.getElementById('top-players-list');
 
             if (top5.length === 0) {
-                container.innerHTML = '<p class="text-center" style="padding: 2rem; color: #888;">No hay jugadores a�n. �S� el primero!</p>';
+                container.innerHTML = '<p class="text-center" style="padding: 2rem; color: #888;">No hay jugadores aÃºn. Â¡SÃ© el primero!</p>';
                 return;
             }
 
@@ -297,8 +297,8 @@
                     <div style="display: flex; align-items: center; gap: 1.5rem; padding: 1rem; background: rgba(0, 153, 255, 0.05); border-radius: 10px; border: 2px solid ${color}30;">
                         <div style="font-size: 2rem; font-weight: 900; color: ${color}; min-width: 50px;">#${index + 1}</div>
                         <div style="flex: 1;">
-                            <div style="font-size: 1.3rem; font-weight: 700; color: var(--neon-cyan);">${player.isBot ? '?? ' : ''}${player.username}</div>
-                            <div style="font-size: 1rem; color: #888;">${player.accuracy}% precisi�n ? ${player.gamesPlayed} partidas</div>
+                            <div style="font-size: 1.3rem; font-weight: 700; color: var(--neon-cyan);">${player.isBot â 'ââ ' : ''}${player.username}</div>
+                            <div style="font-size: 1rem; color: #888;">${player.accuracy}% precisiÃ³n â ${player.gamesPlayed} partidas</div>
                         </div>
                         <div style="font-size: 1.5rem; font-weight: 900; color: ${color};">${player.highScore.toLocaleString()}</div>
                     </div>
@@ -324,7 +324,7 @@
     <div id="modal-login" class="modal-overlay" style="display: none;">
         <div class="modal-content">
             <button class="close-modal" onclick="AuthSystem.closeModal('login')">&times;</button>
-            <h2 class="modal-title">INICIAR SESI�N</h2>
+            <h2 class="modal-title">INICIAR SESIÃN</h2>
             
             <form onsubmit="event.preventDefault(); AuthSystem.login(this.username.value, this.password.value);">
                 <div class="form-group">
@@ -333,8 +333,8 @@
                 </div>
                 
                 <div class="form-group">
-                    <label>Contrase�a</label>
-                    <input type="password" name="password" placeholder="????????" required>
+                    <label>ContraseÃ±a</label>
+                    <input type="password" name="password" placeholder="ââââââââ" required>
                 </div>
 
                 <!-- Fake Recaptcha -->
@@ -348,7 +348,7 @@
             </form>
             
             <p class="modal-footer">
-                �No tienes cuenta? <a href="#" onclick="AuthSystem.closeModal('login'); AuthSystem.openModal('register')">Reg�strate</a>
+                Â¿No tienes cuenta? <a href="#" onclick="AuthSystem.closeModal('login'); AuthSystem.openModal('register')">RegÃ­strate</a>
             </p>
         </div>
     </div>
@@ -363,13 +363,13 @@
                 <div class="form-group">
                     <label>Display Name (Visible)</label>
                     <input type="text" name="displayName" placeholder="Ej: TU NOMBRE PRO" required>
-                    <small style="color: #888; font-size: 0.8rem;">Puede tener may�sculas y espacios.</small>
+                    <small style="color: #888; font-size: 0.8rem;">Puede tener mayÃºsculas y espacios.</small>
                 </div>
 
                 <div class="form-group">
-                    <label>Username (�nico)</label>
+                    <label>Username (Ãnico)</label>
                     <input type="text" name="username" placeholder="usuario" required>
-                    <small style="color: #888; font-size: 0.8rem;">Se a�adir� @ autom�ticamente. Inmutable por 7 d�as.</small>
+                    <small style="color: #888; font-size: 0.8rem;">Se aÃ±adirÃ¡ @ automÃ¡ticamente. Inmutable por 7 dÃ­as.</small>
                 </div>
 
                 <div class="form-group">
@@ -378,8 +378,8 @@
                 </div>
                 
                 <div class="form-group">
-                    <label>Contrase�a</label>
-                    <input type="password" name="password" placeholder="????????" required>
+                    <label>ContraseÃ±a</label>
+                    <input type="password" name="password" placeholder="ââââââââ" required>
                 </div>
 
                 <!-- Fake Recaptcha -->
@@ -393,7 +393,7 @@
             </form>
             
             <p class="modal-footer">
-                �Ya tienes cuenta? <a href="#" onclick="AuthSystem.closeModal('register'); AuthSystem.openModal('login')">Inicia Sesi�n</a>
+                Â¿Ya tienes cuenta? <a href="#" onclick="AuthSystem.closeModal('register'); AuthSystem.openModal('login')">Inicia SesiÃ³n</a>
             </p>
         </div>
     </div>

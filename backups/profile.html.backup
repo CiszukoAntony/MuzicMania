@@ -112,26 +112,26 @@
     <div class="zoom-warning">
         <div style="display: flex; align-items: center; gap: 10px;">
             <i class="fas fa-search-plus"></i>
-            <span id="zoom-warning-text">El zoom es demasiado alto. Algunas opciones se han movido al men�.</span>
+            <span id="zoom-warning-text">El zoom es demasiado alto. Algunas opciones se han movido al menÃº.</span>
         </div>
         <button class="close-warning" onclick="AdaptiveNav.closeWarning()" title="Cerrar">&times;</button>
     </div>
 
-    <!-- Men� Lateral Full (Hamburger Overlay) -->
+    <!-- MenÃº Lateral Full (Hamburger Overlay) -->
     <div class="menu-backdrop" onclick="AdaptiveNav.toggleMenu(false)"></div>
     <div class="nav-overlay">
         <div class="nav-overlay-header">
-            <h3>MEN� PRINCIPAL</h3>
+            <h3>MENÃ PRINCIPAL</h3>
             <button class="close-menu-btn"><i class="fas fa-times"></i></button>
         </div>
         <div class="nav-overlay-content">
             <a href="index.html" class="nav-menu-item">
                 <div class="nav-menu-item-header"><i class="fas fa-home"></i> <span>Inicio</span></div>
-                <p>Volver a la base. Noticias y estad�sticas globales.</p>
+                <p>Volver a la base. Noticias y estadÃ­sticas globales.</p>
             </a>
             <a href="game.html" class="nav-menu-item">
                 <div class="nav-menu-item-header"><i class="fas fa-gamepad"></i> <span>Jugar</span></div>
-                <p>Pon a prueba tu ritmo con nuestra selecci�n de canciones.</p>
+                <p>Pon a prueba tu ritmo con nuestra selecciÃ³n de canciones.</p>
             </a>
             <a href="leaderboard.html" class="nav-menu-item">
                 <div class="nav-menu-item-header"><i class="fas fa-trophy"></i> <span>Leaderboard</span></div>
@@ -143,15 +143,15 @@
             </a>
             <a href="soporte.html" class="nav-menu-item">
                 <div class="nav-menu-item-header"><i class="fas fa-headset"></i> <span>Soporte</span></div>
-                <p>�Tienes problemas ? Nuestro equipo de ayuda est� aqu�.</p>
+                <p>Â¿Tienes problemas ? Nuestro equipo de ayuda estÃ¡ aquÃ­.</p>
             </a>
             <a href="contactanos.html" class="nav-menu-item">
                 <div class="nav-menu-item-header"><i class="fas fa-envelope"></i> <span>Contacto</span></div>
-                <p>Env�anos tus sugerencias o propuestas de negocio.</p>
+                <p>EnvÃ­anos tus sugerencias o propuestas de negocio.</p>
             </a>
             <a href="terms.html" class="nav-menu-item">
-                <div class="nav-menu-item-header"><i class="fas fa-file-contract"></i> <span>T�rminos</span></div>
-                <p>Reglas de la comunidad y pol�ticas de privacidad.</p>
+                <div class="nav-menu-item-header"><i class="fas fa-file-contract"></i> <span>TÃ©rminos</span></div>
+                <p>Reglas de la comunidad y polÃ­ticas de privacidad.</p>
             </a>
         </div>
     </div>
@@ -170,7 +170,7 @@
                     <li><a href="changelog.html"><i class="fas fa-list-ul"></i> Changelog</a></li>
                     <li><a href="soporte.html"><i class="fas fa-headset"></i> Soporte</a></li>
                     <li><a href="contactanos.html"><i class="fas fa-envelope"></i> Contacto</a></li>
-                    <li><a href="terms.html"><i class="fas fa-file-contract"></i> T�rminos</a></li>
+                    <li><a href="terms.html"><i class="fas fa-file-contract"></i> TÃ©rminos</a></li>
                 </ul>
                 <div id="auth-section"></div>
                 <div class="search-wrapper">
@@ -179,7 +179,7 @@
                         <input type="text" class="search-input" placeholder="Buscar en MuzicMania...">
                     </div>
                     <div class="search-results-dropdown"></div>
-                    <button class="menu-toggle-btn" title="Men�"><i class="fas fa-bars"></i></button>
+                    <button class="menu-toggle-btn" title="MenÃº"><i class="fas fa-bars"></i></button>
                 </div>
             </nav>
         </div>
@@ -191,23 +191,23 @@
             <!-- Profile Header -->
             <div class="profile-header card">
                 <div class="profile-avatar-large" id="profile-avatar">
-                    <span id="profile-initials">??</span>
+                    <span id="profile-initials">ââ</span>
                 </div>
                 <h1 id="profile-username">Usuario</h1>
                 <p style="color: #888; font-size: 1.2rem;">Miembro desde <span id="member-since">2026</span></p>
                 <div style="margin-top: 1.5rem;">
                     <button class="btn btn-secondary" onclick="AuthSystem.logout()">
-                        <i class="fas fa-sign-out-alt"></i> Cerrar Sesi�n
+                        <i class="fas fa-sign-out-alt"></i> Cerrar SesiÃ³n
                     </button>
                 </div>
             </div>
 
             <!-- Stats Grid -->
             <section class="mt-3">
-                <h2 class="mb-2">Estad�sticas</h2>
+                <h2 class="mb-2">EstadÃ­sticas</h2>
                 <div class="profile-stats-grid">
                     <div class="profile-stat">
-                        <div class="profile-stat-label">Puntuaci�n M�xima</div>
+                        <div class="profile-stat-label">PuntuaciÃ³n MÃ¡xima</div>
                         <div class="profile-stat-value" id="stat-high-score">0</div>
                     </div>
                     <div class="profile-stat">
@@ -215,11 +215,11 @@
                         <div class="profile-stat-value" id="stat-games-played">0</div>
                     </div>
                     <div class="profile-stat">
-                        <div class="profile-stat-label">Precisi�n Promedio</div>
+                        <div class="profile-stat-label">PrecisiÃ³n Promedio</div>
                         <div class="profile-stat-value" id="stat-accuracy">0%</div>
                     </div>
                     <div class="profile-stat">
-                        <div class="profile-stat-label">Posici�n Global</div>
+                        <div class="profile-stat-label">PosiciÃ³n Global</div>
                         <div class="profile-stat-value" id="stat-rank">#-</div>
                     </div>
                 </div>
@@ -230,7 +230,7 @@
                 <h2 class="mb-2">Mejores Canciones</h2>
                 <div class="card">
                     <div id="best-songs-list">
-                        <p style="text-align: center; color: #888; padding: 2rem;">�Juega algunas canciones para ver tus mejores puntuaciones aqu�!</p>
+                        <p style="text-align: center; color: #888; padding: 2rem;">Â¡Juega algunas canciones para ver tus mejores puntuaciones aquÃ­!</p>
                     </div>
                 </div>
             </section>
@@ -240,27 +240,27 @@
                 <h2 class="mb-2">Logros</h2>
                 <div class="achievement-grid">
                     <div class="achievement unlocked">
-                        <div class="achievement-icon">??</div>
+                        <div class="achievement-icon">ââ</div>
                         <div class="achievement-name">Primera Partida</div>
                     </div>
                     <div class="achievement unlocked">
-                        <div class="achievement-icon">??</div>
-                        <div class="achievement-name">Amante de la M�sica</div>
+                        <div class="achievement-icon">ââ</div>
+                        <div class="achievement-name">Amante de la MÃºsica</div>
                     </div>
                     <div class="achievement locked">
-                        <div class="achievement-icon">??</div>
+                        <div class="achievement-icon">ââ</div>
                         <div class="achievement-name">Top 10</div>
                     </div>
                     <div class="achievement locked">
-                        <div class="achievement-icon">??</div>
-                        <div class="achievement-name">Perfecci�n</div>
+                        <div class="achievement-icon">ââ</div>
+                        <div class="achievement-name">PerfecciÃ³n</div>
                     </div>
                     <div class="achievement locked">
-                        <div class="achievement-icon">?</div>
+                        <div class="achievement-icon">â</div>
                         <div class="achievement-name">Velocidad</div>
                     </div>
                     <div class="achievement locked">
-                        <div class="achievement-icon">??</div>
+                        <div class="achievement-icon">ââ</div>
                         <div class="achievement-name">En Racha</div>
                     </div>
                 </div>
@@ -291,7 +291,7 @@
                 </div>
 
                 <div class="footer-section">
-                    <h4>Navegaci�n</h4>
+                    <h4>NavegaciÃ³n</h4>
                     <ul>
                         <li><a href="index.html">Inicio</a></li>
                         <li><a href="game.html">Jugar</a></li>
@@ -302,7 +302,7 @@
                 </div>
 
                 <div class="footer-section">
-                    <h4>S�guenos</h4>
+                    <h4>SÃ­guenos</h4>
                     <div class="social-icons">
                         <a href="#" title="Twitter"><i class="fab fa-twitter"></i></a>
                         <a href="#" title="Discord"><i class="fab fa-discord"></i></a>
@@ -310,7 +310,7 @@
                         <a href="#" title="Instagram"><i class="fab fa-instagram"></i></a>
                         <a href="#" title="TikTok"><i class="fab fa-tiktok"></i></a>
                     </div>
-                    <p style="margin-top: 1rem; color: #888;">�nete a nuestra comunidad y mantente al d�a con las �ltimas novedades.</p>
+                    <p style="margin-top: 1rem; color: #888;">Ãnete a nuestra comunidad y mantente al dÃ­a con las Ãºltimas novedades.</p>
                 </div>
             </div>
 
@@ -322,15 +322,15 @@
 
     <script src="auth.js?v=1"></script>
     <script>
-        // Verificar si el usuario est� logueado
+        // Verificar si el usuario estÃ¡ logueado
         const user = AuthSystem.getCurrentUser();
         
         if (!user) {
-            // Redirigir al inicio si no est� logueado
-            alert('Debes iniciar sesi�n para ver tu perfil');
+            // Redirigir al inicio si no estÃ¡ logueado
+            alert('Debes iniciar sesiÃ³n para ver tu perfil');
             window.location.href = 'index.html';
         } else {
-            // Mostrar informaci�n del usuario
+            // Mostrar informaciÃ³n del usuario
             document.getElementById('profile-initials').textContent = user.initials;
             document.getElementById('profile-username').textContent = user.username;
             
@@ -339,15 +339,15 @@
             const options = { year: 'numeric', month: 'long', day: 'numeric' };
             document.getElementById('member-since').textContent = memberDate.toLocaleDateString('es-ES', options);
             
-            // Estad�sticas
+            // EstadÃ­sticas
             document.getElementById('stat-high-score').textContent = user.highScore.toLocaleString();
             document.getElementById('stat-games-played').textContent = user.gamesPlayed;
             document.getElementById('stat-accuracy').textContent = user.accuracy + '%';
             
-            // Calcular posici�n en leaderboard
+            // Calcular posiciÃ³n en leaderboard
             const leaderboard = AuthSystem.getLeaderboard();
             const userRank = leaderboard.findIndex(p => p.username === user.username) + 1;
-            document.getElementById('stat-rank').textContent = userRank > 0 ? '#' + userRank : 'N/A';
+            document.getElementById('stat-rank').textContent = userRank > 0 â '#' + userRank : 'N/A';
         }
     </script>
     <script src="script.js?v=1"></script>
