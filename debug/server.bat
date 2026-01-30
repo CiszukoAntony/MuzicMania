@@ -105,8 +105,8 @@ echo    %ESC%[95m═════════════════════
 echo.
 
 cd ..
-:: Redirigir stdout y stderr a consola y archivo de log simultáneamente
-python -m http.server 8000 2>&1 | powershell -Command "$Input | Tee-Object -FilePath logs\%LOG_NAME% -Append"
+:: Redirigir stdout y stderr a consola y archivo de log simultáneamente usando el servidor Pro
+python debug\serve_pro.py 2>&1 | powershell -Command "$Input | Tee-Object -FilePath logs\%LOG_NAME% -Append"
 cd debug
 goto MENU
 
