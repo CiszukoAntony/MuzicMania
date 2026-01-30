@@ -956,31 +956,37 @@ body.page-transitioning footer::before {
   font-size: 1.1rem;
 }
 
-.footer-section a:hover {
+/* Aplicar solo a los enlaces de lista, no al logo-brand */
+.footer-section ul li a:hover {
   color: var(--neon-cyan);
   padding-left: 5px;
 }
 
-.footer-logo {
+.footer-logo-sync {
   width: 50px;
   height: 50px;
-  margin-right: 1rem;
   vertical-align: middle;
   transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
 
+/* Sincronizar con el header .logo-container:hover .logo-img */
 .footer-brand:hover .logo-img {
   transform: translateY(-2px) scale(1.08);
+}
+
+.footer-brand:hover h3 {
+  transform: translateY(-2px) scale(1.05);
 }
 
 .footer-brand {
   display: flex;
   align-items: center;
+  gap: 0.6rem;
   margin-bottom: 0.5rem;
   text-decoration: none;
   cursor: pointer;
   transition: var(--transition-normal);
-  padding: 0.4rem 0.6rem;
+  padding: 0.3rem 0.6rem;
   border-radius: 12px;
   width: fit-content;
   border: 1px solid transparent;
@@ -990,7 +996,6 @@ body.page-transitioning footer::before {
   background: rgba(0, 85, 255, 0.08);
   border-color: rgba(0, 85, 255, 0.3);
   box-shadow: 0 0 12px rgba(107, 230, 255, 0.4);
-  transform: translateY(-2px);
 }
 
 .footer-brand:active {
@@ -1006,6 +1011,7 @@ body.page-transitioning footer::before {
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
+  transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
 
 .social-icons {
