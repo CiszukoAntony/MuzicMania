@@ -18,9 +18,8 @@ ia/
 *.gemini/
 brain/
 
-# Debug & Dev Tools
-debug/
-repair_scripts/
+# Logs
+logs/
 *.log
 npm-debug.log*
 
