@@ -19,15 +19,16 @@ set SECOND=!datetime:~12,2!
 set TIMESTAMP=!YEAR!-!MONTH!-!DAY! !HOUR!:!MINUTE!:!SECOND!
 set DATE_STAMP=!YEAR!-!MONTH!-!DAY!
 
-:: Create persistent random ID for the session if not exists
-:: We use a temporary file to store the random ID for the day or session
-if not defined LOG_RANDOM (
-    set /a LOG_RANDOM=%RANDOM%
+:: Persist ID for the current session (window)
+:: If SESSION_ID is passed as environment variable, use it.
+:: Otherwise generate one (fallback)
+if "%LOG_SESSION_ID%"=="" (
+    set LOG_SESSION_ID=%RANDOM%
 )
 
-set LOG_FILE=..\logs\!LOG_RANDOM!_!DATE_STAMP!.txt
+set LOG_FILE=..\logs\_log_!LOG_SESSION_ID!_!DATE_STAMP!.txt
 
-:: Ensure logs directory exists (just in case)
+:: Ensure logs directory exists
 if not exist "..\logs" mkdir "..\logs"
 
 :: Append to log

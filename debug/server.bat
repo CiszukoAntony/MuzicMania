@@ -1,48 +1,55 @@
 @echo off
 chcp 65001 > nul
-title MuzicMania - Servidor Local
-color 0B
+setlocal enabledelayedexpansion
+
+:: MuzicMania Server Manager Pro
+:: ----------------------------
+
+:: Generate Session ID once per window open
+set LOG_SESSION_ID=%RANDOM%%RANDOM%
+
+title MuzicMania - Servidor Local PRO
+color 0D
 
 :MENU
 cls
-echo ╔════════════════════════════════════════════╗
-echo ║     MUZICMANIA - SERVIDOR LOCAL            ║
-echo ╚════════════════════════════════════════════╝
 echo.
-echo  [1] Iniciar servidor (Puerto 8000)
-echo  [2] Detener servidor
-echo  [3] Reiniciar servidor
-echo  [4] Salir
+echo   [95m ███╗   ███╗██╗   ██╗███████╗██╗ ██████╗███╗   ███╗ █████╗ ███╗   ██╗██╗ █████╗ [0m
+echo   [95m ████╗ ████║██║   ██║╚══███╔╝██║██╔════╝████╗ ████║██╔══██╗████╗  ██║██║██╔══██╗[0m
+echo   [95m ██╔████╔██║██║   ██║  ███╔╝ ██║██║     ██╔████╔██║███████║██╔██╗ ██║██║███████║[0m
+echo   [95m ██║╚██╔╝██║██║   ██║ ███╔╝  ██║██║     ██║╚██╔╝██║██╔══██║██║╚██╗██║██║██╔══██║[0m
+echo   [95m ██║ ╚═╝ ██║╚██████╔╝███████╗██║╚██████╗██║ ╚═╝ ██║██║  ██║██║ ╚████║██║██║  ██║[0m
+echo   [95m ╚═╝     ╚═╝ ╚═════╝ ╚══════╝╚═╝ ╚═════╝╚═╝     ╚═╝╚═╝  ╚═╝╚═╝  ╚═══╝╚═╝╚═╝  ╚═╝[0m
 echo.
-echo ════════════════════════════════════════════
+echo   [95m═══════════════════════════════════════════════════════════════════════════════[0m
+echo.
+echo     [1] [96mINICIAR SERVIDOR (Puerto 8000)[0m
+echo     [2] [91mDETENER SERVIDOR[0m
+echo     [3] [93mREINICIAR SERVIDOR (Limpieza Total)[0m
+echo     [4] [90mSALIR[0m
+echo.
+echo   [95m═══════════════════════════════════════════════════════════════════════════════[0m
 echo.
 
-set /p opcion="Selecciona una opción: "
+set /p opcion=" [97m» Selecciona una opción: [0m"
 
 if "%opcion%"=="1" goto INICIAR
 if "%opcion%"=="2" goto DETENER
 if "%opcion%"=="3" goto REINICIAR
 if "%opcion%"=="4" goto SALIR
-echo.
-echo [ERROR] Opción inválida. Intenta de nuevo.
-timeout /t 2 > nul
 goto MENU
 
 :INICIAR
 call logger.bat "START" "Iniciando servidor en puerto 8000"
 cls
-echo ════════════════════════════════════════════
-echo  INICIANDO SERVIDOR...
-echo ════════════════════════════════════════════
+echo   [95m════════════════════════════════════════════[0m
+echo     [96mINICIANDO SERVIDOR...[0m
+echo   [95m════════════════════════════════════════════[0m
 echo.
 
-REM Generar número aleatorio para cache busting
 set CACHE_VERSION=%RANDOM%%RANDOM%
+echo   [90m[*] Aplicando cache busting (v%CACHE_VERSION%)...[0m
 
-echo [*] Aplicando cache busting (v%CACHE_VERSION%)...
-
-REM Actualizar referencias CSS/JS en archivos HTML
-REM Actualizar referencias CSS/JS en archivos HTML - Usando UTF8 para preservar caracteres especiales
 powershell -Command "(gc ..\index.html) -replace 'styles\.css\?v=\d+', 'styles.css?v=%CACHE_VERSION%' | Out-File -encoding UTF8 ..\index.html"
 powershell -Command "(gc ..\index.html) -replace 'script\.js\?v=\d+', 'script.js?v=%CACHE_VERSION%' | Out-File -encoding UTF8 ..\index.html"
 powershell -Command "(gc ..\game.html) -replace 'styles\.css\?v=\d+', 'styles.css?v=%CACHE_VERSION%' | Out-File -encoding UTF8 ..\game.html"
@@ -53,67 +60,51 @@ powershell -Command "(gc ..\changelog.html) -replace 'styles\.css\?v=\d+', 'styl
 powershell -Command "(gc ..\terms.html) -replace 'styles\.css\?v=\d+', 'styles.css?v=%CACHE_VERSION%' | Out-File -encoding UTF8 ..\terms.html"
 powershell -Command "Get-ChildItem -Path ..\ -Filter *.html | ForEach-Object { (Get-Content $_.FullName) -replace 'navigation\.js\?v=\d+', 'navigation.js?v=%CACHE_VERSION%' | Set-Content $_.FullName }"
 
-echo ✓ Cache busting aplicado correctamente
-echo ✓ Servidor corriendo en: http://localhost:8000
 echo.
-echo Presiona Ctrl+C para detenerlo y volver al menú
-echo ════════════════════════════════════════════
+echo   [92m✓ Cache aplicado correctamente.[0m
+echo   [92m✓ Servidor ONLINE en: http://localhost:8000[0m
+echo.
+echo   [90mPresiona Ctrl+C para volver al menú principal[0m
+echo   [95m════════════════════════════════════════════[0m
 echo.
 
 cd ..
 python -m http.server 8000
 cd debug
-
-echo.
-echo [INFO] Servidor detenido.
-timeout /t 2 > nul
 goto MENU
 
 :DETENER
 call logger.bat "STOP" "Deteniendo servidor manualmente"
 cls
-echo ════════════════════════════════════════════
-echo  DETENIENDO SERVIDOR...
-echo ════════════════════════════════════════════
+echo   [95m════════════════════════════════════════════[0m
+echo     [91mDETENIENDO SERVIDOR...[0m
+echo   [95m════════════════════════════════════════════[0m
 echo.
 
 taskkill /F /IM python.exe /FI "WINDOWTITLE eq MuzicMania*" 2>nul
-if %errorlevel%==0 (
-    echo ✓ Servidor detenido correctamente.
-) else (
-    echo ! No se encontró ningún servidor en ejecución.
-)
+taskkill /F /IM python.exe 2>nul
 
-echo.
+echo   [92m✓ Procesos de Python finalizados.[0m
 timeout /t 2 > nul
 goto MENU
 
 :REINICIAR
-call logger.bat "RESTART" "Solicitado reinicio del servidor"
+call logger.bat "RESTART" "Solicitado reinicio completo"
 cls
-echo ════════════════════════════════════════════
-echo  REINICIANDO SERVIDOR...
-echo ════════════════════════════════════════════
+echo   [95m════════════════════════════════════════════[0m
+echo     [93mREINICIANDO SERVIDOR...[0m
+echo   [95m════════════════════════════════════════════[0m
 echo.
 
-REM Detener servidor actual
+taskkill /F /IM python.exe /FI "WINDOWTITLE eq MuzicMania*" 2>nul
 taskkill /F /IM python.exe 2>nul
-if %errorlevel%==0 (
-    echo ✓ Servidor anterior detenido.
-) else (
-    echo [INFO] No había servidor en ejecución.
-)
-
 timeout /t 1 > nul
-
-REM Iniciar servidor con nuevo cache
 goto INICIAR
 
 :SALIR
-call logger.bat "EXIT" "Cerrando panel de servidor"
+call logger.bat "EXIT" "Cerrando panel"
 cls
-echo ════════════════════════════════════════════
-echo  Cerrando...
-echo ════════════════════════════════════════════
+echo.
+echo   [95mCerrando servicios de MuzicMania...[0m
 timeout /t 1 > nul
 exit
