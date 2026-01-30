@@ -201,28 +201,3 @@ document.addEventListener('DOMContentLoaded', () => {
     Layout.init();
 });
 
-    highlightActivePage: function() {
-        const path = window.location.pathname;
-        const page = path.split("/").pop() || 'index.html'; // Default to index.html if empty
-
-        console.log("Detectando página activa:", page);
-
-        // Remover clases activas previas (si hubiera)
-        document.querySelectorAll('nav a, .nav-menu-item').forEach(el => el.classList.remove('active'));
-
-        // Añadir clase active a los links que coincidan
-        const links = document.querySelectorAll(`[data-page="${page}"]`);
-        
-        // Si no encuentra links (ej. en root /), intenta index.html
-        if (links.length === 0 && (page === '' || page === '/')) {
-             document.querySelectorAll(`[data-page="index.html"]`).forEach(el => el.classList.add('active'));
-        } else {
-             links.forEach(el => el.classList.add('active'));
-        }
-    }
-};
-
-// Auto-inicializar cuando el DOM esté listo
-document.addEventListener('DOMContentLoaded', () => {
-    Layout.init();
-});
