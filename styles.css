@@ -59,7 +59,7 @@
   --spacing-xl: 5rem;
   
   /* Espaciado de Layout */
-  --header-height: 90px;
+  --header-height: 110px;
   --footer-padding: 3rem;
   
   /* Transiciones */
@@ -784,9 +784,8 @@ nav a.active {
 
 /* === MAIN CONTENT === */
 main {
-  margin-top: var(--header-height);
+  padding-top: var(--header-height);
   min-height: calc(100vh - var(--header-height));
-  padding: var(--spacing-lg) 0;
   padding-bottom: var(--spacing-xl); /* Espacio extra para el footer */
   position: relative;
 }
