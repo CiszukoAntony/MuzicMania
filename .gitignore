@@ -6,6 +6,7 @@ ehthumbs.db
 
 # IDE & Editors
 .vscode/
+.vscode
 .idea/
 *.swp
 *.swo
