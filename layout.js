@@ -109,7 +109,7 @@ const Layout = {
             <div class="footer-grid">
                 <div class="footer-section">
                     <a href="${bp}index.html" class="footer-brand">
-                        <img src="${bp}assets/logo.png" alt="Logo" class="footer-logo">
+                        <img src="${bp}assets/logo.png" alt="Logo" class="logo-img footer-logo-sync">
                         <h3>MUZICMANIA</h3>
                     </a>
                     <p style="margin-top: 0.5rem; color: #888;">El mejor juego de ritmo futurista. Pon a prueba tus habilidades y compite con jugadores de todo el mundo.</p>
@@ -142,7 +142,7 @@ const Layout = {
             </div>
 
             <div class="footer-bottom">
-                <p>&copy; 2026 MuzicMania. Todos los derechos reservados.</p>
+                <p>&copy; 2026 MuzicMania. Creado por Ciszuko Antony. Todos los derechos reservados.</p>
             </div>
         </div>
     </footer>`
