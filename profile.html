@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+ï»¿<!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="UTF-8">
@@ -6,7 +6,7 @@
     <title>MuzicMania - Perfil</title>
     <link rel="icon" type="image/png" href="assets/logo.png">
     <link rel="apple-touch-icon" href="assets/logo.png">
-    <link rel="stylesheet" href="styles.css?v=277829776">
+    <link rel="stylesheet" href="styles.css?v=13991389">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         .profile-header {
@@ -121,17 +121,17 @@
                 <p style="color: #888; font-size: 1.2rem;">Miembro desde <span id="member-since">2026</span></p>
                 <div style="margin-top: 1.5rem;">
                     <button class="btn btn-secondary" onclick="AuthSystem.logout()">
-                        <i class="fas fa-sign-out-alt"></i> Cerrar Sesión
+                        <i class="fas fa-sign-out-alt"></i> Cerrar SesiÃ³n
                     </button>
                 </div>
             </div>
 
             <!-- Stats Grid -->
             <section class="mt-3">
-                <h2 class="mb-2">Estadísticas</h2>
+                <h2 class="mb-2">EstadÃ­sticas</h2>
                 <div class="profile-stats-grid">
                     <div class="profile-stat">
-                        <div class="profile-stat-label">Puntuación Máxima</div>
+                        <div class="profile-stat-label">PuntuaciÃ³n MÃ¡xima</div>
                         <div class="profile-stat-value" id="stat-high-score">0</div>
                     </div>
                     <div class="profile-stat">
@@ -139,11 +139,11 @@
                         <div class="profile-stat-value" id="stat-games-played">0</div>
                     </div>
                     <div class="profile-stat">
-                        <div class="profile-stat-label">Precisión Promedio</div>
+                        <div class="profile-stat-label">PrecisiÃ³n Promedio</div>
                         <div class="profile-stat-value" id="stat-accuracy">0%</div>
                     </div>
                     <div class="profile-stat">
-                        <div class="profile-stat-label">Posición Global</div>
+                        <div class="profile-stat-label">PosiciÃ³n Global</div>
                         <div class="profile-stat-value" id="stat-rank">#-</div>
                     </div>
                 </div>
@@ -154,7 +154,7 @@
                 <h2 class="mb-2">Mejores Canciones</h2>
                 <div class="card">
                     <div id="best-songs-list">
-                        <p style="text-align: center; color: #888; padding: 2rem;">¡Juega algunas canciones para ver tus mejores puntuaciones aquí!</p>
+                        <p style="text-align: center; color: #888; padding: 2rem;">Â¡Juega algunas canciones para ver tus mejores puntuaciones aquÃ­!</p>
                     </div>
                 </div>
             </section>
@@ -169,7 +169,7 @@
                     </div>
                     <div class="achievement unlocked">
                         <div class="achievement-icon">??</div>
-                        <div class="achievement-name">Amante de la Música</div>
+                        <div class="achievement-name">Amante de la MÃºsica</div>
                     </div>
                     <div class="achievement locked">
                         <div class="achievement-icon">??</div>
@@ -177,7 +177,7 @@
                     </div>
                     <div class="achievement locked">
                         <div class="achievement-icon">?</div>
-                        <div class="achievement-name">Perfección</div>
+                        <div class="achievement-name">PerfecciÃ³n</div>
                     </div>
                     <div class="achievement locked">
                         <div class="achievement-icon">?</div>
@@ -203,19 +203,19 @@
     </main>
 
     <!-- Layout System -->
-    <script src="layout.js?v=1"></script>
+    <script src="layout.js?v=13991389"></script>
 
     <script src="auth.js?v=1"></script>
     <script>
-        // Verificar si el usuario está logueado
+        // Verificar si el usuario estÃ¡ logueado
         const user = AuthSystem.getCurrentUser();
         
         if (!user) {
-            // Redirigir al inicio si no está logueado
-            alert('Debes iniciar sesión para ver tu perfil');
+            // Redirigir al inicio si no estÃ¡ logueado
+            alert('Debes iniciar sesiÃ³n para ver tu perfil');
             window.location.href = 'index.html';
         } else {
-            // Mostrar información del usuario
+            // Mostrar informaciÃ³n del usuario
             document.getElementById('profile-initials').textContent = user.initials;
             document.getElementById('profile-username').textContent = user.username;
             
@@ -224,19 +224,19 @@
             const options = { year: 'numeric', month: 'long', day: 'numeric' };
             document.getElementById('member-since').textContent = memberDate.toLocaleDateString('es-ES', options);
             
-            // Estadísticas
+            // EstadÃ­sticas
             document.getElementById('stat-high-score').textContent = user.highScore.toLocaleString();
             document.getElementById('stat-games-played').textContent = user.gamesPlayed;
             document.getElementById('stat-accuracy').textContent = user.accuracy + '%';
             
-            // Calcular posición en leaderboard
+            // Calcular posiciÃ³n en leaderboard
             const leaderboard = AuthSystem.getLeaderboard();
             const userRank = leaderboard.findIndex(p => p.username === user.username) + 1;
             document.getElementById('stat-rank').textContent = userRank > 0 ? '#' + userRank : 'N/A';
         }
     </script>
-    <script src="utils.js?v=1"></script>
+    <script src="utils.js?v=13991389"></script>
     <script src="search.js?v=1"></script>
-    <script src="navigation.js?v=277829776"></script>
+    <script src="navigation.js?v=13991389"></script>
 </body>
 </html>
