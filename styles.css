@@ -155,7 +155,8 @@ p {
 .container {
   max-width: 1400px;
   margin: 0 auto;
-  padding: 0 var(--spacing-md);
+  padding-left: var(--spacing-md);
+  padding-right: var(--spacing-md);
 }
 
 /* === HEADER & NAVIGATION === */
