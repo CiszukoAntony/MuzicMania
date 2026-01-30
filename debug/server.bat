@@ -94,14 +94,16 @@ powershell -Command "Get-ChildItem -Path ..\ -Filter *.html | ForEach-Object { (
 
 echo.
 echo    ✓ Configuración aplicada.
-echo    ✓ Servidor ONLINE. Escuchando peticiones...
+echo    ✓ Servidor ONLINE. Registrando actividad en %LOG_NAME%
 echo.
+echo    [91mNOTA: La actividad se registrará directamente en el archivo LOG.%ESC%[0m
 echo    Presiona Ctrl+C para volver al panel de control
 echo    %ESC%[95m════════════════════════════════════════════%ESC%[0m
 echo.
 
 cd ..
-python -m http.server 8000
+:: Redirigir stdout y stderr al archivo de log
+python -m http.server 8000 >> logs\%LOG_NAME% 2>&1
 cd debug
 goto MENU
 
