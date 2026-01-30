@@ -13,8 +13,9 @@ ehthumbs.db
 *.tmp
 *~
 
-# AI & Documentation
+# AI, Documentation & Debug
 ia/
+debug/
 *.gemini/
 brain/
 
