@@ -154,6 +154,14 @@ const Layout = {
         
         // Calcular ruta base antes de nada
         this.setBasePath();
+
+        // 0. Cargar Centinela de Errores
+        if (!window.MuzicError) {
+            const script = document.createElement('script');
+            script.src = `${this.basePath}errors.js`;
+            document.head.prepend(script);
+        }
+
         const templates = this.getTemplates();
         
         // 1. Insertar Zoom Warning y Nav Overlay al principio del body
