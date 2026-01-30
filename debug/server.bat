@@ -98,14 +98,15 @@ echo.
 echo    ✓ Configuración aplicada.
 echo    ✓ Servidor ONLINE. Registrando actividad en %LOG_NAME%
 echo.
-echo    [91mNOTA: La actividad se registrará directamente en el archivo LOG.%ESC%[0m
+echo.
+echo    %ESC%[91mNOTA: La actividad se registrará en consola y en el archivo LOG.%ESC%[0m
 echo    Presiona Ctrl+C para volver al panel de control
 echo    %ESC%[95m════════════════════════════════════════════%ESC%[0m
 echo.
 
 cd ..
-:: Redirigir stdout y stderr al archivo de log
-python -m http.server 8000 >> logs\%LOG_NAME% 2>&1
+:: Redirigir stdout y stderr a consola y archivo de log simultáneamente
+python -m http.server 8000 2>&1 | powershell -Command "$Input | Tee-Object -FilePath logs\%LOG_NAME% -Append"
 cd debug
 goto MENU
 
