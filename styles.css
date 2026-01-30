@@ -58,6 +58,10 @@
   --spacing-lg: 3rem;
   --spacing-xl: 5rem;
   
+  /* Espaciado de Layout */
+  --header-height: 90px;
+  --footer-padding: 3rem;
+  
   /* Transiciones */
   --transition-fast: 0.2s ease;
   --transition-normal: 0.3s ease;
@@ -780,9 +784,11 @@ nav a.active {
 
 /* === MAIN CONTENT === */
 main {
-  margin-top: 100px;
-  min-height: calc(100vh - 100px);
+  margin-top: var(--header-height);
+  min-height: calc(100vh - var(--header-height));
   padding: var(--spacing-lg) 0;
+  padding-bottom: var(--spacing-xl); /* Espacio extra para el footer */
+  position: relative;
 }
 
 /* === HERO SECTION === */
@@ -914,7 +920,6 @@ body.page-transitioning footer::before {
   background: var(--gradient-transition);
   background-size: 200% 100%;
   animation: borderFlowGreen 1.2s linear infinite;
-}
 }
 
 .footer-content {
