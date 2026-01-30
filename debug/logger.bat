@@ -26,7 +26,7 @@ if "%LOG_SESSION_ID%"=="" (
     set LOG_SESSION_ID=%RANDOM%
 )
 
-set LOG_FILE=..\logs\_log_!LOG_SESSION_ID!_!DATE_STAMP!.txt
+set LOG_FILE=..\logs\log_!LOG_SESSION_ID!_!DATE_STAMP!.txt
 
 :: Ensure logs directory exists
 if not exist "..\logs" mkdir "..\logs"

@@ -20,7 +20,7 @@ set MONTH=!datetime:~4,2!
 set DAY=!datetime:~6,2!
 set DATE_STAMP=!YEAR!-!MONTH!-!DAY!
 
-set LOG_NAME=_log_%LOG_SESSION_ID%_%DATE_STAMP%.txt
+set LOG_NAME=log_%LOG_SESSION_ID%_%DATE_STAMP%.txt
 
 title MuzicMania - Servidor Local PRO
 :: 0F = Fondo negro, Texto blanco brillante para máxima legibilidad
