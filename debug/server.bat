@@ -16,6 +16,7 @@ set C_RESET=%ESC%[0m
 :: Window Title & Size
 title MuzicMania - Command Center
 mode con: cols=90 lines=30
+goto MENU
 
 :BANNER
 cls
