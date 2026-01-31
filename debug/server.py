@@ -162,6 +162,11 @@ def signal_handler(sig, frame):
     log("Servidor detenido por el usuario", "WARN")
     sys.exit(0)
 
+def main():
+    """Funcion principal."""
+    # Registrar manejador de Ctrl+C
+    signal.signal(signal.SIGINT, signal_handler)
+    
     # Banner eliminado para evitar duplicación con server.bat
     # print_banner()
     

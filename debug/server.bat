@@ -57,6 +57,7 @@ echo.
 :: Iniciar el script de Python directamente
 python server.py
 :: Al terminar (Ctrl+C), volver al menu
+pause
 goto MENU
 
 :DETENER
