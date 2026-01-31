@@ -6,112 +6,38 @@ class AuthSystem {
     static init() {
         this.checkLoginStatus();
         this.setupEventListeners();
+        // Check access for game page
+        this.checkAccess();
+    }
+
+    static checkAccess() {
+        // Verificar si warningShown ya está en sessionStorage
+        const warningShown = sessionStorage.getItem('guestWarningShown') === 'true';
+
+        // Si estamos en play.html y no se ha mostrado la advertencia
+        if (window.location.pathname.includes('play.html') && !warningShown && !this.getCurrentUser()) {
+            this.showGuestWarning();
+            return false; 
+        }
+        return true;
     }
 
     static checkLoginStatus() {
-        const user = this.getCurrentUser();
-        const authSection = document.getElementById('auth-section');
-
-        if (user) {
-            authSection.innerHTML = `
-                <div class="profile-section">
-                    <div class="user-info">
-                        <i class="fas fa-user"></i>
-                        <span>${user.username}</span>
-                        <button onclick="AuthSystem.logout()" class="logout-btn">Salir</button>
-                    </div>
-                </div>
-            `;
-        } else {
-            authSection.innerHTML = `
-                <button class="login-btn" onclick="AuthSystem.openModal('login')">
-                    <i class="fas fa-sign-in-alt"></i> Iniciar Sesión
-                </button>
-            `;
-        }
-    }
-
-    static setupEventListeners() {
-        // Los eventos ya están en el HTML con onclick
-    }
-
-    static openModal(type) {
-        const modal = document.getElementById(`modal-${type}`);
-        if (modal) {
-            modal.style.display = 'flex';
-        }
-    }
-
-    static closeModal(type) {
-        const modal = document.getElementById(`modal-${type}`);
-        if (modal) {
-            modal.style.display = 'none';
-        }
-    }
-
-    static login(username, password) {
-        // Simulación simple - en producción usar backend
-        const users = JSON.parse(localStorage.getItem('muzicmania_users') || '[]');
-        const user = users.find(u => u.username === username && u.password === password);
-
-        if (user) {
-            localStorage.setItem('current_user', JSON.stringify(user));
-            this.closeModal('login');
-            this.checkLoginStatus();
-            showNotification('¡Bienvenido de vuelta!', 'success');
-        } else {
-            showNotification('Usuario o contraseña incorrectos', 'error');
-        }
-    }
-
-    static register(username, email, password) {
-        const users = JSON.parse(localStorage.getItem('muzicmania_users') || '[]');
-
-        if (users.find(u => u.username === username)) {
-            showNotification('El usuario ya existe', 'error');
-            return;
-        }
-
-        const newUser = { username, email, password };
-        users.push(newUser);
-        localStorage.setItem('muzicmania_users', JSON.stringify(users));
-
-        // Auto-login
-        localStorage.setItem('current_user', JSON.stringify(newUser));
-        this.closeModal('register');
-        this.checkLoginStatus();
-        showNotification('¡Registro exitoso!', 'success');
-    }
-
-    static logout() {
-        localStorage.removeItem('current_user');
-        this.checkLoginStatus();
-        showNotification('Sesión cerrada', 'info');
+        this.updateUI();
     }
 
     static getCurrentUser() {
-        const user = localStorage.getItem('current_user');
+        const user = localStorage.getItem('currentUser');
         return user ? JSON.parse(user) : null;
     }
-}
 
-// Inicializar cuando el DOM esté listo
-document.addEventListener('DOMContentLoaded', () => {
-    AuthSystem.init();
-});
+    static getUsers() {
+        return JSON.parse(localStorage.getItem('users') || '[]');
+    }
 
-// Exportar globalmente
-window.AuthSystem = AuthSystem;
-        
-        // Si estamos en play.html y no se ha mostrado la advertencia
-        if (window.location.pathname.includes('play.html') && !warningShown) {
-            this.showGuestWarning();
-            return false; // Pausar o detener carga hasta que acepte
-        }
-        return true;
-    },
+    // --- Guest Warning ---
 
-    showGuestWarning() {
+    static showGuestWarning() {
         if (document.getElementById('guest-warning-modal')) return;
 
         const modalHTML = `
@@ -139,21 +65,21 @@ window.AuthSystem = AuthSystem;
             </div>
         `;
         document.body.insertAdjacentHTML('beforeend', modalHTML);
-    },
+    }
 
-    handleGuestPlay() {
+    static handleGuestPlay() {
         sessionStorage.setItem('guestWarningShown', 'true');
         this.closeGuestWarning();
-    },
+    }
 
-    closeGuestWarning() {
+    static closeGuestWarning() {
         const modal = document.getElementById('guest-warning-modal');
         if (modal) modal.remove();
-    },
+    }
 
     // --- Authentication Core ---
 
-    register(displayName, rawUsername, email, password) {
+    static register(displayName, rawUsername, email, password) {
         // 1. Sanitización de Username (@ + minúsculas)
         const cleanUsername = rawUsername.toLowerCase().replace(/[^a-z0-9]/g, '');
         const finalUsername = '@' + cleanUsername;
@@ -193,9 +119,9 @@ window.AuthSystem = AuthSystem;
         localStorage.setItem('users', JSON.stringify(users));
         this.login(finalUsername, password); // Auto-login
         return true;
-    },
+    }
 
-    login(identifier, password) {
+    static login(identifier, password) {
         const users = this.getUsers();
         // Permitir login con Email O Username
         const user = users.find(u => 
@@ -214,7 +140,11 @@ window.AuthSystem = AuthSystem;
             // Si estaba en warning de invitado, cerrarlo también
             this.closeGuestWarning();
 
-            alert(`¡Bienvenido de nuevo, ${user.displayName}!`);
+            if (typeof showNotification === 'function') {
+                showNotification(`¡Bienvenido de nuevo, ${user.displayName}!`, 'success');
+            } else {
+                alert(`¡Bienvenido de nuevo, ${user.displayName}!`);
+            }
             
             // Recargar si estamos en perfil para actualizar datos
             if(window.location.pathname.includes('profile.html')) window.location.reload();
@@ -223,14 +153,14 @@ window.AuthSystem = AuthSystem;
             alert('Credenciales incorrectas.');
             return false;
         }
-    },
+    }
 
-    logout() {
+    static logout() {
         localStorage.removeItem('currentUser');
         window.location.href = 'index.html';
-    },
+    }
 
-    updateUserScore(newScore, accuracy) {
+    static updateUserScore(newScore, accuracy) {
         let user = this.getCurrentUser();
         if (!user) return; // No guardar para invitados (ya manejado por warning, doble seguridad)
 
@@ -257,9 +187,9 @@ window.AuthSystem = AuthSystem;
 
         // Actualizar Leaderboard Global
         this.updateLeaderboard(user);
-    },
+    }
 
-    updateLeaderboard(user) {
+    static updateLeaderboard(user) {
         let leaderboard = JSON.parse(localStorage.getItem('leaderboard')) || [];
         
         // Quitar entrada antigua del usuario si existe
@@ -271,16 +201,19 @@ window.AuthSystem = AuthSystem;
         // Ordenar por High Score desc
         leaderboard.sort((a, b) => b.highScore - a.highScore);
         
-        localStorage.setItem('leaderboard', JSON.stringify(leaderboard));
-    },
+        // Trim leaderboard to top 100 maybe?
+        if (leaderboard.length > 100) leaderboard = leaderboard.slice(0, 100);
 
-    getLeaderboard() {
+        localStorage.setItem('leaderboard', JSON.stringify(leaderboard));
+    }
+
+    static getLeaderboard() {
         return JSON.parse(localStorage.getItem('leaderboard')) || [];
-    },
+    }
 
     // --- UI Management ---
 
-    updateUI() {
+    static updateUI() {
         // Buscar contenedores de Auth en Headers (puede haber en varias páginas)
         const authSections = document.querySelectorAll('#auth-section');
         const user = this.getCurrentUser();
@@ -297,11 +230,13 @@ window.AuthSystem = AuthSystem;
                             <span style="color: var(--neon-cyan); font-weight: bold; font-size: 1rem;">${user.displayName}</span>
                             <span style="color: #666; font-size: 0.8rem;">${user.username}</span>
                         </div>
+                        <button onclick="event.stopPropagation(); AuthSystem.logout()" class="logout-btn" style="margin-left: 10px; font-size: 0.8rem;"><i class="fas fa-sign-out-alt"></i></button>
                     </div>
                 `;
             } else {
                 // Vista Deslogueado
-                const isHomePage = !!document.querySelector('.hero');
+                const url = window.location.pathname;
+                const isHomePage = url.endsWith('index.html') || url.endsWith('/');
                 
                 if (isHomePage) {
                     // Nuevo Menú Rápido 'Acceder' (Solo Inicio)
@@ -332,16 +267,16 @@ window.AuthSystem = AuthSystem;
         if (window.AdaptiveNav) {
             setTimeout(() => AdaptiveNav.checkOverflow(), 0);
         }
-    },
+    }
 
     // Manejo de Modales
-    openModal(type) {
+    static openModal(type) {
         const modalId = type === 'login' ? 'modal-login' : 'modal-register';
         const modal = document.getElementById(modalId);
         if (modal) modal.style.display = 'flex';
-    },
+    }
 
-    closeModal(type) {
+    static closeModal(type) {
         if (!type) {
             // Close all if no type specified
             const login = document.getElementById('modal-login');
@@ -353,9 +288,9 @@ window.AuthSystem = AuthSystem;
         const modalId = type === 'login' ? 'modal-login' : 'modal-register';
         const modal = document.getElementById(modalId);
         if (modal) modal.style.display = 'none';
-    },
+    }
 
-    setupEventListeners() {
+    static setupEventListeners() {
         // Fake Recaptcha Logic
         window.toggleRecaptcha = function(element) {
             element.classList.toggle('checked');
@@ -374,9 +309,12 @@ window.AuthSystem = AuthSystem;
             }
         };
     }
-};
+}
 
 // Inicializar al cargar
 document.addEventListener('DOMContentLoaded', () => {
     AuthSystem.init();
 });
+
+// Exportar globalmente
+window.AuthSystem = AuthSystem;

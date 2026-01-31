@@ -2529,3 +2529,78 @@ body.page-transitioning footer::before {
     from { opacity: 0; transform: scaleY(0.8); }
     to { opacity: 1; transform: scaleY(1); }
 }
+/* Quick Access Dock Styles */
+.quick-access-dock {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(110px, 1fr));
+    gap: 15px;
+    padding: 20px;
+    background: rgba(10, 10, 25, 0.4);
+    backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 16px;
+    margin: 3rem auto;
+    max-width: 900px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+}
+
+.qa-btn {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    padding: 16px 10px;
+    background: rgba(255, 255, 255, 0.03);
+    border-radius: 12px;
+    color: #aaa;
+    text-decoration: none;
+    transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+    border: 1px solid transparent;
+    position: relative;
+    overflow: hidden;
+}
+
+.qa-btn i {
+    font-size: 1.6rem;
+    margin-bottom: 2px;
+    color: #ccc; /* Icono base gris claro */
+    transition: transform 0.3s ease, color 0.3s ease, text-shadow 0.3s ease;
+}
+
+.qa-btn span {
+    font-size: 0.85rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+/* Unified Hover Effects (Cyan & White) */
+.qa-btn:hover {
+    transform: translateY(-5px);
+    background: rgba(0, 240, 255, 0.05); /* Sutil fondo cyan */
+    border-color: var(--neon-cyan);
+    color: var(--neon-cyan); /* Texto Cyan */
+    box-shadow: 0 5px 15px rgba(0, 240, 255, 0.15);
+}
+
+.qa-btn:hover i {
+    transform: scale(1.15);
+    color: #ffffff; /* Icono Blanco Puro */
+    text-shadow: 0 0 10px var(--neon-cyan); /* Glow Cyan alrededor del blanco */
+}
+
+/* Responsive adjustments */
+@media (max-width: 600px) {
+    .quick-access-dock {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 8px;
+        padding: 15px;
+    }
+    
+    @media (max-width: 380px) {
+        .quick-access-dock {
+            grid-template-columns: repeat(2, 1fr);
+        }
+    }
+}

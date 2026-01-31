@@ -44,26 +44,30 @@ const Layout = {
             <a href="${bp}play.html" class="nav-menu-item" data-page="play.html">
                 <div class="nav-menu-item-header"><i class="fas fa-gamepad"></i> <span>Play</span></div>
             </a>
-            <a href="${bp}stats.html" class="nav-menu-item" data-page="stats.html">
-                <div class="nav-menu-item-header"><i class="fas fa-chart-bar"></i> <span>Stats</span></div>
-            </a>
             <a href="${bp}leaderboard.html" class="nav-menu-item" data-page="leaderboard.html">
                 <div class="nav-menu-item-header"><i class="fas fa-trophy"></i> <span>Leaderboard</span></div>
+            </a>
+            <a href="${bp}stats.html" class="nav-menu-item" data-page="stats.html">
+                <div class="nav-menu-item-header"><i class="fas fa-chart-bar"></i> <span>Stats</span></div>
             </a>
             <a href="${bp}changelog.html" class="nav-menu-item" data-page="changelog.html">
                 <div class="nav-menu-item-header"><i class="fas fa-history"></i> <span>Changelog</span></div>
             </a>
-            <a href="${bp}help.html" class="nav-menu-item" data-page="help.html">
-                <div class="nav-menu-item-header"><i class="fas fa-question-circle"></i> <span>Help</span></div>
-            </a>
             <a href="${bp}about.html" class="nav-menu-item" data-page="about.html">
                 <div class="nav-menu-item-header"><i class="fas fa-info-circle"></i> <span>Information</span></div>
             </a>
-            <a href="${bp}faq.html" class="nav-menu-item" data-page="faq.html">
-                <div class="nav-menu-item-header"><i class="fas fa-comments"></i> <span>FAQ</span></div>
-            </a>
+            
+            <div style="border-top: 1px solid rgba(255,255,255,0.1); margin: 10px 0;"></div>
+            
+            <!-- Info Sub-items (Inside Information) -->
             <a href="${bp}team.html" class="nav-menu-item" data-page="team.html">
                 <div class="nav-menu-item-header"><i class="fas fa-users-cog"></i> <span>Team</span></div>
+            </a>
+            <a href="${bp}help.html" class="nav-menu-item" data-page="help.html">
+                <div class="nav-menu-item-header"><i class="fas fa-question-circle"></i> <span>Help</span></div>
+            </a>
+            <a href="${bp}faq.html" class="nav-menu-item" data-page="faq.html">
+                <div class="nav-menu-item-header"><i class="fas fa-comments"></i> <span>FAQ</span></div>
             </a>
             <a href="${bp}guidelines.html" class="nav-menu-item" data-page="guidelines.html">
                 <div class="nav-menu-item-header"><i class="fas fa-map-signs"></i> <span>Guidelines</span></div>
@@ -77,11 +81,14 @@ const Layout = {
             <a href="${bp}terms.html" class="nav-menu-item" data-page="terms.html">
                 <div class="nav-menu-item-header"><i class="fas fa-file-contract"></i> <span>Terms</span></div>
             </a>
+            
+            <div style="border-top: 1px solid rgba(255,255,255,0.1); margin: 10px 0;"></div>
+
+            <a href="${bp}contact.html" class="nav-menu-item" data-page="contact.html">
+                <div class="nav-menu-item-header"><i class="fas fa-envelope"></i> <span>Contact</span></div>
+            </a>
             <a href="${bp}support.html" class="nav-menu-item" data-page="support.html">
                 <div class="nav-menu-item-header"><i class="fas fa-headset"></i> <span>Support</span></div>
-            </a>
-            <a href="${bp}support.html#contact" class="nav-menu-item" data-page="contact.html">
-                <div class="nav-menu-item-header"><i class="fas fa-envelope"></i> <span>Contact</span></div>
             </a>
         </div>
     </div>`,
@@ -97,10 +104,9 @@ const Layout = {
                 <ul>
                     <li><a href="${bp}index.html" data-page="index.html"><i class="fas fa-home"></i> Home</a></li>
                     <li><a href="${bp}play.html" data-page="play.html"><i class="fas fa-gamepad"></i> Play</a></li>
-                    <li><a href="${bp}stats.html" data-page="stats.html"><i class="fas fa-chart-bar"></i> Stats</a></li>
                     <li><a href="${bp}leaderboard.html" data-page="leaderboard.html"><i class="fas fa-trophy"></i> Leaderboard</a></li>
+                    <li><a href="${bp}stats.html" data-page="stats.html"><i class="fas fa-chart-bar"></i> Stats</a></li>
                     <li><a href="${bp}changelog.html" data-page="changelog.html"><i class="fas fa-history"></i> Changelog</a></li>
-                    <li><a href="${bp}support.html" data-page="support.html"><i class="fas fa-headset"></i> Support</a></li>
                     
                     <!-- Dropdown de Información -->
                     <li class="nav-dropdown">
@@ -112,12 +118,15 @@ const Layout = {
                             <a href="${bp}help.html" class="nav-dropdown-item" data-page="help.html"><i class="fas fa-question-circle"></i> Help</a>
                             <a href="${bp}faq.html" class="nav-dropdown-item" data-page="faq.html"><i class="fas fa-comments"></i> FAQ</a>
                             <div style="height: 1px; background: rgba(255,255,255,0.1); margin: 5px 0;"></div>
+                            <a href="${bp}guidelines.html" class="nav-dropdown-item" data-page="guidelines.html"><i class="fas fa-map-signs"></i> Guidelines</a>
                             <a href="${bp}rules.html" class="nav-dropdown-item" data-page="rules.html"><i class="fas fa-gavel"></i> Rules</a>
                             <a href="${bp}policy.html" class="nav-dropdown-item" data-page="policy.html"><i class="fas fa-shield-alt"></i> Policy</a>
                             <a href="${bp}terms.html" class="nav-dropdown-item" data-page="terms.html"><i class="fas fa-file-contract"></i> Terms</a>
-                            <a href="${bp}guidelines.html" class="nav-dropdown-item" data-page="guidelines.html"><i class="fas fa-map-signs"></i> Guidelines</a>
                         </div>
                     </li>
+
+                    <li><a href="${bp}contact.html" data-page="contact.html"><i class="fas fa-envelope"></i> Contact</a></li>
+                    <li><a href="${bp}support.html" data-page="support.html"><i class="fas fa-headset"></i> Support</a></li>
                 </ul>
                 <div id="auth-section"></div>
                 <div class="search-wrapper">
@@ -148,19 +157,23 @@ const Layout = {
                     <ul class="footer-comprehensive-list" style="columns: 2; gap: 2rem; list-style: none; padding: 0;">
                         <li><a href="${bp}index.html" data-page="index.html"><i class="fas fa-home"></i> Home</a></li>
                         <li><a href="${bp}play.html" data-page="play.html"><i class="fas fa-gamepad"></i> Play</a></li>
-                        <li><a href="${bp}stats.html" data-page="stats.html"><i class="fas fa-chart-bar"></i> Stats</a></li>
                         <li><a href="${bp}leaderboard.html" data-page="leaderboard.html"><i class="fas fa-trophy"></i> Leaderboard</a></li>
+                        <li><a href="${bp}stats.html" data-page="stats.html"><i class="fas fa-chart-bar"></i> Stats</a></li>
+                        <li><a href="${bp}changelog.html" data-page="changelog.html"><i class="fas fa-history"></i> Changelog</a></li>
+                        <li><a href="${bp}about.html" data-page="about.html"><i class="fas fa-info-circle"></i> About</a></li>
+                        
+                        <!-- Info Children -->
+                        <li><a href="${bp}team.html" data-page="team.html"><i class="fas fa-users-cog"></i> Team</a></li>
                         <li><a href="${bp}help.html" data-page="help.html"><i class="fas fa-question-circle"></i> Help</a></li>
                         <li><a href="${bp}faq.html" data-page="faq.html"><i class="fas fa-comments"></i> FAQ</a></li>
-                        <li><a href="${bp}about.html" data-page="about.html"><i class="fas fa-info-circle"></i> About</a></li>
-                        <li><a href="${bp}team.html" data-page="team.html"><i class="fas fa-users-cog"></i> Team</a></li>
                         <li><a href="${bp}guidelines.html" data-page="guidelines.html"><i class="fas fa-map-signs"></i> Guidelines</a></li>
                         <li><a href="${bp}rules.html" data-page="rules.html"><i class="fas fa-gavel"></i> Rules</a></li>
                         <li><a href="${bp}policy.html" data-page="policy.html"><i class="fas fa-shield-alt"></i> Policy</a></li>
                         <li><a href="${bp}terms.html" data-page="terms.html"><i class="fas fa-file-contract"></i> Terms</a></li>
+                        
+                        <!-- Contact/Support Last -->
+                        <li><a href="${bp}contact.html" data-page="contact.html"><i class="fas fa-envelope"></i> Contact</a></li>
                         <li><a href="${bp}support.html" data-page="support.html"><i class="fas fa-headset"></i> Support</a></li>
-                        <li><a href="${bp}changelog.html" data-page="changelog.html"><i class="fas fa-history"></i> Changelog</a></li>
-                        <li><a href="${bp}support.html#contact" data-page="contact.html"><i class="fas fa-envelope"></i> Contact</a></li>
                     </ul>
                 </div>
 
@@ -218,12 +231,92 @@ const Layout = {
         // 3. Insertar Footer al final del body
         document.body.insertAdjacentHTML('beforeend', templates.footer);
 
+        // 3.5 Inyectar Quick Access Dock en páginas de Información
+        this.injectQuickDock();
+
         // 4. Marcar página activa
         this.highlightActivePage();
 
         // 5. Reinicializar Auth UI
         if (typeof AuthSystem !== 'undefined' && AuthSystem.updateAuthUI) {
             setTimeout(() => AuthSystem.updateAuthUI(), 100);
+        }
+    },
+
+    injectQuickDock: function() {
+        const infoPages = [
+            'about.html', 'team.html', 'help.html', 'faq.html', 
+            'rules.html', 'policy.html', 'terms.html', 'guidelines.html',
+            'changelog.html', 'contact.html'
+        ];
+        const currentPage = window.location.pathname.split('/').pop() || 'index.html';
+
+        if (infoPages.includes(currentPage)) {
+            const bp = this.basePath;
+            const dockHTML = `
+                <!-- Quick Access Dock (Premium & Unified) -->
+                <div class="quick-access-dock">
+                    <a href="${bp}about.html" class="qa-btn qa-about">
+                        <i class="fas fa-info-circle"></i> <span>About</span>
+                    </a>
+                    <a href="${bp}team.html" class="qa-btn qa-team">
+                        <i class="fas fa-users-cog"></i> <span>Team</span>
+                    </a>
+                    <a href="${bp}help.html" class="qa-btn qa-help">
+                        <i class="fas fa-question-circle"></i> <span>Help</span>
+                    </a>
+                    <a href="${bp}faq.html" class="qa-btn qa-faq">
+                        <i class="fas fa-comments"></i> <span>FAQ</span>
+                    </a>
+                    <a href="${bp}guidelines.html" class="qa-btn qa-guidelines">
+                        <i class="fas fa-map-signs"></i> <span>Guidelines</span>
+                    </a>
+                    <a href="${bp}rules.html" class="qa-btn qa-rules">
+                        <i class="fas fa-gavel"></i> <span>Rules</span>
+                    </a>
+                    <a href="${bp}policy.html" class="qa-btn qa-policy">
+                        <i class="fas fa-shield-alt"></i> <span>Policy</span>
+                    </a>
+                    <a href="${bp}terms.html" class="qa-btn qa-terms">
+                        <i class="fas fa-file-contract"></i> <span>Terms</span>
+                    </a>
+                </div>
+            `;
+
+            const disclaimerHTML = `
+                <!-- Support Disclaimer -->
+                <div class="support-disclaimer text-center mt-4 mb-5" id="support-disclaimer">
+                     <p style="color: #ccc; font-size: 0.95rem;">
+                        ¿No encontraste lo que buscabas? 
+                        <a href="${bp}support.html" style="color: var(--neon-pink); text-decoration: none; font-weight: bold; margin-left: 5px; transition: text-shadow 0.3s;">
+                            Contacta a soporte directamente <i class="fas fa-arrow-right" style="font-size: 0.8em;"></i>
+                        </a>
+                    </p>
+                </div>
+            `;
+
+            const main = document.querySelector('main');
+            if (main) {
+                // 1. Manejo del Dock
+                const existingDock = main.querySelector('.quick-access-dock');
+                if (existingDock) existingDock.remove();
+                main.insertAdjacentHTML('beforeend', dockHTML);
+
+                // 2. Manejo del Disclaimer (Eliminar viejos duplicados por clase o texto, e insertar el estandarizado)
+                
+                // Buscar disclaimers antiguos manuales y eliminarlos para evitar duplicados
+                const oldDisclaimers = Array.from(main.querySelectorAll('div')).filter(div => 
+                    div.textContent.includes('Contacta a soporte') && !div.classList.contains('support-disclaimer')
+                );
+                oldDisclaimers.forEach(el => el.remove());
+
+                // Eliminar disclaimer inyectado previamente si existe
+                const existingDisclaimer = main.querySelector('#support-disclaimer');
+                if (existingDisclaimer) existingDisclaimer.remove();
+
+                // Inyectar el nuevo al final
+                main.insertAdjacentHTML('beforeend', disclaimerHTML);
+            }
         }
     },
 
