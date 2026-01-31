@@ -722,6 +722,9 @@ nav a.active {
 
 /* === BUTTONS === */
 .btn {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
     font-family: var(--font-header);
     font-weight: 700;
     font-size: 1.2rem;
@@ -738,6 +741,13 @@ nav a.active {
     overflow: hidden;
     z-index: 1;
     box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+    text-decoration: none; /* Asegurar que no tenga subrayado si es <a> */
+}
+
+.btn-sm {
+    padding: 0.6rem 1.5rem;
+    font-size: 0.9rem;
+    letter-spacing: 1px;
 }
 
 /* Static Background */
