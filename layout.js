@@ -25,63 +25,63 @@ const Layout = {
     <div class="zoom-warning">
         <div style="display: flex; align-items: center; gap: 10px;">
             <i class="fas fa-search-plus"></i>
-            <span id="zoom-warning-text">El zoom es demasiado alto. Algunas opciones se han movido al menú.</span>
+            <span id="zoom-warning-text">Zoom level is too high. Some options have moved to the menu.</span>
         </div>
-        <button class="close-warning" onclick="AdaptiveNav.closeWarning()" title="Cerrar">&times;</button>
+        <button class="close-warning" onclick="AdaptiveNav.closeWarning()" title="Close">&times;</button>
     </div>`,
 
             navOverlay: `
     <div class="menu-backdrop" onclick="AdaptiveNav.toggleMenu(false)"></div>
     <div class="nav-overlay">
         <div class="nav-overlay-header">
-            <h3>MENÚ PRINCIPAL</h3>
+            <h3>MAIN MENU</h3>
             <button class="close-menu-btn" onclick="AdaptiveNav.toggleMenu(false)"><i class="fas fa-times"></i></button>
         </div>
         <div class="nav-overlay-content">
             <a href="${bp}index.html" class="nav-menu-item" data-page="index.html">
-                <div class="nav-menu-item-header"><i class="fas fa-home"></i> <span>Inicio</span></div>
+                <div class="nav-menu-item-header"><i class="fas fa-home"></i> <span>Home</span></div>
             </a>
             <a href="${bp}game.html" class="nav-menu-item" data-page="game.html">
-                <div class="nav-menu-item-header"><i class="fas fa-gamepad"></i> <span>Jugar</span></div>
+                <div class="nav-menu-item-header"><i class="fas fa-gamepad"></i> <span>Play</span></div>
             </a>
             <a href="${bp}stats.html" class="nav-menu-item" data-page="stats.html">
-                <div class="nav-menu-item-header"><i class="fas fa-chart-bar"></i> <span>Estadísticas</span></div>
+                <div class="nav-menu-item-header"><i class="fas fa-chart-bar"></i> <span>Stats</span></div>
             </a>
             <a href="${bp}leaderboard.html" class="nav-menu-item" data-page="leaderboard.html">
                 <div class="nav-menu-item-header"><i class="fas fa-trophy"></i> <span>Leaderboard</span></div>
             </a>
+            <a href="${bp}changelog.html" class="nav-menu-item" data-page="changelog.html">
+                <div class="nav-menu-item-header"><i class="fas fa-history"></i> <span>Changelog</span></div>
+            </a>
             <a href="${bp}help.html" class="nav-menu-item" data-page="help.html">
-                <div class="nav-menu-item-header"><i class="fas fa-question-circle"></i> <span>Ayuda</span></div>
+                <div class="nav-menu-item-header"><i class="fas fa-question-circle"></i> <span>Help</span></div>
             </a>
             <a href="${bp}about.html" class="nav-menu-item" data-page="about.html">
-                <div class="nav-menu-item-header"><i class="fas fa-info-circle"></i> <span>Información</span></div>
+                <div class="nav-menu-item-header"><i class="fas fa-info-circle"></i> <span>Information</span></div>
             </a>
             <a href="${bp}faq.html" class="nav-menu-item" data-page="faq.html">
                 <div class="nav-menu-item-header"><i class="fas fa-comments"></i> <span>FAQ</span></div>
             </a>
             <a href="${bp}team.html" class="nav-menu-item" data-page="team.html">
-                <div class="nav-menu-item-header"><i class="fas fa-users-cog"></i> <span>Equipo</span></div>
+                <div class="nav-menu-item-header"><i class="fas fa-users-cog"></i> <span>Team</span></div>
             </a>
             <a href="${bp}directrices.html" class="nav-menu-item" data-page="directrices.html">
-                <div class="nav-menu-item-header"><i class="fas fa-map-signs"></i> <span>Directrices</span></div>
+                <div class="nav-menu-item-header"><i class="fas fa-map-signs"></i> <span>Guidelines</span></div>
             </a>
             <a href="${bp}rules.html" class="nav-menu-item" data-page="rules.html">
-                <div class="nav-menu-item-header"><i class="fas fa-gavel"></i> <span>Reglamentos</span></div>
+                <div class="nav-menu-item-header"><i class="fas fa-gavel"></i> <span>Rules</span></div>
             </a>
             <a href="${bp}policy.html" class="nav-menu-item" data-page="policy.html">
-                <div class="nav-menu-item-header"><i class="fas fa-shield-alt"></i> <span>Políticas</span></div>
+                <div class="nav-menu-item-header"><i class="fas fa-shield-alt"></i> <span>Policy</span></div>
             </a>
             <a href="${bp}terms.html" class="nav-menu-item" data-page="terms.html">
-                <div class="nav-menu-item-header"><i class="fas fa-file-contract"></i> <span>Términos Legales</span></div>
+                <div class="nav-menu-item-header"><i class="fas fa-file-contract"></i> <span>Terms</span></div>
             </a>
             <a href="${bp}soporte.html" class="nav-menu-item" data-page="soporte.html">
-                <div class="nav-menu-item-header"><i class="fas fa-headset"></i> <span>Soporte</span></div>
-            </a>
-            <a href="${bp}changelog.html" class="nav-menu-item" data-page="changelog.html">
-                <div class="nav-menu-item-header"><i class="fas fa-history"></i> <span>Changelog</span></div>
+                <div class="nav-menu-item-header"><i class="fas fa-headset"></i> <span>Support</span></div>
             </a>
             <a href="${bp}soporte.html#contacto" class="nav-menu-item" data-page="contactanos.html">
-                <div class="nav-menu-item-header"><i class="fas fa-envelope"></i> <span>Contacto</span></div>
+                <div class="nav-menu-item-header"><i class="fas fa-envelope"></i> <span>Contact</span></div>
             </a>
         </div>
     </div>`,
@@ -95,36 +95,37 @@ const Layout = {
             </a>
             <nav id="main-nav" class="nav-comprehensive">
                 <ul>
-                    <li><a href="${bp}index.html" data-page="index.html"><i class="fas fa-home"></i> Inicio</a></li>
-                    <li><a href="${bp}game.html" data-page="game.html"><i class="fas fa-gamepad"></i> Jugar</a></li>
+                    <li><a href="${bp}index.html" data-page="index.html"><i class="fas fa-home"></i> Home</a></li>
+                    <li><a href="${bp}game.html" data-page="game.html"><i class="fas fa-gamepad"></i> Play</a></li>
                     <li><a href="${bp}stats.html" data-page="stats.html"><i class="fas fa-chart-bar"></i> Stats</a></li>
-                    <li><a href="${bp}leaderboard.html" data-page="leaderboard.html"><i class="fas fa-trophy"></i> Ranking</a></li>
-                    <li><a href="${bp}soporte.html" data-page="soporte.html"><i class="fas fa-headset"></i> Soporte</a></li>
+                    <li><a href="${bp}leaderboard.html" data-page="leaderboard.html"><i class="fas fa-trophy"></i> Leaderboard</a></li>
+                    <li><a href="${bp}changelog.html" data-page="changelog.html"><i class="fas fa-history"></i> Changelog</a></li>
+                    <li><a href="${bp}soporte.html" data-page="soporte.html"><i class="fas fa-headset"></i> Support</a></li>
                     
                     <!-- Dropdown de Información -->
                     <li class="nav-dropdown">
                         <a href="${bp}about.html" class="nav-dropdown-trigger" data-page="about.html" style="text-decoration: none; color: #ccc; font-weight: bold; transition: 0.3s;">
-                            <i class="fas fa-info-circle"></i> Información <i class="fas fa-chevron-down dropdown-arrow"></i>
+                            <i class="fas fa-info-circle"></i> Information <i class="fas fa-chevron-down dropdown-arrow"></i>
                         </a>
                         <div class="nav-dropdown-menu">
-                            <a href="${bp}team.html" class="nav-dropdown-item" data-page="team.html"><i class="fas fa-users-cog"></i> Equipo</a>
-                            <a href="${bp}help.html" class="nav-dropdown-item" data-page="help.html"><i class="fas fa-question-circle"></i> Ayuda</a>
+                            <a href="${bp}team.html" class="nav-dropdown-item" data-page="team.html"><i class="fas fa-users-cog"></i> Team</a>
+                            <a href="${bp}help.html" class="nav-dropdown-item" data-page="help.html"><i class="fas fa-question-circle"></i> Help</a>
                             <a href="${bp}faq.html" class="nav-dropdown-item" data-page="faq.html"><i class="fas fa-comments"></i> FAQ</a>
                             <div style="height: 1px; background: rgba(255,255,255,0.1); margin: 5px 0;"></div>
-                            <a href="${bp}rules.html" class="nav-dropdown-item" data-page="rules.html"><i class="fas fa-gavel"></i> Reglas</a>
-                            <a href="${bp}policy.html" class="nav-dropdown-item" data-page="policy.html"><i class="fas fa-shield-alt"></i> Políticas</a>
-                            <a href="${bp}terms.html" class="nav-dropdown-item" data-page="terms.html"><i class="fas fa-file-contract"></i> Términos</a>
-                            <a href="${bp}directrices.html" class="nav-dropdown-item" data-page="directrices.html"><i class="fas fa-map-signs"></i> Directrices</a>
+                            <a href="${bp}rules.html" class="nav-dropdown-item" data-page="rules.html"><i class="fas fa-gavel"></i> Rules</a>
+                            <a href="${bp}policy.html" class="nav-dropdown-item" data-page="policy.html"><i class="fas fa-shield-alt"></i> Policy</a>
+                            <a href="${bp}terms.html" class="nav-dropdown-item" data-page="terms.html"><i class="fas fa-file-contract"></i> Terms</a>
+                            <a href="${bp}directrices.html" class="nav-dropdown-item" data-page="directrices.html"><i class="fas fa-map-signs"></i> Guidelines</a>
                         </div>
                     </li>
                 </ul>
                 <div id="auth-section"></div>
                 <div class="search-wrapper">
-                    <button class="search-btn" title="Buscar"><i class="fas fa-search"></i></button>
+                    <button class="search-btn" title="Search"><i class="fas fa-search"></i></button>
                     <div class="search-input-container">
-                        <input type="text" class="search-input" placeholder="Buscar...">
+                        <input type="text" class="search-input" placeholder="Search...">
                     </div>
-                    <button class="menu-toggle-btn" title="Menú" onclick="AdaptiveNav.toggleMenu(true)"><i class="fas fa-bars"></i></button>
+                    <button class="menu-toggle-btn" title="Menu" onclick="AdaptiveNav.toggleMenu(true)"><i class="fas fa-bars"></i></button>
                 </div>
             </nav>
         </div>
@@ -139,32 +140,32 @@ const Layout = {
                         <img src="${bp}assets/logo.png" alt="Logo" class="logo-img footer-logo-sync">
                         <h3>MUZICMANIA</h3>
                     </a>
-                    <p style="margin-top: 0.5rem; color: #888;">El mejor juego de ritmo futurista. Dominando el neón desde 2026.</p>
+                    <p style="margin-top: 0.5rem; color: #888;">The best futuristic rhythm game. Dominating the neon since 2026.</p>
                 </div>
 
                 <div class="footer-section">
-                    <h4>Navegación</h4>
+                    <h4>Navigation</h4>
                     <ul class="footer-comprehensive-list" style="columns: 2; gap: 2rem; list-style: none; padding: 0;">
-                        <li><a href="${bp}index.html" data-page="index.html"><i class="fas fa-home"></i> Inicio</a></li>
-                        <li><a href="${bp}game.html" data-page="game.html"><i class="fas fa-gamepad"></i> Jugar</a></li>
-                        <li><a href="${bp}stats.html" data-page="stats.html"><i class="fas fa-chart-bar"></i> Estadísticas</a></li>
+                        <li><a href="${bp}index.html" data-page="index.html"><i class="fas fa-home"></i> Home</a></li>
+                        <li><a href="${bp}game.html" data-page="game.html"><i class="fas fa-gamepad"></i> Play</a></li>
+                        <li><a href="${bp}stats.html" data-page="stats.html"><i class="fas fa-chart-bar"></i> Stats</a></li>
                         <li><a href="${bp}leaderboard.html" data-page="leaderboard.html"><i class="fas fa-trophy"></i> Leaderboard</a></li>
                         <li><a href="${bp}help.html" data-page="help.html"><i class="fas fa-question-circle"></i> Help</a></li>
                         <li><a href="${bp}faq.html" data-page="faq.html"><i class="fas fa-comments"></i> FAQ</a></li>
                         <li><a href="${bp}about.html" data-page="about.html"><i class="fas fa-info-circle"></i> About</a></li>
                         <li><a href="${bp}team.html" data-page="team.html"><i class="fas fa-users-cog"></i> Team</a></li>
-                        <li><a href="${bp}directrices.html" data-page="directrices.html"><i class="fas fa-map-signs"></i> Directrices</a></li>
-                        <li><a href="${bp}rules.html" data-page="rules.html"><i class="fas fa-gavel"></i> Reglamentos</a></li>
+                        <li><a href="${bp}directrices.html" data-page="directrices.html"><i class="fas fa-map-signs"></i> Guidelines</a></li>
+                        <li><a href="${bp}rules.html" data-page="rules.html"><i class="fas fa-gavel"></i> Rules</a></li>
                         <li><a href="${bp}policy.html" data-page="policy.html"><i class="fas fa-shield-alt"></i> Policy</a></li>
                         <li><a href="${bp}terms.html" data-page="terms.html"><i class="fas fa-file-contract"></i> Terms</a></li>
-                        <li><a href="${bp}soporte.html" data-page="soporte.html"><i class="fas fa-headset"></i> Soporte</a></li>
+                        <li><a href="${bp}soporte.html" data-page="soporte.html"><i class="fas fa-headset"></i> Support</a></li>
                         <li><a href="${bp}changelog.html" data-page="changelog.html"><i class="fas fa-history"></i> Changelog</a></li>
-                        <li><a href="${bp}soporte.html#contacto" data-page="contactanos.html"><i class="fas fa-envelope"></i> Contacto</a></li>
+                        <li><a href="${bp}soporte.html#contacto" data-page="contactanos.html"><i class="fas fa-envelope"></i> Contact</a></li>
                     </ul>
                 </div>
 
                 <div class="footer-section">
-                    <h4>Comunidad</h4>
+                    <h4>Community</h4>
                     <div class="social-icons">
                         <a href="https://x.com" target="_blank" title="X (Twitter)"><i class="fab fa-x-twitter"></i></a>
                         <a href="https://discord.com" target="_blank" title="Discord"><i class="fab fa-discord"></i></a>
@@ -175,12 +176,12 @@ const Layout = {
                         <a href="https://tiktok.com" target="_blank" title="TikTok"><i class="fab fa-tiktok"></i></a>
                         <a href="https://twitch.tv" target="_blank" title="Twitch"><i class="fab fa-twitch"></i></a>
                     </div>
-                    <p style="margin-top: 1rem; color: #888;">Únete a nuestra creciente comunidad tecnológica y musical.</p>
+                    <p style="margin-top: 1rem; color: #888;">Join our growing tech and music community.</p>
                 </div>
             </div>
 
             <div class="footer-bottom">
-                <p>&copy; 2026 MuzicMania. Creado por Ciszuko Antony. Todos los derechos reservados.</p>
+                <p>&copy; 2026 MuzicMania. Created by Ciszuko Antony. All rights reserved.</p>
             </div>
         </div>
     </footer>`
