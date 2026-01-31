@@ -103,11 +103,10 @@ const Layout = {
                     
                     <!-- Dropdown de Información -->
                     <li class="nav-dropdown">
-                        <div class="nav-dropdown-trigger">
+                        <a href="${bp}about.html" class="nav-dropdown-trigger" data-page="about.html" style="text-decoration: none; color: #ccc; font-weight: bold; transition: 0.3s;">
                             <i class="fas fa-info-circle"></i> Información <i class="fas fa-chevron-down dropdown-arrow"></i>
-                        </div>
+                        </a>
                         <div class="nav-dropdown-menu">
-                            <a href="${bp}about.html" class="nav-dropdown-item" data-page="about.html"><i class="fas fa-info"></i> Sobre Nosotros</a>
                             <a href="${bp}team.html" class="nav-dropdown-item" data-page="team.html"><i class="fas fa-users-cog"></i> Equipo</a>
                             <a href="${bp}help.html" class="nav-dropdown-item" data-page="help.html"><i class="fas fa-question-circle"></i> Ayuda</a>
                             <a href="${bp}faq.html" class="nav-dropdown-item" data-page="faq.html"><i class="fas fa-comments"></i> FAQ</a>
