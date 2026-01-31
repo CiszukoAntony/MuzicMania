@@ -16,6 +16,7 @@ ehthumbs.db
 # AI, Documentation & Debug
 ia/
 debug/
+repair_scripts/
 *.gemini/
 brain/
 
