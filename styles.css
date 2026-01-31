@@ -2365,3 +2365,167 @@ body.page-transitioning footer::before {
     from { box-shadow: 0 0 5px var(--neon-green); opacity: 0.8; }
     to { box-shadow: 0 0 15px var(--neon-green); opacity: 1; }
 }
+
+/* === QUICK ACCESS DOCK (PREMIUM) === */
+.quick-access-dock {
+    display: flex;
+    justify-content: center;
+    gap: 1.5rem;
+    padding: 1.5rem 2.5rem;
+    background: rgba(10, 10, 20, 0.6);
+    backdrop-filter: blur(15px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 20px;
+    margin: 3rem auto;
+    width: fit-content;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5), inset 0 0 20px rgba(255, 255, 255, 0.05);
+    flex-wrap: wrap;
+    position: relative;
+    z-index: 10;
+}
+
+.quick-access-dock::before {
+    content: '';
+    position: absolute;
+    inset: -1px;
+    border-radius: 20px;
+    padding: 1px;
+    background: linear-gradient(90deg, transparent, rgba(0, 212, 255, 0.5), transparent);
+    z-index: -1;
+    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    opacity: 0.7;
+}
+
+.qa-btn {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    text-decoration: none;
+    color: #aaa;
+    padding: 10px 20px;
+    border-radius: 12px;
+    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    min-width: 100px;
+    position: relative;
+    border: 1px solid transparent;
+}
+
+.qa-btn i {
+    font-size: 1.8rem;
+    margin-bottom: 5px;
+    transition: all 0.3s;
+    color: #666;
+}
+
+.qa-btn span {
+    font-size: 0.85rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.qa-btn:hover {
+    color: #fff;
+    background: rgba(255, 255, 255, 0.05);
+    border-color: rgba(255, 255, 255, 0.1);
+    transform: translateY(-5px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+}
+
+.qa-btn:hover i {
+    transform: scale(1.2);
+    text-shadow: 0 0 15px currentColor;
+}
+
+/* Colores específicos estáticos (fallback) */
+.qa-btn:nth-child(1):hover i { color: var(--neon-cyan); }
+.qa-btn:nth-child(2):hover i { color: var(--neon-purple); }
+.qa-btn:nth-child(3):hover i { color: var(--neon-pink); }
+.qa-btn:nth-child(4):hover i { color: var(--neon-green); }
+
+/* === NAVBAR DROPDOWN === */
+.nav-dropdown {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+/* El botón que activa el dropdown usa estilos de .nav-link o nav a */
+.nav-dropdown-trigger {
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.nav-dropdown-menu {
+    position: absolute;
+    top: 100%;
+    right: 0; /* Alinear a la derecha para no salir de pantalla */
+    width: 220px;
+    background: rgba(10, 10, 25, 0.95);
+    border: 1px solid var(--neon-blue);
+    border-radius: 12px;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.8);
+    padding: 0.5rem;
+    display: none;
+    flex-direction: column;
+    gap: 5px;
+    z-index: 2000;
+    backdrop-filter: blur(15px);
+    transform-origin: top right;
+    animation: dropdownOpen 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.nav-dropdown:hover .nav-dropdown-menu {
+    display: flex;
+}
+
+.nav-dropdown-item {
+    padding: 10px 15px;
+    color: #ccc;
+    text-decoration: none;
+    font-size: 0.9rem;
+    font-weight: 600;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    transition: all 0.2s;
+}
+
+.nav-dropdown-item i {
+    width: 20px;
+    text-align: center;
+    color: var(--neon-blue);
+}
+
+.nav-dropdown-item:hover {
+    background: rgba(0, 212, 255, 0.1);
+    color: #fff;
+    transform: translateX(5px);
+}
+
+.nav-dropdown-item:hover i {
+    color: var(--neon-cyan);
+    text-shadow: 0 0 10px var(--neon-cyan);
+}
+
+/* Icono de flechita para el dropdown */
+.dropdown-arrow {
+    font-size: 0.7rem;
+    transition: transform 0.3s;
+}
+
+.nav-dropdown:hover .dropdown-arrow {
+    transform: rotate(180deg);
+}
+
+@keyframes dropdownOpen {
+    from { opacity: 0; transform: scaleY(0.8); }
+    to { opacity: 1; transform: scaleY(1); }
+}

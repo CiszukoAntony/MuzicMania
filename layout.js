@@ -98,18 +98,28 @@ const Layout = {
                     <li><a href="${bp}index.html" data-page="index.html"><i class="fas fa-home"></i> Inicio</a></li>
                     <li><a href="${bp}game.html" data-page="game.html"><i class="fas fa-gamepad"></i> Jugar</a></li>
                     <li><a href="${bp}stats.html" data-page="stats.html"><i class="fas fa-chart-bar"></i> Stats</a></li>
-                    <li><a href="${bp}leaderboard.html" data-page="leaderboard.html"><i class="fas fa-trophy"></i> Leaderboard</a></li>
-                    <li><a href="${bp}help.html" data-page="help.html"><i class="fas fa-question-circle"></i> Help</a></li>
-                    <li><a href="${bp}about.html" data-page="about.html"><i class="fas fa-info-circle"></i> About</a></li>
+                    <li><a href="${bp}leaderboard.html" data-page="leaderboard.html"><i class="fas fa-trophy"></i> Ranking</a></li>
+                    <li><a href="${bp}help.html" data-page="help.html"><i class="fas fa-question-circle"></i> Ayuda</a></li>
                     <li><a href="${bp}faq.html" data-page="faq.html"><i class="fas fa-comments"></i> FAQ</a></li>
-                    <li><a href="${bp}team.html" data-page="team.html"><i class="fas fa-users-cog"></i> Team</a></li>
-                    <li><a href="${bp}directrices.html" data-page="directrices.html"><i class="fas fa-map-signs"></i> Directrices</a></li>
-                    <li><a href="${bp}rules.html" data-page="rules.html"><i class="fas fa-gavel"></i> Reglas</a></li>
-                    <li><a href="${bp}policy.html" data-page="policy.html"><i class="fas fa-shield-alt"></i> Policy</a></li>
-                    <li><a href="${bp}terms.html" data-page="terms.html"><i class="fas fa-file-contract"></i> Terms</a></li>
                     <li><a href="${bp}soporte.html" data-page="soporte.html"><i class="fas fa-headset"></i> Soporte</a></li>
-                    <li><a href="${bp}changelog.html" data-page="changelog.html"><i class="fas fa-history"></i> Changelog</a></li>
-                    <li><a href="${bp}soporte.html#contacto" data-page="contactanos.html"><i class="fas fa-envelope"></i> Contacto</a></li>
+                    
+                    <!-- Dropdown de Información -->
+                    <li class="nav-dropdown">
+                        <div class="nav-dropdown-trigger">
+                            <i class="fas fa-info-circle"></i> Información <i class="fas fa-chevron-down dropdown-arrow"></i>
+                        </div>
+                        <div class="nav-dropdown-menu">
+                            <a href="${bp}about.html" class="nav-dropdown-item" data-page="about.html"><i class="fas fa-info"></i> Sobre Nosotros</a>
+                            <a href="${bp}team.html" class="nav-dropdown-item" data-page="team.html"><i class="fas fa-users-cog"></i> Equipo</a>
+                            <a href="${bp}changelog.html" class="nav-dropdown-item" data-page="changelog.html"><i class="fas fa-history"></i> Changelog</a>
+                            <a href="${bp}soporte.html#contacto" class="nav-dropdown-item" data-page="contactanos.html"><i class="fas fa-envelope"></i> Contacto</a>
+                            <div style="height: 1px; background: rgba(255,255,255,0.1); margin: 5px 0;"></div>
+                            <a href="${bp}rules.html" class="nav-dropdown-item" data-page="rules.html"><i class="fas fa-gavel"></i> Reglas</a>
+                            <a href="${bp}policy.html" class="nav-dropdown-item" data-page="policy.html"><i class="fas fa-shield-alt"></i> Políticas</a>
+                            <a href="${bp}terms.html" class="nav-dropdown-item" data-page="terms.html"><i class="fas fa-file-contract"></i> Términos</a>
+                            <a href="${bp}directrices.html" class="nav-dropdown-item" data-page="directrices.html"><i class="fas fa-map-signs"></i> Directrices</a>
+                        </div>
+                    </li>
                 </ul>
                 <div id="auth-section"></div>
                 <div class="search-wrapper">
