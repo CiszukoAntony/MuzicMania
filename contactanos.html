@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="UTF-8">
@@ -6,8 +6,8 @@
     <title>MuzicMania - Contacto</title>
     <link rel="icon" type="image/png" href="assets/logo.png">
     <link rel="apple-touch-icon" href="assets/logo.png">
-    <link rel="stylesheet" href="styles.css?v=13991389">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="styles.css?v=201269610">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <style>
         .contact-grid {
             display: grid;
@@ -100,16 +100,163 @@
             font-size: 1.5rem;
             color: var(--neon-cyan);
         }
+
+        /* Character Counter & Indicators */
+        .field-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 0.5rem;
+        }
+
+        .char-limit {
+            font-size: 0.75rem;
+            color: #666;
+            font-family: var(--font-header);
+        }
+
+        .char-limit.near-limit { color: var(--neon-pink); }
+        .char-limit.at-limit { color: #ff0000; font-weight: bold; }
+
+        /* Custom Select Synchronization */
+        .custom-select-container {
+            position: relative;
+            width: 100%;
+            margin-bottom: 1rem;
+        }
+
+        .custom-select-trigger {
+            padding: 1rem;
+            background: rgba(0, 0, 0, 0.5);
+            border: 2px solid var(--neon-blue);
+            color: #fff;
+            border-radius: 8px;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-family: var(--font-body);
+            transition: 0.3s;
+        }
+
+        .custom-select-trigger:hover {
+            border-color: var(--neon-cyan);
+            box-shadow: 0 0 10px rgba(0, 212, 255, 0.2);
+        }
+
+        .custom-select-options {
+            position: absolute;
+            top: calc(100% + 5px);
+            left: 0;
+            width: 100%;
+            background: rgba(10, 10, 25, 0.98);
+            border: 1px solid var(--neon-blue);
+            border-radius: 8px;
+            z-index: 100;
+            display: none;
+            max-height: 200px;
+            overflow-y: auto;
+            backdrop-filter: blur(10px);
+        }
+
+        .custom-select-options.active { display: block; }
+
+        .custom-option {
+            padding: 10px 15px;
+            cursor: pointer;
+            transition: 0.2s;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .custom-option:hover {
+            background: rgba(0, 212, 255, 0.1);
+            color: var(--neon-cyan);
+        }
+
+        .custom-option.selected {
+            background: rgba(0, 212, 255, 0.2);
+            font-weight: bold;
+        }
+
+        .error-message {
+            color: #ff4d4d;
+            font-size: 0.8rem;
+            margin-top: -0.5rem;
+            margin-bottom: 1rem;
+            display: none;
+        }
+
+        .form-group.has-error .custom-select-trigger,
+        .form-group.has-error input,
+        .form-group.has-error textarea {
+            border-color: #ff4d4d;
+            box-shadow: 0 0 10px rgba(255, 77, 77, 0.3);
+        }
+
+        /* Review System Enhancements */
+        .review-sort-bar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid rgba(0, 153, 255, 0.1);
+        }
+
+        .review-card {
+            background: rgba(10, 10, 20, 0.4);
+            border: 1px solid rgba(0, 153, 255, 0.1);
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+            transition: 0.3s;
+            position: relative;
+        }
+
+        .review-card:hover { border-color: var(--neon-blue); transform: translateX(5px); }
+
+        .review-user-info { display: flex; align-items: center; gap: 12px; margin-bottom: 10px; }
+        .review-avatar { width: 40px; height: 40px; border-radius: 50%; background: var(--gradient-main); display: flex; align-items: center; justify-content: center; font-weight: bold; border: 1px solid var(--neon-blue); }
+
+        .star-rating-input {
+            font-size: 2.5rem;
+            color: #333;
+            cursor: pointer;
+            display: flex;
+            gap: 10px;
+            justify-content: center;
+        }
+
+        .star-rating-input i.active { color: #FFD700; text-shadow: 0 0 15px rgba(255, 215, 0, 0.5); }
+
+        .review-like-btn {
+            background: rgba(255, 0, 128, 0.1);
+            border: 1px solid rgba(255, 0, 128, 0.2);
+            color: var(--neon-pink);
+            padding: 4px 12px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-size: 0.85rem;
+            transition: 0.3s;
+        }
+
+        .review-like-btn:hover, .review-like-btn.liked {
+            background: var(--neon-pink);
+            color: #fff;
+            box-shadow: var(--glow-pink);
+        }
     </style>
 </head>
 <body>
     
     <!-- Main -->
     <main class="container mt-3">
-        <section class="contact-header">
+        <div class="section-header">
             <h1 class="section-title">Contacto</h1>
             <p>¿Tienes dudas o sugerencias? Ponte en contacto directamente con el creador del proyecto.</p>
-        </section>
+        </div>
 
             <!-- Información del Equipo -->
             <section class="mt-3">
@@ -124,7 +271,7 @@
                 </div>
             </section>
 
-            <!-- InformaciÃ³n de Contacto -->
+            <!-- Información de Contacto -->
             <section class="mt-3">
                 <h2 class="text-center mb-2">Información de Contacto</h2>
                 <div class="card">
@@ -164,40 +311,96 @@
 
             <!-- Formulario de Contacto -->
             <section class="mt-3">
-                <div class="grid" style="grid-template-columns: 1fr 1fr;">
+                <div class="grid" style="grid-template-columns: 1.8fr 1fr; gap: 2rem;">
                     <!-- Formulario de Contacto -->
-                    <div class="card">
-                        <h2 class="mb-2">EnvÃ­anos un Mensaje</h2>
-                        <form class="contact-form" id="contact-form">
-                            <div class="form-group">
-                                <label>Nombre / Display Name</label>
-                                <input type="text" id="contact-name" placeholder="Tu nombre" required>
+                    <div class="card" style="position: relative;">
+                        <h2 class="mb-2">Envíanos un Mensaje</h2>
+                        <form class="contact-form" id="contact-form" novalidate>
+                            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+                                <div class="form-group">
+                                    <div class="field-header">
+                                        <label>Nombre Real</label>
+                                        <span class="char-limit" id="limit-real-name">2-50</span>
+                                    </div>
+                                    <input type="text" id="contact-real-name" placeholder="Ej: Juan Pérez" required minlength="2" maxlength="50">
+                                    <div class="error-message">Mínimo 2 caracteres requeridos.</div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="field-header">
+                                        <label>Display Name</label>
+                                        <span class="char-limit" id="limit-name">3-20</span>
+                                    </div>
+                                    <input type="text" id="contact-name" placeholder="Ej: RhythmMaster" required minlength="3" maxlength="20">
+                                    <div class="error-message">Mínimo 3 caracteres requeridos.</div>
+                                </div>
                             </div>
+
                             <div class="form-group">
-                                <label>Email de Contacto</label>
-                                <input type="email" id="contact-email" placeholder="tu@email.com" required>
+                                <div class="field-header">
+                                    <label>Email de Contacto</label>
+                                    <span class="char-limit" id="limit-email">Máx 100</span>
+                                </div>
+                                <input type="email" id="contact-email" placeholder="tu@email.com" required maxlength="100">
+                                <div class="error-message">Email inválido o vacío.</div>
                             </div>
+
+                            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+                                <div class="form-group">
+                                    <label>País</label>
+                                    <div class="custom-select-container" id="container-country">
+                                        <div class="custom-select-trigger" id="trigger-country">
+                                            <span>Selecciona tu país</span>
+                                            <i class="fas fa-chevron-down"></i>
+                                        </div>
+                                        <div class="custom-select-options" id="options-country">
+                                            <div class="custom-option" data-value="VE">🇻🇪 Venezuela</div>
+                                            <div class="custom-option" data-value="AR">🇦🇷 Argentina</div>
+                                            <div class="custom-option" data-value="CL">🇨🇱 Chile</div>
+                                            <div class="custom-option" data-value="CO">🇨🇴 Colombia</div>
+                                            <div class="custom-option" data-value="ES">🇪🇸 España</div>
+                                            <div class="custom-option" data-value="MX">🇲🇽 México</div>
+                                            <div class="custom-option" data-value="PE">🇵🇪 Perú</div>
+                                            <div class="custom-option" data-value="US">🇺🇸 Estados Unidos</div>
+                                            <div class="custom-option" data-value="OTHER">🌍 Otro</div>
+                                        </div>
+                                        <input type="hidden" id="contact-country" required>
+                                    </div>
+                                    <div class="error-message">Selecciona un país.</div>
+                                </div>
+                                <div class="form-group">
+                                    <label>Asunto</label>
+                                    <div class="custom-select-container" id="container-subject">
+                                        <div class="custom-select-trigger" id="trigger-subject">
+                                            <span>Selecciona un asunto</span>
+                                            <i class="fas fa-chevron-down"></i>
+                                        </div>
+                                        <div class="custom-select-options" id="options-subject">
+                                            <div class="custom-option" data-value="support"><i class="fas fa-headset" style="color: var(--neon-blue);"></i> Soporte Técnico</div>
+                                            <div class="custom-option" data-value="bug"><i class="fas fa-bug" style="color: var(--neon-pink);"></i> Reporte de Bug</div>
+                                            <div class="custom-option" data-value="suggestion"><i class="fas fa-lightbulb" style="color: var(--neon-green);"></i> Sugerencia</div>
+                                            <div class="custom-option" data-value="partnership"><i class="fas fa-handshake" style="color: var(--neon-cyan);"></i> Colaboración</div>
+                                            <div class="custom-option" data-value="other"><i class="fas fa-ellipsis-h" style="color: #888;"></i> Otro</div>
+                                        </div>
+                                        <input type="hidden" id="contact-subject" required>
+                                    </div>
+                                    <div class="error-message">Selecciona un asunto.</div>
+                                </div>
+                            </div>
+
                             <div class="form-group">
-                                <label>Asunto</label>
-                                <select id="contact-subject" required>
-                                    <option value="">Selecciona un asunto</option>
-                                    <option value="support">Soporte TÃ©cnico</option>
-                                    <option value="bug">Reporte de Bug</option>
-                                    <option value="suggestion">Sugerencia</option>
-                                    <option value="partnership">Propuesta de ColaboraciÃ³n</option>
-                                    <option value="other">Otro</option>
-                                </select>
+                                <div class="field-header">
+                                    <label>Mensaje</label>
+                                    <span class="char-limit" id="limit-message">20 - 1000</span>
+                                </div>
+                                <textarea id="contact-message" placeholder="¿En qué podemos ayudarte?" style="min-height: 150px;" required minlength="20" maxlength="1000"></textarea>
+                                <div class="error-message">Mínimo 20 caracteres requeridos.</div>
                             </div>
-                            <div class="form-group">
-                                <label>Mensaje</label>
-                                <textarea id="contact-message" placeholder="Â¿En quÃ© podemos ayudarte?" style="min-height: 150px;" required></textarea>
-                            </div>
-                            <button type="submit" class="btn btn-full" id="submit-btn">
-                                <i class="fas fa-paper-plane"></i> ENVIAR MENSAJE
+                            <button type="submit" class="btn btn-full" id="submit-btn" style="margin-top: 1rem;">
+                                <i class="fas fa-paper-plane"></i> ENVIAR MENSAJE A SOPORTE
                             </button>
                         </form>
                         
-                        <!-- Overlay de EnvÃ­o -->
+                        <!-- Overlay de Envío -->
                         <div id="sending-overlay" style="display: none; position: absolute; top:0; left:0; width:100%; height:100%; background: rgba(0,0,0,0.8); border-radius: 20px; z-index: 10; flex-direction: column; align-items: center; justify-content: center; backdrop-filter: blur(5px);">
                             <div class="loader-hologram"></div>
                             <h3 style="color: var(--neon-cyan); margin-top: 1rem;">ENVIANDO DATOS AL SERVIDOR...</h3>
@@ -211,151 +414,122 @@
                     <div class="card" id="support-panel" style="display: none;">
                         <h2 class="mb-2">Mis Tickets <span id="ticket-count" class="badge">0</span></h2>
                         <div id="tickets-list" style="max-height: 400px; overflow-y: auto;">
-                            <!-- Tickets dinÃ¡micos -->
+                            <!-- Tickets dinámicos -->
                         </div>
                         <div class="mt-2 text-center">
                             <p style="font-size: 0.9rem; color: #888;">Los tickets tardan 24-48h en procesarse.</p>
                         </div>
                     </div>
 
-                    <!-- Info de Ayuda (Si no logueado) -->
+                    <!-- Panel de Atención Directa (Simplificado) -->
                     <div class="card" id="guest-panel">
-                        <h2 class="mb-2">¿Necesitas Ayuda Rápida?</h2>
-                        <p class="mb-2">Inicia sesión para pre-rellenar tus datos y llevar un seguimiento de tus consultas.</p>
-                        <button class="btn btn-small" onclick="AuthSystem.openModal('login')">
-                            <i class="fas fa-sign-in-alt"></i> INICIAR SESIÓN
-                        </button>
-                        <hr style="margin: 2rem 0; border: 0; border-top: 1px solid rgba(255,255,255,0.1);">
                         <h3>Atención Directa</h3>
+                        <p style="color: #888; font-size: 0.9rem; margin-bottom: 1.5rem;">Canales oficiales de @CiszukoAntony</p>
                         <ul style="list-style: none; margin-top: 1rem;">
-                            <li style="margin-bottom: 1rem;"><i class="fas fa-at" style="color: var(--neon-blue);"></i> fplayersoffcial@gmail.com</li>
-                            <li style="margin-bottom: 1rem;"><i class="fab fa-discord" style="color: #7289da;"></i> Comunidad MuzicMania</li>
+                            <li style="margin-bottom: 1rem; display: flex; align-items: center; gap: 12px;">
+                                <i class="fab fa-whatsapp" style="color: #25D366; font-size: 1.2rem;"></i>
+                                <span><strong>WhatsApp:</strong> +58 412-6858111</span>
+                            </li>
+                            <li style="margin-bottom: 1rem; display: flex; align-items: center; gap: 12px;">
+                                <i class="fab fa-x-twitter" style="color: #fff; font-size: 1.2rem;"></i>
+                                <span><strong>X:</strong> @CiszukoAntony</span>
+                            </li>
+                            <li style="margin-bottom: 1rem; display: flex; align-items: center; gap: 12px;">
+                                <i class="fab fa-discord" style="color: #5865F2; font-size: 1.2rem;"></i>
+                                <span><strong>Discord:</strong> Comunidad MuzicMania</span>
+                            </li>
+                            <li style="margin-bottom: 1rem; display: flex; align-items: center; gap: 12px;">
+                                <i class="fab fa-github" style="color: #fff; font-size: 1.2rem;"></i>
+                                <span><strong>GitHub:</strong> @CiszukoAntony</span>
+                            </li>
+                            <li style="margin-bottom: 1rem; display: flex; align-items: center; gap: 12px;">
+                                <i class="fab fa-reddit" style="color: #FF4500; font-size: 1.2rem;"></i>
+                                <span><strong>Reddit:</strong> @CiszukoAntony</span>
+                            </li>
+                            <li style="margin-bottom: 1rem; display: flex; align-items: center; gap: 12px;">
+                                <i class="fab fa-youtube" style="color: #FF0000; font-size: 1.2rem;"></i>
+                                <span><strong>YouTube:</strong> @CiszukoAntony</span>
+                            </li>
+                            <li style="margin-bottom: 1rem; display: flex; align-items: center; gap: 12px;">
+                                <i class="fab fa-instagram" style="color: #E4405F; font-size: 1.2rem;"></i>
+                                <span><strong>Instagram:</strong> @CiszukoAntony</span>
+                            </li>
+                            <li style="margin-bottom: 1rem; display: flex; align-items: center; gap: 12px;">
+                                <i class="fab fa-tiktok" style="color: #00f2ea; font-size: 1.2rem;"></i>
+                                <span><strong>TikTok:</strong> @CiszukoAntony</span>
+                            </li>
+                            <li style="margin-bottom: 1rem; display: flex; align-items: center; gap: 12px;">
+                                <i class="fab fa-twitch" style="color: #9146FF; font-size: 1.2rem;"></i>
+                                <span><strong>Twitch:</strong> @CiszukoAntony</span>
+                            </li>
                         </ul>
                     </div>
                 </div>
             </section>
 
-            <!-- ValoraciÃ³n y ReseÃ±as -->
-            <section class="mt-3">
-                <h2 class="text-center mb-2">ValoraciÃ³n de Usuarios</h2>
-                <div class="card text-center" style="max-width: 600px; margin: 0 auto 2rem;">
-                    <h3 style="margin-bottom: 1rem;">Califica tu experiencia</h3>
-                    <div class="rating-stars" id="user-rating">
-                        <i class="fas fa-star" data-rating="1"></i>
-                        <i class="fas fa-star" data-rating="2"></i>
-                        <i class="fas fa-star" data-rating="3"></i>
-                        <i class="fas fa-star" data-rating="4"></i>
-                        <i class="fas fa-star" data-rating="5"></i>
-                    </div>
-                    <p style="color: #888; margin-top: 1rem;">Promedio: <span style="color: var(--neon-cyan); font-size: 1.5rem; font-weight: 700;">4.8</span> / 5.0 (1,247 valoraciones)</p>
-                </div>
-
-                <h3 class="mb-2">ReseÃ±as Recientes</h3>
-                <div class="review-card">
-                    <div class="review-header">
-                        <div>
-                            <strong style="color: var(--neon-cyan);">CyberGamer42</strong>
-                            <div class="rating-stars" style="font-size: 1rem; justify-content: flex-start;">
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                            </div>
-                        </div>
-                        <span style="color: #888; font-size: 0.9rem;">Hace 2 dÃ­as</span>
-                    </div>
-                    <p>"Â¡IncreÃ­ble juego! Los visuales son espectaculares y la mecÃ¡nica de juego es sÃºper adictiva. Lo recomiendo 100%."</p>
-                </div>
-
-                <div class="review-card">
-                    <div class="review-header">
-                        <div>
-                            <strong style="color: var(--neon-cyan);">NeonQueen</strong>
-                            <div class="rating-stars" style="font-size: 1rem; justify-content: flex-start;">
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="far fa-star"></i>
-                            </div>
-                        </div>
-                        <span style="color: #888; font-size: 0.9rem;">Hace 5 dÃ­as</span>
-                    </div>
-                    <p>"Me encanta la estÃ©tica futurista y las canciones estÃ¡n geniales. Solo le falta mÃ¡s variedad de temas musicales."</p>
-                </div>
-
-                <div class="review-card">
-                    <div class="review-header">
-                        <div>
-                            <strong style="color: var(--neon-cyan);">RhythmMaster</strong>
-                            <div class="rating-stars" style="font-size: 1rem; justify-content: flex-start;">
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                            </div>
-                        </div>
-                        <span style="color: #888; font-size: 0.9rem;">Hace 1 semana</span>
-                    </div>
-                    <p>"El mejor juego de ritmo que he jugado en aÃ±os. La detecciÃ³n de teclas es perfecta y el sistema de combos es muy satisfactorio."</p>
-                </div>
-            </section>
-
-            <!-- FAQ / Preguntas Frecuentes -->
-            <section class="mt-3">
-                <h2 class="text-center mb-2">Preguntas Frecuentes</h2>
+            <!-- Valoración y Reseñas -->
+            <section class="mt-5">
+                <h2 class="section-title-md">Opinión de la Comunidad</h2>
                 
-                <div class="search-faq mb-2" style="max-width: 600px; margin: 0 auto;">
-                    <div class="form-group" style="position: relative;">
-                        <i class="fas fa-search" style="position: absolute; left: 15px; top: 15px; color: var(--neon-blue);"></i>
-                        <input type="text" id="faq-search" placeholder="Busca una pregunta..." style="padding-left: 45px;">
-                    </div>
-                </div>
+                <div class="grid" style="grid-template-columns: 1fr 1.5fr; gap: 3rem;">
+                    <!-- Panel de Calificación -->
+                    <div class="card" style="height: fit-content;">
+                        <h3 class="mb-2">Danos tu Valoración</h3>
+                        <div id="review-form-container">
+                            <div class="star-rating-input" id="rating-input-stars">
+                                <i class="fas fa-star" data-value="1"></i>
+                                <i class="fas fa-star" data-value="2"></i>
+                                <i class="fas fa-star" data-value="3"></i>
+                                <i class="fas fa-star" data-value="4"></i>
+                                <i class="fas fa-star" data-value="5"></i>
+                            </div>
+                            <input type="hidden" id="rating-value" value="0">
+                            
+                            <div class="form-group mt-2">
+                                <label>Tu Reseña</label>
+                                <textarea id="review-text" placeholder="¿Qué te ha parecido MuzicMania?" style="min-height: 100px;"></textarea>
+                            </div>
+                            
+                            <div id="auth-warning-review" style="display: none; padding: 1rem; background: rgba(255, 166, 0, 0.1); border: 1px solid orange; color: orange; border-radius: 8px; margin-bottom: 1rem; font-size: 0.9rem;">
+                                <i class="fas fa-exclamation-triangle"></i> Debes <strong>iniciar sesión</strong> para publicar una valoración.
+                            </div>
 
-                <div class="grid" id="faq-container">
-                    <div class="card faq-item" data-question="reportar bug error fallo">
-                        <div class="faq-header" onclick="toggleFAQ(this)" style="cursor: pointer; display: flex; justify-content: space-between; align-items: center;">
-                            <h3 style="color: var(--neon-sky); font-size: 1.2rem; margin: 0;">Â¿CÃ³mo reporto un bug?</h3>
-                            <i class="fas fa-chevron-down"></i>
+                            <button class="btn btn-full" id="submit-review-btn">
+                                <i class="fas fa-star"></i> PUBLICAR VALORACIÓN
+                            </button>
                         </div>
-                        <div class="faq-content" style="display: none; padding-top: 1rem; border-top: 1px solid rgba(255,255,255,0.1); margin-top: 1rem;">
-                            <p>Puedes reportar bugs usando el formulario anterior seleccionando "Reporte de Bug" como asunto. Para el Centro de Control de Errores (Error Sentinel), revisa la consola del desarrollador o adjunta el log de la sesiÃ³n si es un error fatal.</p>
-                        </div>
-                    </div>
-
-                    <div class="card faq-item" data-question="sugerir canciones nuevas musica track">
-                        <div class="faq-header" onclick="toggleFAQ(this)" style="cursor: pointer; display: flex; justify-content: space-between; align-items: center;">
-                            <h3 style="color: var(--neon-sky); font-size: 1.2rem; margin: 0;">Â¿Puedo sugerir nuevas canciones?</h3>
-                            <i class="fas fa-chevron-down"></i>
-                        </div>
-                        <div class="faq-content" style="display: none; padding-top: 1rem; border-top: 1px solid rgba(255,255,255,0.1); margin-top: 1rem;">
-                            <p>Â¡Por supuesto! Nos encantarÃ­a escuchar tus sugerencias. Estamos construyendo una biblioteca de synthwave y electrÃ³nica. Usa el formulario con el asunto "Sugerencia".</p>
+                        
+                        <div class="mt-4 text-center">
+                            <p style="color: #888; margin-bottom: 0.5rem;">Promedio Global</p>
+                            <span style="color: var(--neon-cyan); font-size: 3rem; font-weight: 900; font-family: var(--font-header);">4.8</span>
+                            <div class="rating-stars" style="justify-content: center; font-size: 1.2rem; margin-top: 0.5rem;">
+                                <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i>
+                            </div>
+                            <p style="color: #666; font-size: 0.85rem; margin-top: 0.5rem;">Basado en 1,247 transmisiones</p>
                         </div>
                     </div>
 
-                    <div class="card faq-item" data-question="gratuito gratis dinero pago">
-                        <div class="faq-header" onclick="toggleFAQ(this)" style="cursor: pointer; display: flex; justify-content: space-between; align-items: center;">
-                            <h3 style="color: var(--neon-sky); font-size: 1.2rem; margin: 0;">Â¿El juego es gratuito?</h3>
-                            <i class="fas fa-chevron-down"></i>
+                    <!-- Lista de Reseñas -->
+                    <div>
+                        <div class="review-sort-bar">
+                            <h3 style="margin: 0; font-size: 1.2rem;">Reseñas Recientes</h3>
+                            <div style="display: flex; gap: 10px; align-items: center;">
+                                <span style="font-size: 0.8rem; color: #888;">Ordenar por:</span>
+                                <select id="review-sort" style="background: transparent; border: 1px solid var(--neon-blue); color: #fff; padding: 4px 10px; border-radius: 5px; font-size: 0.85rem;">
+                                    <option value="newest" selected>Más Nuevas</option>
+                                    <option value="highest">Mejor Valoradas</option>
+                                    <option value="popular">Más Útiles (Likes)</option>
+                                </select>
+                            </div>
                         </div>
-                        <div class="faq-content" style="display: none; padding-top: 1rem; border-top: 1px solid rgba(255,255,255,0.1); margin-top: 1rem;">
-                            <p>SÃ­, MuzicMania es y serÃ¡ completamente gratuito. Las puntuaciones y el progreso se guardan localmente y se sincronizan con nuestro servidor Leaderboard.</p>
-                        </div>
-                    </div>
 
-                    <div class="card faq-item" data-question="movil android ios celular tablet">
-                        <div class="faq-header" onclick="toggleFAQ(this)" style="cursor: pointer; display: flex; justify-content: space-between; align-items: center;">
-                            <h3 style="color: var(--neon-sky); font-size: 1.2rem; margin: 0;">Â¿HabrÃ¡ versiÃ³n mÃ³vil?</h3>
-                            <i class="fas fa-chevron-down"></i>
-                        </div>
-                        <div class="faq-content" style="display: none; padding-top: 1rem; border-top: 1px solid rgba(255,255,255,0.1); margin-top: 1rem;">
-                            <p>Estamos optimizando la interfaz tÃ¡ctil para 2026. Actualmente puedes jugar desde tu navegador mÃ³vil en modo horizontal.</p>
+                        <div id="reviews-container">
+                            <!-- Reseñas Renderizadas Dinámicamente -->
                         </div>
                     </div>
                 </div>
             </section>
+
         </div>
     </main>
 
@@ -403,10 +577,10 @@
     </style>
 
     <!-- Layout System -->
-    <script src="layout.js?v=13991389"></script>
+    <script src="layout.js?v=201269610"></script>
 
     <script>
-        // --- GestiÃ³n de Tickets (Mock) ---
+        // --- Gestión de Tickets (Mock) ---
         const SupportTickets = {
             storageKey: 'muzicmania_tickets',
             getAll: function() {
@@ -444,28 +618,97 @@
             }
         };
 
-        // --- FAQ Logic ---
-        function toggleFAQ(el) {
-            const content = el.nextElementSibling;
-            const icon = el.querySelector('i');
-            const isOpen = content.style.display === 'block';
-            
-            content.style.display = isOpen ? 'none' : 'block';
-            icon.classList.toggle('fa-chevron-up', !isOpen);
-            icon.classList.toggle('fa-chevron-down', isOpen);
+        // --- Custom Dropdown Logic ---
+        function setupCustomDropdown(id) {
+            const container = document.getElementById(`container-${id}`);
+            const trigger = document.getElementById(`trigger-${id}`);
+            const options = document.getElementById(`options-${id}`);
+            const input = document.getElementById(`contact-${id}`);
+
+            trigger.addEventListener('click', () => {
+                options.classList.toggle('active');
+            });
+
+            options.querySelectorAll('.custom-option').forEach(opt => {
+                opt.addEventListener('click', () => {
+                    const val = opt.getAttribute('data-value');
+                    input.value = val;
+                    trigger.querySelector('span').innerHTML = opt.innerHTML;
+                    
+                    options.querySelectorAll('.custom-option').forEach(o => o.classList.remove('selected'));
+                    opt.classList.add('selected');
+                    options.classList.remove('active');
+                    
+                    // Clear error on select
+                    container.parentElement.classList.remove('has-error');
+                    container.parentElement.querySelector('.error-message').style.display = 'none';
+                });
+            });
+
+            // Close when clicking outside
+            document.addEventListener('click', (e) => {
+                if (container && !container.contains(e.target)) {
+                    options.classList.remove('active');
+                }
+            });
         }
 
-        document.getElementById('faq-search').addEventListener('input', function(e) {
-            const term = e.target.value.toLowerCase();
-            document.querySelectorAll('.faq-item').forEach(item => {
-                const text = item.getAttribute('data-question') + item.textContent.toLowerCase();
-                item.style.display = text.includes(term) ? 'block' : 'none';
-            });
-        });
+        // Dropdowns and counters will be initialized in initializeContactPage
 
-        // --- Form Interaction ---
+        // --- Character Counter Logic ---
+        function setupCharCounter(id, limitId, min, max) {
+            const input = document.getElementById(id);
+            const limit = document.getElementById(limitId);
+            if (!input || !limit) return;
+
+            const update = () => {
+                const len = input.value.length;
+                // Show current vs range (with spaces for better readability)
+                const rangeLabel = (min > 0) ? `${min} - ${max}` : `Máx ${max}`;
+                limit.textContent = `${len} / ${rangeLabel}`;
+
+                if (len < min || len >= max) {
+                    limit.className = 'char-limit at-limit';
+                } else if (len > max * 0.8) {
+                    limit.className = 'char-limit near-limit';
+                } else {
+                    limit.className = 'char-limit';
+                }
+            };
+
+            input.addEventListener('input', update);
+            input.addEventListener('keyup', update); // Backup for some browsers
+            update(); 
+        }
+
+
+        // --- Form Interaction & Validation ---
         document.getElementById('contact-form').addEventListener('submit', function(e) {
             e.preventDefault();
+            
+            let hasError = false;
+            const inputs = this.querySelectorAll('input[required], textarea[required]');
+
+            inputs.forEach(input => {
+                const group = input.closest('.form-group');
+                const error = group.querySelector('.error-message');
+                let valid = input.checkValidity();
+
+                if (input.type === 'hidden' && !input.value) {
+                    valid = false;
+                }
+
+                if (!valid) {
+                    group.classList.add('has-error');
+                    if (error) error.style.display = 'block';
+                    hasError = true;
+                } else {
+                    group.classList.remove('has-error');
+                    if (error) error.style.display = 'none';
+                }
+            });
+
+            if (hasError) return;
             
             const overlay = document.getElementById('sending-overlay');
             const progress = document.getElementById('sending-progress');
@@ -481,18 +724,22 @@
                     p = 100;
                     clearInterval(interval);
                     
-                    // Guardar ticket simulado
                     SupportTickets.save({
                         id: Math.random().toString(36).substr(2, 6).toUpperCase(),
-                        subject: document.getElementById('contact-subject').options[document.getElementById('contact-subject').selectedIndex].text,
+                        subject: document.getElementById('trigger-subject').querySelector('span').innerText,
                         date: new Date().toISOString(),
                         status: 'PENDING'
                     });
 
                     setTimeout(() => {
                         overlay.style.display = 'none';
-                        alert('Â¡TransmisiÃ³n Completada! Tu mensaje ha sido enviado al Centro de Comando. RecibirÃ¡s respuesta pronto.');
+                        alert('¡Mensaje Enviado! Tu solicitud ha sido enviada al soporte técnico.');
                         this.reset();
+                        // Trigger input events to refresh counters
+                        this.querySelectorAll('input, textarea').forEach(i => i.dispatchEvent(new Event('input')));
+                        
+                        document.getElementById('trigger-country').querySelector('span').innerText = 'Selecciona tu país';
+                        document.getElementById('trigger-subject').querySelector('span').innerText = 'Selecciona un asunto';
                         submitBtn.disabled = false;
                         progress.style.width = '0%';
                         SupportTickets.render();
@@ -502,38 +749,238 @@
             }, 300);
         });
 
-        // --- Auth Integration (Auto-fill) ---
+        // --- Advanced Review System ---
+        const ReviewSystem = {
+            storageKey: 'muzicmania_reviews',
+            reviews: [
+                { id: 1, user: 'CyberGamer42', initials: 'CG', rating: 5, text: '¡Increíble juego! Los visuales son espectaculares.', date: '2026-01-28T10:00:00Z', likes: 45 },
+                { id: 2, user: 'NeonQueen', initials: 'NQ', rating: 4, text: 'Me encanta la estética futurista, las canciones son geniales.', date: '2026-01-25T15:30:00Z', likes: 12 },
+                { id: 3, user: 'RhythmMaster', initials: 'RM', rating: 5, text: 'La detección de teclas es perfecta. Súper satisfactorio.', date: '2026-01-20T09:00:00Z', likes: 89 },
+                { id: 4, user: 'SynthWaveKid', initials: 'SK', rating: 3, text: 'El arte es genial pero necesito más variedad de canciones.', date: '2026-01-15T12:00:00Z', likes: 5 },
+                { id: 5, user: 'DigitalDreamer', initials: 'DD', rating: 5, text: 'MuzicMania ha redefinido lo que espero de un juego de ritmo de navegador.', date: '2026-01-29T18:45:00Z', likes: 32 }
+            ],
+
+            init: function() {
+                this.render();
+                this.setupStars();
+                this.setupSorting();
+                this.setupSubmit();
+            },
+
+            setupStars: function() {
+                const stars = document.querySelectorAll('#rating-input-stars i');
+                const valInput = document.getElementById('rating-value');
+                
+                stars.forEach(star => {
+                    star.addEventListener('mouseover', () => {
+                        const val = parseInt(star.getAttribute('data-value'));
+                        this.highlightStars(val);
+                    });
+                    
+                    star.addEventListener('mouseout', () => {
+                        const currentVal = parseInt(valInput.value);
+                        this.highlightStars(currentVal);
+                    });
+                    
+                    star.addEventListener('click', () => {
+                        valInput.value = star.getAttribute('data-value');
+                        this.highlightStars(parseInt(valInput.value));
+                    });
+                });
+            },
+
+            highlightStars: function(count) {
+                const stars = document.querySelectorAll('#rating-input-stars i');
+                stars.forEach(s => {
+                    const v = parseInt(s.getAttribute('data-value'));
+                    s.classList.toggle('active', v <= count);
+                });
+            },
+
+            setupSorting: function() {
+                document.getElementById('review-sort').addEventListener('change', (e) => {
+                    this.render(e.target.value);
+                });
+            },
+
+            setupSubmit: function() {
+                const btn = document.getElementById('submit-review-btn');
+                const warning = document.getElementById('auth-warning-review');
+
+                const checkAuth = () => {
+                    const user = AuthSystem.getCurrentUser();
+                    if (!user) {
+                        btn.style.opacity = '0.5';
+                        warning.style.display = 'block';
+                    } else {
+                        btn.style.opacity = '1';
+                        warning.style.display = 'none';
+                    }
+                };
+
+                setInterval(checkAuth, 1000);
+
+                btn.addEventListener('click', () => {
+                    const user = AuthSystem.getCurrentUser();
+                    if (!user) {
+                        AuthSystem.openModal('login');
+                        return;
+                    }
+
+                    const rating = parseInt(document.getElementById('rating-value').value);
+                    const text = document.getElementById('review-text').value;
+
+                    if (rating === 0) {
+                        alert('Por favor, selecciona una puntuación.');
+                        return;
+                    }
+
+                    if (text.length < 5) {
+                        alert('Tu reseña debe ser un poco más larga.');
+                        return;
+                    }
+
+                    const newReview = {
+                        id: Date.now(),
+                        user: user.username,
+                        initials: user.initials,
+                        rating: rating,
+                        text: text,
+                        date: new Date().toISOString(),
+                        likes: 0
+                    };
+
+                    this.reviews.unshift(newReview);
+                    this.render();
+                    
+                    document.getElementById('rating-value').value = 0;
+                    document.getElementById('review-text').value = '';
+                    this.highlightStars(0);
+                    alert('¡Gracias por tu valoración!');
+                });
+            },
+
+            render: function(sortBy = 'newest') {
+                const container = document.getElementById('reviews-container');
+                let sorted = [...this.reviews];
+
+                if (sortBy === 'highest') sorted.sort((a,b) => b.rating - a.rating);
+                else if (sortBy === 'popular') sorted.sort((a,b) => b.likes - a.likes);
+                else sorted.sort((a,b) => new Date(b.date) - new Date(a.date));
+
+                container.innerHTML = sorted.map(r => `
+                    <div class="review-card" data-id="${r.id}">
+                        <div class="review-user-info">
+                            <div class="review-avatar">${r.initials}</div>
+                            <div>
+                                <strong style="color: var(--neon-cyan);">${r.user}</strong>
+                                <div class="rating-stars" style="font-size: 0.8rem; justify-content: flex-start;">
+                                    ${Array(5).fill(0).map((_, i) => `<i class="${i < r.rating ? 'fas' : 'far'} fa-star" style="color: #FFD700;"></i>`).join('')}
+                                </div>
+                            </div>
+                            <span style="margin-left: auto; color: #666; font-size: 0.8rem;">${this.formatDate(r.date)}</span>
+                        </div>
+                        <p style="color: #ddd; line-height: 1.6; margin-bottom: 1rem;">"${r.text}"</p>
+                        <div style="display: flex; gap: 10px;">
+                            <button class="review-like-btn" onclick="ReviewSystem.handleLike(this, ${r.id})">
+                                <i class="fas fa-heart"></i> <span class="like-count">${r.likes}</span>
+                            </button>
+                        </div>
+                    </div>
+                `).join('');
+            },
+
+            formatDate: function(dateStr) {
+                const d = new Date(dateStr);
+                const now = new Date();
+                const diff = (now - d) / 1000;
+                if (diff < 3600) return 'Hace poco';
+                if (diff < 86400) return 'Hoy';
+                return d.toLocaleDateString();
+            },
+
+            handleLike: function(btn, id) {
+                const review = this.reviews.find(r => r.id === id);
+                if (!review) return;
+
+                if (btn.classList.contains('liked')) {
+                    review.likes--;
+                    btn.classList.remove('liked');
+                } else {
+                    review.likes++;
+                    btn.classList.add('liked');
+                }
+                btn.querySelector('.like-count').textContent = review.likes;
+            }
+        };
+
+        // --- Auth Integration & Initializations ---
+        let contactInitialized = false;
+
         function initializeContactPage() {
             if (typeof AuthSystem === 'undefined') {
                 setTimeout(initializeContactPage, 100);
                 return;
             }
 
+            if (!contactInitialized) {
+                // 1. Initialize Form Components FIRST
+                setupCustomDropdown('country');
+                setupCustomDropdown('subject');
+                setupCharCounter('contact-real-name', 'limit-real-name', 2, 50);
+                setupCharCounter('contact-name', 'limit-name', 3, 20);
+                setupCharCounter('contact-email', 'limit-email', 5, 100);
+                setupCharCounter('contact-message', 'limit-message', 20, 1000);
+                
+                ReviewSystem.init();
+                contactInitialized = true;
+                console.log("MuzicMania Contact System: Componentes Listos");
+            }
+
+            // 2. Auth Logic (Pre-fill)
             const user = AuthSystem.getCurrentUser();
             const guestPanel = document.getElementById('guest-panel');
             const supportPanel = document.getElementById('support-panel');
 
             if (user) {
-                document.getElementById('contact-name').value = user.username + " (" + user.initials + ")";
-                document.getElementById('contact-email').value = user.email || "usuario@muzicmania.game";
+                const name = document.getElementById('contact-name');
+                const realName = document.getElementById('contact-real-name');
+                const email = document.getElementById('contact-email');
                 
-                guestPanel.style.display = 'none';
-                supportPanel.style.display = 'block';
+                if (name) name.value = user.username;
+                if (realName) realName.value = user.username;
+                if (email) email.value = user.email || "usuario@muzicmania.game";
+                
+                // Trigger updates AFTER listeners are attached
+                [name, realName, email].forEach(i => {
+                    if (i) i.dispatchEvent(new Event('input'));
+                });
+
+                if (guestPanel) guestPanel.style.display = 'none';
+                if (supportPanel) supportPanel.style.display = 'block';
                 SupportTickets.render();
             } else {
-                guestPanel.style.display = 'block';
-                supportPanel.style.display = 'none';
+                if (guestPanel) guestPanel.style.display = 'block';
+                if (supportPanel) supportPanel.style.display = 'none';
             }
         }
 
         window.addEventListener('load', initializeContactPage);
-        // Escuchar cambios de login
         window.addEventListener('authChange', initializeContactPage);
 
     </script>
     <script src="auth.js?v=2"></script>
-    <script src="utils.js?v=13991389"></script>
+    <script src="utils.js?v=201269610"></script>
     <script src="search.js?v=1"></script>
-    <script src="navigation.js?v=13991389"></script>
+    <script src="navigation.js?v=201269610"></script>
 </body>
 </html>
+
+
+
+
+
+
+
+
+

@@ -6,59 +6,567 @@
     <title>MuzicMania - Changelog</title>
     <link rel="icon" type="image/png" href="assets/logo.png">
     <link rel="apple-touch-icon" href="assets/logo.png">
-    <link rel="stylesheet" href="styles.css?v=13991389">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="styles.css?v=201269610">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 </head>
 <body>
 
     <main class="container mt-3">
-        <h1 class="text-center" style="margin-bottom: 2rem; color: var(--neon-cyan);">Dev Blog & Actualizaciones</h1>
-        
-        <!-- Post 1 -->
-        <div class="card" style="margin-bottom: 2rem;">
-            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem; border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 0.5rem;">
-                <h2 style="color: var(--neon-purple); font-size: 1.5rem;">🚀 Versión 2.0 - Auth Rework</h2>
-                <span style="color: #888; font-size: 0.9rem;">22 Enero 2026</span>
+        <div class="section-header">
+            <h1 class="section-title">Changelog</h1>
+            <p>Registro oficial de mejoras, parches y hotfixes. Nos comprometemos a mantener el juego estable y actualizado con correcciones rápidas.</p>
+        </div>
+
+
+        <!-- Controles de Filtrado y Ordenamiento -->
+        <section class="controls-grid" style="display: grid; grid-template-columns: 1fr 300px; gap: 2rem; margin-bottom: 3rem;">
+            <!-- Sistema de Tags -->
+            <div class="filter-section">
+                <label class="filter-label"><i class="fas fa-tags"></i> Tags</label>
+                <div id="active-tags" class="tag-cloud-wrapper">
+                    <!-- Chips de tags activos se insertan aquí -->
+                </div>
+                <div class="tag-search-box">
+                    <input type="text" class="tag-search-input" id="tag-input" placeholder="Buscar y añadir tags (ej: UI, Motor, Bug)..." onfocus="showSuggestions()" onblur="setTimeout(hideSuggestions, 200)">
+                    <div id="tag-suggestions" class="tag-suggestions">
+                        <!-- Sugerencias dinámicas -->
+                    </div>
+                </div>
             </div>
-            <div style="color: #ddd; line-height: 1.6;">
-                <p>¡Gran actualización del sistema de usuarios!</p>
-                <ul style="margin-top: 1rem; padding-left: 1.5rem;">
-                    <li><strong>[NUEVO]</strong> Sistema de nombres dual: Display Name + @username.</li>
-                    <li><strong>[NUEVO]</strong> Modales de Login y Registro separados y estilizados.</li>
-                    <li><strong>[MEJORA]</strong> Seguridad mejorada en la gestión de sesiones.</li>
-                    <li><strong>[AJUSTE]</strong> Reset de cuentas antiguas para migrar al nuevo sistema v2.</li>
-                </ul>
+
+            <!-- Sistema de Ordenamiento -->
+            <div class="sort-section">
+                <label class="filter-label"><i class="fas fa-sort-amount-down"></i> Ordenar por:</label>
+                <div style="display: flex; gap: 10px;">
+                    <div class="custom-select-container" style="flex-grow: 1;">
+                        <div class="custom-select-trigger" id="custom-select-trigger" onclick="toggleCustomDropdown()">
+                            <span id="selected-text"><i class="fas fa-clock" style="margin-right: 10px; color: var(--neon-blue);"></i>Antigüedad</span>
+                            <i class="fas fa-chevron-down"></i>
+                        </div>
+                        <div class="custom-select-options" id="custom-select-options">
+                            <div class="custom-option selected" data-value="date"><i class="fas fa-clock" style="margin-right: 10px; color: var(--neon-blue);"></i>Antigüedad</div>
+                            <div class="custom-option" data-value="likes"><i class="fas fa-heart" style="margin-right: 10px; color: var(--neon-pink);"></i>Más Valorados</div>
+                        </div>
+                    </div>
+                    <button class="sort-direction-btn" id="sort-dir-btn" onclick="toggleSortDirection()" title="Invertir Orden">
+                        <i class="fas fa-arrow-down"></i>
+                    </button>
+                </div>
             </div>
-            <div style="margin-top: 1.5rem;">
-                <span style="background: var(--neon-blue); color: #000; padding: 3px 8px; border-radius: 4px; font-size: 0.8rem; font-weight: bold;">MAJOR UPDATE</span>
+        </section>
+
+        <div id="changelog-list">
+            <!-- Post: Encoding Fix 31 Enero -->
+            <div class="card changelog-item" 
+                 data-id="3101" 
+                 data-date="2026-01-31" 
+                 data-tags="hotfix,bugfix,performance"
+                 data-likes="0" 
+                 style="margin-bottom: 2rem; border-left: 4px solid var(--neon-green);">
+                <div class="card-header" style="display: flex; justify-content: space-between; align-items: center;">
+                    <h2 style="color: var(--neon-green); font-size: 1.5rem;"><span class="badge-container" id="badge-3101"></span>🔧 Reparación Masiva de Encoding</h2>
+                    <span style="color: #888; font-size: 0.9rem;">31 Enero 2026</span>
+                </div>
+                <div class="card-content" style="color: #ddd; line-height: 1.6;">
+                    <p>Corrección crítica de caracteres corruptos en todos los archivos HTML.</p>
+                    <ul style="margin-top: 1rem; padding-left: 1.5rem;">
+                        <li><strong>[HOTFIX]</strong> Reparados tildes, acentos y emojis en 17 archivos HTML.</li>
+                        <li><strong>[SCRIPTS]</strong> Nuevos scripts de reparación en <code>repair_scripts/</code>.</li>
+                        <li><strong>[BACKUP]</strong> Copias de seguridad en <code>backups/encoding_backups_20260131/</code>.</li>
+                    </ul>
+                </div>
+                <div style="margin-top: 1.5rem; display: flex; justify-content: space-between; align-items: center;">
+                    <div class="item-tags">
+                        <span class="tag tag-hotfix"><i class="fas fa-fire" style="margin-right: 6px;"></i>HOTFIX</span>
+                        <span class="tag tag-bugfix"><i class="fas fa-bug" style="margin-right: 6px;"></i>BUGFIX</span>
+                    </div>
+                    <div class="rating-box" style="margin-top:0; padding-top:0; border:none;">
+                        <div class="rate-item" onclick="handleLike(this, '3101')">
+                            <i class="far fa-heart"></i> <span class="rate-count">0</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Post 3: Rebranding -->
+            <div class="card changelog-item" 
+                 data-id="3001" 
+                 data-date="2026-01-30" 
+                 data-tags="identity,brand,ui,sync"
+                 data-likes="145" 
+                 style="margin-bottom: 2rem; border-left: 4px solid var(--neon-cyan);">
+                <div class="card-header" style="display: flex; justify-content: space-between; align-items: center;">
+                    <h2 style="color: var(--neon-cyan); font-size: 1.5rem;"><span class="badge-container" id="badge-3001"></span>💎 Identidad y Rebranding</h2>
+                    <span style="color: #888; font-size: 0.9rem;">30 Enero 2026</span>
+                </div>
+                <div class="card-content" style="color: #ddd; line-height: 1.6;">
+                    <p>Consolidación de la marca y propiedad del proyecto.</p>
+                    <ul style="margin-top: 1rem; padding-left: 1.5rem;">
+                        <li><strong>[MARCA]</strong> Sincronización de logotipos en todo el sitio.</li>
+                        <li><strong>[PROPIEDAD]</strong> Créditos oficiales a <strong>Ciszuko Antony</strong>.</li>
+                    </ul>
+                </div>
+                <div style="margin-top: 1.5rem; display: flex; justify-content: space-between; align-items: center;">
+                    <div class="item-tags">
+                        <span class="tag tag-identity"><i class="fas fa-fingerprint" style="margin-right: 6px;"></i>IDENTITY</span>
+                        <span class="tag tag-ui"><i class="fas fa-palette" style="margin-right: 6px;"></i>UI</span>
+                    </div>
+                    <div class="rating-box" style="margin-top:0; padding-top:0; border:none;">
+                        <div class="rate-item" onclick="handleLike(this, '3001')">
+                            <i class="far fa-heart"></i> <span class="rate-count">145</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Post 4: Server Pro -->
+            <div class="card changelog-item" 
+                 data-id="2901" 
+                 data-date="2026-01-29" 
+                 data-tags="hotfix,performance,backend,server,optimization"
+                 data-likes="212"
+                 style="margin-bottom: 2rem; border-left: 4px solid var(--neon-green);">
+                <div class="card-header" style="display: flex; justify-content: space-between; align-items: center;">
+                    <h2 style="color: var(--neon-green); font-size: 1.5rem;"><span class="badge-container"></span>⚡ Server PRO & Optimización</h2>
+                    <span style="color: #888; font-size: 0.9rem;">29 Enero 2026</span>
+                </div>
+                <div class="card-content" style="color: #ddd; line-height: 1.6;">
+                    <p>Mejoras críticas en el entorno de desarrollo y rendimiento.</p>
+                    <ul style="margin-top: 1rem; padding-left: 1.5rem;">
+                        <li><strong>[HOTFIX]</strong> Corrección del "Boot Lag" en PowerShell.</li>
+                        <li><strong>[LOGS]</strong> Sistema de logging en tiempo real sin búfer.</li>
+                    </ul>
+                </div>
+                <div style="margin-top: 1.5rem; display: flex; justify-content: space-between; align-items: center;">
+                    <div class="item-tags">
+                        <span class="tag tag-hotfix"><i class="fas fa-fire" style="margin-right: 6px;"></i>HOTFIX</span>
+                        <span class="tag tag-backend"><i class="fas fa-server" style="margin-right: 6px;"></i>BACKEND</span>
+                        <span class="tag tag-patch"><i class="fas fa-medkit" style="margin-right: 6px;"></i>PATCH</span>
+                    </div>
+                    <div class="rating-box" style="margin-top:0; padding-top:0; border:none;">
+                        <div class="rate-item" onclick="handleLike(this, '2901')">
+                            <i class="far fa-heart"></i> <span class="rate-count">212</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Post 1: Auth Rework -->
+            <div class="card changelog-item" 
+                 data-id="2201" 
+                 data-date="2026-01-22" 
+                 data-tags="major,auth,security,ui,feature"
+                 data-likes="189"
+                 style="margin-bottom: 2rem; border-left: 4px solid var(--neon-purple);">
+                <div class="card-header" style="display: flex; justify-content: space-between; align-items: center;">
+                    <h2 style="color: var(--neon-purple); font-size: 1.5rem;"><span class="badge-container"></span>🚀 Versión 2.0 - Auth Rework</h2>
+                    <span style="color: #888; font-size: 0.9rem;">22 Enero 2026</span>
+                </div>
+                <div class="card-content" style="color: #ddd; line-height: 1.6;">
+                    <p>¡Gran actualización del sistema de usuarios!</p>
+                    <ul style="margin-top: 1rem; padding-left: 1.5rem;">
+                        <li><strong>[NUEVO]</strong> Sistema de nombres dual y modales de Auth.</li>
+                    </ul>
+                </div>
+                <div style="margin-top: 1.5rem; display: flex; justify-content: space-between; align-items: center;">
+                    <div class="item-tags">
+                        <span class="tag tag-major"><i class="fas fa-rocket" style="margin-right: 6px;"></i>MAJOR</span>
+                        <span class="tag tag-feature"><i class="fas fa-star" style="margin-right: 6px;"></i>FEATURE</span>
+                        <span class="tag tag-ui"><i class="fas fa-palette" style="margin-right: 6px;"></i>UI</span>
+                    </div>
+                    <div class="rating-box" style="margin-top:0; padding-top:0; border:none;">
+                        <div class="rate-item" onclick="handleLike(this, '2201')">
+                            <i class="far fa-heart"></i> <span class="rate-count">189</span>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
 
-        <!-- Post 2: ToDo's -->
-        <div class="card" style="margin-bottom: 2rem;">
-            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem; border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 0.5rem;">
-                <h2 style="color: var(--neon-pink); font-size: 1.5rem;">📅 Próximamente (To-Do List)</h2>
-                <span style="color: #888; font-size: 0.9rem;">Roadmap 2026</span>
+        <!-- Road Map & Todo List -->
+        <div class="card roadmap-card">
+            <div class="card-header" style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 2rem;">
+                <h2 class="roadmap-title" style="color: var(--neon-pink);"><i class="fas fa-map-location-dot" style="margin-right: 15px;"></i>ROAD MAP</h2>
+                <div class="todo-list-header">
+                    <i class="fas fa-list-check"></i> TODO LIST 2026
+                </div>
             </div>
-            <div style="color: #ddd; line-height: 1.6;">
-                <p>Estamos trabajando en las siguientes características:</p>
-                <ul style="margin-top: 1rem; padding-left: 1.5rem;">
-                    <li><i class="far fa-square"></i> Modo Multijugador en tiempo real</li>
-                    <li><i class="far fa-square"></i> Editor de mapas personalizado</li>
-                    <li><i class="far fa-square"></i> Integración con Spotify (Investigando API)</li>
-                    <li><i class="far fa-check-square" style="color: var(--neon-cyan);"></i> Refactorización de UI/UX (Completado)</li>
-                </ul>
+            <div class="card-content" style="color: #ddd; line-height: 1.6;">
+                <p style="margin-bottom: 2rem; color: #888;">Objetivos estratégicos y metas técnicas para las próximas fases del proyecto.</p>
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 2rem;">
+                    <ul style="list-style: none; padding: 0;">
+                        <li style="margin-bottom: 1rem; display: flex; align-items: center; gap: 12px;">
+                            <i class="fas fa-user-shield" style="color: var(--neon-pink);"></i> 
+                            <span>Panel de Administración</span>
+                        </li>
+                        <li style="margin-bottom: 1rem; display: flex; align-items: center; gap: 12px;">
+                            <i class="fas fa-map-marked-alt" style="color: var(--neon-pink);"></i> 
+                            <span>Editor de Mapas v1</span>
+                        </li>
+                    </ul>
+                    <ul style="list-style: none; padding: 0;">
+                        <li style="margin-bottom: 1rem; display: flex; align-items: center; gap: 12px;">
+                            <i class="fas fa-users-rays" style="color: var(--neon-pink);"></i> 
+                            <span>Modo Multijugador</span>
+                        </li>
+                        <li style="margin-bottom: 1rem; display: flex; align-items: center; gap: 12px;">
+                            <i class="fas fa-bolt-lightning" style="color: var(--neon-pink);"></i> 
+                            <span>Motor de Ritmo Preciso v2</span>
+                        </li>
+                    </ul>
+                </div>
             </div>
         </div>
+
+        <!-- Estado del Servidor (Copiado de soporte.html) -->
+        <section class="mt-3" style="margin-bottom: 2rem;">
+            <h2 class="section-title-md">Estado del Servidor</h2>
+            <div class="card" style="border: 1px solid var(--neon-green); background: rgba(0, 255, 136, 0.05); padding: 2rem;">
+                <div style="font-size: 3rem; color: var(--neon-green); margin-bottom: 1.5rem; text-align: center;"><i class="fas fa-check-circle"></i></div>
+                <h3 style="color: var(--neon-green); font-family: var(--font-header); text-align: center; margin-bottom: 1.5rem;">Todos los servicios operativos</h3>
+                
+                <div class="status-indicator-line">
+                    <span>MuzicMania Game Server: <strong>ONLINE</strong> (Ping: 45ms)</span>
+                    <span class="status-orb online"></span>
+                </div>
+                <div class="status-indicator-line">
+                    <span>Base de Datos: <strong>ONLINE</strong></span>
+                    <span class="status-orb online"></span>
+                </div>
+                <div class="status-indicator-line">
+                    <span>Autenticación: <strong>ONLINE</strong></span>
+                    <span class="status-orb online"></span>
+                </div>
+                
+                <p style="margin-top: 2rem; padding-top: 1rem; border-top: 1px solid rgba(255,255,255,0.1); color: var(--neon-cyan); text-align: center;">
+                    <i class="fab fa-github"></i> GitHub Services
+                </p>
+                
+                <div class="status-indicator-line">
+                    <span>Repositorio Principal: <strong>ONLINE</strong></span>
+                    <span class="status-orb online"></span>
+                </div>
+                <div class="status-indicator-line">
+                    <span>GitHub APIs (REST/GraphQL): <strong>ONLINE</strong></span>
+                    <span class="status-orb online"></span>
+                </div>
+
+                <div class="github-shields" style="margin-top: 1.5rem;">
+                    <div class="gh-badge gh-stars"><span class="gh-left">stars</span><span class="gh-right">1.2k</span></div>
+                    <div class="gh-badge gh-forks"><span class="gh-left">forks</span><span class="gh-right">342</span></div>
+                    <div class="gh-badge gh-branch"><span class="gh-left">branch</span><span class="gh-right">main/v2.0</span></div>
+                </div>
+ 
+                <div style="text-align: center; margin-top: 2rem;">
+                    <a href="https://github.com/CiszukoAntony/MuzicMania" target="_blank" class="repo-btn">
+                        <i class="fab fa-github"></i> Ver en GitHub
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Dashboard de Estado del Proyecto (Versión Futurista) -->
+        <section class="mt-3" style="margin-bottom: 5rem;">
+            <div class="project-dashboard">
+                <div class="dash-header">
+                    <div class="dash-title">
+                        <i class="fas fa-microchip"></i> SYSTEM STATUS: ACTIVE
+                    </div>
+                    <div class="dash-status-badge">BETA v2.4</div>
+                </div>
+
+                <div class="progress-main-container">
+                    <div class="progress-label-wrap">
+                        <span>PROGRESO TOTAL DEL PROYECTO</span>
+                        <span style="color: var(--neon-cyan);">55%</span>
+                    </div>
+                    <div class="bar-outer">
+                        <div class="bar-inner" style="width: 55%"></div>
+                    </div>
+                </div>
+
+                <div class="dash-grid">
+                    <div class="dash-item" style="border-color: var(--neon-blue);">
+                        <span class="dash-item-label">Fase Actual</span>
+                        <span class="dash-item-value">Core Expansion</span>
+                    </div>
+                    <div class="dash-item" style="border-color: var(--neon-purple);">
+                        <span class="dash-item-label">Estabilidad</span>
+                        <span class="dash-item-value">98.2%</span>
+                    </div>
+                    <div class="dash-item" style="border-color: var(--neon-pink);">
+                        <span class="dash-item-label">Próximo Hito</span>
+                        <span class="dash-item-value">Multiplayer Alpha</span>
+                    </div>
+                    <div class="dash-item" style="border-color: var(--neon-green);">
+                        <span class="dash-item-label">Build Integrity</span>
+                        <span class="dash-item-value" style="color: var(--neon-green);">OPTIMAL</span>
+                    </div>
+                </div>
+
+                <p style="font-size: 0.85rem; color: #555; margin-top: 2rem; border-top: 1px solid rgba(255,255,255,0.05); padding-top: 1rem; font-style: italic;">
+                    Nota: Los procesos de optimización y limpieza de código están en curso. Last system check: Jan 30, 2026.
+                </p>
+            </div>
+        </section>
     </main>
 
     <!-- Layout System -->
-    <script src="layout.js?v=13991389"></script>
+    <script src="layout.js?v=201269610"></script>
 
     <!-- Scripts compartidos -->
     <script src="auth.js?v=2"></script>
-    <script src="utils.js?v=13991389"></script>
+    <script src="utils.js?v=201269610"></script>
     <script src="search.js?v=1"></script>
-    <script src="navigation.js?v=13991389"></script>
+    <script src="navigation.js?v=201269610"></script>
+
+    <!-- Changelog Engine -->
+    <script>
+        const ALL_TAGS = [
+            'identity', 'brand', 'ui', 'sync', 'hotfix', 'patch', 
+            'performance', 'backend', 'server', 'optimization', 
+            'major', 'auth', 'security', 'feature', 'bugfix', 'rhythm', 
+            'map-editor', 'multiplayer', 'api', 'spotify'
+        ];
+        
+        let activeTags = [];
+        let sortDirection = 1; // 1 for high-to-low (newest/most-likes first), -1 for inverse
+
+        document.addEventListener('DOMContentLoaded', () => {
+            initNewBadges();
+            renderActiveTags();
+            sortLogs();
+        });
+
+        function initNewBadges() {
+            const now = new Date();
+            const threeDays = 3 * 24 * 60 * 60 * 1000;
+            
+            document.querySelectorAll('.changelog-item').forEach(item => {
+                const itemDate = new Date(item.dataset.date);
+                const diff = now - itemDate;
+                
+                if (diff < threeDays) {
+                    const badgeContainer = item.querySelector('.badge-container');
+                    if (badgeContainer) {
+                        badgeContainer.style.display = 'inline-flex';
+                        badgeContainer.innerHTML = '<span class="new-badge">NUEVO</span>';
+                    }
+                }
+            });
+        }
+
+        // Sugerencias de búsqueda
+        function showSuggestions() {
+            const inputElement = document.getElementById('tag-input');
+            const suggestionsDiv = document.getElementById('tag-suggestions');
+            const value = inputElement.value.toLowerCase();
+            
+            const filtered = ALL_TAGS.filter(tag => 
+                tag.toLowerCase().includes(value) && !activeTags.includes(tag)
+            );
+            
+            if (filtered.length > 0) {
+                renderSuggestions(filtered);
+                suggestionsDiv.classList.add('show');
+            } else {
+                suggestionsDiv.classList.remove('show');
+            }
+        }
+
+        function getTagIcon(tag) {
+            const icons = {
+                'identity': 'fas fa-fingerprint',
+                'brand': 'fas fa-trademark',
+                'ui': 'fas fa-palette',
+                'sync': 'fas fa-sync-alt',
+                'hotfix': 'fas fa-fire',
+                'patch': 'fas fa-medkit',
+                'performance': 'fas fa-tachometer-alt',
+                'backend': 'fas fa-server',
+                'server': 'fas fa-database',
+                'optimization': 'fas fa-bolt',
+                'major': 'fas fa-rocket',
+                'auth': 'fas fa-user-shield',
+                'security': 'fas fa-shield-alt',
+                'feature': 'fas fa-star',
+                'bugfix': 'fas fa-bug',
+                'rhythm': 'fas fa-music',
+                'map-editor': 'fas fa-map-marked-alt',
+                'multiplayer': 'fas fa-users',
+                'api': 'fas fa-code',
+                'spotify': 'fab fa-spotify'
+            };
+            return icons[tag] || 'fas fa-tag';
+        }
+
+        function renderSuggestions(filtered) {
+            const suggestionsDiv = document.getElementById('tag-suggestions');
+            suggestionsDiv.innerHTML = filtered.map(tag => 
+                `<div class="suggestion-item" onclick="addTag('${tag}')">
+                    <span class="tag tag-${tag}" style="margin: 0; pointer-events: none;">
+                        <i class="${getTagIcon(tag)}" style="margin-right: 8px;"></i>${tag.toUpperCase()}
+                    </span>
+                </div>`
+            ).join('');
+        }
+
+        function hideSuggestions() {
+            document.getElementById('tag-suggestions').classList.remove('show');
+        }
+
+        document.getElementById('tag-input').addEventListener('input', showSuggestions);
+
+        function addTag(tag) {
+            if (!activeTags.includes(tag)) {
+                activeTags.push(tag);
+                renderActiveTags();
+                filterEntries();
+                document.getElementById('tag-input').value = '';
+                hideSuggestions();
+            }
+        }
+
+        function removeTag(tag) {
+            activeTags = activeTags.filter(t => t !== tag);
+            renderActiveTags();
+            filterEntries();
+        }
+
+        function renderActiveTags() {
+            const container = document.getElementById('active-tags');
+            if (activeTags.length === 0) {
+                container.innerHTML = '<p style="color: #444; font-size: 0.85rem; margin: 0;">No hay filtros de tags activos. Mostrando todo.</p>';
+                return;
+            }
+            container.innerHTML = activeTags.map(tag => `
+                <div class="active-tag-chip">
+                    <i class="${getTagIcon(tag)}" style="font-size: 0.8rem; opacity: 0.8;"></i>
+                    ${tag.toUpperCase()}
+                    <span class="remove-tag" onclick="removeTag('${tag}')">×</span>
+                </div>
+            `).join('');
+        }
+
+        function filterEntries() {
+            const items = document.querySelectorAll('.changelog-item');
+            items.forEach(item => {
+                if (activeTags.length === 0) {
+                    item.style.display = 'block';
+                    return;
+                }
+                
+                const itemTags = item.dataset.tags.split(',');
+                // Mostrar si el item tiene al menos uno de los tags activos (OR logic)
+                // O si prefieres que tenga TODOS (AND logic), cambia .some por .every
+                const matches = activeTags.some(tag => itemTags.includes(tag));
+                
+                item.style.display = matches ? 'block' : 'none';
+            });
+        }
+
+        function toggleSortDirection() {
+            sortDirection *= -1;
+            const btn = document.getElementById('sort-dir-btn');
+            btn.classList.toggle('inverted');
+            sortLogs();
+        }
+
+        // === CUSTOM SELECT LOGIC ===
+        function toggleCustomDropdown() {
+            document.querySelector('.custom-select-container').classList.toggle('active');
+        }
+
+        // Handle option selection
+        document.querySelectorAll('.custom-option').forEach(option => {
+            option.addEventListener('click', function() {
+                const value = this.getAttribute('data-value');
+                const text = this.innerText;
+                
+                // Update trigger text
+                document.getElementById('selected-text').innerHTML = this.innerHTML;
+                
+                // Update selected class
+                document.querySelectorAll('.custom-option').forEach(opt => opt.classList.remove('selected'));
+                this.classList.add('selected');
+                
+                // Close dropdown
+                document.querySelector('.custom-select-container').classList.remove('active');
+                
+                // Trigger sort logic
+                sortLogs(value);
+            });
+        });
+
+        // Close when clicking outside
+        window.addEventListener('click', (e) => {
+            const container = document.querySelector('.custom-select-container');
+            if (container && !container.contains(e.target)) {
+                container.classList.remove('active');
+            }
+        });
+
+        function sortLogs(forcedCriteria = null) {
+            const list = document.getElementById('changelog-list');
+            const items = Array.from(list.getElementsByClassName('changelog-item'));
+            const criteria = forcedCriteria || document.querySelector('.custom-option.selected').getAttribute('data-value');
+            
+            items.sort((a, b) => {
+                let valA, valB;
+                
+                if (criteria === 'date') {
+                    valA = new Date(a.dataset.date).getTime();
+                    valB = new Date(b.dataset.date).getTime();
+                } else if (criteria === 'likes') {
+                    valA = parseInt(a.dataset.likes);
+                    valB = parseInt(b.dataset.likes);
+                }
+
+                return (valB - valA) * sortDirection;
+            });
+
+            list.innerHTML = '';
+            items.forEach(item => list.appendChild(item));
+        }
+
+        function handleLike(element, id) {
+            if (typeof AuthSystem !== 'undefined' && !AuthSystem.isLoggedIn) {
+                if(confirm("Debes iniciar sesión para dar Like. ¿Ir al Login?")) {
+                    AuthSystem.openModal('login');
+                }
+                return;
+            }
+
+            const icon = element.querySelector('i');
+            const count = element.querySelector('.rate-count');
+            
+            if (icon.classList.contains('far')) {
+                icon.classList.replace('far', 'fas');
+                icon.style.color = 'var(--neon-pink)';
+                count.innerText = parseInt(count.innerText) + 1;
+                element.closest('.changelog-item').dataset.likes = count.innerText;
+            } else {
+                icon.classList.replace('fas', 'far');
+                icon.style.color = '';
+                count.innerText = parseInt(count.innerText) - 1;
+                element.closest('.changelog-item').dataset.likes = count.innerText;
+            }
+            
+            // Re-ordenar si el criterio actual es por Likes
+            const currentCriteria = document.querySelector('.custom-option.selected').getAttribute('data-value');
+            if (currentCriteria === 'likes') {
+                sortLogs();
+            }
+        }
+    </script>
 </body>
 </html>
+
+
+
+
+
+
+
+
+

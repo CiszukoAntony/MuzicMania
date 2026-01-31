@@ -6,8 +6,8 @@
     <title>MuzicMania - Soporte</title>
     <link rel="icon" type="image/png" href="assets/logo.png">
     <link rel="apple-touch-icon" href="assets/logo.png">
-    <link rel="stylesheet" href="styles.css?v=13991389">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="styles.css?v=201269610">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <style>
         .help-grid {
             display: grid;
@@ -17,18 +17,20 @@
         }
 
         .help-card {
-            background: rgba(0, 50, 100, 0.3);
+            background: rgba(10, 10, 20, 0.6);
             border: 2px solid rgba(0, 255, 255, 0.1);
-            border-radius: 12px;
-            padding: 1.5rem;
+            border-radius: 20px;
+            padding: 2rem;
             transition: var(--transition-normal);
             text-align: center;
+            backdrop-filter: blur(10px);
         }
 
         .help-card:hover {
             border-color: var(--neon-cyan);
-            background: rgba(0, 50, 100, 0.5);
-            transform: translateY(-5px);
+            background: rgba(0, 212, 255, 0.1);
+            transform: translateY(-8px);
+            box-shadow: var(--glow-blue);
         }
 
         .help-icon {
@@ -55,71 +57,120 @@
 
     <!-- Main -->
     <main class="container mt-3">
-        <h1 class="text-center" style="margin-bottom: 0.5rem;">Soporte</h1>
-        <p class="text-center" style="color: var(--neon-cyan); font-size: 1.2rem; margin-bottom: 1rem; font-family: var(--font-header); letter-spacing: 2px;">CENTRO DE AYUDA</p>
-        <p class="text-center" style="color: #888; max-width: 600px; margin: 0 auto 2rem;">Â¿En quÃ© podemos ayudarte hoy? Selecciona una categorÃ­a o contÃ¡ctanos directamente.</p>
+        <div class="section-header">
+            <h1 class="section-title">Soporte</h1>
+            <p class="section-subtitle-alt">CENTRO DE AYUDA</p>
+            <p>¿En qué podemos ayudarte hoy? Selecciona una categoría o contáctanos directamente.</p>
+        </div>
 
         <!-- Buscador de Ayuda -->
-        <div style="max-width: 600px; margin: 0 auto 3rem; position: relative;">
-            <input type="text" placeholder="Buscar ayuda (ej: recuperar cuenta, lag, bugs)..." 
-                   style="width: 100%; padding: 1rem 1.5rem; border-radius: 50px; background: rgba(0,0,0,0.5); border: 2px solid var(--neon-blue); color: white; font-family: var(--font-body);">
-            <button style="position: absolute; right: 10px; top: 50%; transform: translateY(-50%); background: none; border: none; color: var(--neon-cyan); font-size: 1.2rem; cursor: pointer;">
+        <div class="search-wrapper">
+            <input type="text" placeholder="Buscar ayuda (ej: recuperar cuenta, lag, bugs)..." id="help-search">
+            <button class="search-btn">
                 <i class="fas fa-search"></i>
             </button>
         </div>
 
-        <h2 class="section-title">CategorÃ­as Populares</h2>
+        <h2 class="section-title-md">Categorías de Ayuda</h2>
         
         <div class="help-grid">
-            <a href="#" class="help-card" onclick="alert('Funcionalidad en desarrollo. Por favor usa el formulario de contacto.')">
+            <a href="#" class="help-card" onclick="alert('Funcionalidad en desarrollo.')">
                 <div class="help-icon"><i class="fas fa-user-shield"></i></div>
                 <div class="help-title">Mi Cuenta</div>
-                <div class="help-desc">Recuperar contraseÃ±a, cambiar nombre de usuario, problemas de login.</div>
-                <span class="btn btn-sm btn-secondary">Ver ArtÃ­culos</span>
+                <div class="help-desc">Recuperar contraseña, cambiar nombre de usuario, problemas de login.</div>
+                <span class="btn btn-sm btn-secondary">Ver Artículos</span>
             </a>
 
-            <a href="#" class="help-card" onclick="alert('Funcionalidad en desarrollo. Por favor usa el formulario de contacto.')">
+            <a href="#" class="help-card" onclick="alert('Funcionalidad en desarrollo.')">
                 <div class="help-icon"><i class="fas fa-gamepad"></i></div>
                 <div class="help-title">Problemas del Juego</div>
                 <div class="help-desc">Lag, controles no responden, pantalla negra, errores de carga.</div>
-                <span class="btn btn-sm btn-secondary">Ver ArtÃ­culos</span>
+                <span class="btn btn-sm btn-secondary">Ver Artículos</span>
             </a>
 
-            <a href="#" class="help-card" onclick="alert('Funcionalidad en desarrollo. Por favor usa el formulario de contacto.')">
+            <a href="#" class="help-card" onclick="alert('Funcionalidad en desarrollo.')">
                 <div class="help-icon"><i class="fas fa-coins"></i></div>
                 <div class="help-title">Puntuaciones</div>
-                <div class="help-desc">Leaderboard no actualiza, scores perdidos, cÃ¡lculo de precisiÃ³n.</div>
-                <span class="btn btn-sm btn-secondary">Ver ArtÃ­culos</span>
+                <div class="help-desc">Leaderboard no actualiza, scores perdidos, cálculo de precisión.</div>
+                <span class="btn btn-sm btn-secondary">Ver Artículos</span>
             </a>
 
-            <a href="contactanos.html" class="help-card" style="border-color: var(--neon-pink);">
-                <div class="help-icon" style="color: var(--neon-pink);"><i class="fas fa-life-ring"></i></div>
-                <div class="help-title">Soporte Directo</div>
-                <div class="help-desc">Â¿No encuentras lo que buscas? Habla con nuestro equipo humano.</div>
-                <span class="btn btn-sm btn-primary">Contactar</span>
+            <a href="#" class="help-card" onclick="alert('Funcionalidad en desarrollo.')">
+                <div class="help-icon"><i class="fas fa-shield-halved"></i></div>
+                <div class="help-title">Seguridad</div>
+                <div class="help-desc">Protección de cuenta, autenticación de dos pasos y seguridad.</div>
+                <span class="btn btn-sm btn-secondary">Ver Artículos</span>
+            </a>
+
+            <a href="#" class="help-card" onclick="alert('Funcionalidad en desarrollo.')">
+                <div class="help-icon"><i class="fas fa-bug"></i></div>
+                <div class="help-title">Reportar Bug</div>
+                <div class="help-desc">¿Has encontrado un error? Infórmanos para que lo reparemos.</div>
+                <span class="btn btn-sm btn-secondary">Ver Artículos</span>
+            </a>
+
+            <a href="#" class="help-card" onclick="alert('Funcionalidad en desarrollo.')">
+                <div class="help-icon"><i class="fas fa-users-slash"></i></div>
+                <div class="help-title">Reportar Jugador</div>
+                <div class="help-desc">Informa sobre comportamiento tóxico, trampas o nombres ofensivos.</div>
+                <span class="btn btn-sm btn-secondary">Ver Artículos</span>
+            </a>
+
+            <a href="#" class="help-card" onclick="alert('Funcionalidad en desarrollo.')">
+                <div class="help-icon"><i class="fas fa-credit-card"></i></div>
+                <div class="help-title">Pagos y Premios</div>
+                <div class="help-desc">Problemas con transacciones, canje de premios y membresías.</div>
+                <span class="btn btn-sm btn-secondary">Ver Artículos</span>
+            </a>
+
+            <a href="#" class="help-card" onclick="alert('Funcionalidad en desarrollo.')">
+                <div class="help-icon"><i class="fas fa-book-open"></i></div>
+                <div class="help-title">Guías y Tutoriales</div>
+                <div class="help-desc">Aprende a jugar, configurar tu teclado y mejorar tu ritmo.</div>
+                <span class="btn btn-sm btn-secondary">Ver Artículos</span>
+            </a>
+
+            <a href="#" class="help-card" onclick="alert('Funcionalidad en desarrollo.')">
+                <div class="help-icon"><i class="fas fa-scale-balanced"></i></div>
+                <div class="help-title">Reglas de Comunidad</div>
+                <div class="help-desc">Consulta nuestros términos, políticas de privacidad y conducta.</div>
+                <span class="btn btn-sm btn-secondary">Ver Artículos</span>
             </a>
         </div>
 
-        <section class="mt-3">
-            <h2 class="text-center mb-2">Estado del Servidor</h2>
-            <div class="card" style="text-align: center; border: 1px solid var(--neon-green);">
-                <div style="font-size: 3rem; color: var(--neon-green); margin-bottom: 1rem;"><i class="fas fa-check-circle"></i></div>
-                <h3 style="color: var(--neon-green);">Todos los servicios operativos</h3>
-                <p class="mt-1">MuzicMania Game Server: <strong>ONLINE</strong> (Ping: 45ms)</p>
-                <p>Base de Datos: <strong>ONLINE</strong></p>
-                <p>AutenticaciÃ³n: <strong>ONLINE</strong></p>
+        <!-- Soporte Directo (Exclusivo al Final) -->
+        <section style="margin-top: 8rem; margin-bottom: 8rem;">
+            <div class="card" style="border: 1px solid var(--neon-pink); background: rgba(255, 0, 128, 0.05); padding: 3rem; text-align: center; border-radius: 20px;">
+                <div style="font-size: 4rem; color: var(--neon-pink); margin-bottom: 1.5rem;"><i class="fas fa-life-ring"></i></div>
+                <h2 style="color: var(--neon-pink); font-family: var(--font-header); font-size: 2rem; margin-bottom: 1rem;">¿Necesitas ayuda personalizada?</h2>
+                <p style="color: #ccc; max-width: 600px; margin: 0 auto 2rem; line-height: 1.6;">
+                    Si no has encontrado la solución en nuestras guías, nuestro equipo de soporte humano está listo para intervenir. Garantizamos una respuesta técnica en menos de 24 horas.
+                </p>
+                <a href="contactanos.html" class="btn btn-primary" style="padding: 1rem 3rem; font-size: 1.1rem;">
+                    <i class="fas fa-envelope"></i> CONTACTO DIRECTO
+                </a>
             </div>
         </section>
+
 
     </main>
 
     <!-- Layout System -->
-    <script src="layout.js?v=13991389"></script>
+    <script src="layout.js?v=201269610"></script>
 
     <!-- Scripts compartidos -->
     <script src="auth.js?v=2"></script>
-    <script src="utils.js?v=13991389"></script>
+    <script src="utils.js?v=201269610"></script>
     <script src="search.js?v=2"></script>
-    <script src="navigation.js?v=13991389"></script>
+    <script src="navigation.js?v=201269610"></script>
 </body>
 </html>
+
+
+
+
+
+
+
+
+

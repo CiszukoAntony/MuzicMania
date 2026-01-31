@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MuzicMania - Preguntas Frecuentes</title>
+    <link rel="icon" type="image/png" href="assets/logo.png">
+    <link rel="apple-touch-icon" href="assets/logo.png">
+    <link rel="stylesheet" href="styles.css?v=201269610">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+</head>
+<body>
+
+    <main class="container mt-5 mb-5">
+        <div class="section-header">
+            <h1 class="section-title">Preguntas Frecuentes</h1>
+            <p class="section-subtitle-alt">SOPORTE DE AUTOSERVICIO</p>
+            <p>Resuelve tus dudas técnicas y de jugabilidad al instante sin esperar a soporte.</p>
+        </div>
+        
+        <div class="search-wrapper mb-3">
+            <input type="text" id="faq-search" placeholder="Busca una pregunta (ej: bug, cuenta, móvil)...">
+            <button class="search-btn">
+                <i class="fas fa-search"></i>
+            </button>
+        </div>
+
+        <div class="grid" id="faq-container">
+            <div class="card faq-item" data-question="reportar bug error fallo">
+                <div class="faq-header" onclick="toggleFAQ(this)" style="cursor: pointer; display: flex; justify-content: space-between; align-items: center;">
+                    <h3 style="color: var(--neon-sky); font-size: 1.2rem; margin: 0; display: flex; align-items: center; gap: 10px;">
+                        <i class="fas fa-bug" style="color: var(--neon-pink);"></i> ¿Cómo reporto un bug?
+                    </h3>
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="faq-content" style="display: none; padding-top: 1rem; border-top: 1px solid rgba(255,255,255,0.1); margin-top: 1rem;">
+                    <p>Puedes reportar bugs usando el formulario de contacto seleccionando "Reporte de Bug" como asunto. Para errores críticos, adjunta capturas si es posible.</p>
+                </div>
+            </div>
+
+            <div class="card faq-item" data-question="sugerir canciones nuevas musica track">
+                <div class="faq-header" onclick="toggleFAQ(this)" style="cursor: pointer; display: flex; justify-content: space-between; align-items: center;">
+                    <h3 style="color: var(--neon-sky); font-size: 1.2rem; margin: 0; display: flex; align-items: center; gap: 10px;">
+                        <i class="fas fa-music" style="color: var(--neon-blue);"></i> ¿Puedo sugerir nuevas canciones?
+                    </h3>
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="faq-content" style="display: none; padding-top: 1rem; border-top: 1px solid rgba(255,255,255,0.1); margin-top: 1rem;">
+                    <p>¡Por supuesto! Nos encantaría escuchar tus sugerencias de Synthwave, Phonk o Electrónica. Usa el formulario de contacto con el asunto "Sugerencia".</p>
+                </div>
+            </div>
+
+            <div class="card faq-item" data-question="gratuito gratis dinero pago">
+                <div class="faq-header" onclick="toggleFAQ(this)" style="cursor: pointer; display: flex; justify-content: space-between; align-items: center;">
+                    <h3 style="color: var(--neon-sky); font-size: 1.2rem; margin: 0; display: flex; align-items: center; gap: 10px;">
+                        <i class="fas fa-hand-holding-usd" style="color: var(--neon-green);"></i> ¿El juego es gratuito?
+                    </h3>
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="faq-content" style="display: none; padding-top: 1rem; border-top: 1px solid rgba(255,255,255,0.1); margin-top: 1rem;">
+                    <p>Sí, MuzicMania es y será completamente gratuito. No hay muros de pago para acceder a las canciones principales.</p>
+                </div>
+            </div>
+
+            <div class="card faq-item" data-question="movil android ios celular tablet">
+                <div class="faq-header" onclick="toggleFAQ(this)" style="cursor: pointer; display: flex; justify-content: space-between; align-items: center;">
+                    <h3 style="color: var(--neon-sky); font-size: 1.2rem; margin: 0; display: flex; align-items: center; gap: 10px;">
+                        <i class="fas fa-mobile-alt" style="color: var(--neon-cyan);"></i> ¿Habrá versión móvil?
+                    </h3>
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="faq-content" style="display: none; padding-top: 1rem; border-top: 1px solid rgba(255,255,255,0.1); margin-top: 1rem;">
+                    <p>Actualmente puedes jugar desde el navegador móvil. Estamos trabajando en una App dedicada para Android e iOS en 2026.</p>
+                </div>
+            </div>
+
+            <div class="card faq-item" data-question="cuenta seguridad contraseña proteger">
+                <div class="faq-header" onclick="toggleFAQ(this)" style="cursor: pointer; display: flex; justify-content: space-between; align-items: center;">
+                    <h3 style="color: var(--neon-sky); font-size: 1.2rem; margin: 0; display: flex; align-items: center; gap: 10px;">
+                        <i class="fas fa-shield-alt" style="color: #FFD700;"></i> ¿Cómo protejo mi cuenta?
+                    </h3>
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="faq-content" style="display: none; padding-top: 1rem; border-top: 1px solid rgba(255,255,255,0.1); margin-top: 1rem;">
+                    <p>Usa contraseñas únicas y nunca compartas tus credenciales. Estamos implementando autenticación en dos pasos (2FA) para mayor seguridad.</p>
+                </div>
+            </div>
+
+            <div class="card faq-item" data-question="colaborar creador musica artista">
+                <div class="faq-header" onclick="toggleFAQ(this)" style="cursor: pointer; display: flex; justify-content: space-between; align-items: center;">
+                    <h3 style="color: var(--neon-sky); font-size: 1.2rem; margin: 0; display: flex; align-items: center; gap: 10px;">
+                        <i class="fas fa-handshake" style="color: var(--neon-purple);"></i> ¿Cómo puedo colaborar como artista?
+                    </h3>
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="faq-content" style="display: none; padding-top: 1rem; border-top: 1px solid rgba(255,255,255,0.1); margin-top: 1rem;">
+                    <p>Si eres productor musical o artista visual, envía un mensaje con el asunto "Colaboración" y tu portafolio.</p>
+                </div>
+            </div>
+
+            <div class="card faq-item" data-question="ajustes neon visuales personalizacion">
+                <div class="faq-header" onclick="toggleFAQ(this)" style="cursor: pointer; display: flex; justify-content: space-between; align-items: center;">
+                    <h3 style="color: var(--neon-sky); font-size: 1.2rem; margin: 0; display: flex; align-items: center; gap: 10px;">
+                        <i class="fas fa-sliders-h" style="color: #ff8c00;"></i> ¿Puedo personalizar los efectos visuales?
+                    </h3>
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="faq-content" style="display: none; padding-top: 1rem; border-top: 1px solid rgba(255,255,255,0.1); margin-top: 1rem;">
+                    <p>Sí, en el menú de ajustes del juego puedes modificar la intensidad del neón y el brillo del fondo.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="text-center mt-4">
+            <p>¿No encontraste lo que buscabas? <a href="soporte.html" style="color: var(--neon-pink);">Contacta a soporte directamente</a></p>
+        </div>
+    </main>
+
+    <script src="layout.js?v=201269610"></script>
+    <script src="auth.js?v=2"></script>
+    <script src="utils.js?v=201269610"></script>
+    <script src="search.js?v=2"></script>
+    <script src="navigation.js?v=201269610"></script>
+
+    <script>
+        function toggleFAQ(el) {
+            const content = el.nextElementSibling;
+            const icon = el.querySelector('.fa-chevron-down, .fa-chevron-up');
+            const isOpen = content.style.display === 'block';
+            content.style.display = isOpen ? 'none' : 'block';
+            icon.classList.toggle('fa-chevron-up', !isOpen);
+            icon.classList.toggle('fa-chevron-down', isOpen);
+        }
+
+        document.getElementById('faq-search').addEventListener('input', function(e) {
+            const term = e.target.value.toLowerCase();
+            document.querySelectorAll('.faq-item').forEach(item => {
+                const text = item.getAttribute('data-question') + item.textContent.toLowerCase();
+                item.style.display = text.includes(term) ? 'block' : 'none';
+            });
+        });
+    </script>
+</body>
+</html>
+
+

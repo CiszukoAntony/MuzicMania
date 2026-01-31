@@ -40,35 +40,42 @@ const Layout = {
         <div class="nav-overlay-content">
             <a href="${bp}index.html" class="nav-menu-item" data-page="index.html">
                 <div class="nav-menu-item-header"><i class="fas fa-home"></i> <span>Inicio</span></div>
-                <p>Volver a la base. Noticias y estadísticas globales.</p>
             </a>
             <a href="${bp}game.html" class="nav-menu-item" data-page="game.html">
                 <div class="nav-menu-item-header"><i class="fas fa-gamepad"></i> <span>Jugar</span></div>
-                <p>Pon a prueba tu ritmo con nuestra selección de canciones.</p>
+            </a>
+            <a href="${bp}stats.html" class="nav-menu-item" data-page="stats.html">
+                <div class="nav-menu-item-header"><i class="fas fa-chart-bar"></i> <span>Estadísticas</span></div>
             </a>
             <a href="${bp}leaderboard.html" class="nav-menu-item" data-page="leaderboard.html">
                 <div class="nav-menu-item-header"><i class="fas fa-trophy"></i> <span>Leaderboard</span></div>
-                <p>Compite por el top mundial de puntuaciones.</p>
             </a>
-            <a href="${bp}changelog.html" class="nav-menu-item" data-page="changelog.html">
-                <div class="nav-menu-item-header"><i class="fas fa-list-ul"></i> <span>Changelog</span></div>
-                <p>Historial de actualizaciones, parches y novedades.</p>
+            <a href="${bp}help.html" class="nav-menu-item" data-page="help.html">
+                <div class="nav-menu-item-header"><i class="fas fa-question-circle"></i> <span>Ayuda</span></div>
+            </a>
+            <a href="${bp}about.html" class="nav-menu-item" data-page="about.html">
+                <div class="nav-menu-item-header"><i class="fas fa-info-circle"></i> <span>Información</span></div>
+            </a>
+            <a href="${bp}faq.html" class="nav-menu-item" data-page="faq.html">
+                <div class="nav-menu-item-header"><i class="fas fa-comments"></i> <span>FAQ</span></div>
+            </a>
+            <a href="${bp}team.html" class="nav-menu-item" data-page="team.html">
+                <div class="nav-menu-item-header"><i class="fas fa-users-cog"></i> <span>Equipo</span></div>
+            </a>
+            <a href="${bp}directrices.html" class="nav-menu-item" data-page="directrices.html">
+                <div class="nav-menu-item-header"><i class="fas fa-map-signs"></i> <span>Directrices</span></div>
+            </a>
+            <a href="${bp}rules.html" class="nav-menu-item" data-page="rules.html">
+                <div class="nav-menu-item-header"><i class="fas fa-gavel"></i> <span>Reglamentos</span></div>
+            </a>
+            <a href="${bp}policy.html" class="nav-menu-item" data-page="policy.html">
+                <div class="nav-menu-item-header"><i class="fas fa-shield-alt"></i> <span>Políticas</span></div>
+            </a>
+            <a href="${bp}terms.html" class="nav-menu-item" data-page="terms.html">
+                <div class="nav-menu-item-header"><i class="fas fa-file-contract"></i> <span>Términos Legales</span></div>
             </a>
             <a href="${bp}soporte.html" class="nav-menu-item" data-page="soporte.html">
                 <div class="nav-menu-item-header"><i class="fas fa-headset"></i> <span>Soporte</span></div>
-                <p>¿Tienes problemas? Nuestro equipo de ayuda está aquí.</p>
-            </a>
-            <a href="${bp}contactanos.html" class="nav-menu-item" data-page="contactanos.html">
-                <div class="nav-menu-item-header"><i class="fas fa-envelope"></i> <span>Contacto</span></div>
-                <p>Envíanos tus sugerencias o propuestas de negocio.</p>
-            </a>
-            <a href="${bp}terms.html" class="nav-menu-item" data-page="terms.html">
-                <div class="nav-menu-item-header"><i class="fas fa-file-contract"></i> <span>Términos</span></div>
-                <p>Reglas de la comunidad y políticas de privacidad.</p>
-            </a>
-            <a href="${bp}profile.html" class="nav-menu-item" data-page="profile.html">
-                <div class="nav-menu-item-header"><i class="fas fa-user"></i> <span>Mi Perfil</span></div>
-                <p>Revisa tus estadísticas y logros.</p>
             </a>
         </div>
     </div>`,
@@ -80,23 +87,27 @@ const Layout = {
                 <img src="${bp}assets/logo.png" alt="MuzicMania Logo" class="logo-img">
                 <span class="logo-text">MUZICMANIA</span>
             </a>
-            <nav>
+            <nav id="main-nav" class="nav-comprehensive">
                 <ul>
                     <li><a href="${bp}index.html" data-page="index.html"><i class="fas fa-home"></i> Inicio</a></li>
                     <li><a href="${bp}game.html" data-page="game.html"><i class="fas fa-gamepad"></i> Jugar</a></li>
+                    <li><a href="${bp}stats.html" data-page="stats.html"><i class="fas fa-chart-bar"></i> Stats</a></li>
                     <li><a href="${bp}leaderboard.html" data-page="leaderboard.html"><i class="fas fa-trophy"></i> Leaderboard</a></li>
-                    <li><a href="${bp}changelog.html" data-page="changelog.html"><i class="fas fa-list-ul"></i> Changelog</a></li>
-                    <li><a href="${bp}soporte.html" data-page="soporte.html"><i class="fas fa-headset"></i> Soporte</a></li>
-                    <li><a href="${bp}contactanos.html" data-page="contactanos.html"><i class="fas fa-envelope"></i> Contacto</a></li>
-                    <li><a href="${bp}terms.html" data-page="terms.html"><i class="fas fa-file-contract"></i> Términos</a></li>
+                    <li><a href="${bp}help.html" data-page="help.html"><i class="fas fa-question-circle"></i> Help</a></li>
+                    <li><a href="${bp}about.html" data-page="about.html"><i class="fas fa-info-circle"></i> About</a></li>
+                    <li><a href="${bp}faq.html" data-page="faq.html"><i class="fas fa-comments"></i> FAQ</a></li>
+                    <li><a href="${bp}team.html" data-page="team.html"><i class="fas fa-users-cog"></i> Team</a></li>
+                    <li><a href="${bp}directrices.html" data-page="directrices.html"><i class="fas fa-map-signs"></i> Directrices</a></li>
+                    <li><a href="${bp}rules.html" data-page="rules.html"><i class="fas fa-gavel"></i> Reglas</a></li>
+                    <li><a href="${bp}policy.html" data-page="policy.html"><i class="fas fa-shield-alt"></i> Policy</a></li>
+                    <li><a href="${bp}terms.html" data-page="terms.html"><i class="fas fa-file-contract"></i> Terms</a></li>
                 </ul>
                 <div id="auth-section"></div>
                 <div class="search-wrapper">
                     <button class="search-btn" title="Buscar"><i class="fas fa-search"></i></button>
                     <div class="search-input-container">
-                        <input type="text" class="search-input" placeholder="Buscar en MuzicMania...">
+                        <input type="text" class="search-input" placeholder="Buscar...">
                     </div>
-                    <div class="search-results-dropdown"></div>
                     <button class="menu-toggle-btn" title="Menú" onclick="AdaptiveNav.toggleMenu(true)"><i class="fas fa-bars"></i></button>
                 </div>
             </nav>
@@ -112,32 +123,41 @@ const Layout = {
                         <img src="${bp}assets/logo.png" alt="Logo" class="logo-img footer-logo-sync">
                         <h3>MUZICMANIA</h3>
                     </a>
-                    <p style="margin-top: 0.5rem; color: #888;">El mejor juego de ritmo futurista. Pon a prueba tus habilidades y compite con jugadores de todo el mundo.</p>
+                    <p style="margin-top: 0.5rem; color: #888;">El mejor juego de ritmo futurista. Dominando el neón desde 2026.</p>
                 </div>
 
                 <div class="footer-section">
                     <h4>Navegación</h4>
-                    <ul>
-                        <li><a href="${bp}index.html">Inicio</a></li>
-                        <li><a href="${bp}game.html">Jugar</a></li>
-                        <li><a href="${bp}leaderboard.html">Leaderboard</a></li>
-                        <li><a href="${bp}terms.html">Términos y Condiciones</a></li>
-                        <li><a href="${bp}changelog.html">Blog de Cambios</a></li>
-                        <li><a href="${bp}contactanos.html">Contacto</a></li>
-                        <li><a href="${bp}profile.html">Mi Perfil</a></li>
+                    <ul class="footer-comprehensive-list" style="columns: 2; gap: 2rem; list-style: none; padding: 0;">
+                        <li><a href="${bp}index.html" data-page="index.html"><i class="fas fa-home"></i> Inicio</a></li>
+                        <li><a href="${bp}game.html" data-page="game.html"><i class="fas fa-gamepad"></i> Jugar</a></li>
+                        <li><a href="${bp}stats.html" data-page="stats.html"><i class="fas fa-chart-bar"></i> Estadísticas</a></li>
+                        <li><a href="${bp}leaderboard.html" data-page="leaderboard.html"><i class="fas fa-trophy"></i> Leaderboard</a></li>
+                        <li><a href="${bp}help.html" data-page="help.html"><i class="fas fa-question-circle"></i> Help</a></li>
+                        <li><a href="${bp}faq.html" data-page="faq.html"><i class="fas fa-comments"></i> FAQ</a></li>
+                        <li><a href="${bp}about.html" data-page="about.html"><i class="fas fa-info-circle"></i> About</a></li>
+                        <li><a href="${bp}team.html" data-page="team.html"><i class="fas fa-users-cog"></i> Team</a></li>
+                        <li><a href="${bp}directrices.html" data-page="directrices.html"><i class="fas fa-map-signs"></i> Directrices</a></li>
+                        <li><a href="${bp}rules.html" data-page="rules.html"><i class="fas fa-gavel"></i> Reglamentos</a></li>
+                        <li><a href="${bp}policy.html" data-page="policy.html"><i class="fas fa-shield-alt"></i> Policy</a></li>
+                        <li><a href="${bp}terms.html" data-page="terms.html"><i class="fas fa-file-contract"></i> Terms</a></li>
+                        <li><a href="${bp}soporte.html" data-page="soporte.html"><i class="fas fa-headset"></i> Soporte</a></li>
                     </ul>
                 </div>
 
                 <div class="footer-section">
-                    <h4>Síguenos</h4>
+                    <h4>Comunidad</h4>
                     <div class="social-icons">
-                        <a href="#" title="Twitter"><i class="fab fa-twitter"></i></a>
-                        <a href="#" title="Discord"><i class="fab fa-discord"></i></a>
-                        <a href="#" title="YouTube"><i class="fab fa-youtube"></i></a>
-                        <a href="#" title="Instagram"><i class="fab fa-instagram"></i></a>
-                        <a href="#" title="TikTok"><i class="fab fa-tiktok"></i></a>
+                        <a href="https://x.com" target="_blank" title="X (Twitter)"><i class="fab fa-x-twitter"></i></a>
+                        <a href="https://discord.com" target="_blank" title="Discord"><i class="fab fa-discord"></i></a>
+                        <a href="https://github.com/CiszukoAntony/MuzicMania" target="_blank" title="GitHub"><i class="fab fa-github"></i></a>
+                        <a href="https://reddit.com" target="_blank" title="Reddit"><i class="fab fa-reddit"></i></a>
+                        <a href="https://youtube.com" target="_blank" title="YouTube"><i class="fab fa-youtube"></i></a>
+                        <a href="https://instagram.com" target="_blank" title="Instagram"><i class="fab fa-instagram"></i></a>
+                        <a href="https://tiktok.com" target="_blank" title="TikTok"><i class="fab fa-tiktok"></i></a>
+                        <a href="https://twitch.tv" target="_blank" title="Twitch"><i class="fab fa-twitch"></i></a>
                     </div>
-                    <p style="margin-top: 1rem; color: #888;">Únete a nuestra comunidad y mantente al día con las últimas novedades.</p>
+                    <p style="margin-top: 1rem; color: #888;">Únete a nuestra creciente comunidad tecnológica y musical.</p>
                 </div>
             </div>
 

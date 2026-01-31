@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MuzicMania - Estadísticas Globales</title>
+    <link rel="icon" type="image/png" href="assets/logo.png">
+    <link rel="apple-touch-icon" href="assets/logo.png">
+    <link rel="stylesheet" href="styles.css?v=201269610">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        .stats-hero {
+            background: linear-gradient(rgba(10, 10, 25, 0.9), rgba(10, 10, 25, 0.9)), url('assets/hero-bg.jpg');
+            background-size: cover;
+            padding: 4rem 0;
+            border-bottom: 2px solid var(--neon-blue);
+            text-align: center;
+        }
+        .detail-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+        .chart-mock {
+            height: 150px;
+            background: rgba(0, 212, 255, 0.05);
+            border-radius: 8px;
+            display: flex;
+            align-items: flex-end;
+            gap: 5px;
+            padding: 10px;
+            border: 1px solid rgba(0, 255, 255, 0.1);
+        }
+        .chart-bar {
+            flex: 1;
+            background: var(--gradient-main);
+            border-radius: 4px 4px 0 0;
+            transition: 0.5s;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="stats-hero">
+        <div class="container">
+            <h1 class="section-title" style="font-size: 3.5rem;">CENTRO DE DATOS</h1>
+            <p class="section-subtitle-alt">Métricas Globales en Tiempo Real</p>
+        </div>
+    </div>
+
+    <main class="container mt-4 mb-5">
+        <!-- Resumen Rápido -->
+        <div class="stats-grid">
+            <div class="stat-card">
+                <div class="stat-icon"><i class="fas fa-users"></i></div>
+                <div class="stat-value" id="stats-total-users">42,891</div>
+                <div class="stat-label">Usuarios Registrados</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-icon"><i class="fas fa-bolt"></i></div>
+                <div class="stat-value" id="stats-active-now">1,204</div>
+                <div class="stat-label">Jugadores en Línea</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-icon"><i class="fas fa-play-circle"></i></div>
+                <div class="stat-value" id="stats-total-games">856.2k</div>
+                <div class="stat-label">Partidas Jugadas</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-icon"><i class="fas fa-bullseye"></i></div>
+                <div class="stat-value">94.8%</div>
+                <div class="stat-label">Precisión Promedio</div>
+            </div>
+        </div>
+
+        <div class="detail-grid">
+            <!-- Actividad Semanal -->
+            <div class="card">
+                <h3 class="mb-2"><i class="fas fa-chart-line"></i> Actividad de la Semana</h3>
+                <div class="chart-mock">
+                    <div class="chart-bar" style="height: 40%"></div>
+                    <div class="chart-bar" style="height: 60%"></div>
+                    <div class="chart-bar" style="height: 85%"></div>
+                    <div class="chart-bar" style="height: 70%"></div>
+                    <div class="chart-bar" style="height: 95%"></div>
+                    <div class="chart-bar" style="height: 80%"></div>
+                    <div class="chart-bar" style="height: 100%"></div>
+                </div>
+                <div style="display: flex; justify-content: space-between; font-size: 0.8rem; margin-top: 5px; color: #666;">
+                    <span>LUN</span><span>MAR</span><span>MIE</span><span>JUE</span><span>VIE</span><span>SAB</span><span>DOM</span>
+                </div>
+            </div>
+
+            <!-- Popularidad de Canciones -->
+            <div class="card">
+                <h3 class="mb-2"><i class="fas fa-fire"></i> Canciones Más Jugadas</h3>
+                <div class="top-players-item" style="border: none;">
+                    <span>1. Cyber Rhythm (Expert)</span>
+                    <span style="color: var(--neon-cyan);">12,405 veces</span>
+                </div>
+                <div class="top-players-item" style="border: none;">
+                    <span>2. Neon Dreams (Hard)</span>
+                    <span style="color: var(--neon-cyan);">9,210 veces</span>
+                </div>
+                <div class="top-players-item" style="border: none;">
+                    <span>3. Synthwave Soul (Normal)</span>
+                    <span style="color: var(--neon-cyan);">8,845 veces</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Tabla de Hitos Globales -->
+        <div class="card mt-4">
+            <h2 class="mb-2"><i class="fas fa-medal"></i> Hitos de la Comunidad</h2>
+            <div class="grid" style="grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem;">
+                <div style="text-align: center; padding: 1rem; background: rgba(0,0,0,0.2); border-radius: 10px;">
+                    <div style="font-size: 0.8rem; color: #888;">Máximo Combo Global</div>
+                    <div style="font-size: 1.5rem; color: var(--neon-pink); font-weight: 900;">14,582x</div>
+                </div>
+                <div style="text-align: center; padding: 1rem; background: rgba(0,0,0,0.2); border-radius: 10px;">
+                    <div style="font-size: 0.8rem; color: #888;">Notas Impactadas (Total)</div>
+                    <div style="font-size: 1.5rem; color: var(--neon-cyan); font-weight: 900;">2.4 Billones</div>
+                </div>
+                <div style="text-align: center; padding: 1rem; background: rgba(0,0,0,0.2); border-radius: 10px;">
+                    <div style="font-size: 0.8rem; color: #888;">Tiempo Total de Baile</div>
+                    <div style="font-size: 1.5rem; color: var(--neon-green); font-weight: 900;">48.5 Años</div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Layout System -->
+    <script src="layout.js?v=201269610"></script>
+    <script src="auth.js?v=2"></script>
+    <script src="utils.js?v=201269610"></script>
+    <script src="search.js?v=2"></script>
+    <script src="navigation.js?v=201269610"></script>
+
+    <script>
+        // Simulación de actualización de estadísticas
+        function updateExtendedStats() {
+            const players = 1200 + Math.floor(Math.random() * 50);
+            document.getElementById('stats-active-now').textContent = players;
+        }
+        setInterval(updateExtendedStats, 3000);
+        updateExtendedStats();
+    </script>
+</body>
+</html>
+
+
