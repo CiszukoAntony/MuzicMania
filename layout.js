@@ -41,7 +41,7 @@ const Layout = {
             <a href="${bp}index.html" class="nav-menu-item" data-page="index.html">
                 <div class="nav-menu-item-header"><i class="fas fa-home"></i> <span>Home</span></div>
             </a>
-            <a href="${bp}game.html" class="nav-menu-item" data-page="game.html">
+            <a href="${bp}play.html" class="nav-menu-item" data-page="play.html">
                 <div class="nav-menu-item-header"><i class="fas fa-gamepad"></i> <span>Play</span></div>
             </a>
             <a href="${bp}stats.html" class="nav-menu-item" data-page="stats.html">
@@ -65,7 +65,7 @@ const Layout = {
             <a href="${bp}team.html" class="nav-menu-item" data-page="team.html">
                 <div class="nav-menu-item-header"><i class="fas fa-users-cog"></i> <span>Team</span></div>
             </a>
-            <a href="${bp}directrices.html" class="nav-menu-item" data-page="directrices.html">
+            <a href="${bp}guidelines.html" class="nav-menu-item" data-page="guidelines.html">
                 <div class="nav-menu-item-header"><i class="fas fa-map-signs"></i> <span>Guidelines</span></div>
             </a>
             <a href="${bp}rules.html" class="nav-menu-item" data-page="rules.html">
@@ -77,10 +77,10 @@ const Layout = {
             <a href="${bp}terms.html" class="nav-menu-item" data-page="terms.html">
                 <div class="nav-menu-item-header"><i class="fas fa-file-contract"></i> <span>Terms</span></div>
             </a>
-            <a href="${bp}soporte.html" class="nav-menu-item" data-page="soporte.html">
+            <a href="${bp}support.html" class="nav-menu-item" data-page="support.html">
                 <div class="nav-menu-item-header"><i class="fas fa-headset"></i> <span>Support</span></div>
             </a>
-            <a href="${bp}soporte.html#contacto" class="nav-menu-item" data-page="contactanos.html">
+            <a href="${bp}support.html#contact" class="nav-menu-item" data-page="contact.html">
                 <div class="nav-menu-item-header"><i class="fas fa-envelope"></i> <span>Contact</span></div>
             </a>
         </div>
@@ -96,11 +96,11 @@ const Layout = {
             <nav id="main-nav" class="nav-comprehensive">
                 <ul>
                     <li><a href="${bp}index.html" data-page="index.html"><i class="fas fa-home"></i> Home</a></li>
-                    <li><a href="${bp}game.html" data-page="game.html"><i class="fas fa-gamepad"></i> Play</a></li>
+                    <li><a href="${bp}play.html" data-page="play.html"><i class="fas fa-gamepad"></i> Play</a></li>
                     <li><a href="${bp}stats.html" data-page="stats.html"><i class="fas fa-chart-bar"></i> Stats</a></li>
                     <li><a href="${bp}leaderboard.html" data-page="leaderboard.html"><i class="fas fa-trophy"></i> Leaderboard</a></li>
                     <li><a href="${bp}changelog.html" data-page="changelog.html"><i class="fas fa-history"></i> Changelog</a></li>
-                    <li><a href="${bp}soporte.html" data-page="soporte.html"><i class="fas fa-headset"></i> Support</a></li>
+                    <li><a href="${bp}support.html" data-page="support.html"><i class="fas fa-headset"></i> Support</a></li>
                     
                     <!-- Dropdown de Información -->
                     <li class="nav-dropdown">
@@ -115,7 +115,7 @@ const Layout = {
                             <a href="${bp}rules.html" class="nav-dropdown-item" data-page="rules.html"><i class="fas fa-gavel"></i> Rules</a>
                             <a href="${bp}policy.html" class="nav-dropdown-item" data-page="policy.html"><i class="fas fa-shield-alt"></i> Policy</a>
                             <a href="${bp}terms.html" class="nav-dropdown-item" data-page="terms.html"><i class="fas fa-file-contract"></i> Terms</a>
-                            <a href="${bp}directrices.html" class="nav-dropdown-item" data-page="directrices.html"><i class="fas fa-map-signs"></i> Guidelines</a>
+                            <a href="${bp}guidelines.html" class="nav-dropdown-item" data-page="guidelines.html"><i class="fas fa-map-signs"></i> Guidelines</a>
                         </div>
                     </li>
                 </ul>
@@ -147,20 +147,20 @@ const Layout = {
                     <h4>Navigation</h4>
                     <ul class="footer-comprehensive-list" style="columns: 2; gap: 2rem; list-style: none; padding: 0;">
                         <li><a href="${bp}index.html" data-page="index.html"><i class="fas fa-home"></i> Home</a></li>
-                        <li><a href="${bp}game.html" data-page="game.html"><i class="fas fa-gamepad"></i> Play</a></li>
+                        <li><a href="${bp}play.html" data-page="play.html"><i class="fas fa-gamepad"></i> Play</a></li>
                         <li><a href="${bp}stats.html" data-page="stats.html"><i class="fas fa-chart-bar"></i> Stats</a></li>
                         <li><a href="${bp}leaderboard.html" data-page="leaderboard.html"><i class="fas fa-trophy"></i> Leaderboard</a></li>
                         <li><a href="${bp}help.html" data-page="help.html"><i class="fas fa-question-circle"></i> Help</a></li>
                         <li><a href="${bp}faq.html" data-page="faq.html"><i class="fas fa-comments"></i> FAQ</a></li>
                         <li><a href="${bp}about.html" data-page="about.html"><i class="fas fa-info-circle"></i> About</a></li>
                         <li><a href="${bp}team.html" data-page="team.html"><i class="fas fa-users-cog"></i> Team</a></li>
-                        <li><a href="${bp}directrices.html" data-page="directrices.html"><i class="fas fa-map-signs"></i> Guidelines</a></li>
+                        <li><a href="${bp}guidelines.html" data-page="guidelines.html"><i class="fas fa-map-signs"></i> Guidelines</a></li>
                         <li><a href="${bp}rules.html" data-page="rules.html"><i class="fas fa-gavel"></i> Rules</a></li>
                         <li><a href="${bp}policy.html" data-page="policy.html"><i class="fas fa-shield-alt"></i> Policy</a></li>
                         <li><a href="${bp}terms.html" data-page="terms.html"><i class="fas fa-file-contract"></i> Terms</a></li>
-                        <li><a href="${bp}soporte.html" data-page="soporte.html"><i class="fas fa-headset"></i> Support</a></li>
+                        <li><a href="${bp}support.html" data-page="support.html"><i class="fas fa-headset"></i> Support</a></li>
                         <li><a href="${bp}changelog.html" data-page="changelog.html"><i class="fas fa-history"></i> Changelog</a></li>
-                        <li><a href="${bp}soporte.html#contacto" data-page="contactanos.html"><i class="fas fa-envelope"></i> Contact</a></li>
+                        <li><a href="${bp}support.html#contact" data-page="contact.html"><i class="fas fa-envelope"></i> Contact</a></li>
                     </ul>
                 </div>
 

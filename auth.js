@@ -103,8 +103,8 @@ document.addEventListener('DOMContentLoaded', () => {
 // Exportar globalmente
 window.AuthSystem = AuthSystem;
         
-        // Si estamos en game.html y no se ha mostrado la advertencia
-        if (window.location.pathname.includes('game.html') && !warningShown) {
+        // Si estamos en play.html y no se ha mostrado la advertencia
+        if (window.location.pathname.includes('play.html') && !warningShown) {
             this.showGuestWarning();
             return false; // Pausar o detener carga hasta que acepte
         }
