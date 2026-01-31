@@ -6,42 +6,127 @@
     <title>MuzicMania - Centro de Ayuda</title>
     <link rel="icon" type="image/png" href="assets/logo.png">
     <link rel="apple-touch-icon" href="assets/logo.png">
-    <link rel="stylesheet" href="styles.css?v=157157">
+    <link rel="stylesheet" href="styles.css?v=221417">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        .help-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: var(--spacing-md);
+            margin-top: var(--spacing-md);
+        }
+
+        .help-card {
+            background: rgba(10, 10, 20, 0.6);
+            border: 2px solid rgba(0, 255, 255, 0.1);
+            border-radius: 20px;
+            padding: 2rem;
+            transition: var(--transition-normal);
+            text-align: center;
+            backdrop-filter: blur(10px);
+            text-decoration: none;
+            display: block;
+        }
+
+        .help-card:hover {
+            border-color: var(--neon-cyan);
+            background: rgba(0, 212, 255, 0.1);
+            transform: translateY(-8px);
+            box-shadow: var(--glow-blue);
+        }
+
+        .help-icon {
+            font-size: 3rem;
+            color: var(--neon-cyan);
+            margin-bottom: 1rem;
+        }
+
+        .help-title {
+            color: #fff;
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
+            font-weight: 700;
+        }
+
+        .help-desc {
+            color: #ccc;
+            font-size: 0.95rem;
+            margin-bottom: 1.5rem;
+        }
+    </style>
 </head>
 <body>
 
     <main class="container mt-5 mb-5">
         <div class="section-header">
             <h1 class="section-title">Centro de Ayuda</h1>
-            <p class="section-subtitle-alt">Â¿CÃ“MO PODEMOS GUIARTE?</p>
-            <p>Hemos reorganizado nuestro sistema para que encuentres la soluciÃ³n mÃ¡s rÃ¡pido.</p>
+            <p class="section-subtitle-alt">¿CÓMO PODEMOS GUIARTE?</p>
+            <p>Selecciona una categoría para encontrar la solución a tu problema.</p>
         </div>
 
-        <div class="grid" style="grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; margin-top: 3rem;">
-            <!-- OpciÃ³n 1: FAQ -->
-            <div class="card text-center" style="padding: 2.5rem;">
-                <div style="font-size: 3rem; color: var(--neon-cyan); margin-bottom: 1.5rem;"><i class="fas fa-question-circle"></i></div>
-                <h3 class="mb-1">Preguntas Frecuentes</h3>
-                <p style="color: #888; margin-bottom: 2rem;">Respuestas instantÃ¡neas a las dudas tÃ©cnicas y de comunidad mÃ¡s comunes.</p>
-                <a href="faq.html" class="btn btn-full">IR A PREGUNTAS</a>
-            </div>
+        <div class="help-grid">
+            <a href="#" class="help-card" onclick="alert('Funcionalidad en desarrollo.')">
+                <div class="help-icon"><i class="fas fa-user-shield"></i></div>
+                <div class="help-title">Mi Cuenta</div>
+                <div class="help-desc">Recuperar contraseña, cambiar nombre de usuario, problemas de login.</div>
+                <span class="btn btn-sm btn-secondary">Ver Artículos</span>
+            </a>
 
-            <!-- OpciÃ³n 2: DocumentaciÃ³n / InformaciÃ³n -->
-            <div class="card text-center" style="padding: 2.5rem;">
-                <div style="font-size: 3rem; color: var(--neon-blue); margin-bottom: 1.5rem;"><i class="fas fa-book"></i></div>
-                <h3 class="mb-1">InformaciÃ³n del Juego</h3>
-                <p style="color: #888; margin-bottom: 2rem;">Conoce quÃ© es MuzicMania, sus mecÃ¡nicas, el equipo y las directrices oficiales.</p>
-                <a href="about.html" class="btn btn-full">VER INFORMACIÃ“N</a>
-            </div>
+            <a href="#" class="help-card" onclick="alert('Funcionalidad en desarrollo.')">
+                <div class="help-icon"><i class="fas fa-gamepad"></i></div>
+                <div class="help-title">Problemas del Juego</div>
+                <div class="help-desc">Lag, controles no responden, pantalla negra, errores de carga.</div>
+                <span class="btn btn-sm btn-secondary">Ver Artículos</span>
+            </a>
 
-            <!-- OpciÃ³n 3: Soporte Directo -->
-            <div class="card text-center" style="padding: 2.5rem;">
-                <div style="font-size: 3rem; color: var(--neon-pink); margin-bottom: 1.5rem;"><i class="fas fa-headset"></i></div>
-                <h3 class="mb-1">Soporte TÃ©cnico</h3>
-                <p style="color: #888; margin-bottom: 2rem;">Â¿Tienes un problema persistente? Nuestro equipo humano estÃ¡ para ayudarte.</p>
-                <a href="soporte.html" class="btn btn-full btn-secondary" style="border-color: var(--neon-pink); color: var(--neon-pink);">CONTACTAR SOPORTE</a>
-            </div>
+            <a href="#" class="help-card" onclick="alert('Funcionalidad en desarrollo.')">
+                <div class="help-icon"><i class="fas fa-coins"></i></div>
+                <div class="help-title">Puntuaciones</div>
+                <div class="help-desc">Leaderboard no actualiza, scores perdidos, cálculo de precisión.</div>
+                <span class="btn btn-sm btn-secondary">Ver Artículos</span>
+            </a>
+
+            <a href="#" class="help-card" onclick="alert('Funcionalidad en desarrollo.')">
+                <div class="help-icon"><i class="fas fa-shield-halved"></i></div>
+                <div class="help-title">Seguridad</div>
+                <div class="help-desc">Protección de cuenta, autenticación de dos pasos y seguridad.</div>
+                <span class="btn btn-sm btn-secondary">Ver Artículos</span>
+            </a>
+
+            <a href="#" class="help-card" onclick="alert('Funcionalidad en desarrollo.')">
+                <div class="help-icon"><i class="fas fa-bug"></i></div>
+                <div class="help-title">Reportar Bug</div>
+                <div class="help-desc">¿Has encontrado un error? Infórmanos para que lo reparemos.</div>
+                <span class="btn btn-sm btn-secondary">Ver Artículos</span>
+            </a>
+
+            <a href="#" class="help-card" onclick="alert('Funcionalidad en desarrollo.')">
+                <div class="help-icon"><i class="fas fa-users-slash"></i></div>
+                <div class="help-title">Reportar Jugador</div>
+                <div class="help-desc">Informa sobre comportamiento tóxico, trampas o nombres ofensivos.</div>
+                <span class="btn btn-sm btn-secondary">Ver Artículos</span>
+            </a>
+
+            <a href="#" class="help-card" onclick="alert('Funcionalidad en desarrollo.')">
+                <div class="help-icon"><i class="fas fa-credit-card"></i></div>
+                <div class="help-title">Pagos y Premios</div>
+                <div class="help-desc">Problemas con transacciones, canje de premios y membresías.</div>
+                <span class="btn btn-sm btn-secondary">Ver Artículos</span>
+            </a>
+
+            <a href="#" class="help-card" onclick="alert('Funcionalidad en desarrollo.')">
+                <div class="help-icon"><i class="fas fa-book-open"></i></div>
+                <div class="help-title">Guías y Tutoriales</div>
+                <div class="help-desc">Aprende a jugar, configurar tu teclado y mejorar tu ritmo.</div>
+                <span class="btn btn-sm btn-secondary">Ver Artículos</span>
+            </a>
+
+            <a href="#" class="help-card" onclick="alert('Funcionalidad en desarrollo.')">
+                <div class="help-icon"><i class="fas fa-scale-balanced"></i></div>
+                <div class="help-title">Reglas de Comunidad</div>
+                <div class="help-desc">Consulta nuestros términos, políticas de privacidad y conducta.</div>
+                <span class="btn btn-sm btn-secondary">Ver Artículos</span>
+            </a>
         </div>
 
         <!-- SecciÃ³n de Enlaces RÃ¡pidos -->
@@ -57,11 +142,11 @@
     </main>
 
     <!-- Layout System -->
-    <script src="layout.js?v=157157"></script>
+    <script src="layout.js?v=221417"></script>
     <script src="auth.js?v=2"></script>
-    <script src="utils.js?v=157157"></script>
+    <script src="utils.js?v=221417"></script>
     <script src="search.js?v=2"></script>
-    <script src="navigation.js?v=157157"></script>
+    <script src="navigation.js?v=221417"></script>
 </body>
 </html>
 

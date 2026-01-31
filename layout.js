@@ -77,6 +77,12 @@ const Layout = {
             <a href="${bp}soporte.html" class="nav-menu-item" data-page="soporte.html">
                 <div class="nav-menu-item-header"><i class="fas fa-headset"></i> <span>Soporte</span></div>
             </a>
+            <a href="${bp}changelog.html" class="nav-menu-item" data-page="changelog.html">
+                <div class="nav-menu-item-header"><i class="fas fa-history"></i> <span>Changelog</span></div>
+            </a>
+            <a href="${bp}soporte.html#contacto" class="nav-menu-item" data-page="contactanos.html">
+                <div class="nav-menu-item-header"><i class="fas fa-envelope"></i> <span>Contacto</span></div>
+            </a>
         </div>
     </div>`,
 
@@ -101,6 +107,9 @@ const Layout = {
                     <li><a href="${bp}rules.html" data-page="rules.html"><i class="fas fa-gavel"></i> Reglas</a></li>
                     <li><a href="${bp}policy.html" data-page="policy.html"><i class="fas fa-shield-alt"></i> Policy</a></li>
                     <li><a href="${bp}terms.html" data-page="terms.html"><i class="fas fa-file-contract"></i> Terms</a></li>
+                    <li><a href="${bp}soporte.html" data-page="soporte.html"><i class="fas fa-headset"></i> Soporte</a></li>
+                    <li><a href="${bp}changelog.html" data-page="changelog.html"><i class="fas fa-history"></i> Changelog</a></li>
+                    <li><a href="${bp}soporte.html#contacto" data-page="contactanos.html"><i class="fas fa-envelope"></i> Contacto</a></li>
                 </ul>
                 <div id="auth-section"></div>
                 <div class="search-wrapper">
@@ -142,6 +151,8 @@ const Layout = {
                         <li><a href="${bp}policy.html" data-page="policy.html"><i class="fas fa-shield-alt"></i> Policy</a></li>
                         <li><a href="${bp}terms.html" data-page="terms.html"><i class="fas fa-file-contract"></i> Terms</a></li>
                         <li><a href="${bp}soporte.html" data-page="soporte.html"><i class="fas fa-headset"></i> Soporte</a></li>
+                        <li><a href="${bp}changelog.html" data-page="changelog.html"><i class="fas fa-history"></i> Changelog</a></li>
+                        <li><a href="${bp}soporte.html#contacto" data-page="contactanos.html"><i class="fas fa-envelope"></i> Contacto</a></li>
                     </ul>
                 </div>
 
