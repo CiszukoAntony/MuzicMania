@@ -6,7 +6,7 @@
     <title>MuzicMania - Preguntas Frecuentes</title>
     <link rel="icon" type="image/png" href="assets/logo.png">
     <link rel="apple-touch-icon" href="assets/logo.png">
-    <link rel="stylesheet" href="styles.css?v=UPDATE_BOT_TAGS_V2">
+    <link rel="stylesheet" href="styles.css?v=UPDATE_INDEX_RESTRUCTURE_V1">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 </head>
 <body>
@@ -122,6 +122,25 @@
                 </div>
             </div>
 
+            <div class="card faq-item" data-question="como jugar controles flechas teclado mando">
+                <div class="faq-header" onclick="toggleFAQ(this)" style="cursor: pointer; display: flex; justify-content: space-between; align-items: center;">
+                    <h3 style="color: var(--neon-sky); font-size: 1.2rem; margin: 0; display: flex; align-items: center; gap: 10px;">
+                        <i class="fas fa-gamepad" style="color: var(--neon-cyan);"></i> ¿Cómo juego a MuzicMania?
+                    </h3>
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="faq-content" style="display: none; padding-top: 1rem; border-top: 1px solid rgba(255,255,255,0.1); margin-top: 1rem;">
+                    <p>¡Es muy sencillo! Sigue estos pasos:</p>
+                    <ol style="color: #ccc; padding-left: 1.5rem; margin-top: 0.5rem;">
+                        <li>Haz clic en <strong>JUGAR AHORA</strong> desde el inicio.</li>
+                        <li>Selecciona una canción y ajusta la velocidad (F3/F4).</li>
+                        <li>Presiona las <strong>Flechas del teclado</strong> o <strong>WASD</strong> cuando las notas lleguen a la zona de impacto inferior.</li>
+                        <li>Mantén el combo lo más alto posible para maximizar tu puntuación.</li>
+                    </ol>
+                    <p style="margin-top: 10px; font-size: 0.9rem; color: var(--neon-pink);">* También puedes usar mandos de consola compatibles.</p>
+                </div>
+            </div>
+
             <div class="card faq-item" data-question="mando control gamepad joystick">
                 <div class="faq-header" onclick="toggleFAQ(this)" style="cursor: pointer; display: flex; justify-content: space-between; align-items: center;">
                     <h3 style="color: var(--neon-sky); font-size: 1.2rem; margin: 0; display: flex; align-items: center; gap: 10px;">
@@ -168,11 +187,11 @@
         </div>
     </main>
 
-    <script src="layout.js?v=UPDATE_BOT_TAGS_V2"></script>
-    <script src="auth.js?v=UPDATE_BOT_TAGS_V2"></script>
-    <script src="utils.js?v=UPDATE_BOT_TAGS_V2"></script>
-    <script src="search.js?v=UPDATE_BOT_TAGS_V2"></script>
-    <script src="navigation.js?v=UPDATE_BOT_TAGS_V2"></script>
+    <script src="layout.js?v=UPDATE_INDEX_RESTRUCTURE_V1"></script>
+    <script src="auth.js?v=UPDATE_INDEX_RESTRUCTURE_V1"></script>
+    <script src="utils.js?v=UPDATE_INDEX_RESTRUCTURE_V1"></script>
+    <script src="search.js?v=UPDATE_INDEX_RESTRUCTURE_V1"></script>
+    <script src="navigation.js?v=UPDATE_INDEX_RESTRUCTURE_V1"></script>
 
     <script>
         function toggleFAQ(el) {
