@@ -617,6 +617,7 @@ nav a.active {
     display: flex;
     flex-direction: column;
     gap: 1.5rem;
+    overflow-x: hidden; /* Evitar barra horizontal por animaciones */
     box-shadow: -10px 0 30px rgba(0, 0, 0, 0.5);
 }
 
@@ -667,7 +668,7 @@ nav a.active {
 .nav-menu-item:hover {
     background: rgba(0, 212, 255, 0.08);
     border-color: var(--neon-blue);
-    transform: translateX(5px);
+    transform: translateX(-5px); /* Movimiento hacia la izquierda para evitar desborde */
 }
 
 .nav-menu-item-header {
@@ -678,12 +679,12 @@ nav a.active {
 }
 
 .nav-menu-item-header i {
-    color: var(--neon-pink);
+    color: var(--neon-blue); /* Iconos azules */
     width: 20px;
 }
 
 .nav-menu-item-header span {
-    color: #fff;
+    color: #ffffff; /* Texto blanco */
     font-weight: bold;
     font-family: var(--font-header);
     font-size: 1rem;
