@@ -604,20 +604,20 @@ nav a.active {
 
 .nav-overlay {
     position: fixed;
-    top: 0;
+    top: 80px; /* Ajustado para empezar debajo del header aproximandamente */
     right: -100%;
     width: 350px;
-    height: 100vh;
+    height: calc(100vh - 80px);
     background: rgba(5, 5, 15, 0.95);
     backdrop-filter: blur(15px);
     border-left: 1px solid var(--neon-purple);
     z-index: 2000;
     transition: 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-    padding: 2rem 2.5rem 2rem 2rem; /* Más espacio a la derecha para la animación */
+    padding: 2rem 2.5rem 2rem 2rem;
     display: flex;
     flex-direction: column;
     gap: 1.5rem;
-    overflow-x: hidden; /* Evitar barra horizontal */
+    overflow-x: hidden;
     box-shadow: -10px 0 30px rgba(0, 0, 0, 0.5);
 }
 
@@ -627,10 +627,11 @@ nav a.active {
 
 .nav-overlay-header {
     display: flex;
-    justify-content: space-between;
+    justify-content: center; /* Título centrado */
     align-items: center;
     border-bottom: 1px solid rgba(255, 255, 255, 0.1);
     padding-bottom: 1rem;
+    position: relative; /* Para el botón de cierre absoluto */
 }
 
 .nav-overlay-header h3 {
@@ -640,6 +641,10 @@ nav a.active {
 }
 
 .close-menu-btn {
+    position: absolute; /* Sacar del flujo para centrar el H3 */
+    right: 0;
+    top: 50%;
+    transform: translateY(-50%);
     background: transparent;
     border: none;
     color: #fff;
