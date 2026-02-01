@@ -6,7 +6,7 @@
     <title>MuzicMania - Soporte</title>
     <link rel="icon" type="image/png" href="assets/logo.png">
     <link rel="apple-touch-icon" href="assets/logo.png">
-    <link rel="stylesheet" href="styles.css?v=854798">
+    <link rel="stylesheet" href="styles.css?v=UPDATE_CRITICAL_FIX">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <style>
         .contact-grid {
@@ -118,30 +118,111 @@
         .char-limit.near-limit { color: var(--neon-pink); }
         .char-limit.at-limit { color: #ff0000; font-weight: bold; }
 
-        /* Custom Select Synchronization */
-        .custom-select-container {
-            position: relative;
+        /* --- Estilos Premium de Inputs --- */
+        input[type="text"],
+        input[type="email"],
+        textarea,
+        .custom-select-trigger {
             width: 100%;
-            margin-bottom: 1rem;
+            background: rgba(0, 0, 0, 0.3) !important;
+            border: 1px solid rgba(0, 212, 255, 0.2) !important;
+            border-radius: 12px !important;
+            color: #fff !important;
+            padding: 1rem !important;
+            font-family: var(--font-body) !important;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+            outline: none !important;
+            font-size: 1rem !important;
         }
 
-        .custom-select-trigger {
-            padding: 1rem;
-            background: rgba(0, 0, 0, 0.5);
-            border: 2px solid var(--neon-blue);
+        input:focus,
+        textarea:focus,
+        .custom-select-container.active .custom-select-trigger {
+            border-color: var(--neon-cyan) !important;
+            box-shadow: 0 0 20px rgba(0, 212, 255, 0.4), inset 0 0 10px rgba(0, 212, 255, 0.1) !important;
+            background: rgba(0, 212, 255, 0.08) !important;
+        }
+
+        /* --- Panel de Disponibilidad --- */
+        .availability-card {
+            background: rgba(0, 212, 255, 0.03);
+            border: 1px solid rgba(0, 212, 255, 0.1);
+            border-radius: 15px;
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .availability-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 4px;
+            height: 100%;
+            background: var(--neon-cyan);
+            box-shadow: 0 0 15px var(--neon-cyan);
+        }
+
+        .avail-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .avail-item i {
+            font-size: 1.5rem;
+            color: var(--neon-cyan);
+            text-shadow: 0 0 10px rgba(0, 212, 255, 0.3);
+        }
+
+        .avail-info h4 {
+            font-size: 0.75rem;
+            color: #888;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 2px;
+        }
+
+        .avail-info p {
+            font-size: 1rem;
             color: #fff;
-            border-radius: 8px;
-            cursor: pointer;
+            font-weight: bold;
+            margin: 0;
+        }
+
+        .field-header {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            font-family: var(--font-body);
-            transition: 0.3s;
+            margin-bottom: 8px;
         }
 
-        .custom-select-trigger:hover {
-            border-color: var(--neon-cyan);
-            box-shadow: 0 0 10px rgba(0, 212, 255, 0.2);
+        .field-header label {
+            margin: 0;
+            font-weight: 600;
+            color: #eee;
+        }
+
+        .char-limit {
+            font-size: 0.75rem;
+            color: #666;
+            font-weight: bold;
+            transition: color 0.3s ease;
+        }
+
+        .char-limit.near-limit { color: #ffaa00; }
+        .char-limit.error { color: #ff4d4d; }
+        .char-limit.valid { color: var(--neon-green); }
+
+        /* Dropdown Personalizado Mejorado */
+        .custom-select-container {
+            position: relative;
+            width: 100%;
         }
 
         .custom-select-options {
@@ -151,48 +232,62 @@
             width: 100%;
             background: rgba(10, 10, 25, 0.98);
             border: 1px solid var(--neon-blue);
-            border-radius: 8px;
-            z-index: 100;
+            border-radius: 12px;
+            z-index: 1000;
             display: none;
-            max-height: 200px;
+            max-height: 250px;
             overflow-y: auto;
-            backdrop-filter: blur(10px);
+            backdrop-filter: blur(15px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+            padding: 5px;
         }
 
-        .custom-select-options.active { display: block; }
+        .custom-select-container.active .custom-select-options {
+            display: block;
+            animation: dropdownFade 0.3s ease;
+        }
+
+        @keyframes dropdownFade {
+            from { opacity: 0; transform: translateY(-10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
 
         .custom-option {
-            padding: 10px 15px;
+            padding: 12px 15px;
             cursor: pointer;
+            border-radius: 8px;
             transition: 0.2s;
             display: flex;
             align-items: center;
-            gap: 10px;
+            gap: 12px;
+            color: #ccc;
+            font-size: 0.9rem;
         }
 
         .custom-option:hover {
             background: rgba(0, 212, 255, 0.1);
-            color: var(--neon-cyan);
+            color: #fff;
         }
 
         .custom-option.selected {
             background: rgba(0, 212, 255, 0.2);
+            color: var(--neon-cyan);
             font-weight: bold;
         }
 
         .error-message {
             color: #ff4d4d;
             font-size: 0.8rem;
-            margin-top: -0.5rem;
-            margin-bottom: 1rem;
+            margin-top: 5px;
             display: none;
+            font-weight: bold;
         }
 
         .form-group.has-error .custom-select-trigger,
         .form-group.has-error input,
         .form-group.has-error textarea {
-            border-color: #ff4d4d;
-            box-shadow: 0 0 10px rgba(255, 77, 77, 0.3);
+            border-color: #ff4d4d !important;
+            box-shadow: 0 0 10px rgba(255, 77, 77, 0.2) !important;
         }
 
         /* Review System Enhancements */
@@ -295,82 +390,64 @@
     <main class="container mt-3">
         <div class="section-header">
             <h1 class="section-title">Soporte</h1>
-            <p>¿Tienes dudas o sugerencias? Ponte en contacto directamente con el creador del proyecto.</p>
+            <p>Atención directa y personalizada para garantizar tu mejor experiencia en MuzicMania.</p>
         </div>
 
-            <!-- Información del Equipo -->
-            <section class="mt-3">
-                <h2 class="text-center mb-2">Desarrollador</h2>
-                <div class="contact-grid" style="grid-template-columns: 1fr; max-width: 400px; margin: 0 auto;">
-                    <div class="card team-member">
-                        <div class="team-avatar">👨‍💻</div>
-                        <h3>Ciszuko Antony</h3>
-                        <p style="color: var(--neon-sky); margin: 0.5rem 0;">Fundador & Desarrollador Principal</p>
-                        <p style="font-size: 1rem; color: #888;">Liderando la visión técnica y creativa de MuzicMania.</p>
-                    </div>
+        <!-- Panel de Disponibilidad -->
+        <div class="availability-card mt-3">
+            <div class="avail-item">
+                <i class="fas fa-clock"></i>
+                <div class="avail-info">
+                    <h4>Disponibilidad</h4>
+                    <p>24/7 (Soporte Global)</p>
                 </div>
-            </section>
-
-            <!-- Información de Contacto -->
-            <section class="mt-3" id="contacto">
-                <h2 class="text-center mb-2">Información de Contacto</h2>
-                <div class="card">
-                    <div class="contact-info-item">
-                        <i class="fas fa-map-marker-alt"></i>
-                        <div>
-                            <strong>Ubicación:</strong><br>
-                            Caracas, Venezuela
-                        </div>
-                    </div>
-
-                    <div class="contact-info-item">
-                        <i class="fas fa-envelope"></i>
-                        <div>
-                            <strong>Email Directo:</strong><br>
-                            <a href="mailto:fplayersoffcial@gmail.com" style="color: var(--neon-cyan);">fplayersoffcial@gmail.com</a>
-                        </div>
-                    </div>
-
-                    <div class="contact-info-item">
-                        <i class="fas fa-phone"></i>
-                        <div>
-                            <strong>Teléfono:</strong><br>
-                            04126858111 <span style="color: #888;">(VZLA)</span>
-                        </div>
-                    </div>
-
-                    <div class="contact-info-item">
-                        <i class="fas fa-clock"></i>
-                        <div>
-                            <strong>Horario de Atención:</strong><br>
-                            Disponible para soporte y colaboración técnica.
-                        </div>
-                    </div>
+            </div>
+            <div class="avail-item">
+                <i class="fas fa-bolt"></i>
+                <div class="avail-info">
+                    <h4>Tiempo de Respuesta</h4>
+                    <p>2h - 48h Máximo</p>
                 </div>
-            </section>
+            </div>
+            <div class="avail-item">
+                <i class="fas fa-shield-alt"></i>
+                <div class="avail-info">
+                    <h4>Prioridad</h4>
+                    <p>Usuarios Registrados</p>
+                </div>
+            </div>
+            <div class="avail-item">
+                <i class="fas fa-globe"></i>
+                <div class="avail-info">
+                    <h4>Región Central</h4>
+                    <p>Latinoamérica (VET)</p>
+                </div>
+            </div>
+        </div>
+
 
             <!-- Formulario de Contacto -->
             <section class="mt-3">
-                <div class="grid" style="grid-template-columns: 1.8fr 1fr; gap: 2rem;">
+                <div class="grid" style="grid-template-columns: 1fr; max-width: 800px; margin: 0 auto; gap: 2rem;">
                     <!-- Formulario de Contacto -->
                     <div class="card" style="position: relative;">
                         <h2 class="mb-2">Envíanos un Mensaje</h2>
                         <form class="contact-form" id="contact-form" novalidate>
                             <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
                                 <div class="form-group">
-                                    <div class="field-header">
-                                        <label>Nombre Real</label>
-                                        <span class="char-limit" id="limit-real-name">2-50</span>
-                                    </div>
-                                    <input type="text" id="contact-real-name" placeholder="Ej: Juan Pérez" required minlength="2" maxlength="50">
-                                    <div class="error-message">Mínimo 2 caracteres requeridos.</div>
+                                <div class="field-header">
+                                    <label>Nombre Real</label>
+                                    <span class="char-limit" id="limit-real-name">0 / 50</span>
                                 </div>
+                                <input type="text" id="contact-real-name" placeholder="Ej: Juan Pérez" required maxlength="50">
+                                <div class="error-message">Mínimo 2 caracteres requeridos.</div>
+                            </div>
                                 <div class="form-group">
                                     <div class="field-header">
-                                        <label>Display Name</label>
-                                        <span class="char-limit" id="limit-name">3-20</span>
+                                        <label>Nombre de Usuario</label>
+                                        <span class="char-limit" id="limit-name">0 / 20</span>
                                     </div>
-                                    <input type="text" id="contact-name" placeholder="Ej: RhythmMaster" required minlength="3" maxlength="20">
+                                    <input type="text" id="contact-name" placeholder="Tu usuario en el juego" required maxlength="20">
                                     <div class="error-message">Mínimo 3 caracteres requeridos.</div>
                                 </div>
                             </div>
@@ -378,7 +455,7 @@
                             <div class="form-group">
                                 <div class="field-header">
                                     <label>Email de Contacto</label>
-                                    <span class="char-limit" id="limit-email">Máx 100</span>
+                                    <span class="char-limit" id="limit-email">0 / 100</span>
                                 </div>
                                 <input type="email" id="contact-email" placeholder="tu@email.com" required maxlength="100">
                                 <div class="error-message">Email inválido o vacío.</div>
@@ -430,12 +507,12 @@
                             <div class="form-group">
                                 <div class="field-header">
                                     <label>Mensaje</label>
-                                    <span class="char-limit" id="limit-message">20 - 1000</span>
+                                    <span class="char-limit" id="limit-message">0 / 1000</span>
                                 </div>
                                 <textarea id="contact-message" placeholder="¿En qué podemos ayudarte?" style="min-height: 150px;" required minlength="20" maxlength="1000"></textarea>
-                                <div class="error-message">Mínimo 20 caracteres requeridos.</div>
+                                <div class="error-message">Se requiere un mensaje más descriptivo (mín. 20 caracteres).</div>
                             </div>
-                            <button type="submit" class="btn btn-full" id="submit-btn" style="margin-top: 1rem;">
+                            <button type="submit" class="btn btn-red-gradient btn-full" id="submit-btn" style="margin-top: 1rem;">
                                 <i class="fas fa-paper-plane"></i> ENVIAR MENSAJE A SOPORTE
                             </button>
                         </form>
@@ -461,120 +538,15 @@
                         </div>
                     </div>
 
-                    <!-- Panel de Atención Directa (Simplificado) -->
-                    <div class="card" id="guest-panel">
-                        <h3>Atención Directa</h3>
-                        <p style="color: #888; font-size: 0.9rem; margin-bottom: 1.5rem;">Canales oficiales de @CiszukoAntony</p>
-                        <ul style="list-style: none; margin-top: 1rem;">
-                            <li style="margin-bottom: 1rem; display: flex; align-items: center; gap: 12px;">
-                                <i class="fab fa-whatsapp" style="color: #25D366; font-size: 1.2rem;"></i>
-                                <span><strong>WhatsApp:</strong> +58 412-6858111</span>
-                            </li>
-                            <li style="margin-bottom: 1rem; display: flex; align-items: center; gap: 12px;">
-                                <i class="fab fa-x-twitter" style="color: #fff; font-size: 1.2rem;"></i>
-                                <span><strong>X:</strong> @CiszukoAntony</span>
-                            </li>
-                            <li style="margin-bottom: 1rem; display: flex; align-items: center; gap: 12px;">
-                                <i class="fab fa-discord" style="color: #5865F2; font-size: 1.2rem;"></i>
-                                <span><strong>Discord:</strong> Comunidad MuzicMania</span>
-                            </li>
-                            <li style="margin-bottom: 1rem; display: flex; align-items: center; gap: 12px;">
-                                <i class="fab fa-github" style="color: #fff; font-size: 1.2rem;"></i>
-                                <span><strong>GitHub:</strong> @CiszukoAntony</span>
-                            </li>
-                            <li style="margin-bottom: 1rem; display: flex; align-items: center; gap: 12px;">
-                                <i class="fab fa-reddit" style="color: #FF4500; font-size: 1.2rem;"></i>
-                                <span><strong>Reddit:</strong> @CiszukoAntony</span>
-                            </li>
-                            <li style="margin-bottom: 1rem; display: flex; align-items: center; gap: 12px;">
-                                <i class="fab fa-youtube" style="color: #FF0000; font-size: 1.2rem;"></i>
-                                <span><strong>YouTube:</strong> @CiszukoAntony</span>
-                            </li>
-                            <li style="margin-bottom: 1rem; display: flex; align-items: center; gap: 12px;">
-                                <i class="fab fa-instagram" style="color: #E4405F; font-size: 1.2rem;"></i>
-                                <span><strong>Instagram:</strong> @CiszukoAntony</span>
-                            </li>
-                            <li style="margin-bottom: 1rem; display: flex; align-items: center; gap: 12px;">
-                                <i class="fab fa-tiktok" style="color: #00f2ea; font-size: 1.2rem;"></i>
-                                <span><strong>TikTok:</strong> @CiszukoAntony</span>
-                            </li>
-                            <li style="margin-bottom: 1rem; display: flex; align-items: center; gap: 12px;">
-                                <i class="fab fa-twitch" style="color: #9146FF; font-size: 1.2rem;"></i>
-                                <span><strong>Twitch:</strong> @CiszukoAntony</span>
-                            </li>
-                        </ul>
-                    </div>
                 </div>
             </section>
 
-            <!-- Valoración y Reseñas -->
-            <section class="mt-5">
-                <h2 class="section-title-md">Opinión de la Comunidad</h2>
-                
-                <div class="grid" style="grid-template-columns: 1fr 1.5fr; gap: 3rem;">
-                    <!-- Panel de Calificación -->
-                    <div class="card" style="height: fit-content;">
-                        <h3 class="mb-2">Danos tu Valoración</h3>
-                        <div id="review-form-container">
-                            <div class="star-rating-input" id="rating-input-stars">
-                                <i class="fas fa-star" data-value="1"></i>
-                                <i class="fas fa-star" data-value="2"></i>
-                                <i class="fas fa-star" data-value="3"></i>
-                                <i class="fas fa-star" data-value="4"></i>
-                                <i class="fas fa-star" data-value="5"></i>
-                            </div>
-                            <input type="hidden" id="rating-value" value="0">
-                            
-                            <div class="form-group mt-2">
-                                <label>Tu Reseña</label>
-                                <textarea id="review-text" placeholder="¿Qué te ha parecido MuzicMania?" style="min-height: 100px;"></textarea>
-                            </div>
-                            
-                            <div id="auth-warning-review" style="display: none; padding: 1rem; background: rgba(255, 166, 0, 0.1); border: 1px solid orange; color: orange; border-radius: 8px; margin-bottom: 1rem; font-size: 0.9rem;">
-                                <i class="fas fa-exclamation-triangle"></i> Debes <strong>iniciar sesión</strong> para publicar una valoración.
-                            </div>
-
-                            <button class="btn btn-full" id="submit-review-btn">
-                                <i class="fas fa-star"></i> PUBLICAR VALORACIÓN
-                            </button>
-                        </div>
-                        
-                        <div class="mt-4 text-center">
-                            <p style="color: #888; margin-bottom: 0.5rem;">Promedio Global</p>
-                            <span style="color: var(--neon-cyan); font-size: 3rem; font-weight: 900; font-family: var(--font-header);">4.8</span>
-                            <div class="rating-stars" style="justify-content: center; font-size: 1.2rem; margin-top: 0.5rem;">
-                                <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i>
-                            </div>
-                            <p style="color: #666; font-size: 0.85rem; margin-top: 0.5rem;">Basado en 1,247 transmisiones</p>
-                        </div>
-                    </div>
-
-                    <!-- Lista de Reseñas -->
-                    <div>
-                        <div class="review-sort-bar">
-                            <h3 style="margin: 0; font-size: 1.2rem;">Reseñas Recientes</h3>
-                            <div style="display: flex; gap: 10px; align-items: center;">
-                                <span style="font-size: 0.8rem; color: #888;">Ordenar por:</span>
-                                <select id="review-sort" style="background: transparent; border: 1px solid var(--neon-blue); color: #fff; padding: 4px 10px; border-radius: 5px; font-size: 0.85rem;">
-                                    <option value="newest" selected>Más Nuevas</option>
-                                    <option value="highest">Mejor Valoradas</option>
-                                    <option value="popular">Más Útiles (Likes)</option>
-                                </select>
-                            </div>
-                        </div>
-
-                        <div id="reviews-container">
-                            <!-- Reseñas Renderizadas Dinámicamente -->
-                        </div>
-                    </div>
-                </div>
-            </section>
 
         </div>
     </main>
 
     <!-- Layout System -->
-    <script src="layout.js?v=854798"></script>
+    <script src="layout.js?v=UPDATE_CRITICAL_FIX"></script>
 
     <script>
         // --- Gestión de Tickets (Mock) ---
@@ -621,34 +593,61 @@
             const trigger = document.getElementById(`trigger-${id}`);
             const options = document.getElementById(`options-${id}`);
             const input = document.getElementById(`contact-${id}`);
+            
+            if (!container || !trigger || !options || !input) return;
 
-            trigger.addEventListener('click', () => {
-                options.classList.toggle('active');
-            });
-
-            options.querySelectorAll('.custom-option').forEach(opt => {
-                opt.addEventListener('click', () => {
-                    const val = opt.getAttribute('data-value');
-                    input.value = val;
-                    trigger.querySelector('span').innerHTML = opt.innerHTML;
-                    
-                    options.querySelectorAll('.custom-option').forEach(o => o.classList.remove('selected'));
-                    opt.classList.add('selected');
-                    options.classList.remove('active');
-                    
-                    // Clear error on select
-                    container.parentElement.classList.remove('has-error');
-                    container.parentElement.querySelector('.error-message').style.display = 'none';
+            trigger.addEventListener('click', (e) => {
+                e.preventDefault();
+                e.stopPropagation();
+                
+                // Cerrar otros dropdowns
+                document.querySelectorAll('.custom-select-container').forEach(other => {
+                    if (other !== container) other.classList.remove('active');
                 });
+                
+                container.classList.toggle('active');
             });
 
-            // Close when clicking outside
-            document.addEventListener('click', (e) => {
-                if (container && !container.contains(e.target)) {
-                    options.classList.remove('active');
+            // Usar delegación de eventos para las opciones
+            options.addEventListener('click', (e) => {
+                const opt = e.target.closest('.custom-option');
+                if (!opt) return;
+
+                e.preventDefault();
+                e.stopPropagation();
+                
+                const val = opt.getAttribute('data-value');
+                input.value = val;
+                
+                // Actualizar UI del trigger
+                trigger.querySelector('span').innerHTML = opt.innerHTML;
+                
+                // Marcar seleccionada
+                options.querySelectorAll('.custom-option').forEach(o => o.classList.remove('selected'));
+                opt.classList.add('selected');
+                
+                // Cerrar
+                container.classList.remove('active');
+                
+                // Validar grupo
+                const group = container.closest('.form-group');
+                if (group) {
+                    group.classList.remove('has-error');
+                    const error = group.querySelector('.error-message');
+                    if (error) error.style.display = 'none';
                 }
+                
+                // Disparar evento
+                input.dispatchEvent(new Event('input', { bubbles: true }));
             });
         }
+
+        // Cerrar dropdowns al hacer click fuera
+        window.addEventListener('click', (e) => {
+            if (!e.target.closest('.custom-select-container')) {
+                document.querySelectorAll('.custom-select-container').forEach(c => c.classList.remove('active'));
+            }
+        });
 
         // Dropdowns and counters will be initialized in initializeContactPage
 
@@ -660,21 +659,22 @@
 
             const update = () => {
                 const len = input.value.length;
-                // Show current vs range (with spaces for better readability)
-                const rangeLabel = (min > 0) ? `${min} - ${max}` : `Máx ${max}`;
-                limit.textContent = `${len} / ${rangeLabel}`;
+                limit.textContent = `${len} / ${max}`;
 
-                if (len < min || len >= max) {
-                    limit.className = 'char-limit at-limit';
-                } else if (len > max * 0.8) {
-                    limit.className = 'char-limit near-limit';
+                if (len === 0) {
+                    limit.style.color = '#666';
+                } else if (len < min || len > max) {
+                    limit.style.color = 'var(--neon-pink)'; // Error
+                    limit.style.textShadow = '0 0 5px rgba(255, 0, 128, 0.3)';
+                } else if (len >= max * 0.9) {
+                    limit.style.color = 'var(--neon-pink)'; // Casi lleno
                 } else {
-                    limit.className = 'char-limit';
+                    limit.style.color = 'var(--neon-cyan)'; // Válido
+                    limit.style.textShadow = '0 0 5px rgba(0, 212, 255, 0.3)';
                 }
             };
 
             input.addEventListener('input', update);
-            input.addEventListener('keyup', update); // Backup for some browsers
             update(); 
         }
 
@@ -746,170 +746,6 @@
             }, 300);
         });
 
-        // --- Advanced Review System ---
-        const ReviewSystem = {
-            storageKey: 'muzicmania_reviews',
-            reviews: [
-                { id: 1, user: 'CyberGamer42', initials: 'CG', rating: 5, text: '¡Increíble juego! Los visuales son espectaculares.', date: '2026-01-28T10:00:00Z', likes: 45 },
-                { id: 2, user: 'NeonQueen', initials: 'NQ', rating: 4, text: 'Me encanta la estética futurista, las canciones son geniales.', date: '2026-01-25T15:30:00Z', likes: 12 },
-                { id: 3, user: 'RhythmMaster', initials: 'RM', rating: 5, text: 'La detección de teclas es perfecta. Súper satisfactorio.', date: '2026-01-20T09:00:00Z', likes: 89 },
-                { id: 4, user: 'SynthWaveKid', initials: 'SK', rating: 3, text: 'El arte es genial pero necesito más variedad de canciones.', date: '2026-01-15T12:00:00Z', likes: 5 },
-                { id: 5, user: 'DigitalDreamer', initials: 'DD', rating: 5, text: 'MuzicMania ha redefinido lo que espero de un juego de ritmo de navegador.', date: '2026-01-29T18:45:00Z', likes: 32 }
-            ],
-
-            init: function() {
-                this.render();
-                this.setupStars();
-                this.setupSorting();
-                this.setupSubmit();
-            },
-
-            setupStars: function() {
-                const stars = document.querySelectorAll('#rating-input-stars i');
-                const valInput = document.getElementById('rating-value');
-                
-                stars.forEach(star => {
-                    star.addEventListener('mouseover', () => {
-                        const val = parseInt(star.getAttribute('data-value'));
-                        this.highlightStars(val);
-                    });
-                    
-                    star.addEventListener('mouseout', () => {
-                        const currentVal = parseInt(valInput.value);
-                        this.highlightStars(currentVal);
-                    });
-                    
-                    star.addEventListener('click', () => {
-                        valInput.value = star.getAttribute('data-value');
-                        this.highlightStars(parseInt(valInput.value));
-                    });
-                });
-            },
-
-            highlightStars: function(count) {
-                const stars = document.querySelectorAll('#rating-input-stars i');
-                stars.forEach(s => {
-                    const v = parseInt(s.getAttribute('data-value'));
-                    s.classList.toggle('active', v <= count);
-                });
-            },
-
-            setupSorting: function() {
-                document.getElementById('review-sort').addEventListener('change', (e) => {
-                    this.render(e.target.value);
-                });
-            },
-
-            setupSubmit: function() {
-                const btn = document.getElementById('submit-review-btn');
-                const warning = document.getElementById('auth-warning-review');
-
-                const checkAuth = () => {
-                    const user = AuthSystem.getCurrentUser();
-                    if (!user) {
-                        btn.style.opacity = '0.5';
-                        warning.style.display = 'block';
-                    } else {
-                        btn.style.opacity = '1';
-                        warning.style.display = 'none';
-                    }
-                };
-
-                setInterval(checkAuth, 1000);
-
-                btn.addEventListener('click', () => {
-                    const user = AuthSystem.getCurrentUser();
-                    if (!user) {
-                        AuthSystem.openModal('login');
-                        return;
-                    }
-
-                    const rating = parseInt(document.getElementById('rating-value').value);
-                    const text = document.getElementById('review-text').value;
-
-                    if (rating === 0) {
-                        alert('Por favor, selecciona una puntuación.');
-                        return;
-                    }
-
-                    if (text.length < 5) {
-                        alert('Tu reseña debe ser un poco más larga.');
-                        return;
-                    }
-
-                    const newReview = {
-                        id: Date.now(),
-                        user: user.username,
-                        initials: user.initials,
-                        rating: rating,
-                        text: text,
-                        date: new Date().toISOString(),
-                        likes: 0
-                    };
-
-                    this.reviews.unshift(newReview);
-                    this.render();
-                    
-                    document.getElementById('rating-value').value = 0;
-                    document.getElementById('review-text').value = '';
-                    this.highlightStars(0);
-                    alert('¡Gracias por tu valoración!');
-                });
-            },
-
-            render: function(sortBy = 'newest') {
-                const container = document.getElementById('reviews-container');
-                let sorted = [...this.reviews];
-
-                if (sortBy === 'highest') sorted.sort((a,b) => b.rating - a.rating);
-                else if (sortBy === 'popular') sorted.sort((a,b) => b.likes - a.likes);
-                else sorted.sort((a,b) => new Date(b.date) - new Date(a.date));
-
-                container.innerHTML = sorted.map(r => `
-                    <div class="review-card" data-id="${r.id}">
-                        <div class="review-user-info">
-                            <div class="review-avatar">${r.initials}</div>
-                            <div>
-                                <strong style="color: var(--neon-cyan);">${r.user}</strong>
-                                <div class="rating-stars" style="font-size: 0.8rem; justify-content: flex-start;">
-                                    ${Array(5).fill(0).map((_, i) => `<i class="${i < r.rating ? 'fas' : 'far'} fa-star" style="color: #FFD700;"></i>`).join('')}
-                                </div>
-                            </div>
-                            <span style="margin-left: auto; color: #666; font-size: 0.8rem;">${this.formatDate(r.date)}</span>
-                        </div>
-                        <p style="color: #ddd; line-height: 1.6; margin-bottom: 1rem;">"${r.text}"</p>
-                        <div style="display: flex; gap: 10px;">
-                            <button class="review-like-btn" onclick="ReviewSystem.handleLike(this, ${r.id})">
-                                <i class="fas fa-heart"></i> <span class="like-count">${r.likes}</span>
-                            </button>
-                        </div>
-                    </div>
-                `).join('');
-            },
-
-            formatDate: function(dateStr) {
-                const d = new Date(dateStr);
-                const now = new Date();
-                const diff = (now - d) / 1000;
-                if (diff < 3600) return 'Hace poco';
-                if (diff < 86400) return 'Hoy';
-                return d.toLocaleDateString();
-            },
-
-            handleLike: function(btn, id) {
-                const review = this.reviews.find(r => r.id === id);
-                if (!review) return;
-
-                if (btn.classList.contains('liked')) {
-                    review.likes--;
-                    btn.classList.remove('liked');
-                } else {
-                    review.likes++;
-                    btn.classList.add('liked');
-                }
-                btn.querySelector('.like-count').textContent = review.likes;
-            }
-        };
 
         // --- Auth Integration & Initializations ---
         let contactInitialized = false;
@@ -928,8 +764,6 @@
                 setupCharCounter('contact-name', 'limit-name', 3, 20);
                 setupCharCounter('contact-email', 'limit-email', 5, 100);
                 setupCharCounter('contact-message', 'limit-message', 20, 1000);
-                
-                ReviewSystem.init();
                 contactInitialized = true;
                 console.log("MuzicMania Contact System: Componentes Listos");
             }
@@ -966,9 +800,9 @@
         window.addEventListener('authChange', initializeContactPage);
 
     </script>
-    <script src="auth.js?v=2"></script>
-    <script src="utils.js?v=854798"></script>
-    <script src="search.js?v=1"></script>
-    <script src="navigation.js?v=854798"></script>
+    <script src="auth.js?v=UPDATE_CRITICAL_FIX"></script>
+    <script src="utils.js?v=UPDATE_CRITICAL_FIX"></script>
+    <script src="search.js?v=UPDATE_CRITICAL_FIX"></script>
+    <script src="navigation.js?v=UPDATE_CRITICAL_FIX"></script>
 </body>
 </html>

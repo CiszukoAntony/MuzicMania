@@ -235,31 +235,18 @@ class AuthSystem {
                 `;
             } else {
                 // Vista Deslogueado
-                const url = window.location.pathname;
-                const isHomePage = url.endsWith('index.html') || url.endsWith('/');
-                
-                if (isHomePage) {
-                    // Nuevo Menú Rápido 'Acceder' (Solo Inicio)
-                    section.innerHTML = `
-                        <div style="display: flex; gap: 10px; align-items: center;">
-                            <div id="auth-quick-options" class="auth-quick-options">
-                                <button class="btn-small" onclick="AuthSystem.openModal('login')"><i class="fas fa-sign-in-alt"></i> Ingresar</button>
-                                <button class="btn-small btn-highlight" onclick="AuthSystem.openModal('register')"><i class="fas fa-user-plus"></i> Registrarse</button>
-                            </div>
-                            <button id="btn-access-header" class="btn-access" onclick="AdaptiveNav.toggleAccessMenu()">
-                                <i class="fas fa-user-circle"></i> <span class="btn-text">Acceder</span>
-                            </button>
-                        </div>
-                    `;
-                } else {
-                    // Vista Clásica (Páginas Secundarias)
-                    section.innerHTML = `
-                        <div style="display: flex; gap: 10px; align-items: center;">
+                // Vista Deslogueado - UNIFICADA PARA TODAS LAS PÁGINAS
+                section.innerHTML = `
+                    <div style="display: flex; gap: 10px; align-items: center;">
+                        <div id="auth-quick-options" class="auth-quick-options">
                             <button class="btn-small" onclick="AuthSystem.openModal('login')"><i class="fas fa-sign-in-alt"></i> Ingresar</button>
                             <button class="btn-small btn-highlight" onclick="AuthSystem.openModal('register')"><i class="fas fa-user-plus"></i> Registrarse</button>
                         </div>
-                    `;
-                }
+                        <button id="btn-access-header" class="btn-access" onclick="AdaptiveNav.toggleAccessMenu()">
+                            <i class="fas fa-user-circle"></i> <span class="btn-text">Acceder</span>
+                        </button>
+                    </div>
+                `;
             }
         });
 

@@ -30,6 +30,52 @@ const Layout = {
         <button class="close-warning" onclick="AdaptiveNav.closeWarning()" title="Close">&times;</button>
     </div>`,
 
+            securityWarning: (id, icon, title, text) => `
+    <div class="zoom-warning security-warning" id="warning-${id}" style="border-color: var(--neon-pink); background: rgba(255, 0, 128, 0.05); top: calc(110px + (var(--warning-offset, 0) * 50px));">
+        <div style="display: flex; align-items: center; gap: 10px;">
+            <i class="fas ${icon}" style="color: var(--neon-pink);"></i>
+            <span><strong>${title}:</strong> ${text}</span>
+        </div>
+        <button class="close-warning" onclick="Layout.closeSecurityWarning('${id}')" title="Entendido">&times;</button>
+    </div>`,
+
+            // Advertencia especial para modo debug - Diseño Vertical Simple
+            debugWarning: (stats) => `
+    <div class="zoom-warning security-warning debug-card" id="warning-debug">
+        <!-- Fila 1: Título y Cerrar -->
+        <div class="debug-top-row">
+            <div class="debug-title-simple">
+                <i class="fas fa-flask"></i> MODO DEV DEBUG
+            </div>
+            <button class="close-warning-simple" onclick="Layout.closeSecurityWarning('debug')">&times;</button>
+        </div>
+        
+        <!-- Fila 2: Subtítulo Advertencia -->
+        <div class="debug-warning-sub">
+            <i class="fas fa-exclamation-triangle"></i> Datos simulados activo
+        </div>
+        
+        <!-- Fila 3: Stats Grid -->
+        <div class="debug-stats-simple">
+            <div class="stat-pill">
+                <i class="fas fa-robot" style="color:var(--neon-cyan)"></i>
+                <span><b>${stats.totalBots || 25}</b> Bots</span>
+            </div>
+            <div class="stat-pill">
+                <i class="fas fa-trophy" style="color:#f1c40f"></i>
+                <span><b>${stats.leaderboardEntries || 0}</b> Rank</span>
+            </div>
+            <div class="stat-pill">
+                <i class="fas fa-star" style="color:#e74c3c"></i>
+                <span><b>${stats.fakeReviews || 5}</b> Revs</span>
+            </div>
+            <div class="stat-pill">
+                <i class="fas fa-chart-line" style="color:#2ecc71"></i>
+                <span>Stats Fake</span>
+            </div>
+        </div>
+    </div>`,
+
             navOverlay: `
     <div class="menu-backdrop" onclick="AdaptiveNav.toggleMenu(false)"></div>
     <div class="nav-overlay">
@@ -129,12 +175,19 @@ const Layout = {
                     <li><a href="${bp}support.html" data-page="support.html"><i class="fas fa-headset"></i> Support</a></li>
                 </ul>
                 <div id="auth-section"></div>
-                <div class="search-wrapper">
-                    <button class="search-btn" title="Search"><i class="fas fa-search"></i></button>
-                    <div class="search-input-container">
-                        <input type="text" class="search-input" placeholder="Search...">
+                <!-- Acciones de Cabecera (Search + Menu) -->
+                <div class="header-actions">
+                    <div class="search-wrapper">
+                        <div class="search-input-container">
+                            <input type="text" class="search-input" placeholder="Buscar canción, artista...">
+                        </div>
+                        <button class="search-btn" title="Buscar"><i class="fas fa-search"></i></button>
+                        <div class="search-results-dropdown"></div>
                     </div>
-                    <button class="menu-toggle-btn" title="Menu" onclick="AdaptiveNav.toggleMenu(true)"><i class="fas fa-bars"></i></button>
+
+                    <button class="menu-toggle-btn" onclick="AdaptiveNav.toggleMenu()" title="Menú">
+                        <i class="fas fa-bars"></i>
+                    </button>
                 </div>
             </nav>
         </div>
@@ -144,15 +197,15 @@ const Layout = {
     <footer>
         <div class="footer-content">
             <div class="footer-grid">
-                <div class="footer-section">
+                <div class="footer-section main-brand">
                     <a href="${bp}index.html" class="footer-brand">
                         <img src="${bp}assets/logo.png" alt="Logo" class="logo-img footer-logo-sync">
                         <h3>MUZICMANIA</h3>
                     </a>
-                    <p style="margin-top: 0.5rem; color: #888;">The best futuristic rhythm game. Dominating the neon since 2026.</p>
+                    <p>The best futuristic rhythm game. Dominating the neon since 2026.</p>
                 </div>
 
-                <div class="footer-section">
+                <div class="footer-section divider">
                     <h4>Navigation</h4>
                     <ul class="footer-comprehensive-list" style="columns: 2; gap: 2rem; list-style: none; padding: 0;">
                         <li><a href="${bp}index.html" data-page="index.html"><i class="fas fa-home"></i> Home</a></li>
@@ -177,7 +230,7 @@ const Layout = {
                     </ul>
                 </div>
 
-                <div class="footer-section">
+                <div class="footer-section divider">
                     <h4>Community</h4>
                     <div class="social-icons">
                         <a href="https://x.com" target="_blank" title="X (Twitter)"><i class="fab fa-x-twitter"></i></a>
@@ -189,7 +242,7 @@ const Layout = {
                         <a href="https://tiktok.com" target="_blank" title="TikTok"><i class="fab fa-tiktok"></i></a>
                         <a href="https://twitch.tv" target="_blank" title="Twitch"><i class="fab fa-twitch"></i></a>
                     </div>
-                    <p style="margin-top: 1rem; color: #888;">Join our growing tech and music community.</p>
+                    <p>Join our growing tech and music community.</p>
                 </div>
             </div>
 
@@ -197,6 +250,95 @@ const Layout = {
                 <p>&copy; 2026 MuzicMania. Created by Ciszuko Antony. All rights reserved.</p>
             </div>
         </div>
+        <style>
+            .footer-grid {
+                display: grid;
+                grid-template-columns: 1fr 1fr 1fr;
+                gap: 0; /* Removido para que el divisor se pegue */
+                text-align: center;
+            }
+            .footer-section {
+                padding: 1.5rem;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+            }
+            .footer-section h4 {
+                color: var(--neon-cyan);
+                text-transform: uppercase;
+                letter-spacing: 2px;
+                margin-bottom: 1.5rem;
+            }
+            .footer-section p {
+                margin-top: 0.8rem;
+                color: #888;
+                font-size: 0.9rem;
+            }
+            .footer-section.divider {
+                border-left: 1px solid rgba(255, 255, 255, 0.05);
+            }
+            .footer-comprehensive-list {
+                text-align: left;
+                width: 100%;
+                max-width: 400px;
+                margin: 0 auto;
+            }
+            .social-icons {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                gap: 1.2rem;
+                margin-top: 0.5rem;
+                flex-wrap: wrap;
+            }
+            .social-icons a {
+                width: 42px;
+                height: 42px;
+                border-radius: 50%;
+                background: rgba(255, 255, 255, 0.05);
+                border: 1px solid rgba(255, 255, 255, 0.1);
+                transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+                position: relative;
+                color: #888;
+                text-decoration: none;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
+            .social-icons a i {
+                font-size: 1.1rem;
+                transition: color 0.3s ease;
+            }
+            .social-icons a:hover {
+                transform: translateY(-5px) scale(1.1);
+                border-color: transparent;
+            }
+            .social-icons a:hover i {
+                color: #000 !important;
+            }
+
+            /* Responsive Dividers */
+            @media (max-width: 768px) {
+                .footer-grid {
+                    grid-template-columns: 1fr;
+                }
+                .footer-section.divider {
+                    border-left: none;
+                    border-top: 1px solid rgba(255, 255, 255, 0.05);
+                }
+            }
+
+            /* Brand Circle & Hover Effects */
+            .social-icons a[title*="X"]:hover { background-color: #ffffff; box-shadow: 0 0 15px #fff; }
+            .social-icons a[title*="Discord"]:hover { background-color: #5865F2; box-shadow: 0 0 15px #5865F2; }
+            .social-icons a[title*="GitHub"]:hover { background-color: #ffffff; box-shadow: 0 0 15px #fff; }
+            .social-icons a[title*="Reddit"]:hover { background-color: #FF4500; box-shadow: 0 0 15px #FF4500; }
+            .social-icons a[title*="YouTube"]:hover { background-color: #ff0000; box-shadow: 0 0 15px #ff0000; }
+            .social-icons a[title*="Instagram"]:hover { background-color: #E4405F; box-shadow: 0 0 15px #E4405F; }
+            .social-icons a[title*="TikTok"]:hover { background-color: #00f2ea; box-shadow: 0 0 15px #00f2ea; }
+            .social-icons a[title*="Twitch"]:hover { background-color: #9146FF; box-shadow: 0 0 15px #9146FF; }
+        </style>
     </footer>`
         };
     },
@@ -241,13 +383,16 @@ const Layout = {
         if (typeof AuthSystem !== 'undefined' && AuthSystem.updateAuthUI) {
             setTimeout(() => AuthSystem.updateAuthUI(), 100);
         }
+
+        // 6. Ejecutar chequeos de seguridad (VPN, Incógnito, Debug)
+        this.initSecurityChecks();
     },
 
     injectQuickDock: function() {
         const infoPages = [
             'about.html', 'team.html', 'help.html', 'faq.html', 
             'rules.html', 'policy.html', 'terms.html', 'guidelines.html',
-            'changelog.html', 'contact.html'
+            'changelog.html', 'contact.html', 'support.html', 'index.html', 'stats.html'
         ];
         const currentPage = window.location.pathname.split('/').pop() || 'index.html';
 
@@ -256,28 +401,37 @@ const Layout = {
             const dockHTML = `
                 <!-- Quick Access Dock (Premium & Unified) -->
                 <div class="quick-access-dock">
-                    <a href="${bp}about.html" class="qa-btn qa-about">
+                    <a href="${bp}index.html" class="qa-btn qa-home" data-page="index.html">
+                        <i class="fas fa-home"></i> <span>Home</span>
+                    </a>
+                    <a href="${bp}contact.html" class="qa-btn qa-contact" data-page="contact.html">
+                        <i class="fas fa-envelope"></i> <span>Contact</span>
+                    </a>
+                    <a href="${bp}support.html" class="qa-btn qa-support" data-page="support.html">
+                        <i class="fas fa-headset"></i> <span>Support</span>
+                    </a>
+                    <a href="${bp}about.html" class="qa-btn qa-about" data-page="about.html">
                         <i class="fas fa-info-circle"></i> <span>About</span>
                     </a>
-                    <a href="${bp}team.html" class="qa-btn qa-team">
+                    <a href="${bp}team.html" class="qa-btn qa-team" data-page="team.html">
                         <i class="fas fa-users-cog"></i> <span>Team</span>
                     </a>
-                    <a href="${bp}help.html" class="qa-btn qa-help">
+                    <a href="${bp}help.html" class="qa-btn qa-help" data-page="help.html">
                         <i class="fas fa-question-circle"></i> <span>Help</span>
                     </a>
-                    <a href="${bp}faq.html" class="qa-btn qa-faq">
+                    <a href="${bp}faq.html" class="qa-btn qa-faq" data-page="faq.html">
                         <i class="fas fa-comments"></i> <span>FAQ</span>
                     </a>
-                    <a href="${bp}guidelines.html" class="qa-btn qa-guidelines">
+                    <a href="${bp}guidelines.html" class="qa-btn qa-guidelines" data-page="guidelines.html">
                         <i class="fas fa-map-signs"></i> <span>Guidelines</span>
                     </a>
-                    <a href="${bp}rules.html" class="qa-btn qa-rules">
+                    <a href="${bp}rules.html" class="qa-btn qa-rules" data-page="rules.html">
                         <i class="fas fa-gavel"></i> <span>Rules</span>
                     </a>
-                    <a href="${bp}policy.html" class="qa-btn qa-policy">
+                    <a href="${bp}policy.html" class="qa-btn qa-policy" data-page="policy.html">
                         <i class="fas fa-shield-alt"></i> <span>Policy</span>
                     </a>
-                    <a href="${bp}terms.html" class="qa-btn qa-terms">
+                    <a href="${bp}terms.html" class="qa-btn qa-terms" data-page="terms.html">
                         <i class="fas fa-file-contract"></i> <span>Terms</span>
                     </a>
                 </div>
@@ -324,7 +478,7 @@ const Layout = {
         const path = window.location.pathname;
         const page = path.split("/").pop() || 'index.html';
 
-        document.querySelectorAll('nav a, .nav-menu-item').forEach(el => el.classList.remove('active'));
+        document.querySelectorAll('nav a, .nav-menu-item, .qa-btn').forEach(el => el.classList.remove('active'));
 
         const links = document.querySelectorAll(`[data-page="${page}"]`);
         
@@ -332,6 +486,64 @@ const Layout = {
              document.querySelectorAll(`[data-page="index.html"]`).forEach(el => el.classList.add('active'));
         } else {
              links.forEach(el => el.classList.add('active'));
+        }
+    },
+
+    closeSecurityWarning: function(id) {
+        const warning = document.getElementById(`warning-${id}`);
+        if (warning) {
+            warning.style.opacity = '0';
+            warning.style.transform = 'translate(-50%, -20px)';
+            setTimeout(() => {
+                warning.remove();
+                this.updateWarningOffsets();
+            }, 300);
+        }
+        try { localStorage.setItem(`dismissed_warning_${id}`, 'true'); } catch(e) {}
+    },
+
+    updateWarningOffsets: function() {
+        const activeWarnings = document.querySelectorAll('.security-warning');
+        activeWarnings.forEach((w, index) => {
+            w.style.setProperty('--warning-offset', index);
+        });
+    },
+
+    initSecurityChecks: async function() {
+        if (typeof SecurityChecker === 'undefined') return;
+        
+        const results = await SecurityChecker.checkAll();
+        let offset = 0;
+
+        // Advertencias estándar (VPN, Incógnito)
+        const standardWarnings = [
+            { id: 'vpn', check: results.vpn, icon: 'fa-globe', title: 'VPN/PROXY DETECTADO', text: 'La conexión puede ser inestable y afectar la latencia en el juego.' },
+            { id: 'incognito', check: results.incognito, icon: 'fa-user-secret', title: 'MODO INCÓGNITO', text: 'El progreso local no se guardará de forma persistente en esta sesión.' }
+        ];
+
+        standardWarnings.forEach(w => {
+            if (w.check && !localStorage.getItem(`dismissed_warning_${w.id}`)) {
+                const html = this.getTemplates().securityWarning(w.id, w.icon, w.title, w.text);
+                document.body.insertAdjacentHTML('afterbegin', html);
+                const warningEl = document.getElementById(`warning-${w.id}`);
+                if (warningEl) {
+                    warningEl.style.setProperty('--warning-offset', offset++);
+                }
+            }
+        });
+
+        // Advertencia especial para modo debug (más detallada)
+        if (results.debug && !localStorage.getItem('dismissed_warning_debug')) {
+            let debugStats = { botsCreated: 0, leaderboardEntries: 0, version: '2.1.0-A' };
+            try {
+                const stored = JSON.parse(localStorage.getItem('debugStats') || '{}');
+                if (stored.botsCreated !== undefined) {
+                    debugStats = stored;
+                }
+            } catch (e) { /* Ignorar errores */ }
+
+            const html = this.getTemplates().debugWarning(debugStats);
+            document.body.insertAdjacentHTML('afterbegin', html);
         }
     }
 };

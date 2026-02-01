@@ -16,67 +16,77 @@ const SearchSystem = {
     ],
 
     init() {
-        const searchBtn = document.querySelector('.search-btn');
-        const searchInput = document.querySelector('.search-input');
-        const resultsDropdown = document.querySelector('.search-results-dropdown');
-
-        if (!searchBtn || !searchInput) return;
-
-        searchBtn.addEventListener('click', (e) => {
-            e.stopPropagation();
-            this.toggleSearch();
-        });
-
-        searchInput.addEventListener('input', (e) => {
-            this.performSearch(e.target.value.trim());
-        });
-
-        // Close search when clicking outside
+        // Usar DELEGACIÓN DE EVENTOS para elementos dinámicos (inyectados por Layout.js)
+        
+        // 1. Click en botón de búsqueda
         document.addEventListener('click', (e) => {
-            if (!e.target.closest('.search-wrapper')) {
+            const btn = e.target.closest('.search-btn');
+            if (btn) {
+                e.preventDefault();
+                e.stopPropagation();
+                this.toggleSearch();
+                return;
+            }
+
+            // 2. Click fuera para cerrar (si no es wrapper ni input)
+            if (!e.target.closest('.search-wrapper') && !e.target.closest('.search-input-container')) {
                 this.closeSearch();
             }
         });
 
-        // Handle Enter key for the first result
-        searchInput.addEventListener('keydown', (e) => {
-            if (e.key === 'Enter') {
-                const firstResult = resultsDropdown.querySelector('.search-result-item');
-                if (firstResult) firstResult.click();
+        // 3. Input de búsqueda (tiempo real)
+        document.addEventListener('input', (e) => {
+            if (e.target.classList.contains('search-input')) {
+                this.performSearch(e.target.value.trim());
             }
         });
+
+        // 4. Enter en input
+        document.addEventListener('keydown', (e) => {
+            if (e.target.classList.contains('search-input') && e.key === 'Enter') {
+                const resultsDropdown = document.querySelector('.search-results-dropdown');
+                if (resultsDropdown) {
+                    const firstResult = resultsDropdown.querySelector('.search-result-item');
+                    if (firstResult) firstResult.click();
+                }
+            }
+        });
+        
+        console.log('SearchSystem: Event delegation initialized');
     },
 
     toggleSearch() {
-        const wrapper = document.querySelector('.search-input-container');
-        const btn = document.querySelector('.search-btn');
-        const navUl = document.querySelector('nav ul');
+        const nav = document.getElementById('main-nav');
+        const searchBtn = document.querySelector('.search-btn');
         const input = document.querySelector('.search-input');
-
-        wrapper.classList.toggle('active');
-        btn.classList.toggle('active');
         
-        if (wrapper.classList.contains('active')) {
-            navUl.classList.add('nav-hidden');
-            input.focus();
-            // Cerrar menú de acceso si está abierto
-            if (window.AdaptiveNav && AdaptiveNav.closeAccessMenu) {
-                AdaptiveNav.closeAccessMenu();
+        if (!nav) return;
+
+        // Toggle Global State (CSS Handle Layout)
+        const isActive = nav.classList.toggle('searching');
+        
+        // Update Button State
+        if (searchBtn) searchBtn.classList.toggle('active', isActive);
+
+        if (isActive) {
+            setTimeout(() => input && input.focus(), 100);
+            // Close other menus
+            if (window.AdaptiveNav) {
+                 if (AdaptiveNav.closeAccessMenu) AdaptiveNav.closeAccessMenu();
+                 if (AdaptiveNav.toggleMenu) AdaptiveNav.toggleMenu(false);
             }
         } else {
-            navUl.classList.remove('nav-hidden');
             this.closeResults();
+            if (input) input.value = ''; // Optional: clear on close
         }
     },
 
     closeSearch() {
-        const wrapper = document.querySelector('.search-input-container');
-        const btn = document.querySelector('.search-btn');
-        const navUl = document.querySelector('nav ul');
+        const nav = document.getElementById('main-nav');
+        const searchBtn = document.querySelector('.search-btn');
         
-        if (wrapper) wrapper.classList.remove('active');
-        if (btn) btn.classList.remove('active');
-        if (navUl) navUl.classList.remove('nav-hidden');
+        if (nav) nav.classList.remove('searching');
+        if (searchBtn) searchBtn.classList.remove('active');
         this.closeResults();
     },
 

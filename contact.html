@@ -6,7 +6,7 @@
     <title>MuzicMania - Contacto</title>
     <link rel="icon" type="image/png" href="assets/logo.png">
     <link rel="apple-touch-icon" href="assets/logo.png">
-    <link rel="stylesheet" href="styles.css?v=854798">
+    <link rel="stylesheet" href="styles.css?v=UPDATE_CRITICAL_FIX">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <style>
         .contact-grid {
@@ -221,15 +221,102 @@
         .review-avatar { width: 40px; height: 40px; border-radius: 50%; background: var(--gradient-main); display: flex; align-items: center; justify-content: center; font-weight: bold; border: 1px solid var(--neon-blue); }
 
         .star-rating-input {
-            font-size: 2.5rem;
-            color: #333;
+            font-size: 2.8rem;
+            color: rgba(255, 255, 255, 0.05); /* Color de fondo de estrellas vacías */
             cursor: pointer;
-            display: flex;
-            gap: 10px;
-            justify-content: center;
+            display: inline-flex;
+            position: relative;
+            user-select: none;
+            padding: 5px;
+            transition: transform 0.3s ease;
         }
 
-        .star-rating-input i.active { color: #FFD700; text-shadow: 0 0 15px rgba(255, 215, 0, 0.5); }
+        .star-rating-input:hover {
+            transform: scale(1.05);
+        }
+
+        .stars-outer {
+            display: flex;
+            gap: 5px;
+            position: relative;
+        }
+
+        .stars-inner {
+            position: absolute;
+            top: 0;
+            left: 0;
+            white-space: nowrap;
+            overflow: hidden;
+            width: 0%; /* Controlado por JS */
+            display: flex;
+            gap: 5px;
+            color: #FFD700;
+            pointer-events: none;
+            transition: width 0.1s ease, color 0.3s ease, filter 0.3s ease;
+        }
+
+        /* Colores Únicos Evolutivos */
+        .stars-inner.level-low { color: #ff4d4d; filter: drop-shadow(0 0 5px rgba(255, 77, 77, 0.5)); }
+        .stars-inner.level-mid { color: #ffaa00; filter: drop-shadow(0 0 8px rgba(255, 170, 0, 0.5)); }
+        .stars-inner.level-high { color: #ffcc00; filter: drop-shadow(0 0 12px rgba(255, 204, 0, 0.6)); }
+        .stars-inner.level-max { color: #00f0ff; filter: drop-shadow(0 0 15px rgba(0, 240, 255, 0.8)); }
+
+        .rating-display-val {
+            font-family: var(--font-header);
+            font-size: 1.5rem;
+            font-weight: 900;
+            margin-left: 15px;
+            min-width: 45px;
+            text-align: center;
+            background: var(--gradient-main);
+            background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .stars-inner.animate-pop, .rating-display-val.animate-pop {
+            animation: starPop 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        @keyframes starPop {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.15); filter: brightness(1.5) drop-shadow(0 0 15px currentColor); }
+            100% { transform: scale(1); }
+        }
+
+        /* Rating Value Adaptive Colors */
+        .rating-display-val { transition: all 0.3s ease; }
+        .rating-display-val.level-low { background: none; -webkit-text-fill-color: #ff4d4d; color: #ff4d4d; filter: drop-shadow(0 0 5px rgba(255, 77, 77, 0.5)); }
+        .rating-display-val.level-mid { background: none; -webkit-text-fill-color: #ffaa00; color: #ffaa00; filter: drop-shadow(0 0 8px rgba(255, 170, 0, 0.5)); }
+        .rating-display-val.level-high { background: none; -webkit-text-fill-color: #ffcc00; color: #ffcc00; filter: drop-shadow(0 0 12px rgba(255, 204, 0, 0.6)); }
+        .rating-display-val.level-max { background: none; -webkit-text-fill-color: #00f0ff; color: #00f0ff; filter: drop-shadow(0 0 15px rgba(0, 240, 255, 0.8)); }
+        .rating-display-val.level-none { background: none; -webkit-text-fill-color: #fff; color: #fff; filter: none; opacity: 0.8; }
+
+        /* Copyable Info Items */
+        .contact-info-item.copyable {
+            cursor: pointer;
+            padding: 10px;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+        .contact-info-item.copyable:hover {
+            background: rgba(255, 255, 255, 0.05);
+            transform: translateX(5px);
+            border-left: 3px solid var(--neon-cyan);
+        }
+        .contact-info-item.copyable i.fa-copy {
+            opacity: 0;
+            transition: 0.3s;
+            color: var(--neon-cyan);
+            font-size: 0.9rem;
+        }
+        .contact-info-item.copyable:hover i.fa-copy {
+            opacity: 0.5;
+        }
+        .contact-info-item.copyable:active {
+            transform: scale(0.98);
+        }
 
         .review-like-btn {
             background: rgba(255, 0, 128, 0.1);
@@ -253,215 +340,618 @@
     
     <!-- Main -->
     <main class="container mt-3">
-        <div class="section-header">
-            <h1 class="section-title">Contacto</h1>
+        <div class="section-header text-center">
+            <h1 class="section-title">Contáctame</h1>
             <p>¿Tienes dudas o sugerencias? Ponte en contacto directamente con @CiszukoAntony a través de nuestros canales oficiales.</p>
         </div>
 
         <div class="grid mt-4" style="grid-template-columns: 1fr 1.5fr; gap: 2rem; align-items: start;">
             <!-- Información de Contacto Consolidada -->
             <section>
-                <h2 class="mb-3">Información Directa</h2>
-                <div class="card">
-                    <div class="contact-info-item">
+                <h2 class="mb-3 text-center" style="color: var(--neon-cyan); letter-spacing: 2px;">INFORMACIÓN DIRECTA</h2>
+                <div class="card" style="display: grid; gap: 0.5rem;">
+                    <div class="contact-info-item copyable" onclick="copyToClipboard('Caracas, Venezuela', 'Ubicación')" title="Click para copiar">
                         <i class="fas fa-map-marker-alt"></i>
-                        <div>
-                            <strong>Ubicación:</strong><br>
+                        <div style="flex-grow: 1;">
+                            <strong>Sede Central:</strong><br>
                             Caracas, Venezuela
                         </div>
+                        <i class="far fa-copy"></i>
                     </div>
 
-                    <div class="contact-info-item">
+                    <div class="contact-info-item copyable" onclick="copyToClipboard('fplayersoffcial@gmail.com', 'Email')" title="Click para copiar">
                         <i class="fas fa-envelope"></i>
-                        <div>
-                            <strong>Email Directo:</strong><br>
-                            <a href="mailto:fplayersoffcial@gmail.com" style="color: var(--neon-cyan);">fplayersoffcial@gmail.com</a>
+                        <div style="flex-grow: 1;">
+                            <strong>Email:</strong><br>
+                            fplayersoffcial@gmail.com
                         </div>
+                        <i class="far fa-copy"></i>
                     </div>
 
-                    <div class="contact-info-item">
-                        <i class="fas fa-phone"></i>
-                        <div>
-                            <strong>WhatsApp:</strong><br>
-                            <a href="https://wa.me/584126858111" target="_blank" style="color: #25D366; text-decoration: none;">+58 412-6858111</a>
+                    <div class="contact-info-item copyable" onclick="copyToClipboard('+58 4126858111', 'WhatsApp / Teléfono')" title="Click para copiar">
+                        <i class="fab fa-whatsapp"></i>
+                        <div style="flex-grow: 1;">
+                            <strong>WhatsApp / Teléfono:</strong><br>
+                            +58 412-6858111
                         </div>
+                        <i class="far fa-copy"></i>
                     </div>
 
                     <div class="contact-info-item">
                         <i class="fas fa-clock"></i>
-                        <div>
-                            <strong>Disponibilidad:</strong><br>
-                            Atención técnica y colaboraciones.
+                        <div style="flex-grow: 1;">
+                            <strong>Horario Regional (VET):</strong><br>
+                            Lun - Sáb: 10:00 AM - 8:30 PM
                         </div>
                     </div>
                 </div>
 
                 <div class="card mt-3">
-                    <h3 class="mb-2" style="font-size: 1.1rem; color: var(--neon-blue);">Redes Sociales</h3>
-                    <ul style="list-style: none; padding: 0;">
-                        <li style="margin-bottom: 0.8rem; display: flex; align-items: center; gap: 12px;">
-                            <i class="fab fa-x-twitter" style="color: #fff; width: 20px;"></i>
-                            <span><a href="https://x.com/CiszukoAntony" target="_blank" style="color: #ccc; text-decoration: none;">X: @CiszukoAntony</a></span>
-                        </li>
-                        <li style="margin-bottom: 0.8rem; display: flex; align-items: center; gap: 12px;">
-                            <i class="fab fa-discord" style="color: #5865F2; width: 20px;"></i>
-                            <span><a href="https://discord.gg/muzicmania" target="_blank" style="color: #ccc; text-decoration: none;">Discord: MuzicMania Org</a></span>
-                        </li>
-                        <li style="margin-bottom: 0.8rem; display: flex; align-items: center; gap: 12px;">
-                            <i class="fab fa-instagram" style="color: #E4405F; width: 20px;"></i>
-                            <span><a href="https://instagram.com/CiszukoAntony" target="_blank" style="color: #ccc; text-decoration: none;">Instagram: @CiszukoAntony</a></span>
-                        </li>
-                        <li style="margin-bottom: 0.8rem; display: flex; align-items: center; gap: 12px;">
-                            <i class="fab fa-github" style="color: #fff; width: 20px;"></i>
-                            <span><a href="https://github.com/CiszukoAntony" target="_blank" style="color: #ccc; text-decoration: none;">GitHub: @CiszukoAntony</a></span>
-                        </li>
-                    </ul>
+                    <h3 class="mb-3 text-center" style="font-size: 1.1rem; color: var(--neon-blue); letter-spacing: 2px;">CANALES OFICIALES</h3>
+                    <div class="social-interactive-grid">
+                        <a href="https://x.com/CiszukoAntony" target="_blank" class="social-item" style="--social-color: #ffffff;">
+                            <i class="fab fa-x-twitter"></i>
+                            <span class="social-name">X (Twitter)</span>
+                            <span class="social-tag">@CiszukoAntony</span>
+                        </a>
+                        <a href="https://discord.gg/muzicmania" target="_blank" class="social-item" style="--social-color: #5865F2;">
+                            <i class="fab fa-discord"></i>
+                            <span class="social-name">Discord</span>
+                            <span class="social-tag">MuzicMania Official</span>
+                        </a>
+                        <a href="https://instagram.com/CiszukoAntony" target="_blank" class="social-item" style="--social-color: #E4405F;">
+                            <i class="fab fa-instagram"></i>
+                            <span class="social-name">Instagram</span>
+                            <span class="social-tag">@CiszukoAntony</span>
+                        </a>
+                        <a href="https://github.com/CiszukoAntony" target="_blank" class="social-item" style="--social-color: #ffffff;">
+                            <i class="fab fa-github"></i>
+                            <span class="social-name">GitHub</span>
+                            <span class="social-tag">CiszukoAntony</span>
+                        </a>
+                        <a href="https://youtube.com/@CiszukoAntony" target="_blank" class="social-item" style="--social-color: #ff0000;">
+                            <i class="fab fa-youtube"></i>
+                            <span class="social-name">YouTube</span>
+                            <span class="social-tag">@CiszukoAntony</span>
+                        </a>
+                        <a href="https://tiktok.com/@CiszukoAntony" target="_blank" class="social-item" style="--social-color: #00f2ea;">
+                            <i class="fab fa-tiktok"></i>
+                            <span class="social-name">TikTok</span>
+                            <span class="social-tag">@CiszukoAntony</span>
+                        </a>
+                        <a href="https://twitch.tv/CiszukoAntony" target="_blank" class="social-item" style="--social-color: #9146FF;">
+                            <i class="fab fa-twitch"></i>
+                            <span class="social-name">Twitch</span>
+                            <span class="social-tag">CiszukoAntony</span>
+                        </a>
+                        <a href="https://reddit.com/u/CiszukoAntony" target="_blank" class="social-item" style="--social-color: #FF4500;">
+                            <i class="fab fa-reddit"></i>
+                            <span class="social-name">Reddit</span>
+                            <span class="social-tag">u/CiszukoAntony</span>
+                        </a>
+                    </div>
                 </div>
+
+                <!-- Soporte Urgente -->
+                <div class="card mt-3" style="border: 2px solid #ff4444; background: rgba(255, 68, 68, 0.08); padding: 1.5rem; position: relative; overflow: hidden; box-shadow: 0 0 20px rgba(255, 68, 68, 0.1);">
+                    <h3 style="color: #ff4444; font-size: 1.2rem; margin-bottom: 1rem; text-align: center; text-shadow: 0 0 10px rgba(255, 68, 68, 0.3);">
+                        <i class="fas fa-headset" style="margin-right: 8px;"></i>¿Buscas contacto directo ya?
+                    </h3>
+                    <p style="color: #eee; font-size: 0.85rem; margin-bottom: 1.2rem; line-height: 1.5; text-align: center;">
+                        Si experimentas fallos críticos en tu cuenta o compras, nuestro equipo técnico te atenderá con máxima prioridad.
+                    </p>
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 1.5rem; text-align: left; background: rgba(0,0,0,0.2); padding: 10px; border-radius: 8px;">
+                        <div style="font-size: 0.75rem; color: #bbb;">
+                            <i class="fas fa-bolt" style="color: #ffaa00; margin-right: 5px;"></i> Respuesta: <strong style="color: #fff;"> < 2h</strong>
+                        </div>
+                        <div style="font-size: 0.75rem; color: #bbb;">
+                            <i class="fas fa-calendar-check" style="color: #00ff88; margin-right: 5px;"></i> Disponibilidad: <strong style="color: #fff;">24/7</strong>
+                        </div>
+                    </div>
+                    <a href="support.html" class="btn btn-red-gradient" style="width: 100%; display: flex; align-items: center; justify-content: center; gap: 10px; padding: 14px;">
+                        <i class="fas fa-ticket-alt"></i> IR A SOPORTE
+                    </a>
+                </div>
+
+                <!-- Estado del Servidor Dinámico -->
+                <div class="card mt-3" id="server-status-card" style="border: 2px solid var(--neon-green); background: rgba(0, 255, 136, 0.05); padding: 1.5rem; box-shadow: 0 0 20px rgba(0, 255, 136, 0.1); transition: all 0.5s ease;">
+                    <h3 style="color: var(--neon-green); font-size: 1.1rem; margin-bottom: 1rem; text-align: center; text-shadow: 0 0 10px rgba(0, 255, 136, 0.3);">
+                        <i class="fas fa-server" style="margin-right: 8px;"></i> ESTADO DEL SISTEMA
+                    </h3>
+                    
+                    <div id="contact-status-grid" style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 1rem;">
+                        <!-- Cargando info... -->
+                        <div style="grid-column: span 2; text-align: center; font-size: 0.8rem; color: #888; padding: 10px;">
+                            <i class="fas fa-sync fa-spin"></i> Sincronizando con StatusEngine...
+                        </div>
+                    </div>
+
+                    <div style="margin-top: 1.2rem; display: flex; flex-direction: column; gap: 10px;">
+                        <a href="changelog.html" class="btn btn-green-gradient" style="width: 100%; display: flex; align-items: center; justify-content: center; gap: 10px; padding: 12px;">
+                            <i class="fas fa-history"></i> VER MONITOR COMPLETO
+                        </a>
+                    </div>
+                </div>
+
+                <script>
+                    window.addEventListener('statusUpdate', (e) => {
+                        const modules = e.detail;
+                        const grid = document.getElementById('contact-status-grid');
+                        const card = document.getElementById('server-status-card');
+                        
+                        if (!grid) return;
+
+                        // Determinar si hay algún fallo
+                        const hasFailure = Object.values(modules).some(m => m.status === 'offline');
+                        if (hasFailure) {
+                            card.style.borderColor = '#ff4d4d';
+                            card.style.background = 'rgba(255, 77, 77, 0.05)';
+                            card.style.boxShadow = '0 0 20px rgba(255, 77, 77, 0.1)';
+                        }
+                        
+                        grid.innerHTML = `
+                            <div style="background: rgba(0, 255, 136, 0.05); border: 1px solid rgba(0, 255, 136, 0.2); padding: 10px; border-radius: 8px; text-align: center;">
+                                <div style="font-size: 0.65rem; color: #888; text-transform: uppercase;">Servidores</div>
+                                <div style="color: var(--neon-green); font-size: 0.85rem; font-weight: bold;">VZLA 🇻🇪</div>
+                            </div>
+                            <div style="background: rgba(0, 255, 136, 0.05); border: 1px solid rgba(0, 255, 136, 0.2); padding: 10px; border-radius: 8px; text-align: center;">
+                                <div style="font-size: 0.65rem; color: #888; text-transform: uppercase;">Estado</div>
+                                <div style="color: ${hasFailure ? '#ff4d4d' : 'var(--neon-green)'}; font-size: 0.85rem; font-weight: bold;">
+                                    ${hasFailure ? '✖ FALLO' : '✓ OK'}
+                                </div>
+                            </div>
+                            <div style="background: rgba(0, 255, 136, 0.05); border: 1px solid rgba(0, 255, 136, 0.2); padding: 10px; border-radius: 8px; text-align: center;">
+                                <div style="font-size: 0.65rem; color: #888; text-transform: uppercase;">Versión</div>
+                                <div style="color: var(--neon-green); font-size: 0.85rem; font-weight: bold;">v2.1.0-A</div>
+                            </div>
+                            <div style="background: rgba(0, 255, 136, 0.05); border: 1px solid rgba(0, 255, 136, 0.2); padding: 10px; border-radius: 8px; text-align: center;">
+                                <div style="font-size: 0.65rem; color: #888; text-transform: uppercase;">Auth API</div>
+                                <div style="color: ${modules.infra.status === 'online' ? 'var(--neon-green)' : '#ff4d4d'}; font-size: 0.85rem; font-weight: bold;">
+                                    ${modules.infra.status === 'online' ? '✓' : '✖'}
+                                </div>
+                            </div>
+                        `;
+                    });
+
+                    // Forzar actualización inicial
+                    if (window.StatusEngine && window.StatusEngine.modules) {
+                        window.dispatchEvent(new CustomEvent('statusUpdate', { detail: window.StatusEngine.modules }));
+                    }
+                </script>
             </section>
 
             <!-- Valoración y Reseñas (Se mantiene como Social Proof) -->
             <section>
-                <h2 class="mb-3">Opinión de la Comunidad</h2>
+                <h2 class="mb-3 text-center" style="color: var(--neon-pink); letter-spacing: 2px;">OPINIÓN DE LA COMUNIDAD</h2>
                 <div class="card" style="height: fit-content;">
-                    <h3 class="mb-2">Danos tu Valoración</h3>
+                    <h3 class="mb-2 text-center" style="color: var(--neon-pink); letter-spacing: 1px;">DANOS TU VALORACIÓN</h3>
+                    <p class="text-center" style="font-size: 0.85rem; color: #888; margin-bottom: 1.5rem;">Cuéntale a otros jugadores qué tal es la experiencia en MuzicMania.</p>
+                    
                     <div id="review-form-container">
-                        <div class="star-rating-input" id="rating-input-stars">
-                            <i class="fas fa-star" data-value="1"></i>
-                            <i class="fas fa-star" data-value="2"></i>
-                            <i class="fas fa-star" data-value="3"></i>
-                            <i class="fas fa-star" data-value="4"></i>
-                            <i class="fas fa-star" data-value="5"></i>
+                        <div style="display: flex; align-items: center; justify-content: center; margin-bottom: 1.5rem;">
+                            <div class="star-rating-input" id="rating-input-stars">
+                                <div class="stars-outer">
+                                    <i class="far fa-star"></i><i class="far fa-star"></i><i class="far fa-star"></i><i class="far fa-star"></i><i class="far fa-star"></i>
+                                    <div class="stars-inner" id="stars-filler">
+                                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                                    </div>
+                                </div>
+                                <span class="rating-display-val level-none" id="rating-text">0.0</span>
+                            </div>
                         </div>
                         <input type="hidden" id="rating-value" value="0">
                         
-                        <div class="form-group mt-2">
-                            <label>Tu Reseña</label>
-                            <textarea id="review-text" placeholder="¿Qué te ha parecido MuzicMania?" style="min-height: 100px;"></textarea>
+                        <div class="form-group mt-3">
+                            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 5px;">
+                                <label style="margin: 0;">Tu Mensaje</label>
+                                <span class="char-counter" id="char-counter">0 / 500</span>
+                            </div>
+                            <textarea id="review-text" class="premium-textarea" placeholder="Escribe aquí tu opinión oficial..." maxlength="500"></textarea>
                         </div>
                         
                         <div id="auth-warning-review" style="display: none; padding: 1rem; background: rgba(255, 166, 0, 0.1); border: 1px solid orange; color: orange; border-radius: 8px; margin-bottom: 1rem; font-size: 0.9rem;">
                             <i class="fas fa-exclamation-triangle"></i> Debes <strong>iniciar sesión</strong> para publicar una valoración.
                         </div>
 
-                        <button class="btn btn-full" id="submit-review-btn">
-                            <i class="fas fa-star"></i> PUBLICAR VALORACIÓN
+                        <button class="btn btn-full" id="submit-review-btn" style="margin-top: 0.5rem;">
+                            <i class="fas fa-paper-plane" style="margin-right: 8px;"></i> PUBLICAR VALORACIÓN
                         </button>
                     </div>
                 </div>
 
-                <div class="mt-4">
-                    <div class="review-sort-bar">
-                        <h3 style="margin: 0; font-size: 1.1rem;">Reseñas Recientes</h3>
+                <div class="mt-5 pt-4 mb-5" style="border-top: 1px solid rgba(255, 255, 255, 0.05); position: relative; margin-top: 80px !important;">
+                    <!-- Línea decorativa eliminada o simplificada para mejor limpieza -->
+                    
+                    <div class="review-sort-bar" style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 2.5rem; flex-wrap: wrap; gap: 2rem;">
+                        <h3 style="margin: 0; font-size: 1.4rem; letter-spacing: 2px;">
+                            <i class="fas fa-comments" style="margin-right: 15px; color: var(--neon-cyan);"></i>RESEÑAS RECIENTES
+                        </h3>
+                        
+                        <div class="sort-controls-wrapper" style="display: flex; align-items: center; gap: 20px;">
+                            <div style="display: flex; flex-direction: column; align-items: flex-end; gap: 5px;">
+                                <label class="filter-label" style="font-size: 0.75rem; letter-spacing: 2px; margin: 0; color: var(--neon-cyan); opacity: 0.8;">
+                                    <i class="fas fa-sort-amount-down" style="font-size: 0.7rem;"></i> ORDENAR POR:
+                                </label>
+                                <div style="display: flex; gap: 10px;">
+                                    <div class="custom-select-container" style="min-width: 200px;">
+                                        <div class="custom-select-trigger" id="custom-select-trigger" onclick="ReviewSystem.toggleDropdown()">
+                                            <span id="selected-text" style="font-size: 0.85rem;"><i class="fas fa-clock" style="margin-right: 10px; color: var(--neon-blue);"></i>Más Nuevas</span>
+                                            <i class="fas fa-chevron-down" style="font-size: 0.7rem;"></i>
+                                        </div>
+                                        <div class="custom-select-options" id="custom-select-options">
+                                            <div class="custom-option selected" data-value="newest"><i class="fas fa-clock" style="margin-right: 10px; color: var(--neon-blue);"></i>Más Nuevas</div>
+                                            <div class="custom-option" data-value="popular"><i class="fas fa-heart" style="margin-right: 10px; color: var(--neon-pink);"></i>Más Útiles</div>
+                                            <div class="custom-option" data-value="highest"><i class="fas fa-star" style="margin-right: 10px; color: #FFD700;"></i>Mejor Nota</div>
+                                        </div>
+                                    </div>
+                                    <button class="sort-direction-btn" id="sort-dir-btn" onclick="ReviewSystem.toggleSortDirection()" title="Invertir Orden" style="height: 42px; width: 42px;">
+                                        <i class="fas fa-arrow-down"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                    <div id="reviews-container">
+                    <div id="reviews-container" class="mt-2" style="display: grid; gap: 1.5rem;">
                         <!-- Reseñas Renderizadas Dinámicamente -->
                     </div>
                 </div>
             </section>
         </div>
-
-        <!-- Botón de Soporte Urgente -->
-        <div class="card mt-5 text-center" style="border: 1px dashed var(--neon-pink); background: rgba(255, 51, 204, 0.05); max-width: 700px; margin: 3rem auto;">
-            <h2 style="color: var(--neon-pink);"><i class="fas fa-exclamation-circle"></i> ¿Problemas Técnicos?</h2>
-            <p class="mb-3" style="color: #ccc;">Si tienes problemas con tu cuenta, pagos o errores críticos del juego, ve inmediatamente al Panel de Soporte.</p>
-            <a href="support.html" class="btn btn-sm" style="background: var(--neon-pink); border-color: var(--neon-pink); color: #fff; font-weight: bold; width: 250px;">
-                <i class="fas fa-headset"></i> IR A SOPORTE URGENTE
-            </a>
-        </div>
     </main>
 
     <!-- Estilos Adicionales (Temporales hasta mover a styles.css) -->
     <style>
-        .badge {
-            background: var(--neon-pink);
+        .contact-info-item {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 1.2rem;
+        }
+        .contact-info-item i {
+            color: var(--neon-cyan);
+            font-size: 1.2rem;
+            width: 25px;
+        }
+        /* Reseñas y Textarea Premium */
+        .premium-textarea {
+            width: 100%;
+            background: rgba(0,0,0,0.3);
+            border: 1px solid rgba(0, 212, 255, 0.2);
+            border-radius: 12px;
             color: #fff;
-            padding: 2px 8px;
-            border-radius: 10px;
-            font-size: 0.8rem;
-            vertical-align: middle;
-        }
-        .ticket-item {
             padding: 1rem;
-            border-bottom: 1px solid rgba(255,255,255,0.1);
-            transition: 0.3s;
+            font-family: inherit;
+            resize: vertical;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            outline: none;
         }
-        .ticket-item:hover {
+        .premium-textarea:focus {
+            border-color: var(--neon-cyan);
+            box-shadow: 0 0 15px rgba(0, 212, 255, 0.2);
             background: rgba(0, 212, 255, 0.05);
         }
-        .ticket-status {
+        .char-counter {
             font-size: 0.75rem;
-            text-transform: uppercase;
-            font-weight: bold;
-            padding: 2px 6px;
-            border-radius: 4px;
+            color: #666;
+            text-align: right;
+            margin-top: 4px;
         }
-        .status-pending { background: rgba(255, 166, 0, 0.2); color: orange; border: 1px solid orange; }
-        .status-closed { background: rgba(0, 255, 0, 0.2); color: #0f0; border: 1px solid #0f0; }
 
-        @keyframes rotateHologram {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
+        /* --- Sincronización con Changelog (Sort System) --- */
+        .custom-select-container {
+            position: relative;
+            cursor: pointer;
+            user-select: none;
         }
-        .loader-hologram {
-            width: 50px;
-            height: 50px;
-            border: 3px solid transparent;
-            border-top: 3px solid var(--neon-cyan);
-            border-bottom: 3px solid var(--neon-pink);
-            border-radius: 50%;
-            animation: rotateHologram 1s linear infinite;
+        .custom-select-trigger {
+            background: rgba(0, 0, 0, 0.4);
+            border: 1px solid rgba(0, 212, 255, 0.3);
+            border-radius: 8px;
+            padding: 10px 15px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            color: #ddd;
+            transition: all 0.3s;
+            backdrop-filter: blur(5px);
+        }
+        .custom-select-container.active .custom-select-trigger {
+            border-color: var(--neon-cyan);
+            box-shadow: 0 0 10px rgba(0, 212, 255, 0.2);
+            border-bottom-left-radius: 0;
+            border-bottom-right-radius: 0;
+        }
+        .custom-select-options {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            right: 0;
+            background: #0a0a0c;
+            border: 1px solid var(--neon-cyan);
+            border-top: none;
+            border-bottom-left-radius: 8px;
+            border-bottom-right-radius: 8px;
+            z-index: 1000;
+            display: none;
+            overflow: hidden;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.5);
+        }
+        .custom-select-container.active .custom-select-options {
+            display: block;
+        }
+        .custom-option {
+            padding: 12px 15px;
+            color: #aaa;
+            transition: 0.3s;
+            font-size: 0.85rem;
+        }
+        .custom-option:hover {
+            background: rgba(0, 212, 255, 0.1);
+            color: #fff;
+        }
+        .custom-option.selected {
+            background: rgba(0, 212, 255, 0.2);
+            color: var(--neon-cyan);
+        }
+        .sort-direction-btn {
+            background: rgba(0, 0, 0, 0.4);
+            border: 1px solid rgba(0, 212, 255, 0.3);
+            color: #888;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: 0.3s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .sort-direction-btn:hover {
+            border-color: var(--neon-cyan);
+            color: #fff;
+            background: rgba(0, 212, 255, 0.1);
+        }
+        .sort-direction-btn.inverted i {
+            transform: rotate(180deg);
+        }
+
+        /* --- Redes Sociales Interactivas --- */
+        .social-interactive-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+            gap: 0.8rem;
+            margin-top: 1rem;
+        }
+        .social-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 5px;
+            padding: 1.5rem;
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 12px;
+            text-decoration: none;
+            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            position: relative;
+            overflow: hidden;
+            min-height: 100px;
+        }
+        .social-item i {
+            font-size: 1.8rem;
+            color: #fff;
+            transition: all 0.3s ease;
+        }
+        .social-name {
+            font-size: 0.85rem;
+            color: #ccc;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+        .social-tag {
+            font-size: 0.75rem;
+            color: #fff;
+            font-weight: 700;
+            position: absolute;
+            bottom: -20px;
+            opacity: 0;
+            transition: all 0.3s ease;
+            text-transform: none;
+        }
+        .social-item:hover {
+            border-color: var(--social-color);
+            background: rgba(255, 255, 255, 0.05);
+            box-shadow: 0 0 20px var(--social-color);
+            transform: translateY(-8px);
+        }
+        .social-item:hover i {
+            color: var(--social-color);
+            transform: scale(1.1) translateY(-10px);
+        }
+        .social-item:hover .social-name {
+            opacity: 0;
+            transform: scale(0.8);
+        }
+        .social-item:hover .social-tag {
+            opacity: 1;
+            bottom: 1.5rem;
+        }
+
+        /* --- Server Status Dashboard --- */
+        .dash-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 0.8rem;
+            margin-top: 1rem;
+        }
+        .dash-item {
+            background: rgba(0, 255, 136, 0.03);
+            border: 1px solid rgba(0, 255, 136, 0.15);
+            border-radius: 8px;
+            padding: 1rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            transition: 0.3s;
+        }
+        .dash-item:hover {
+            background: rgba(0, 255, 136, 0.08);
+            border-color: var(--neon-green);
+            transform: scale(1.02);
+            box-shadow: 0 0 15px rgba(0, 255, 136, 0.1);
+        }
+        .dash-item-label {
+            font-size: 0.7rem;
+            color: #00ff8888;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            font-weight: 700;
+        }
+        .dash-item-value {
+            font-size: 1rem;
+            font-weight: 900;
+            color: #fff;
+            margin-top: 5px;
+            text-shadow: 0 0 10px rgba(0, 255, 136, 0.3);
         }
     </style>
 
     <!-- Layout System -->
-    <script src="layout.js?v=854798"></script>
+    <script src="layout.js?v=UPDATE_CRITICAL_FIX"></script>
 
     <script>
         // --- Advanced Review System ---
         const ReviewSystem = {
             storageKey: 'muzicmania_reviews',
+            sortDirection: 1, // 1 Desc (Newest), -1 Asc (Oldest)
             reviews: [
-                { id: 1, user: 'CyberGamer42', initials: 'CG', rating: 5, text: '¡Increíble juego! Los visuales son espectaculares.', date: '2026-01-28T10:00:00Z', likes: 45 },
-                { id: 2, user: 'NeonQueen', initials: 'NQ', rating: 4, text: 'Me encanta la estética futurista, las canciones son geniales.', date: '2026-01-25T15:30:00Z', likes: 12 },
-                { id: 3, user: 'RhythmMaster', initials: 'RM', rating: 5, text: 'La detección de teclas es perfecta. Súper satisfactorio.', date: '2026-01-20T09:00:00Z', likes: 89 },
-                { id: 4, user: 'SynthWaveKid', initials: 'SK', rating: 3, text: 'El arte es genial pero necesito más variedad de canciones.', date: '2026-01-15T12:00:00Z', likes: 5 },
-                { id: 5, user: 'DigitalDreamer', initials: 'DD', rating: 5, text: 'MuzicMania ha redefinido lo que espero de un juego de ritmo de navegador.', date: '2026-01-29T18:45:00Z', likes: 32 }
+                { id: 1, user: 'CyberGamer42', initials: 'CG', rating: 5, text: '¡Increíble juego! Los visuales son espectaculares.', date: '2026-01-28T10:00:00Z', likes: 45, isBot: true },
+                { id: 2, user: 'NeonQueen', initials: 'NQ', rating: 4, text: 'Me encanta la estética futurista, las canciones son geniales.', date: '2026-01-25T15:30:00Z', likes: 12, isBot: true },
+                { id: 3, user: 'RhythmMaster', initials: 'RM', rating: 5, text: 'La detección de teclas es perfecta. Súper satisfactorio.', date: '2026-01-20T09:00:00Z', likes: 89, isBot: true },
+                { id: 4, user: 'SynthWaveKid', initials: 'SK', rating: 3, text: 'El arte es genial pero necesito más variedad de canciones.', date: '2026-01-15T12:00:00Z', likes: 5, isBot: true },
+                { id: 5, user: 'DigitalDreamer', initials: 'DD', rating: 5, text: 'MuzicMania ha redefinido lo que espero de un juego de ritmo de navegador.', date: '2026-01-29T18:45:00Z', likes: 32, isBot: true }
             ],
 
             init: function() {
                 this.render();
                 this.setupStars();
+                this.setupCounters();
+                this.setupSorting();
                 this.setupSubmit();
+                this.setupOutsideClick();
             },
 
             setupStars: function() {
-                const stars = document.querySelectorAll('#rating-input-stars i');
+                const container = document.getElementById('rating-input-stars');
+                const filler = document.getElementById('stars-filler');
+                const text = document.getElementById('rating-text');
                 const valInput = document.getElementById('rating-value');
+                if (!container || !filler) return;
                 
-                stars.forEach(star => {
-                    star.addEventListener('mouseover', () => {
-                        const val = parseInt(star.getAttribute('data-value'));
-                        this.highlightStars(val);
-                    });
+                const update = (e, isClick = false) => {
+                    const starsOuter = container.querySelector('.stars-outer');
+                    const rect = starsOuter.getBoundingClientRect();
+                    const x = e.clientX - rect.left;
+                    let percent = (x / rect.width) * 100;
                     
-                    star.addEventListener('mouseout', () => {
-                        const currentVal = parseInt(valInput.value);
-                        this.highlightStars(currentVal);
-                    });
+                    let rating = Math.ceil(percent / 10) * 0.5;
+                    rating = Math.max(0.5, Math.min(5, rating));
                     
-                    star.addEventListener('click', () => {
-                        valInput.value = star.getAttribute('data-value');
-                        this.highlightStars(parseInt(valInput.value));
+                    const fillPercent = (rating / 5) * 100;
+                    filler.style.width = fillPercent + '%';
+                    text.innerText = rating.toFixed(1);
+                    
+                    // Actualizar Color de Estrellas y Número
+                    const levelClass = rating <= 2 ? 'level-low' : (rating <= 3.5 ? 'level-mid' : (rating <= 4.5 ? 'level-high' : 'level-max'));
+                    
+                    filler.className = 'stars-inner ' + levelClass;
+                    text.className = 'rating-display-val ' + levelClass;
+                    text.style.color = ''; // Limpiar estilos inline
+                    text.style.webkitTextFillColor = '';
+
+                    if (isClick) {
+                        valInput.value = rating;
+                        container.setAttribute('data-selected', rating);
+                        
+                        // Trigger Animation
+                        filler.classList.remove('animate-pop');
+                        text.classList.remove('animate-pop');
+                        void filler.offsetWidth; // Force reflow
+                        filler.classList.add('animate-pop');
+                        text.classList.add('animate-pop');
+                    }
+                };
+
+                container.addEventListener('mousemove', (e) => update(e));
+                container.addEventListener('click', (e) => update(e, true));
+                container.addEventListener('mouseleave', () => {
+                    const selected = parseFloat(valInput.value) || 0;
+                    filler.style.width = (selected / 5 * 100) + '%';
+                    text.innerText = selected.toFixed(1);
+                    filler.className = 'stars-inner';
+                    text.className = 'rating-display-val';
+                    
+                    if (selected > 0) {
+                        const levelClass = selected <= 2 ? 'level-low' : (selected <= 3.5 ? 'level-mid' : (selected <= 4.5 ? 'level-high' : 'level-max'));
+                        filler.classList.add(levelClass);
+                        text.classList.add(levelClass);
+                    } else {
+                        // Forzar blanco para 0.0 vía clase
+                        text.classList.add('level-none');
+                    }
+                });
+            },
+
+            setupCounters: function() {
+                const textarea = document.getElementById('review-text');
+                const counter = document.getElementById('char-counter');
+                if(!textarea || !counter) return;
+
+                textarea.addEventListener('input', () => {
+                    const len = textarea.value.length;
+                    counter.innerText = `${len} / 500`;
+                    if (len >= 500) counter.style.color = 'var(--neon-pink)';
+                    else if (len < 10) counter.style.color = '#888';
+                    else counter.style.color = 'var(--neon-cyan)';
+                });
+            },
+
+            setupSorting: function() {
+                const options = document.querySelectorAll('.custom-option');
+                options.forEach(opt => {
+                    opt.addEventListener('click', () => {
+                        const val = opt.getAttribute('data-value');
+                        
+                        // UI Update
+                        document.getElementById('selected-text').innerHTML = opt.innerHTML;
+                        options.forEach(o => o.classList.remove('selected'));
+                        opt.classList.add('selected');
+                        
+                        document.querySelector('.custom-select-container').classList.remove('active');
+                        this.render(val);
                     });
                 });
             },
 
-            highlightStars: function(count) {
-                const stars = document.querySelectorAll('#rating-input-stars i');
-                stars.forEach(s => {
-                    const v = parseInt(s.getAttribute('data-value'));
-                    s.classList.toggle('active', v <= count);
+            toggleDropdown: function() {
+                document.querySelector('.custom-select-container').classList.toggle('active');
+            },
+
+            setupOutsideClick: function() {
+                window.addEventListener('click', (e) => {
+                    const container = document.querySelector('.custom-select-container');
+                    if (container && !container.contains(e.target)) {
+                        container.classList.remove('active');
+                    }
                 });
+            },
+
+            toggleSortDirection: function() {
+                this.sortDirection *= -1;
+                const btn = document.getElementById('sort-dir-btn');
+                btn.classList.toggle('inverted');
+                
+                const currentSort = document.querySelector('.custom-option.selected').getAttribute('data-value');
+                this.render(currentSort);
             },
 
             setupSubmit: function() {
@@ -489,16 +979,21 @@
                         return;
                     }
 
-                    const rating = parseInt(document.getElementById('rating-value').value);
-                    const text = document.getElementById('review-text').value;
+                    const rating = parseFloat(document.getElementById('rating-value').value);
+                    const text = document.getElementById('review-text').value.trim();
 
                     if (rating === 0) {
-                        alert('Por favor, selecciona una puntuación.');
+                        alert('Selecciona una puntuación con las estrellas.');
                         return;
                     }
 
-                    if (text.length < 5) {
-                        alert('Tu reseña debe ser un poco más larga.');
+                    if (text.length < 10) {
+                        alert('La reseña es obligatoria y debe tener al menos 10 caracteres.');
+                        return;
+                    }
+
+                    if (text.length > 500) {
+                        alert('La reseña no puede superar los 500 caracteres.');
                         return;
                     }
 
@@ -513,42 +1008,96 @@
                     };
 
                     this.reviews.unshift(newReview);
-                    this.render();
+                    
+                    const sortBy = document.querySelector('.custom-option.selected').getAttribute('data-value');
+                    this.render(sortBy);
                     
                     document.getElementById('rating-value').value = 0;
                     document.getElementById('review-text').value = '';
-                    this.highlightStars(0);
-                    alert('¡Gracias por tu valoración!');
+                    document.getElementById('char-counter').innerText = '0 / 500';
+                    document.getElementById('stars-filler').style.width = '0%';
+                    document.getElementById('rating-text').innerText = '0.0';
+                    alert('¡Gracias por tu valoración! Se ha publicado con éxito.');
                 });
             },
 
-            render: function() {
+            render: function(sortBy = 'newest') {
                 const container = document.getElementById('reviews-container');
                 if(!container) return;
                 
                 let sorted = [...this.reviews];
-                sorted.sort((a,b) => new Date(b.date) - new Date(a.date));
+                
+                sorted.sort((a,b) => {
+                    let valA, valB;
+                    
+                    if (sortBy === 'newest') {
+                        valA = new Date(a.date).getTime();
+                        valB = new Date(b.date).getTime();
+                    } else if (sortBy === 'popular') {
+                        valA = a.likes;
+                        valB = b.likes;
+                    } else if (sortBy === 'highest') {
+                        valA = a.rating;
+                        valB = b.rating;
+                    }
 
-                container.innerHTML = sorted.map(r => `
-                    <div class="review-card" data-id="${r.id}">
-                        <div class="review-user-info">
-                            <div class="review-avatar">${r.initials}</div>
-                            <div>
-                                <strong style="color: var(--neon-cyan);">${r.user}</strong>
-                                <div class="rating-stars" style="font-size: 0.8rem; justify-content: flex-start;">
-                                    ${Array(5).fill(0).map((_, i) => `<i class="${i < r.rating ? 'fas' : 'far'} fa-star" style="color: #FFD700;"></i>`).join('')}
+                    // Por defecto es Desc (B - A), con sortDirection se invierte
+                    return (valB - valA) * this.sortDirection;
+                });
+
+                container.innerHTML = sorted.map(r => {
+                    const isDebug = localStorage.getItem('debugStats');
+                    const botBadge = (r.isBot && isDebug) ? '<span style="background: var(--neon-cyan); color: #0a0a14; font-size: 0.55rem; padding: 2px 5px; border-radius: 4px; margin-left: 8px; font-weight: bold; vertical-align: middle;">BOT</span>' : '';
+                    return `
+                    <div class="review-card" data-id="${r.id}" style="padding: 1.5rem; border: 1px solid rgba(255,255,255,0.05); background: rgba(0,0,0,0.2);">
+                        <div class="review-header" style="display: flex; align-items: center; gap: 15px; margin-bottom: 1.2rem;">
+                            <div style="display: flex; flex-direction: column; gap: 4px; order: 1; text-align: left;">
+                                <strong style="color: #fff; font-size: 1.1rem; line-height: 1;">${r.user}${botBadge}</strong>
+                                <div style="display: flex; align-items: center; gap: 8px; margin-top: 4px;">
+                                    <div class="rating-stars" style="font-size: 0.7rem; display: flex; gap: 2px;">
+                                        ${this.renderStars(r.rating)}
+                                    </div>
+                                    <span style="font-size: 0.8rem; font-weight: bold; color: ${this.getStarColor(r.rating)}; opacity: 0.9;">${r.rating.toFixed(1)}</span>
                                 </div>
                             </div>
-                            <span style="margin-left: auto; color: #666; font-size: 0.8rem;">${this.formatDate(r.date)}</span>
+                            <div class="review-avatar" style="width: 42px; height: 42px; font-size: 1rem; flex-shrink: 0; border: 2px solid var(--neon-cyan); box-shadow: 0 0 10px rgba(0, 212, 255, 0.2); order: 2;">${r.initials}</div>
                         </div>
-                        <p style="color: #ddd; line-height: 1.6; margin-bottom: 1rem;">"${r.text}"</p>
-                        <div style="display: flex; gap: 10px;">
-                            <button class="review-like-btn" onclick="ReviewSystem.handleLike(this, ${r.id})">
-                                <i class="fas fa-heart"></i> <span class="like-count">${r.likes}</span>
-                            </button>
+                        
+                        <p style="color: #ccc; line-height: 1.6; margin-bottom: 1.5rem; font-size: 0.95rem;">"${r.text}"</p>
+                        
+                        <div class="review-footer" style="display: flex; justify-content: space-between; align-items: center; border-top: 1px solid rgba(255,255,255,0.03); padding-top: 12px;">
+                            <span style="color: #666; font-size: 0.75rem;">
+                                <i class="far fa-calendar-alt" style="margin-right: 5px;"></i> ${this.formatDate(r.date)}
+                            </span>
+                            <div class="rating-box" style="margin: 0; padding: 0; border: none;">
+                                <div class="rate-item" onclick="ReviewSystem.handleLike(this, ${r.id})" style="cursor: pointer; display: flex; align-items: center; gap: 8px; color: #888; transition: all 0.3s ease; background: rgba(255,255,255,0.02); padding: 4px 10px; border-radius: 20px;">
+                                    <i class="far fa-heart"></i> <span class="rate-count">${r.likes}</span>
+                                </div>
+                            </div>
                         </div>
                     </div>
-                `).join('');
+                `}).join('');
+            },
+
+            renderStars: function(rating) {
+                let stars = '';
+                for (let i = 1; i <= 5; i++) {
+                    if (rating >= i) {
+                        stars += `<i class="fas fa-star" style="color: ${this.getStarColor(rating)}"></i>`;
+                    } else if (rating >= i - 0.5) {
+                        stars += `<i class="fas fa-star-half-alt" style="color: ${this.getStarColor(rating)}"></i>`;
+                    } else {
+                        stars += '<i class="far fa-star" style="color: rgba(255,255,255,0.05)"></i>';
+                    }
+                }
+                return stars;
+            },
+
+            getStarColor: function(rating) {
+                if (rating <= 2) return '#ff4d4d';
+                if (rating <= 3.5) return '#ffaa00';
+                if (rating <= 4.5) return '#FFD700';
+                return '#00f0ff';
             },
 
             formatDate: function(dateStr) {
@@ -560,18 +1109,32 @@
                 return d.toLocaleDateString();
             },
 
-            handleLike: function(btn, id) {
+            handleLike: function(element, id) {
+                if (typeof AuthSystem !== 'undefined' && !AuthSystem.getCurrentUser()) {
+                    if(confirm("Debes iniciar sesión para dar Like. ¿Ir al Login?")) {
+                        AuthSystem.openModal('login');
+                    }
+                    return;
+                }
+
+                const icon = element.querySelector('i');
+                const count = element.querySelector('.rate-count');
                 const review = this.reviews.find(r => r.id === id);
                 if (!review) return;
-
-                if (btn.classList.contains('liked')) {
-                    review.likes--;
-                    btn.classList.remove('liked');
-                } else {
+                
+                if (icon.classList.contains('far')) {
+                    icon.classList.replace('far', 'fas');
+                    icon.style.color = 'var(--neon-pink)';
                     review.likes++;
-                    btn.classList.add('liked');
+                    count.innerText = review.likes;
+                    element.style.color = 'var(--neon-pink)';
+                } else {
+                    icon.classList.replace('fas', 'far');
+                    icon.style.color = '';
+                    review.likes--;
+                    count.innerText = review.likes;
+                    element.style.color = '#888';
                 }
-                btn.querySelector('.like-count').textContent = review.likes;
             }
         };
 
@@ -590,10 +1153,10 @@
         window.addEventListener('authChange', initializeContactPage);
 
     </script>
-    <script src="auth.js?v=2"></script>
-    <script src="utils.js?v=854798"></script>
-    <script src="search.js?v=1"></script>
-    <script src="navigation.js?v=854798"></script>
+    <script src="auth.js?v=UPDATE_CRITICAL_FIX"></script>
+    <script src="utils.js?v=UPDATE_CRITICAL_FIX"></script>
+    <script src="search.js?v=UPDATE_CRITICAL_FIX"></script>
+    <script src="navigation.js?v=UPDATE_CRITICAL_FIX"></script>
 </body>
 </html>
 

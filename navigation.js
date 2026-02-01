@@ -107,6 +107,41 @@ class AdaptiveNav {
             overlay.classList.remove('active');
         }
     }
+
+    // === MÉTODOS DE SOPORTE PARA AUTH Y OVERFLOW ===
+    static checkOverflow() {
+        // Placeholder robusto para evitar crash si Auth lo llama
+        console.log('AdaptiveNav: Verificando overflow (placeholder)');
+        // Futura implementación: Ocultar items del nav si el ancho < 800px
+    }
+
+    static toggleAccessMenu() {
+        const menu = document.getElementById('auth-quick-options');
+        const btn = document.getElementById('btn-access-header');
+        
+        // Cerrar otros menús si es necesario
+        this.toggleMenu(false); // Cerrar menú hamburguesa
+
+        if (menu) {
+            const isActive = menu.classList.toggle('active');
+            if (btn) btn.innerHTML = isActive 
+                ? '<i class="fas fa-times"></i> <span class="btn-text">Cancelar</span>' 
+                : '<i class="fas fa-user-circle"></i> <span class="btn-text">Acceder</span>';
+            
+            if (btn) btn.classList.toggle('active', isActive);
+        }
+    }
+
+    static closeAccessMenu() {
+        const menu = document.getElementById('auth-quick-options');
+        const btn = document.getElementById('btn-access-header');
+        
+        if (menu) menu.classList.remove('active');
+        if (btn) {
+            btn.innerHTML = '<i class="fas fa-user-circle"></i> <span class="btn-text">Acceder</span>';
+            btn.classList.remove('active');
+        }
+    }
 }
 
 // Inicializar cuando el DOM esté listo
