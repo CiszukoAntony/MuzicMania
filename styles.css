@@ -387,97 +387,106 @@ nav a.active {
   background-clip: text;
 }
 
-/* === MAIN NAVIGATION CONTAINER === */
-/* === MAIN NAVIGATION CONTAINER === */
-/* === MAIN NAVIGATION CONTAINER === */
+/* === MAIN NAVIGATION CONTAINER (REFACTORED) === */
 .nav-comprehensive {
     display: flex;
     align-items: center;
     justify-content: flex-end;
     flex-grow: 1;
-    /* Gap base seguro, pero confiaremos más en márgenes explícitos */
-    gap: 10px; 
-    height: 100%;
+    gap: 0; /* Gap manejado por márgenes para precisión milimétrica */
+    height: 60px; /* Altura controlada */
     position: relative;
 }
 
-/* === HEADER ACTIONS === */
+/* Forzar centrado vertical de todos los hijos directos */
+.nav-comprehensive > * {
+    display: flex;
+    align-items: center;
+    height: 100%;
+}
+
+/* Link List */
+.nav-comprehensive ul {
+    display: flex;
+    gap: 5px;
+    margin: 0 20px 0 0;
+    padding: 0;
+    list-style: none;
+}
+
+/* === AUTH SECTION (ACCEDER) === */
+#auth-section {
+    margin-right: 35px !important; /* Separación crítica con la Lupa */
+    position: relative;
+    z-index: 55;
+    transition: opacity 0.3s ease;
+}
+
+/* === HEADER ACTIONS (SEARCH + MENU) === */
 .header-actions {
     display: flex;
     align-items: center;
-    gap: 12px; /* Separación Lupa <-> Menú */
-    /* MARGEN BLINDADO: Separa acciones del resto (Auth) */
-    margin-left: 40px !important; 
-    height: 100%;
+    gap: 12px;
     position: relative;
-    z-index: 60; /* Encima de todo */
+    z-index: 60;
+    margin-left: 0;
 }
 
-/* Fix específico para el botón Acceder (Auth) */
-#auth-section, #btn-access-header {
-    margin-right: 0px !important; 
-    /* El margen lo pone .header-actions con margin-left */
-    position: relative;
-    z-index: 55;
-    white-space: nowrap; /* Evitar saltos de línea */
-}
-
-/* === SEARCH SYSTEM (OVERLAY MODE) === */
+/* === SEARCH SYSTEM (OVERLAY) === */
 .search-wrapper {
     position: relative;
     display: flex;
     align-items: center;
+    justify-content: center;
+    width: 42px;
+    height: 42px;
 }
 
 .search-input-container {
     position: absolute;
-    right: 55px; /* 42px width btn + ~12px gap -> Sale a la izquierda */
+    right: 52px; /* Justo al lado del botón de búsqueda */
     top: 50%;
     transform: translateY(-50%);
     width: 0;
     height: 40px;
     background: var(--bg-dark);
-    border-radius: 25px;
-    display: flex; /* Flex para alinear input interno */
-    align-items: center; 
+    border-radius: 20px;
+    border: 1px solid transparent;
     overflow: hidden;
-    transition: width 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+    transition: width 0.3s cubic-bezier(0.4, 0, 0.2, 1), border 0.3s, opacity 0.2s;
     opacity: 0;
     pointer-events: none;
-    box-shadow: -5px 0 15px rgba(0,0,0,0.5);
-    z-index: 58; /* Debajo de los botones pero encima del nav */
+    z-index: 50;
+    display: flex;
+    align-items: center;
+    box-shadow: 0 0 15px rgba(0, 212, 255, 0.2);
 }
 
-/* Cuando está activo (manejado por JS toggling .active en wrapper) */
-.search-wrapper.active .search-input-container {
+/* Estado Activo del Buscador */
+.search-wrapper.active .search-input-container,
+.nav-comprehensive.searching .search-input-container {
     width: 280px;
     opacity: 1;
-    pointer-events: all !important;
-    padding-left: 15px;
-    border: 1px solid var(--neon-blue);
-}
-
-.nav-comprehensive.searching .search-input-container {
-    /* Compatibilidad con clase vieja, pero layout local manda */
-    display: flex;
+    pointer-events: all;
+    padding: 0 15px;
+    border-color: var(--neon-blue);
+    background: rgba(5, 5, 10, 0.95);
 }
 
 /* Ocultar elementos que estorban al buscar */
 .nav-comprehensive.searching > ul,
-.nav-comprehensive.searching > #auth-section {
+.nav-comprehensive.searching #auth-section {
     opacity: 0;
     pointer-events: none;
-    transition: opacity 0.2s;
 }
 
-
-/* Ajustes de botones/input base */
+/* === BOTONES (Lupa y Menú Hamburguesa) === */
 .search-btn, .menu-toggle-btn {
     width: 42px !important;
     height: 42px !important;
     border-radius: 50% !important;
     border: 2px solid var(--neon-blue) !important;
-    background: rgba(0,0,0,0.3) !important;
+    background: rgba(0,0,0,0.4) !important;
     color: var(--neon-cyan) !important;
     display: flex !important;
     align-items: center;
@@ -486,9 +495,10 @@ nav a.active {
     transition: all 0.2s ease;
     padding: 0 !important;
     margin: 0 !important;
+    font-size: 1rem;
+    line-height: 0;
     flex-shrink: 0;
     box-shadow: 0 0 10px rgba(0, 212, 255, 0.1);
-    line-height: 0;
 }
 
 .search-btn:hover, .menu-toggle-btn:hover {
