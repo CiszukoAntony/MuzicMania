@@ -425,11 +425,13 @@ nav a.active {
 /* === HEADER ACTIONS (SEARCH + MENU) === */
 .header-actions {
     display: flex;
-    align-items: center;
+    align-items: center !important;
     gap: 12px;
     position: relative;
     z-index: 60;
     margin-left: 0;
+    height: 42px; /* Altura síncrona con los botones */
+    align-self: center;
 }
 
 /* === SEARCH SYSTEM (OVERLAY) === */
@@ -489,16 +491,22 @@ nav a.active {
     background: rgba(0,0,0,0.4) !important;
     color: var(--neon-cyan) !important;
     display: flex !important;
-    align-items: center;
-    justify-content: center;
+    align-items: center !important;
+    justify-content: center !important;
     cursor: pointer;
     transition: all 0.2s ease;
     padding: 0 !important;
     margin: 0 !important;
-    font-size: 1rem;
-    line-height: 0;
+    font-size: 1.1rem !important;
+    line-height: 1 !important;
     flex-shrink: 0;
     box-shadow: 0 0 10px rgba(0, 212, 255, 0.1);
+}
+
+.search-btn i, .menu-toggle-btn i {
+    display: block !important;
+    line-height: 1 !important;
+    margin: 0 !important;
 }
 
 .search-btn:hover, .menu-toggle-btn:hover {
