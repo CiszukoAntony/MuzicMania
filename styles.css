@@ -1132,6 +1132,15 @@ main {
   margin: var(--spacing-lg) 0;
 }
 
+/* FAQ Grid Fix: Independencia de altura */
+.faq-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: var(--spacing-md);
+  margin: var(--spacing-lg) 0;
+  align-items: start; /* CRÍTICO: Evita el estiramiento sincronizado */
+}
+
 /* Stats Grid */
 .stats-grid {
   display: grid;
