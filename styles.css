@@ -389,92 +389,87 @@ nav a.active {
 
 /* === MAIN NAVIGATION CONTAINER === */
 /* === MAIN NAVIGATION CONTAINER === */
+/* === MAIN NAVIGATION CONTAINER === */
 .nav-comprehensive {
     display: flex;
     align-items: center;
     justify-content: flex-end;
     flex-grow: 1;
-    gap: 30px; /* Aumentado: Separación clara entre Auth y Acciones */
+    /* Gap base seguro, pero confiaremos más en márgenes explícitos */
+    gap: 10px; 
     height: 100%;
+    position: relative;
 }
 
-/* === HEADER ACTIONS (New Wrapper) === */
+/* === HEADER ACTIONS === */
 .header-actions {
     display: flex;
     align-items: center;
-    gap: 10px; /* Reducido: Lupa y Menú más juntos */
-    margin-left: 20px !important; /* Muro de contención anti-superposición */
-    height: auto;
-    align-self: center;
+    gap: 12px; /* Separación Lupa <-> Menú */
+    /* MARGEN BLINDADO: Separa acciones del resto (Auth) */
+    margin-left: 40px !important; 
+    height: 100%;
     position: relative;
-    z-index: 50;
-    transition: margin 0.3s ease;
+    z-index: 60; /* Encima de todo */
 }
 
-/* === AUTH QUICK OPTIONS === */
-.auth-quick-options {
-    display: none;
-    gap: 10px;
-    margin-right: 10px;
-    animation: fadeInRight 0.3s ease;
+/* Fix específico para el botón Acceder (Auth) */
+#auth-section, #btn-access-header {
+    margin-right: 0px !important; 
+    /* El margen lo pone .header-actions con margin-left */
+    position: relative;
+    z-index: 55;
+    white-space: nowrap; /* Evitar saltos de línea */
 }
 
-.auth-quick-options.active {
-    display: flex;
-}
-
-@keyframes fadeInRight {
-    from { opacity: 0; transform: translateX(10px); }
-    to { opacity: 1; transform: translateX(0); }
-}
-
-
-/* === SEARCH SYSTEM ROBUST (State-Driven) === */
-
-/* Estado Normal */
+/* === SEARCH SYSTEM (OVERLAY MODE) === */
 .search-wrapper {
+    position: relative;
     display: flex;
     align-items: center;
-    justify-content: flex-end;
-    gap: 0;
-    margin: 0;
-    padding: 0;
-    position: relative;
-    height: auto;
 }
 
-/* ESTADO DE BÚSQUEDA ACTIVO (Aplicado a nav#main-nav) */
-/* Ocultar elementos que estorban */
-.nav-comprehensive.searching > ul,
-.nav-comprehensive.searching > #auth-section {
-    display: none !important;
+.search-input-container {
+    position: absolute;
+    right: 55px; /* 42px width btn + ~12px gap -> Sale a la izquierda */
+    top: 50%;
+    transform: translateY(-50%);
+    width: 0;
+    height: 40px;
+    background: var(--bg-dark);
+    border-radius: 25px;
+    display: flex; /* Flex para alinear input interno */
+    align-items: center; 
+    overflow: hidden;
+    transition: width 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
     opacity: 0;
     pointer-events: none;
+    box-shadow: -5px 0 15px rgba(0,0,0,0.5);
+    z-index: 58; /* Debajo de los botones pero encima del nav */
 }
 
-/* Expandir área de búsqueda */
-.nav-comprehensive.searching .header-actions {
-    flex-grow: 1;
-    margin-left: 0 !important;
-    justify-content: flex-end;
-    width: 100%;
-}
-
-.nav-comprehensive.searching .search-wrapper {
-    flex-grow: 1;
-    max-width: 600px; /* Ancho máximo del buscador */
-    margin-right: 15px;
+/* Cuando está activo (manejado por JS toggling .active en wrapper) */
+.search-wrapper.active .search-input-container {
+    width: 280px;
+    opacity: 1;
+    pointer-events: all !important;
+    padding-left: 15px;
+    border: 1px solid var(--neon-blue);
 }
 
 .nav-comprehensive.searching .search-input-container {
-    position: relative; /* Ya no absoluto */
-    right: auto;
-    top: auto;
-    transform: none;
-    width: 100% !important; /* Llenar espacio */
-    opacity: 1;
+    /* Compatibilidad con clase vieja, pero layout local manda */
     display: flex;
 }
+
+/* Ocultar elementos que estorban al buscar */
+.nav-comprehensive.searching > ul,
+.nav-comprehensive.searching > #auth-section {
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.2s;
+}
+
 
 /* Ajustes de botones/input base */
 .search-btn, .menu-toggle-btn {
