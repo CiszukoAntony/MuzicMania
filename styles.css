@@ -388,12 +388,13 @@ nav a.active {
 }
 
 /* === MAIN NAVIGATION CONTAINER === */
+/* === MAIN NAVIGATION CONTAINER === */
 .nav-comprehensive {
     display: flex;
     align-items: center;
     justify-content: flex-end;
     flex-grow: 1;
-    gap: 20px; /* Espacio vital garantizado entre bloques */
+    gap: 30px; /* Aumentado: Separación clara entre Auth y Acciones */
     height: 100%;
 }
 
@@ -401,9 +402,10 @@ nav a.active {
 .header-actions {
     display: flex;
     align-items: center;
-    gap: 15px;
-    margin-left: 0; /* Ya no necesario gracias al gap del padre */
-    height: 100%;
+    gap: 10px; /* Reducido: Lupa y Menú más juntos */
+    margin-left: 20px !important; /* Muro de contención anti-superposición */
+    height: auto;
+    align-self: center;
     position: relative;
     z-index: 50;
     transition: margin 0.3s ease;
