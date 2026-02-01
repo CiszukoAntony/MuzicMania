@@ -79,20 +79,22 @@ class AdaptiveNav {
     }
 
     static setupMenu() {
-        const menuBtn = document.querySelector('.menu-toggle-btn');
-        const closeBtn = document.querySelector('.close-menu-btn');
-        const backdrop = document.querySelector('.menu-backdrop');
-        const overlay = document.querySelector('.nav-overlay');
+        document.addEventListener('click', (e) => {
+            // 1. Botón de Menú (Toggle)
+            const menuBtn = e.target.closest('.menu-toggle-btn');
+            if (menuBtn) {
+                this.toggleMenu();
+                return;
+            }
 
-        if (menuBtn) {
-            menuBtn.addEventListener('click', () => this.toggleMenu());
-        }
-        if (closeBtn) {
-            closeBtn.addEventListener('click', () => this.toggleMenu(false));
-        }
-        if (backdrop) {
-            backdrop.addEventListener('click', () => this.toggleMenu(false));
-        }
+            // 2. Fondo o Botón Cerrar (Solo si el menú está activo)
+            const backdrop = e.target.closest('.menu-backdrop');
+            const closeBtn = e.target.closest('.close-menu-btn');
+            
+            if (backdrop || closeBtn) {
+                this.toggleMenu(false);
+            }
+        });
     }
 
     static toggleMenu(show) {

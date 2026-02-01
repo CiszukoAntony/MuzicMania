@@ -77,7 +77,7 @@ const Layout = {
     </div>`,
 
             navOverlay: `
-    <div class="menu-backdrop" onclick="AdaptiveNav.toggleMenu(false)"></div>
+    <div class="menu-backdrop"></div>
     <div class="nav-overlay">
         <div class="nav-overlay-header">
             <h3>MAIN MENU</h3>
@@ -184,7 +184,7 @@ const Layout = {
                         <div class="search-results-dropdown"></div>
                     </div>
 
-                    <button class="menu-toggle-btn" onclick="AdaptiveNav.toggleMenu()" title="Menú">
+                    <button class="menu-toggle-btn" title="Menú">
                         <i class="fas fa-bars"></i>
                     </button>
                 </div>
