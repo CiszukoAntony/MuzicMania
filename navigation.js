@@ -98,15 +98,21 @@ class AdaptiveNav {
     static toggleMenu(show) {
         const backdrop = document.querySelector('.menu-backdrop');
         const overlay = document.querySelector('.nav-overlay');
+        const menuBtn = document.querySelector('.menu-toggle-btn');
 
         if (!overlay || !backdrop) return;
 
         // Si no se define 'show', alternamos el estado actual
         const finalShow = (typeof show === 'boolean') ? show : !overlay.classList.contains('active');
 
+        // Toggle del botón
+        if (menuBtn) {
+            if (finalShow) menuBtn.classList.add('active');
+            else menuBtn.classList.remove('active');
+        }
+
         if (finalShow) {
             backdrop.style.display = 'block';
-            // Pequeño delay para que la transición de opacidad funcione
             setTimeout(() => {
                 backdrop.classList.add('active');
                 overlay.classList.add('active');
@@ -114,7 +120,6 @@ class AdaptiveNav {
         } else {
             backdrop.classList.remove('active');
             overlay.classList.remove('active');
-            // Esperar a que termine la transición para ocultar el display
             setTimeout(() => {
                 if (!overlay.classList.contains('active')) {
                     backdrop.style.display = 'none';

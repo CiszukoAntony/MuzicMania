@@ -200,7 +200,7 @@ header {
   width: 100%;
   background: rgba(5, 5, 8, 0.98); /* Más opaco para compensar falta de blur */
   box-shadow: 0 4px 30px rgba(0, 212, 255, 0.2);
-  z-index: 1000;
+  z-index: 2005; /* Por encima del menú y el backdrop para permitir el toggle */
   padding: 1rem 0;
 }
 
@@ -514,7 +514,7 @@ nav a.active {
     transform: scale(1.1) !important;
 }
 
-.search-btn.active {
+.search-btn.active, .menu-toggle-btn.active {
     background: var(--neon-blue) !important;
     color: #000 !important;
     box-shadow: 0 0 20px var(--neon-blue) !important;
@@ -588,12 +588,13 @@ nav a.active {
     left: 0;
     width: 100%;
     height: 100%;
-    background: transparent; /* Eliminado el oscurecimiento para máxima nitidez */
+    background: transparent;
     backdrop-filter: none;
     z-index: 1999;
     opacity: 0;
     pointer-events: none;
     transition: 0.4s;
+    cursor: pointer; /* Indicar que se puede cerrar haciendo clic fuera */
 }
 
 .menu-backdrop.active {
@@ -603,10 +604,10 @@ nav a.active {
 
 .nav-overlay {
     position: fixed;
-    top: 80px; 
+    top: 92px; /* Alineado exactamente con el borde inferior del header (16px + 60px + 16px) */
     right: -100%;
     width: 350px;
-    height: calc(100vh - 80px);
+    height: calc(100vh - 92px);
     background: rgba(5, 5, 20, 0.98); /* Fondo casi sólido para compensar falta de blur */
     border-left: 1px solid var(--neon-purple);
     border-top: 1px solid var(--neon-purple);
