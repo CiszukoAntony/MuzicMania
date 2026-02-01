@@ -99,12 +99,27 @@ class AdaptiveNav {
         const backdrop = document.querySelector('.menu-backdrop');
         const overlay = document.querySelector('.nav-overlay');
 
-        if (show) {
+        if (!overlay || !backdrop) return;
+
+        // Si no se define 'show', alternamos el estado actual
+        const finalShow = (typeof show === 'boolean') ? show : !overlay.classList.contains('active');
+
+        if (finalShow) {
             backdrop.style.display = 'block';
-            overlay.classList.add('active');
+            // Pequeño delay para que la transición de opacidad funcione
+            setTimeout(() => {
+                backdrop.classList.add('active');
+                overlay.classList.add('active');
+            }, 10);
         } else {
-            backdrop.style.display = 'none';
+            backdrop.classList.remove('active');
             overlay.classList.remove('active');
+            // Esperar a que termine la transición para ocultar el display
+            setTimeout(() => {
+                if (!overlay.classList.contains('active')) {
+                    backdrop.style.display = 'none';
+                }
+            }, 400);
         }
     }
 

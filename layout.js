@@ -81,7 +81,6 @@ const Layout = {
     <div class="nav-overlay">
         <div class="nav-overlay-header">
             <h3>MAIN MENU</h3>
-            <button class="close-menu-btn" onclick="AdaptiveNav.toggleMenu(false)"><i class="fas fa-times"></i></button>
         </div>
         <div class="nav-overlay-content">
             <a href="${bp}index.html" class="nav-menu-item" data-page="index.html">
