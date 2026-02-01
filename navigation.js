@@ -85,7 +85,7 @@ class AdaptiveNav {
         const overlay = document.querySelector('.nav-overlay');
 
         if (menuBtn) {
-            menuBtn.addEventListener('click', () => this.toggleMenu(true));
+            menuBtn.addEventListener('click', () => this.toggleMenu());
         }
         if (closeBtn) {
             closeBtn.addEventListener('click', () => this.toggleMenu(false));
