@@ -608,13 +608,12 @@ nav a.active {
     right: -100%;
     width: 350px;
     height: calc(100vh - 80px);
-    background: rgba(5, 5, 15, 0.95);
-    backdrop-filter: blur(15px);
+    background: rgba(5, 5, 20, 0.98); /* Fondo casi sólido para compensar falta de blur */
     border-left: 1px solid var(--neon-purple);
-    border-top: 1px solid var(--neon-purple); /* Borde superior para evitar efecto recortado */
+    border-top: 1px solid var(--neon-purple);
     z-index: 2000;
     transition: 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-    padding: 2rem 1rem 2rem 2rem; /* Reducido padding derecho aquí para dárselo al content */
+    padding: 2rem 1rem 2rem 2rem;
     display: flex;
     flex-direction: column;
     gap: 1.5rem;
