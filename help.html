@@ -6,7 +6,7 @@
     <title>MuzicMania - Centro de Ayuda</title>
     <link rel="icon" type="image/png" href="assets/logo.png">
     <link rel="apple-touch-icon" href="assets/logo.png">
-    <link rel="stylesheet" href="styles.css?v=UPDATE_MENU_TOGGLE_DELEGATION_V1">
+    <link rel="stylesheet" href="styles.css?v=UPDATE_SEARCH_REFACTOR_V1">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <style>
         .help-grid {
@@ -64,7 +64,14 @@
             <p>Selecciona una categoría para encontrar la solución a tu problema.</p>
         </div>
 
-        <div class="help-grid">
+        <div class="local-search-container mb-3">
+            <input type="text" id="help-search" placeholder="Busca un tema de ayuda (ej: cuenta, lag, bugs)...">
+            <button class="search-btn-local">
+                <i class="fas fa-search"></i>
+            </button>
+        </div>
+
+        <div class="help-grid" id="help-container">
             <a href="#" class="help-card" onclick="alert('Funcionalidad en desarrollo.')">
                 <div class="help-icon"><i class="fas fa-user-shield"></i></div>
                 <div class="help-title">Mi Cuenta</div>
@@ -164,11 +171,45 @@
     </main>
 
     <!-- Layout System -->
-    <script src="layout.js?v=UPDATE_MENU_TOGGLE_DELEGATION_V1"></script>
-    <script src="auth.js?v=UPDATE_MENU_TOGGLE_DELEGATION_V1"></script>
-    <script src="utils.js?v=UPDATE_MENU_TOGGLE_DELEGATION_V1"></script>
-    <script src="search.js?v=UPDATE_MENU_TOGGLE_DELEGATION_V1"></script>
-    <script src="navigation.js?v=UPDATE_MENU_TOGGLE_DELEGATION_V1"></script>
+    <script src="layout.js?v=UPDATE_SEARCH_REFACTOR_V1"></script>
+    <script src="auth.js?v=UPDATE_SEARCH_REFACTOR_V1"></script>
+    <script src="utils.js?v=UPDATE_SEARCH_REFACTOR_V1"></script>
+    <script src="search.js?v=UPDATE_SEARCH_REFACTOR_V1"></script>
+    <script src="navigation.js?v=UPDATE_SEARCH_REFACTOR_V1"></script>
+    <script>
+        document.getElementById('help-search').addEventListener('input', function(e) {
+            const term = e.target.value.toLowerCase();
+            const cards = document.querySelectorAll('.help-card');
+            
+            cards.forEach(card => {
+                const title = card.querySelector('.help-title').textContent.toLowerCase();
+                const desc = card.querySelector('.help-desc').textContent.toLowerCase();
+                const matches = title.includes(term) || desc.includes(term);
+                
+                card.style.display = matches ? 'block' : 'none';
+            });
+
+            // Mostrar mensaje si no hay resultados
+            const container = document.getElementById('help-container');
+            let noResults = document.getElementById('no-results-help');
+            
+            const anyVisible = Array.from(cards).some(c => c.style.display !== 'none');
+            
+            if (!anyVisible) {
+                if (!noResults) {
+                    noResults = document.createElement('div');
+                    noResults.id = 'no-results-help';
+                    noResults.className = 'text-center mt-5';
+                    noResults.style.gridColumn = '1 / -1';
+                    noResults.innerHTML = `<i class="fas fa-search-minus" style="font-size: 3rem; color: var(--neon-pink); opacity: 0.5;"></i>
+                                          <p style="color: #888; margin-top: 1rem;">No encontramos temas que coincidan con "${e.target.value}"</p>`;
+                    container.appendChild(noResults);
+                }
+            } else if (noResults) {
+                noResults.remove();
+            }
+        });
+    </script>
 </body>
 
 

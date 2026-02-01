@@ -57,34 +57,44 @@ const SearchSystem = {
 
     toggleSearch() {
         const nav = document.getElementById('main-nav');
+        const wrapper = document.querySelector('.search-wrapper');
         const searchBtn = document.querySelector('.search-btn');
         const input = document.querySelector('.search-input');
         
-        if (!nav) return;
+        if (!wrapper) return;
 
-        // Toggle Global State (CSS Handle Layout)
-        const isActive = nav.classList.toggle('searching');
+        // Toggle Local State
+        const isActive = wrapper.classList.toggle('active');
+        
+        // Toggle Global State for Layout Adjustments
+        if (nav) nav.classList.toggle('searching', isActive);
         
         // Update Button State
         if (searchBtn) searchBtn.classList.toggle('active', isActive);
 
         if (isActive) {
-            setTimeout(() => input && input.focus(), 100);
+            setTimeout(() => {
+                if (input) {
+                    input.focus();
+                    input.value = '';
+                }
+            }, 100);
+            
             // Close other menus
-            if (window.AdaptiveNav) {
-                 if (AdaptiveNav.closeAccessMenu) AdaptiveNav.closeAccessMenu();
-                 if (AdaptiveNav.toggleMenu) AdaptiveNav.toggleMenu(false);
+            if (window.AdaptiveNav && AdaptiveNav.toggleMenu) {
+                AdaptiveNav.toggleMenu(false);
             }
         } else {
             this.closeResults();
-            if (input) input.value = ''; // Optional: clear on close
         }
     },
 
     closeSearch() {
         const nav = document.getElementById('main-nav');
+        const wrapper = document.querySelector('.search-wrapper');
         const searchBtn = document.querySelector('.search-btn');
         
+        if (wrapper) wrapper.classList.remove('active');
         if (nav) nav.classList.remove('searching');
         if (searchBtn) searchBtn.classList.remove('active');
         this.closeResults();
