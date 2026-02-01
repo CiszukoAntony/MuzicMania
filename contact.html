@@ -6,7 +6,7 @@
     <title>MuzicMania - Contacto</title>
     <link rel="icon" type="image/png" href="assets/logo.png">
     <link rel="apple-touch-icon" href="assets/logo.png">
-    <link rel="stylesheet" href="styles.css?v=UPDATE_BOT_TAGS_V1">
+    <link rel="stylesheet" href="styles.css?v=UPDATE_BOT_TAGS_V2">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <style>
         .contact-grid {
@@ -816,7 +816,7 @@
     </style>
 
     <!-- Layout System -->
-    <script src="layout.js?v=UPDATE_BOT_TAGS_V1"></script>
+    <script src="layout.js?v=UPDATE_BOT_TAGS_V2"></script>
 
     <script>
         // --- Advanced Review System ---
@@ -1047,7 +1047,7 @@
 
                 container.innerHTML = sorted.map(r => {
                     const isDebug = localStorage.getItem('debugStats');
-                    const botBadge = (r.isBot && isDebug) ? '<span style="background: var(--neon-cyan); color: #0a0a14; font-size: 0.55rem; padding: 2px 5px; border-radius: 4px; margin-left: 8px; font-weight: bold; vertical-align: middle;">BOT</span>' : '';
+                    const botBadge = (r.isBot && isDebug) ? '<span class="bot-badge">[BOT] 🤖</span>' : '';
                     return `
                     <div class="review-card" data-id="${r.id}" style="padding: 1.5rem; border: 1px solid rgba(255,255,255,0.05); background: rgba(0,0,0,0.2);">
                         <div class="review-header" style="display: flex; align-items: center; gap: 15px; margin-bottom: 1.2rem;">
@@ -1153,10 +1153,10 @@
         window.addEventListener('authChange', initializeContactPage);
 
     </script>
-    <script src="auth.js?v=UPDATE_BOT_TAGS_V1"></script>
-    <script src="utils.js?v=UPDATE_BOT_TAGS_V1"></script>
-    <script src="search.js?v=UPDATE_BOT_TAGS_V1"></script>
-    <script src="navigation.js?v=UPDATE_BOT_TAGS_V1"></script>
+    <script src="auth.js?v=UPDATE_BOT_TAGS_V2"></script>
+    <script src="utils.js?v=UPDATE_BOT_TAGS_V2"></script>
+    <script src="search.js?v=UPDATE_BOT_TAGS_V2"></script>
+    <script src="navigation.js?v=UPDATE_BOT_TAGS_V2"></script>
 </body>
 </html>
 
