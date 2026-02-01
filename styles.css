@@ -613,11 +613,11 @@ nav a.active {
     border-left: 1px solid var(--neon-purple);
     z-index: 2000;
     transition: 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-    padding: 2rem;
+    padding: 2rem 2.5rem 2rem 2rem; /* Más espacio a la derecha para la animación */
     display: flex;
     flex-direction: column;
     gap: 1.5rem;
-    overflow-x: hidden; /* Evitar barra horizontal por animaciones */
+    overflow-x: hidden; /* Evitar barra horizontal */
     box-shadow: -10px 0 30px rgba(0, 0, 0, 0.5);
 }
 
@@ -668,7 +668,7 @@ nav a.active {
 .nav-menu-item:hover {
     background: rgba(0, 212, 255, 0.08);
     border-color: var(--neon-blue);
-    transform: translateX(-5px); /* Movimiento hacia la izquierda para evitar desborde */
+    transform: translateX(8px); /* Movimiento a la derecha con espacio suficiente */
 }
 
 .nav-menu-item-header {
