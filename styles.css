@@ -1048,7 +1048,24 @@ nav a.active {
     box-shadow: 0 0 20px var(--neon-green);
 }
 
-/* === CARDS === */
+/* === BADGES === */
+.bot-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    background: var(--neon-cyan);
+    color: #0a0a14;
+    font-size: 0.65rem;
+    padding: 2px 8px;
+    border-radius: 4px;
+    margin-left: 10px;
+    font-weight: 800;
+    letter-spacing: 0.5px;
+    vertical-align: middle;
+    box-shadow: 0 0 10px rgba(0, 212, 255, 0.3);
+    text-shadow: none;
+    transform: translateY(-1px);
+}
 .card {
   background: rgba(10, 10, 20, 0.85);
   border: 2px solid var(--neon-electric);

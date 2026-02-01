@@ -6,7 +6,7 @@
     <title>MuzicMania - Leaderboard Global</title>
     <link rel="icon" type="image/png" href="assets/logo.png">
     <link rel="apple-touch-icon" href="assets/logo.png">
-    <link rel="stylesheet" href="styles.css?v=UPDATE_NAVBAR_SEARCH_REFINED_V1">
+    <link rel="stylesheet" href="styles.css?v=UPDATE_BOT_TAGS_V1">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 </head>
 <body>
@@ -26,12 +26,12 @@
     </main>
 
     <!-- Layout System -->
-    <script src="layout.js?v=UPDATE_NAVBAR_SEARCH_REFINED_V1"></script>
+    <script src="layout.js?v=UPDATE_BOT_TAGS_V1"></script>
 
-    <script src="auth.js?v=UPDATE_NAVBAR_SEARCH_REFINED_V1"></script>
-    <script src="utils.js?v=UPDATE_NAVBAR_SEARCH_REFINED_V1"></script>
-    <script src="search.js?v=UPDATE_NAVBAR_SEARCH_REFINED_V1"></script>
-    <script src="navigation.js?v=UPDATE_NAVBAR_SEARCH_REFINED_V1"></script>
+    <script src="auth.js?v=UPDATE_BOT_TAGS_V1"></script>
+    <script src="utils.js?v=UPDATE_BOT_TAGS_V1"></script>
+    <script src="search.js?v=UPDATE_BOT_TAGS_V1"></script>
+    <script src="navigation.js?v=UPDATE_BOT_TAGS_V1"></script>
     <script>
         // Renderizar leaderboard completo
         window.addEventListener('load', () => {
@@ -59,10 +59,14 @@
                 const rankDisplay = index < 3 ? rankEmojis[index] : `#${index + 1}`;
                 const rowClass = index % 2 === 0 ? 'bg-opacity' : '';
                 
+                // Bot Badge solo en modo debug
+                const isDebug = localStorage.getItem('debugStats');
+                const botBadge = (player.isBot && isDebug) ? '<span class="bot-badge">[BOT] 🤖</span>' : '';
+                
                 html += `
                     <div style="display: grid; grid-template-columns: 80px 1fr 150px 100px; padding: 1rem; align-items: center; border-bottom: 1px solid rgba(255,255,255,0.1);">
                         <div style="font-size: 1.2rem;">${rankDisplay}</div>
-                        <div style="font-weight: 700;">${player.isBot ? '🤖 ' : ''}${player.username}</div>
+                        <div style="font-weight: 700;">${player.username}${botBadge}</div>
                         <div style="text-align: right; color: var(--neon-purple); font-weight: 700;">${player.highScore.toLocaleString()}</div>
                         <div style="text-align: right; color: #888;">${player.accuracy}%</div>
                     </div>
