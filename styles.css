@@ -445,31 +445,35 @@ nav a.active {
 
 .search-input-container {
     position: absolute;
-    right: 50px; /* Separación del botón */
+    right: 50px;
     top: 50%;
     transform: translateY(-50%);
     width: 0;
-    height: 40px;
-    background: rgba(5, 5, 10, 0.95);
-    border-radius: 20px;
-    border: 1px solid var(--neon-blue);
+    height: 42px;
+    background: rgba(10, 10, 20, 0.75);
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+    border-radius: 25px;
+    border: 1px solid rgba(0, 212, 255, 0.3);
     overflow: hidden;
-    transition: width 0.3s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.2s;
+    transition: width 0.4s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.3s, border-color 0.3s;
     opacity: 0;
     pointer-events: none;
     z-index: 50;
     display: flex;
     align-items: center;
     padding: 0;
-    box-shadow: 0 0 15px rgba(0, 212, 255, 0.2);
+    box-shadow: 0 4px 25px rgba(0, 0, 0, 0.5), inset 0 0 10px rgba(0, 212, 255, 0.1);
 }
 
-/* Estado Activo del Buscador */
+/* Borde con gradiente sutil al estar activo */
 .search-wrapper.active .search-input-container {
-    width: 280px;
+    width: 320px; /* Un poco más larga para elegancia */
     opacity: 1;
     pointer-events: all;
-    padding: 0 15px;
+    padding: 0 18px;
+    border-color: var(--neon-blue);
+    box-shadow: 0 0 20px rgba(0, 212, 255, 0.4), inset 0 0 15px rgba(0, 212, 255, 0.1);
 }
 
 /* El input interno NO debe tener borde propio si el contenedor ya lo tiene */
@@ -485,12 +489,13 @@ nav a.active {
     height: 100%;
 }
 
-/* Ocultar elementos que estorban al buscar en el navbar */
-.nav-comprehensive.searching > ul {
-    opacity: 0;
-    pointer-events: none;
+/* Ocultar elementos que estorban (Links + Botón Acceder) */
+.nav-comprehensive.searching > ul,
+.nav-comprehensive.searching #auth-section {
+    opacity: 0 !important;
+    pointer-events: none !important;
     transform: translateX(20px);
-    transition: 0.3s;
+    transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 /* === BOTONES (Lupa y Menú Hamburguesa) === */
