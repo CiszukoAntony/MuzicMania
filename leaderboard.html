@@ -55,14 +55,14 @@
             `;
 
             leaderboard.forEach((player, index) => {
-                const rankEmojis = ['Ã°Å¸Ââ€ ', 'Ã°Å¸Â¥Ë†', 'Ã°Å¸Â¥â€°'];
+                const rankEmojis = ['Ã°Å¸Ââ€ ', '🥈', '🥉'];
                 const rankDisplay = index < 3 ? rankEmojis[index] : `#${index + 1}`;
                 const rowClass = index % 2 === 0 ? 'bg-opacity' : '';
                 
                 html += `
                     <div style="display: grid; grid-template-columns: 80px 1fr 150px 100px; padding: 1rem; align-items: center; border-bottom: 1px solid rgba(255,255,255,0.1);">
                         <div style="font-size: 1.2rem;">${rankDisplay}</div>
-                        <div style="font-weight: 700;">${player.isBot ? 'Ã°Å¸Â¤â€“ ' : ''}${player.username}</div>
+                        <div style="font-weight: 700;">${player.isBot ? '🤖 ' : ''}${player.username}</div>
                         <div style="text-align: right; color: var(--neon-purple); font-weight: 700;">${player.highScore.toLocaleString()}</div>
                         <div style="text-align: right; color: #888;">${player.accuracy}%</div>
                     </div>
