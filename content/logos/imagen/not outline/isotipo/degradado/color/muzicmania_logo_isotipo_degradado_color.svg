@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="MuzicMania_Isotipo" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200">
+  <defs>
+    <linearGradient id="neon_gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#00d4ff"/>
+      <stop offset="50%" stop-color="#9b59b6"/>
+      <stop offset="100%" stop-color="#ff006e"/>
+    </linearGradient>
+    <linearGradient id="diamond_gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#1a1a2e"/>
+      <stop offset="100%" stop-color="#16213e"/>
+    </linearGradient>
+    <filter id="neon_glow">
+      <feGaussianBlur stdDeviation="3" result="coloredBlur"/>
+      <feMerge>
+        <feMergeNode in="coloredBlur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+    <filter id="outer_glow">
+      <feGaussianBlur stdDeviation="4" result="blur"/>
+      <feFlood flood-color="#00d4ff" flood-opacity="0.5"/>
+      <feComposite in2="blur" operator="in"/>
+      <feMerge>
+        <feMergeNode/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+  
+  <!-- Diamond Shape Background -->
+  <g transform="translate(100, 100) rotate(45)">
+    <rect x="-60" y="-60" width="120" height="120" rx="8" ry="8" 
+          fill="url(#diamond_gradient)" 
+          stroke="url(#neon_gradient)" 
+          stroke-width="3"
+          filter="url(#outer_glow)"/>
+  </g>
+  
+  <!-- Stylized M Letter -->
+  <g filter="url(#neon_glow)">
+    <path d="M60 140 L60 75 L100 110 L140 75 L140 140 L125 140 L125 100 L100 125 L75 100 L75 140 Z" 
+          fill="url(#neon_gradient)"/>
+  </g>
+  
+  <!-- Decorative sound wave lines -->
+  <g stroke="url(#neon_gradient)" stroke-width="2" fill="none" opacity="0.7">
+    <path d="M45 85 Q50 80, 50 90 Q50 100, 45 95"/>
+    <path d="M155 85 Q150 80, 150 90 Q150 100, 155 95"/>
+  </g>
+</svg>

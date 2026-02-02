@@ -5,34 +5,385 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="MuzicMania - Juego de Ritmo Estilo Mania con Estética Futurista">
     <title>MuzicMania - Rhythm Game Futurista</title>
-    <link rel="icon" type="image/png" href="assets/logo.png">
-    <link rel="apple-touch-icon" href="assets/logo.png">
+    <link rel="icon" type="image/png" href="content/logo.png">
+    <link rel="apple-touch-icon" href="content/logo.png">
     <link rel="stylesheet" href="styles.css?v=UPDATE_INDEX_RESTRUCTURE_V1">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        /* --- Animaciones Creativas Index --- */
+        @keyframes floatSymbols {
+            0% { transform: translateY(100vh) rotate(0deg); opacity: 0; }
+            10% { opacity: 0.15; }
+            90% { opacity: 0.15; }
+            100% { transform: translateY(-20vh) rotate(360deg); opacity: 0; }
+        }
+
+        .floating-symbols {
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            pointer-events: none;
+            z-index: -1;
+            overflow: hidden;
+        }
+
+        .symbol {
+            position: absolute;
+            font-size: 1.5rem;
+            opacity: 0;
+            animation: floatSymbols 15s linear infinite;
+            will-change: transform;
+        }
+
+        @keyframes gradientShift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        @keyframes scanline {
+            0% { transform: translateY(-100%); }
+            100% { transform: translateY(100%); }
+        }
+
+        .hero-creative {
+            position: relative;
+            padding: 3.5rem 2rem 7rem 2rem;
+            text-align: center;
+            background: linear-gradient(-45deg, rgba(0,0,0,0.95), rgba(40, 0, 80, 0.3), rgba(0, 153, 255, 0.1));
+            background-size: 400% 400%;
+            animation: gradientShift 15s ease infinite;
+            border-bottom: 2px solid rgba(0, 212, 255, 0.2);
+            overflow: hidden;
+        }
+
+        /* Capa de Grid Retro */
+        .hero-creative::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: 
+                linear-gradient(rgba(0, 212, 255, 0.05) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(0, 212, 255, 0.05) 1px, transparent 1px);
+            background-size: 50px 50px;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .hero-brand-header {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 1.5rem;
+            margin-bottom: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .hero-logo {
+            width: 150px;
+            height: auto;
+            filter: drop-shadow(0 0 20px var(--neon-blue));
+            animation: logoFloat 4s ease-in-out infinite;
+        }
+
+        @keyframes logoFloat {
+            0%, 100% { transform: translateY(0) scale(1); }
+            50% { transform: translateY(-8px) scale(1.03); }
+        }
+
+        .hero-title-large {
+            font-size: clamp(2.5rem, 9vw, 6.2rem);
+            margin: 0;
+            line-height: 1;
+            position: relative;
+            z-index: 5;
+            background: var(--gradient-main);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            filter: drop-shadow(0 0 20px rgba(0, 212, 255, 0.23));
+        }
+
+        .hero-subtitle {
+            font-size: 1.25rem;
+            color: var(--neon-sky);
+            margin-bottom: 1.8rem;
+            max-width: 750px;
+            margin-inline: auto;
+            text-shadow: 0 0 15px rgba(0, 212, 255, 0.3);
+            position: relative;
+            z-index: 5;
+            line-height: 1.3;
+        }
+
+        /* Indicador de Scroll Circular */
+        .scroll-indicator {
+            position: absolute;
+            bottom: 1.8rem;
+            left: 50%;
+            transform: translateX(-50%);
+            color: var(--neon-blue);
+            font-size: 1.1rem;
+            width: 42px;
+            height: 42px;
+            border: 2px solid var(--neon-blue);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            z-index: 10;
+            transition: var(--transition-normal);
+            animation: scrollBounce 2s infinite;
+            filter: drop-shadow(0 0 10px rgba(0, 212, 255, 0.5));
+        }
+
+        .scroll-indicator:hover {
+            color: var(--neon-pink);
+            filter: drop-shadow(0 0 15px var(--neon-pink));
+        }
+
+        @keyframes scrollBounce {
+            0%, 20%, 50%, 80%, 100% { transform: translateX(-50%) translateY(0); }
+            40% { transform: translateX(-50%) translateY(-10px); }
+            60% { transform: translateX(-50%) translateY(-5px); }
+        }
+
+        .hero-subtitle {
+            font-size: 1.6rem;
+            color: var(--neon-sky);
+            margin-bottom: 3.5rem;
+            max-width: 850px;
+            margin-inline: auto;
+            text-shadow: 0 0 15px rgba(0, 212, 255, 0.3);
+            position: relative;
+            z-index: 5;
+        }
+
+        .glass-card {
+            background: rgba(15, 15, 30, 0.6);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(0, 212, 255, 0.15);
+            border-radius: 24px;
+            padding: 2.5rem;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        .glass-card:hover {
+            border-color: var(--neon-cyan);
+            transform: translateY(-8px) scale(1.02);
+            box-shadow: 0 15px 40px rgba(0, 212, 255, 0.15);
+        }
+
+        .portal-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2.5rem;
+            margin-top: 5rem;
+        }
+
+        .stats-ticker {
+            background: rgba(0, 212, 255, 0.08);
+            border-top: 1px solid rgba(0, 212, 255, 0.1);
+            border-bottom: 1px solid rgba(0, 212, 255, 0.1);
+            padding: 1.2rem 0;
+            margin: 4rem 0;
+            overflow: hidden;
+            display: flex;
+            white-space: nowrap;
+            box-shadow: inset 0 0 20px rgba(0, 212, 255, 0.05);
+        }
+
+        @keyframes tickerMove {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+
+        .ticker-content {
+            display: flex;
+            animation: tickerMove 35s linear infinite;
+        }
+
+        .ticker-item {
+            display: flex;
+            align-items: center;
+            gap: 1.2rem;
+            margin-right: 5rem;
+            color: #fff;
+            font-family: var(--font-header);
+            font-weight: 700;
+            font-size: 1.3rem;
+        }
+
+        .ticker-item span { color: var(--neon-pink); text-shadow: 0 0 10px rgba(255, 0, 128, 0.3); }
+
+        .portal-card {
+            text-decoration: none;
+            padding: 2rem;
+            border-radius: 20px;
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            transition: 0.4s;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .portal-card:hover {
+            background: rgba(255, 255, 255, 0.08);
+            transform: translateY(-5px);
+            box-shadow: 0 0 30px rgba(255, 255, 255, 0.05);
+        }
+    </style>
 </head>
 <body>
     
-    <!-- Main Content -->
+    <!-- Fondo de Símbolos Flotantes -->
+    <div class="floating-symbols" id="symbols-container"></div>
+    
+    <!-- Layout System Initialization handled by layout.js -->
+
     <main>
-        <!-- Hero Section -->
-        <section class="hero">
-            <div class="container">
-                <h1 class="hero-title" data-text="MUZICMANIA">MUZICMANIA</h1>
-                <p class="hero-subtitle">- Juego de Ritmo Definitivo. Domina el beat en una dimensión web online.</p>
-                <div class="hero-cta" style="display: flex; justify-content: center; gap: 1.5rem;">
-                    <button class="btn" onclick="window.location.href='play.html'">
-                        JUGAR AHORA 🎮
-                    </button>
-                    <button class="btn btn-danger" onclick="document.querySelector('#auth-section').scrollIntoView({behavior: 'smooth'})" style="background: #ff4d4d; border: none; box-shadow: 0 0 15px rgba(255, 77, 77, 0.4);">
-                        REGISTRARSE O INGRESAR
+        <!-- Hero Section Renovado -->
+        <section class="hero-creative">
+            <div class="container" style="position: relative; z-index: 10;">
+                <div class="hero-brand-header">
+                    <img src="content/logo.png" alt="MuzicMania Logo" class="hero-logo">
+                    <h1 class="hero-title-large">MUZICMANIA</h1>
+                </div>
+                <p class="hero-subtitle">Música, neón y precisión competitiva. Domina el bit en la dimensión definitiva donde cada nota cuenta.</p>
+                
+                <div style="display: flex; gap: 1.5rem; justify-content: center; flex-wrap: wrap;">
+                    <a href="play.html" class="btn btn-green-gradient" style="padding: 1rem 2.8rem; font-size: 1.2rem;">
+                        <i class="fas fa-play"></i> JUGAR COMO INVITADO
+                    </a>
+                    <button class="btn btn-red-gradient" onclick="AuthSystem.openModal('register')" style="padding: 1rem 2.8rem; font-size: 1.2rem;">
+                        <i class="fas fa-user-plus"></i> REGISTRARSE O INGRESAR
                     </button>
                 </div>
             </div>
+
+            <!-- Scroll Indicator -->
+            <a href="#mision-section" class="scroll-indicator" aria-label="Bajar a la siguiente sección">
+                <i class="fas fa-chevron-down"></i>
+            </a>
         </section>
 
+        <!-- Stats Ticker -->
+        <div class="stats-ticker">
+            <div class="ticker-content">
+                <div class="ticker-item"><i class="fas fa-users"></i> JUGADORES ACTIVOS: <span id="ticker-players">1,245</span></div>
+                <div class="ticker-item"><i class="fas fa-gamepad"></i> PARTIDAS HOY: <span id="ticker-games">5,892</span></div>
+                <div class="ticker-item"><i class="fas fa-trophy"></i> RÉCORD GLOBAL: <span id="ticker-record">985,000</span></div>
+                <div class="ticker-item"><i class="fas fa-star"></i> USUARIOS TOTALES: <span id="ticker-total">12,450</span></div>
+                <!-- Loop -->
+                <div class="ticker-item"><i class="fas fa-users"></i> JUGADORES ACTIVOS: <span>1,245</span></div>
+                <div class="ticker-item"><i class="fas fa-gamepad"></i> PARTIDAS HOY: <span>5,892</span></div>
+                <div class="ticker-item"><i class="fas fa-trophy"></i> RÉCORD GLOBAL: <span>985,000</span></div>
+                <div class="ticker-item"><i class="fas fa-star"></i> USUARIOS TOTALES: <span>12,450</span></div>
+            </div>
+        </div>
+
+        <section class="container pb-5">
+            <!-- Lo que Ofrecemos -->
+            <div class="section-header text-center">
+                <h2 class="mb-1">El Ecosistema Rítmico</h2>
+                <p>Descubre un mundo diseñado para los amantes de la música y la estética retro-futurista.</p>
+            </div>
+
+            <div class="portal-grid">
+                <div class="glass-card text-center">
+                    <i class="fas fa-wave-square mb-2" style="font-size: 3.5rem; color: var(--neon-cyan); filter: drop-shadow(0 0 10px var(--neon-cyan));"></i>
+                    <h3>Visuales Reactivos</h3>
+                    <p>Cada beat se traduce en espectrogramas y ondas de neón que reaccionan en tiempo real a la música.</p>
+                </div>
+                <div class="glass-card text-center">
+                    <i class="fas fa-keyboard mb-2" style="font-size: 3.5rem; color: var(--neon-purple); filter: drop-shadow(0 0 10px var(--neon-purple));"></i>
+                    <h3>Mecánica Mania</h3>
+                    <p>Un sistema de 4 teclas diseñado para desafiar tu precisión y velocidad al máximo nivel.</p>
+                </div>
+                <div class="glass-card text-center">
+                    <i class="fas fa-globe-americas mb-2" style="font-size: 3.5rem; color: var(--neon-pink); filter: drop-shadow(0 0 10px var(--neon-pink));"></i>
+                    <h3>Sincronía Global</h3>
+                    <p>Sube en el ranking mundial y demuestra quién es el verdadero maestro del ritmo.</p>
+                </div>
+            </div>
+
+            <!-- Secciones de Información Expandida -->
+            <div class="portal-grid mt-5" id="mision-section">
+                <div class="glass-card" style="border-top: 4px solid var(--neon-blue);">
+                    <h2 style="font-size: 2rem; margin-bottom: 1.5rem;"><i class="fas fa-bullseye" style="color: var(--neon-blue);"></i> Nuestra Misión</h2>
+                    <p>En MuzicMania, creemos que el ritmo es el lenguaje universal del alma digital. Nuestra misión es proporcionar una plataforma de alto rendimiento donde la precisión técnica y el arte visual convergen.</p>
+                    <p class="mt-1">Trabajamos incansablemente para optimizar cada milisegundo de respuesta y cada espectro de color, asegurando que tu experiencia sea tan fluida como el beat mismo.</p>
+                </div>
+                <div class="glass-card" style="border-top: 4px solid var(--neon-pink);">
+                    <h2 style="font-size: 2rem; margin-bottom: 1.5rem;"><i class="fas fa-users" style="color: var(--neon-pink);"></i> Comunidad</h2>
+                    <p>No caminas solo por estos senderos de neón. La comunidad de MuzicMania es el núcleo vibrante de nuestro ecosistema. Participa en torneos globales, comparte tus propios mapas rítmicos y asciende en la jerarquía.</p>
+                    <div class="mt-2" style="display: flex; gap: 1rem;">
+                         <a href="https://discord.com" class="btn btn-secondary" style="font-size: 0.9rem; padding: 0.5rem 1rem;"><i class="fab fa-discord"></i> Discord</a>
+                         <a href="about.html" class="btn btn-secondary" style="font-size: 0.9rem; padding: 0.5rem 1rem;"><i class="fas fa-info-circle"></i> Info</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Identidad -->
+            <div class="glass-card mt-5" style="border-left: 4px solid var(--neon-purple); position: relative; overflow: hidden; background: linear-gradient(90deg, rgba(80, 0, 160, 0.1), transparent);">
+                <div style="position: absolute; top: -50px; right: -50px; font-size: 15rem; color: rgba(128, 0, 255, 0.05); pointer-events: none;"><i class="fas fa-bolt"></i></div>
+                <div style="position: relative; z-index: 1;">
+                    <h2 class="mb-1" style="background: var(--gradient-accent); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">El Futuro es Ahora</h2>
+                    <p style="font-size: 1.25rem; max-width: 900px; line-height: 1.6;">
+                        MuzicMania representa la evolución de los juegos de ritmo en el navegador. Con tecnología de punta y una estética synthwave inigualable, hemos creado el escenario definitivo para que demuestres tu habilidad. 
+                        <strong>¿Tienes lo que se necesita para dejar tu huella en el leaderboard?</strong>
+                    </p>
+                    <a href="play.html" class="btn btn-green-gradient mt-2" style="display: inline-flex; align-items: center; gap: 12px; padding: 1rem 2.5rem;">
+                        INICIAR SECUENCIA DE RITMO <i class="fas fa-power-off"></i>
+                    </a>
+                </div>
+            </div>
+
+            <!-- El Portal (Navegación Ampliada) -->
+            <div class="section-header text-center mt-5">
+                <h2 class="mb-1">El Portal</h2>
+                <p>Navega a través de las dimensiones de nuestro universo digital.</p>
+            </div>
+
+            <div class="grid" style="grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1.5rem; margin-top: 3rem;">
+                <a href="leaderboard.html" class="portal-card" style="border-color: var(--neon-pink);">
+                    <i class="fas fa-medal" style="font-size: 2.5rem; color: var(--neon-pink);"></i>
+                    <h4 style="margin: 0; color: #fff;">Ranking Mundial</h4>
+                    <p style="font-size: 0.8rem; margin: 0; color: #888; text-align: center;">La élite rítmica global</p>
+                </a>
+                <a href="stats.html" class="portal-card" style="border-color: var(--neon-cyan);">
+                    <i class="fas fa-chart-line" style="font-size: 2.5rem; color: var(--neon-cyan);"></i>
+                    <h4 style="margin: 0; color: #fff;">Análisis de Red</h4>
+                    <p style="font-size: 0.8rem; margin: 0; color: #888; text-align: center;">Métricas en tiempo real</p>
+                </a>
+                <a href="changelog.html" class="portal-card" style="border-color: var(--neon-purple);">
+                    <i class="fas fa-code-branch" style="font-size: 2.5rem; color: var(--neon-purple);"></i>
+                    <h4 style="margin: 0; color: #fff;">Innovaciones</h4>
+                    <p style="font-size: 0.8rem; margin: 0; color: #888; text-align: center;">Evolución del proyecto</p>
+                </a>
+                <a href="faq.html" class="portal-card" style="border-color: var(--neon-blue);">
+                    <i class="fas fa-question-circle" style="font-size: 2.5rem; color: var(--neon-blue);"></i>
+                    <h4 style="margin: 0; color: #fff;">Centro de Ayuda</h4>
+                    <p style="font-size: 0.8rem; margin: 0; color: #888; text-align: center;">Dudas y resoluciones</p>
+                </a>
+                <a href="rules.html" class="portal-card" style="border-color: var(--neon-green);">
+                    <i class="fas fa-gavel" style="font-size: 2.5rem; color: var(--neon-green);"></i>
+                    <h4 style="margin: 0; color: #fff;">Reglamento</h4>
+                    <p style="font-size: 0.8rem; margin: 0; color: #888; text-align: center;">Normativa comunitaria</p>
+                </a>
+                <a href="support.html" class="portal-card" style="border-color: #ff4d4d;">
+                    <i class="fas fa-headset" style="font-size: 2.5rem; color: #ff4d4d;"></i>
+                    <h4 style="margin: 0; color: #fff;">Soporte Urgente</h4>
+                    <p style="font-size: 0.8rem; margin: 0; color: #888; text-align: center;">Atención al usuario</p>
+                </a>
+            </div>
+        </section>
     </main>
 
-    <!-- Layout System -->
+    <!-- Layout System Initialization handled by layout.js -->
     <script src="layout.js?v=UPDATE_INDEX_RESTRUCTURE_V1"></script>
 
     <!-- Modal Login (este se mantiene fuera porque es overlay) -->
@@ -113,24 +464,67 @@
         </div>
     </div>
 
-    <script src="layout.js?v=UPDATE_INDEX_RESTRUCTURE_V1"></script>
     <script src="auth.js?v=UPDATE_INDEX_RESTRUCTURE_V1"></script>
     <script src="utils.js?v=UPDATE_INDEX_RESTRUCTURE_V1"></script>
     <script src="chat.js?v=2"></script>
     <script src="search.js?v=UPDATE_INDEX_RESTRUCTURE_V1"></script>
     <script src="debug/debug.js?v=UPDATE_INDEX_RESTRUCTURE_V1"></script>
     <script src="navigation.js?v=UPDATE_INDEX_RESTRUCTURE_V1"></script>
+    <script>
+        // --- Generador de Símbolos Flotantes ---
+        function createSymbols() {
+            const container = document.getElementById('symbols-container');
+            const symbols = ['←', '↓', '↑', '→', '🎵', '🎶', '✨', '⚡'];
+            const colors = ['var(--neon-blue)', 'var(--neon-pink)', 'var(--neon-purple)', 'var(--neon-cyan)'];
+            const count = 35;
+
+            for (let i = 0; i < count; i++) {
+                const span = document.createElement('span');
+                span.className = 'symbol';
+                span.textContent = symbols[Math.floor(Math.random() * symbols.length)];
+                span.style.color = colors[Math.floor(Math.random() * colors.length)];
+                
+                // Posicionamiento aleatorio
+                span.style.left = Math.random() * 100 + 'vw';
+                span.style.fontSize = (Math.random() * 2 + 1) + 'rem';
+                
+                // Duración y retraso aleatorio
+                const duration = Math.random() * 12 + 12;
+                const delay = Math.random() * -24;
+                span.style.animationDuration = duration + 's';
+                span.style.animationDelay = delay + 's';
+                
+                container.appendChild(span);
+            }
+        }
+
+        // --- Simulación de Datos Dinámicos ---
+        function updateTickerStats() {
+            const players = document.getElementById('ticker-players');
+            const games = document.getElementById('ticker-games');
+            const record = document.getElementById('ticker-record');
+            const total = document.getElementById('ticker-total');
+
+            if(players) players.textContent = (Math.floor(Math.random() * 500) + 800).toLocaleString();
+            if(games) games.textContent = (Math.floor(Math.random() * 2000) + 5000).toLocaleString();
+            
+            if (typeof AuthSystem !== 'undefined') {
+                const leaderboard = AuthSystem.getLeaderboard();
+                if(record && leaderboard.length > 0) record.textContent = leaderboard[0].highScore.toLocaleString();
+                if(total) total.textContent = leaderboard.length.toLocaleString();
+            }
+        }
+
         // Inicializar al cargar
         document.addEventListener('DOMContentLoaded', () => {
-            console.log("MuzicMania: Index Cargado");
+            createSymbols();
+            updateTickerStats();
+            setInterval(updateTickerStats, 30000);
+            console.log("MuzicMania: Creative Portal Active");
         });
+    </script>
 </body>
 </html>
-
-
-
-
-
 
 
 

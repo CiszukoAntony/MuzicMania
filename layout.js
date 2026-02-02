@@ -142,7 +142,7 @@ const Layout = {
     <header>
         <div class="header-content">
             <a href="${bp}index.html" class="logo-container">
-                <img src="${bp}assets/logo.png" alt="MuzicMania Logo" class="logo-img">
+                <img src="${bp}content/logo.png" alt="MuzicMania Logo" class="logo-img">
                 <span class="logo-text">MUZICMANIA</span>
             </a>
             <nav id="main-nav" class="nav-comprehensive">
@@ -198,7 +198,7 @@ const Layout = {
             <div class="footer-grid">
                 <div class="footer-section main-brand">
                     <a href="${bp}index.html" class="footer-brand">
-                        <img src="${bp}assets/logo.png" alt="Logo" class="logo-img footer-logo-sync">
+                        <img src="${bp}content/logo.png" alt="Logo" class="logo-img footer-logo-sync">
                         <h3>MUZICMANIA</h3>
                     </a>
                     <p>The best futuristic rhythm game. Dominating the neon since 2026.</p>
