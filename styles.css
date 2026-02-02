@@ -274,9 +274,17 @@ body.page-transitioning header::after {
 }
 
 .logo-img {
-  width: 50px;
-  height: 50px;
+  width: 40px;
+  height: 40px;
   transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.header-text-logotipo, 
+.footer-text-logotipo {
+    height: 30px;
+    width: auto;
+    display: block;
+    transition: transform 0.4s ease;
 }
 
 .logo-text {
@@ -2885,3 +2893,93 @@ body.page-transitioning footer::before {
         font-size: 0.75rem !important;
     }
 }
+
+/* === ICONOS SVG PERSONALIZADOS === */
+/* === ICONOS SVG PERSONALIZADOS === */
+.nav-icon-svg {
+    width: 20px;
+    height: 20px;
+    margin-right: 8px;
+    transition: all 0.3s ease;
+    vertical-align: middle;
+    display: inline-block;
+    flex-shrink: 0;
+    overflow: visible !important;
+    color: #00f0ff; /* Neon Cyan default for currentColor */
+}
+
+/* Hover Effects (White Glow) */
+nav a:hover .nav-icon-svg,
+.footer-comprehensive-list li a:hover .nav-icon-svg,
+.nav-menu-item:hover .nav-icon-svg,
+.nav-dropdown-item:hover .nav-icon-svg,
+.social-icons a:hover .nav-icon-svg,
+.qa-btn:hover .nav-icon-svg {
+    filter: drop-shadow(0 0 6px #ffffff);
+    transform: scale(1.1);
+}
+
+/* Force stroke color change on hover to WHITE */
+nav a:hover .nav-icon-svg path,
+.footer-comprehensive-list li a:hover .nav-icon-svg path,
+.nav-menu-item:hover .nav-icon-svg path,
+.nav-dropdown-item:hover .nav-icon-svg path,
+.social-icons a:hover .nav-icon-svg path,
+.qa-btn:hover .nav-icon-svg path {
+    stroke: #ffffff !important;
+    fill: rgba(255, 255, 255, 0.2) !important;
+     /* Override gradient if url() was used */
+    stroke-image: none !important;
+}
+
+/* === HEADER ACTIONS ICONS COLOR === */
+.search-btn, 
+.menu-toggle-btn {
+    color: var(--neon-cyan);
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.search-btn:hover, 
+.menu-toggle-btn:hover {
+    color: #ffffff;
+}
+
+.search-btn .nav-icon-svg, 
+.menu-toggle-btn .nav-icon-svg {
+    margin: 0; /* Centered */
+}
+
+/* Specific adjustment for Navbar links to ensure flex alignment */
+nav ul li a, 
+.nav-menu-item .nav-menu-item-header {
+    display: flex;
+    align-items: center;
+}
+
+/* Social Icons Adjustment */
+.social-icons a {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+}
+.social-icons .nav-icon-svg {
+    margin-right: 0;
+    width: 24px;
+    height: 24px;
+}
+
+/* Mobile Menu Icons Color Force */
+.nav-menu-item .nav-icon-svg {
+    color: var(--neon-cyan) !important;
+}
+.nav-menu-item:hover .nav-icon-svg {
+    color: #ffffff !important;
+}
+
+
