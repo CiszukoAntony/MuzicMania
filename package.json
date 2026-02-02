@@ -1,0 +1,25 @@
+{
+  "name": "muzicmania",
+  "version": "1.0.0",
+  "description": "> **El Juego de Ritmo Definitivo en la Web.**\r > Domina el beat en una dimensión online con estética futurista.",
+  "main": "auth.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "generate-icons": "node repair_scripts/generate-sprites.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/CiszukoAntony/MuzicMania.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/CiszukoAntony/MuzicMania/issues"
+  },
+  "homepage": "https://github.com/CiszukoAntony/MuzicMania#readme",
+  "devDependencies": {
+    "svg-sprite": "^2.0.4"
+  }
+}

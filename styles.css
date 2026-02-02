@@ -2928,8 +2928,6 @@ nav a:hover .nav-icon-svg path,
 .qa-btn:hover .nav-icon-svg path {
     stroke: #ffffff !important;
     fill: rgba(255, 255, 255, 0.2) !important;
-     /* Override gradient if url() was used */
-    stroke-image: none !important;
 }
 
 /* === HEADER ACTIONS ICONS COLOR === */
@@ -2974,12 +2972,32 @@ nav ul li a,
     height: 24px;
 }
 
-/* Mobile Menu Icons Color Force */
-.nav-menu-item .nav-icon-svg {
-    color: var(--neon-cyan) !important;
+
+
+/* === CORRECCIÓN COLORES MENÚ PRINCIPAL (BURGER OVERLAY) === */
+/* Color base de los iconos: Azul Neón */
+.nav-overlay-content .nav-menu-item .nav-icon-svg {
+    color: var(--neon-blue) !important;
+    stroke: var(--neon-blue) !important;
+    transition: all 0.3s ease;
 }
-.nav-menu-item:hover .nav-icon-svg {
+
+/* Estado Hover: Todo el botón se vuelve vibrante y blanco */
+.nav-overlay-content .nav-menu-item:hover {
+    background: rgba(0, 212, 255, 0.1) !important;
+    border-color: var(--neon-blue) !important;
+    transform: translateX(10px) scale(1.02);
+}
+
+.nav-overlay-content .nav-menu-item:hover .nav-icon-svg {
     color: #ffffff !important;
+    stroke: #ffffff !important;
+    filter: drop-shadow(0 0 12px #ffffff);
+}
+
+.nav-overlay-content .nav-menu-item:hover span {
+    color: #ffffff !important;
+    text-shadow: 0 0 10px #ffffff;
 }
 
 
