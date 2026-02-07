@@ -11,9 +11,9 @@ const ICONS_LIB = {
     // Navigation (Mapping to library icons)
     home: 'ri-filled-home-4',
     play: 'ri-filled-play-large',
-    leaderboard: 'ri-filled-award',
+    leaderboard: 'ri-filled-trophy',
     stats: 'ri-filled-bar-chart-box',
-    changelog: 'fa-filled-bars-progress',
+    changelog: 'ri-filled-history',
     info: 'ri-filled-information',
     team: 'ri-filled-group',
     help: 'ri-filled-question',
