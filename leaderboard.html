@@ -3,89 +3,267 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MuzicMania - Leaderboard Global</title>
+    <title>MuzicMania - Raking Global</title>
     <link rel="icon" type="image/svg+xml" href="content/logos/imagen/not outline/isotipo/degradado/color/muzicmania_logo_isotipo_notoutline_degradado_color.svg">
-    <link rel="apple-touch-icon" href="content/logos/imagen/not outline/isotipo/degradado/color/muzicmania_logo_isotipo_notoutline_degradado_color.svg">
-    <link rel="stylesheet" href="styles.css?v=UPDATE_INDEX_RESTRUCTURE_V1">
+    <link rel="stylesheet" href="styles.css?v=UI_FIX_1770507253885">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+
+
+        .filter-bar {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            flex-wrap: wrap;
+            margin-bottom: 2rem;
+            background: rgba(0,0,0,0.3);
+            padding: 1rem;
+            border-radius: 12px;
+            border: 1px solid rgba(0, 212, 255, 0.1);
+        }
+
+        .btn-sort-dir {
+            background: rgba(0, 212, 255, 0.1);
+            border: 1px solid var(--neon-blue);
+            color: var(--neon-cyan);
+            width: 45px;
+            height: 45px;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: 0.3s;
+            font-size: 1.2rem;
+        }
+
+        .btn-sort-dir:hover {
+            background: var(--neon-blue);
+            color: #000;
+            box-shadow: 0 0 15px var(--neon-blue);
+        }
+
+        /* Filter Button Premium Redesign */
+        .filter-btn {
+            background: transparent !important;
+            border: 2px solid var(--neon-blue) !important;
+            color: #fff !important;
+            padding: 10px 20px;
+            font-family: var(--font-body) !important;
+            font-weight: 600;
+            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            box-shadow: none;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .filter-btn i {
+            color: #fff !important;
+        }
+
+        .filter-btn:hover {
+            background: linear-gradient(135deg, rgba(0, 15, 40, 0.95), rgba(0, 30, 80, 0.95)) !important;
+            border-color: var(--neon-blue) !important;
+            color: #fff !important;
+            box-shadow: 0 0 15px rgba(0, 80, 200, 0.4) !important;
+            transform: scale(1.05);
+        }
+
+        .filter-btn:hover i {
+            color: var(--neon-cyan) !important;
+        }
+
+        .filter-btn.active {
+            background: linear-gradient(135deg, var(--neon-blue), var(--neon-purple), var(--neon-pink)) !important;
+            border-color: var(--neon-cyan) !important;
+            color: #fff !important;
+            font-weight: 800;
+            box-shadow: 0 0 25px rgba(0, 212, 255, 0.7), 0 0 40px rgba(128, 0, 255, 0.3) !important;
+            transform: scale(1.08);
+            animation: pulseGlow 2s infinite alternate;
+        }
+
+        .filter-btn.active i {
+            color: #fff !important;
+        }
+
+        @keyframes pulseGlow {
+            from { box-shadow: 0 0 25px rgba(0, 212, 255, 0.7), 0 0 40px rgba(128, 0, 255, 0.3); }
+            to { box-shadow: 0 0 30px rgba(0, 212, 255, 0.9), 0 0 50px rgba(128, 0, 255, 0.5); }
+        }
+
+        .leaderboard-table-container {
+            background: rgba(15, 15, 30, 0.6);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(0, 212, 255, 0.15);
+            border-radius: 24px;
+            overflow: hidden;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.5);
+            font-family: var(--font-body); /* Rajdhani */
+        }
+
+        .ranking-row {
+            display: grid;
+            grid-template-columns: 60px 80px 1fr 140px 100px 100px 100px;
+            padding: 1.2rem;
+            align-items: center;
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+            transition: 0.3s;
+        }
+
+        .ranking-row:hover:not(.header-row) {
+            background: rgba(0, 212, 255, 0.05);
+        }
+
+        .header-row {
+            background: rgba(0, 212, 255, 0.08);
+            color: var(--neon-cyan);
+            font-weight: 800;
+            text-transform: uppercase;
+            font-size: 0.85rem;
+            border-bottom: 2px solid var(--neon-blue);
+            font-family: var(--font-header); /* Exo 2 */
+        }
+
+        .rank-badge {
+            font-size: 1.4rem;
+            font-weight: 900;
+            text-align: center;
+            font-family: var(--font-header); /* Exo 2 */
+        }
+
+        .top-1 { background: linear-gradient(90deg, rgba(255, 215, 0, 0.1), transparent); border-left: 4px solid #ffd700; }
+        .top-2 { background: linear-gradient(90deg, rgba(192, 192, 192, 0.1), transparent); border-left: 4px solid #c0c0c0; }
+        .top-3 { background: linear-gradient(90deg, rgba(205, 127, 50, 0.1), transparent); border-left: 4px solid #cd7f32; }
+
+        .top-1 .rank-badge { color: #ffd700; text-shadow: 0 0 10px #ffd700; }
+        .top-2 .rank-badge { color: #c0c0c0; text-shadow: 0 0 10px #c0c0c0; }
+        .top-3 .rank-badge { color: #cd7f32; text-shadow: 0 0 10px #cd7f32; }
+
+        .player-info {
+            display: flex;
+            flex-direction: column;
+            line-height: 1.2;
+        }
+
+        .display-name { color: #fff; font-weight: 700; font-size: 1.1rem; }
+        .user-handle { color: #666; font-size: 0.85rem; }
+
+        .stat-value { text-align: right; font-family: monospace; font-weight: bold; }
+        .score-val { color: var(--neon-purple); font-size: 1.6rem; text-shadow: 0 0 10px rgba(128, 0, 255, 0.3); font-family: 'Exo 2', sans-serif; }
+        .accuracy-val { color: var(--neon-cyan); }
+
+        /* Paginación */
+        .pagination-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 0.5rem;
+            margin-top: 2rem;
+            padding-bottom: 3rem;
+        }
+
+        .page-btn {
+            width: 40px;
+            height: 40px;
+            border-radius: 8px;
+            border: 1px solid rgba(0, 212, 255, 0.2);
+            background: rgba(0,0,0,0.4);
+            color: #fff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: 0.3s;
+            font-weight: bold;
+        }
+
+        .page-btn:hover:not(.disabled) {
+            border-color: var(--neon-blue);
+            background: rgba(0, 212, 255, 0.1);
+            color: var(--neon-cyan);
+        }
+
+        .page-btn.active {
+            background: var(--neon-blue);
+            color: #000;
+            border-color: var(--neon-blue);
+        }
+
+        .page-btn.disabled {
+            opacity: 0.3;
+            cursor: not-allowed;
+        }
+
+        /* Icon Centering for Buttons */
+        .page-btn i,
+        .page-btn svg,
+        .btn-sort-dir i,
+        .btn-sort-dir svg {
+            display: block;
+            margin: 0 !important;
+            line-height: 1;
+        }
+
+        @media (max-width: 900px) {
+            .ranking-row {
+                grid-template-columns: 50px 1fr 100px 80px;
+            }
+            .hide-mobile { display: none; }
+        }
+    </style>
 </head>
 <body>
+    <main class="container mt-5">
+        <div class="section-header text-center mb-5">
+            <h1 class="mb-2">Ranking Global</h1>
+            <p style="max-width: 800px; margin: 0 auto; line-height: 1.6; font-size: 1.1rem; color: #ccc;">
+                Sumérgete en el campo de batalla rítmico definitivo donde solo los más precisos sobreviven.
+                Compite contra leyendas de todo el mundo, perfecciona tu timing en cada nota y escala posiciones
+                en la dimensión digital para grabar tu nombre en la historia de MuzicMania por toda la eternidad.
+            </p>
+        </div>
 
-    <!-- Main -->
-    <main>
-        <div class="container">
-            <h1 class="text-center mb-3">Ranking Global</h1>
-            <p class="text-center" style="margin-bottom: 2rem; color: #888;">Los mejores jugadores de la plataforma</p>
+        <div class="filter-bar">
+            <span style="display: flex; align-items: center; color: #fff; font-weight: bold; margin-right: 10px; font-family: var(--font-body);">ORDENAR POR:</span>
+            <button class="filter-btn active" onclick="setSort('highScore')"><i class="fas fa-trophy"></i> PUNTUACIÓN</button>
+            <button class="filter-btn" onclick="setSort('accuracy')"><i class="fas fa-bullseye"></i> PRECISIÓN</button>
+            <button class="filter-btn" onclick="setSort('maxCombo')"><i class="fas fa-fire"></i> MÁX COMBO</button>
+            <button class="filter-btn" onclick="setSort('playTime')"><i class="fas fa-clock"></i> TIEMPO</button>
 
-            <div class="card">
-                <div id="full-leaderboard">
-                    <p class="text-center">Cargando clasificación...</p>
-                </div>
+            <div style="flex-grow: 1;"></div>
+
+            <button id="btn-toggle-dir" class="btn-sort-dir" onclick="toggleSortDir()" title="Cambiar dirección de orden">
+                <i class="fas fa-sort-amount-down"></i>
+            </button>
+        </div>
+
+        <div class="leaderboard-table-container">
+            <div class="ranking-row header-row">
+                <div style="text-align: center;">#</div>
+                <div class="hide-mobile">AVATAR</div>
+                <div>JUGADOR</div>
+                <div style="text-align: right;">PUNTOS</div>
+                <div style="text-align: right;" class="hide-mobile">COMBO</div>
+                <div style="text-align: right;" class="hide-mobile">TIEMPO</div>
+                <div style="text-align: right;">PRECISIÓN</div>
             </div>
+
+            <div id="leaderboard-body">
+                <!-- Inyectado por JS -->
+            </div>
+        </div>
+
+        <div id="pagination" class="pagination-container">
+            <!-- Inyectado por JS -->
         </div>
     </main>
 
-    <!-- Layout System -->
-    <script src="layout.js?v=UPDATE_INDEX_RESTRUCTURE_V1"></script>
-
-    <script src="auth.js?v=UPDATE_INDEX_RESTRUCTURE_V1"></script>
-    <script src="utils.js?v=UPDATE_INDEX_RESTRUCTURE_V1"></script>
-    <script src="search.js?v=UPDATE_INDEX_RESTRUCTURE_V1"></script>
-    <script src="navigation.js?v=UPDATE_INDEX_RESTRUCTURE_V1"></script>
-    <script>
-        // Renderizar leaderboard completo
-        window.addEventListener('load', () => {
-            const leaderboard = AuthSystem.getLeaderboard();
-            const container = document.getElementById('full-leaderboard');
-            
-            if (leaderboard.length === 0) {
-                container.innerHTML = '<p class="text-center" style="padding: 2rem;">No hay datos disponibles.</p>';
-                return;
-            }
-
-            let html = '<div style="display: grid; gap: 1rem;">';
-            // Header de la tabla
-            html += `
-                <div style="display: grid; grid-template-columns: 80px 1fr 150px 100px; padding: 1rem; border-bottom: 2px solid var(--neon-blue); font-weight: 700; color: var(--neon-cyan);">
-                    <div>#</div>
-                    <div>Jugador</div>
-                    <div style="text-align: right;">Puntuación</div>
-                    <div style="text-align: right;">Precisión</div>
-                </div>
-            `;
-
-            leaderboard.forEach((player, index) => {
-                const rankEmojis = ['🏆', '🥈', '🥉'];
-                const rankDisplay = index < 3 ? rankEmojis[index] : `#${index + 1}`;
-                const rowClass = index % 2 === 0 ? 'bg-opacity' : '';
-                
-                // Bot Badge solo en modo debug
-                const isDebug = localStorage.getItem('debugStats');
-                const botBadge = (player.isBot && isDebug) ? '<span class="bot-badge">[BOT] 🤖</span>' : '';
-                
-                html += `
-                    <div style="display: grid; grid-template-columns: 80px 1fr 150px 100px; padding: 1rem; align-items: center; border-bottom: 1px solid rgba(255,255,255,0.1);">
-                        <div style="font-size: 1.2rem;">${rankDisplay}</div>
-                        <div style="font-weight: 700;">${player.username}${botBadge}</div>
-                        <div style="text-align: right; color: var(--neon-purple); font-weight: 700;">${player.highScore.toLocaleString()}</div>
-                        <div style="text-align: right; color: #888;">${player.accuracy}%</div>
-                    </div>
-                `;
-            });
-            html += '</div>';
-            container.innerHTML = html;
-        });
-    </script>
+    <script src="scripts/layout.js?v=UI_FIX_1770507253885"></script>
+    <script src="scripts/auth.js?v=UI_FIX_1770507253885"></script>
+    <script src="scripts/utils.js?v=UI_FIX_1770507253885"></script>
+    <script src="scripts/search.js?v=UI_FIX_1770507253885"></script>
+    <script src="scripts/navigation.js?v=UI_FIX_1770507253885"></script>
+    <script src="leaderboard.js?v=2.3.0"></script>
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
-

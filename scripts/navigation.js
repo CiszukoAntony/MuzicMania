@@ -53,9 +53,10 @@ class AdaptiveNav {
     static showTransition(type) {
         const icon = document.getElementById('transition-icon');
         if (!icon) return;
+        const bp = window.Layout?.basePath || '';
         icon.innerHTML = type === 'reload'
-            ? '<i class="fas fa-rotate-right"></i>'
-            : '<i class="fas fa-arrow-right"></i>';
+            ? (typeof ICONS_LIB !== 'undefined' ? ICONS_LIB.get(ICONS_LIB.restart || 'ri-filled-refresh-line', bp) : '<i class="fas fa-rotate-right"></i>')
+            : (typeof ICONS_LIB !== 'undefined' ? ICONS_LIB.get(ICONS_LIB.arrow_right, bp) : '<i class="fas fa-arrow-right"></i>');
         icon.classList.add('visible');
     }
 
@@ -90,7 +91,7 @@ class AdaptiveNav {
             // 2. Fondo o Botón Cerrar (Solo si el menú está activo)
             const backdrop = e.target.closest('.menu-backdrop');
             const closeBtn = e.target.closest('.close-menu-btn');
-            
+
             if (backdrop || closeBtn) {
                 this.toggleMenu(false);
             }
@@ -122,7 +123,20 @@ class AdaptiveNav {
         } else {
             backdrop.classList.remove('active');
             overlay.classList.remove('active');
+
+            // Reset language menu when closing
             setTimeout(() => {
+                const sections = document.getElementById('main-menu-sections');
+                const langList = document.getElementById('lang-menu-list');
+                const btn = document.querySelector('.lang-toggle-btn');
+                if (sections && langList) {
+                    sections.style.display = 'block';
+                    sections.classList.add('active');
+                    langList.style.display = 'none';
+                    langList.classList.remove('active');
+                }
+                if (btn) btn.classList.remove('active');
+
                 if (!overlay.classList.contains('active')) {
                     backdrop.style.display = 'none';
                 }
@@ -140,16 +154,17 @@ class AdaptiveNav {
     static toggleAccessMenu() {
         const menu = document.getElementById('auth-quick-options');
         const btn = document.getElementById('btn-access-header');
-        
+
         // Cerrar otros menús si es necesario
         this.toggleMenu(false); // Cerrar menú hamburguesa
 
         if (menu) {
             const isActive = menu.classList.toggle('active');
-            if (btn) btn.innerHTML = isActive 
-                ? '<i class="fas fa-times"></i> <span class="btn-text">Cancelar</span>' 
-                : '<i class="fas fa-user-circle"></i> <span class="btn-text">Acceder</span>';
-            
+            const bp = window.Layout?.basePath || '';
+            if (btn) btn.innerHTML = isActive
+                ? (typeof ICONS_LIB !== 'undefined' ? ICONS_LIB.get(ICONS_LIB.close, bp) + ' <span class="btn-text">Cancelar</span>' : '<i class="fas fa-times"></i> <span class="btn-text">Cancelar</span>')
+                : (typeof ICONS_LIB !== 'undefined' ? ICONS_LIB.get(ICONS_LIB.user, bp) + ' <span class="btn-text">Acceder</span>' : '<i class="fas fa-user-circle"></i> <span class="btn-text">Acceder</span>');
+
             if (btn) btn.classList.toggle('active', isActive);
         }
     }
@@ -157,7 +172,7 @@ class AdaptiveNav {
     static closeAccessMenu() {
         const menu = document.getElementById('auth-quick-options');
         const btn = document.getElementById('btn-access-header');
-        
+
         if (menu) menu.classList.remove('active');
         if (btn) {
             btn.innerHTML = '<i class="fas fa-user-circle"></i> <span class="btn-text">Acceder</span>';

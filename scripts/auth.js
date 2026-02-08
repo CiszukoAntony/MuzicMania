@@ -17,7 +17,7 @@ class AuthSystem {
         // Si estamos en play.html y no se ha mostrado la advertencia
         if (window.location.pathname.includes('play.html') && !warningShown && !this.getCurrentUser()) {
             this.showGuestWarning();
-            return false; 
+            return false;
         }
         return true;
     }
@@ -43,11 +43,11 @@ class AuthSystem {
         const modalHTML = `
             <div id="guest-warning-modal" style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.9); z-index: 10000; display: flex; align-items: center; justify-content: center; backdrop-filter: blur(10px);">
                 <div style="background: rgba(10, 10, 25, 0.95); padding: 1.5rem; border-radius: 15px; border: 2px solid var(--neon-pink); max-width: 480px; width: 90%; text-align: center; box-shadow: 0 0 30px rgba(255, 0, 128, 0.3); position: relative;">
-                    
+
                     <button onclick="AuthSystem.handleGuestPlay()" style="position: absolute; top: 10px; right: 15px; background: none; border: none; color: #888; font-size: 1.5rem; cursor: pointer; transition: color 0.3s;">&times;</button>
-                    
+
                     <h2 style="color: var(--neon-pink); font-family: var(--font-header); margin-bottom: 1rem; font-size: 1.8rem; text-transform: uppercase;">⚠ MODO INVITADO ⚠</h2>
-                    
+
                     <div style="background: rgba(255, 0, 128, 0.05); padding: 1rem; border-radius: 10px; margin-bottom: 1.5rem; border: 1px solid rgba(255, 0, 128, 0.2);">
                         <p style="color: #fff; margin-bottom: 0.5rem; font-size: 1rem;">Estás jugando sin iniciar sesión.</p>
                         <ul style="list-style: none; padding: 0; color: #ccc; font-size: 0.95rem; text-align: left; display: inline-block;">
@@ -56,7 +56,7 @@ class AuthSystem {
                             <li>❌ El progreso se perderá al cerrar.</li>
                         </ul>
                     </div>
-                    
+
                     <div style="display: flex; gap: 1rem; justify-content: center;">
                         <button onclick="AuthSystem.openModal('register')" class="btn" style="font-size: 1rem; padding: 0.8rem 1.5rem; background: linear-gradient(135deg, var(--neon-blue), var(--neon-purple));">REGISTRARSE / LOGIN</button>
                         <button onclick="AuthSystem.handleGuestPlay()" class="btn" style="font-size: 1rem; padding: 0.8rem 1.5rem; background: transparent; border: 1px solid #666; color: #ccc;">ENTENDIDO, JUGAR</button>
@@ -85,7 +85,7 @@ class AuthSystem {
         const finalUsername = '@' + cleanUsername;
 
         if (cleanUsername.length < 3) {
-            alert('El nombre de usuario debe tener al menos 3 caracteres alfanuméricos.');
+            Layout.showNotification('ERROR DE VALIDACIÓN', 'El nombre de usuario debe tener al menos 3 caracteres alfanuméricos.', 'fa-exclamation-triangle');
             return false;
         }
 
@@ -93,11 +93,11 @@ class AuthSystem {
 
         // 2. Verificaciones de unicidad
         if (users.find(u => u.username === finalUsername)) {
-            alert('Este nombre de usuario ya está ocupado.');
+            Layout.showNotification('ERROR DE REGISTRO', 'Este nombre de usuario ya está ocupado.', 'fa-user-times');
             return false;
         }
         if (users.find(u => u.email === email)) {
-            alert('Este correo electrónico ya está registrado.');
+            Layout.showNotification('ERROR DE REGISTRO', 'Este correo electrónico ya está registrado.', 'fa-envelope-open-text');
             return false;
         }
 
@@ -110,6 +110,8 @@ class AuthSystem {
             highScore: 0,
             accuracy: 0,
             gamesPlayed: 0,
+            maxCombo: 0,
+            playTime: 0, // total segundos
             createdAt: new Date().toISOString(),
             lastUsernameChange: new Date().toISOString(), // Cooldown tracker
             isBot: false
@@ -124,33 +126,33 @@ class AuthSystem {
     static login(identifier, password) {
         const users = this.getUsers();
         // Permitir login con Email O Username
-        const user = users.find(u => 
-            (u.email === identifier || u.username === identifier || u.username === '@' + identifier) && 
+        const user = users.find(u =>
+            (u.email === identifier || u.username === identifier || u.username === '@' + identifier) &&
             u.password === password
         );
 
         if (user) {
             localStorage.setItem('currentUser', JSON.stringify(user));
             this.updateUI();
-            
+
             // Cerrar modales si existen
             this.closeModal('login');
             this.closeModal('register');
-            
+
             // Si estaba en warning de invitado, cerrarlo también
             this.closeGuestWarning();
 
             if (typeof showNotification === 'function') {
                 showNotification(`¡Bienvenido de nuevo, ${user.displayName}!`, 'success');
             } else {
-                alert(`¡Bienvenido de nuevo, ${user.displayName}!`);
+                Layout.showNotification('¡BIENVENIDO!', `Bienvenido de nuevo, ${user.displayName}!`, 'fa-user-check');
             }
-            
+
             // Recargar si estamos en perfil para actualizar datos
             if(window.location.pathname.includes('profile.html')) window.location.reload();
             return true;
         } else {
-            alert('Credenciales incorrectas.');
+            Layout.showNotification('ACCESO DENEGADO', 'Credenciales incorrectas.', 'fa-shield-alt');
             return false;
         }
     }
@@ -160,18 +162,23 @@ class AuthSystem {
         window.location.href = 'index.html';
     }
 
-    static updateUserScore(newScore, accuracy) {
+    static updateUserScore(newScore, accuracy, sessionCombo = 0, sessionDuration = 0) {
         let user = this.getCurrentUser();
-        if (!user) return; // No guardar para invitados (ya manejado por warning, doble seguridad)
+        if (!user) return;
 
         // Actualizar datos en memoria
         user.gamesPlayed++;
+        user.playTime = (user.playTime || 0) + sessionDuration;
+
         // Promedio acumulativo simple para accuracy
         user.accuracy = Math.round(((user.accuracy * (user.gamesPlayed - 1)) + accuracy) / user.gamesPlayed);
-        
+
         if (newScore > user.highScore) {
             user.highScore = newScore;
-            // Podríamos notificar "Nuevo Récord!"
+        }
+
+        if (sessionCombo > (user.maxCombo || 0)) {
+            user.maxCombo = sessionCombo;
         }
 
         // Guardar en currentUser
@@ -191,16 +198,16 @@ class AuthSystem {
 
     static updateLeaderboard(user) {
         let leaderboard = JSON.parse(localStorage.getItem('leaderboard')) || [];
-        
+
         // Quitar entrada antigua del usuario si existe
         leaderboard = leaderboard.filter(u => u.username !== user.username);
-        
+
         // Añadir usuario actualizado
         leaderboard.push(user);
-        
+
         // Ordenar por High Score desc
         leaderboard.sort((a, b) => b.highScore - a.highScore);
-        
+
         // Trim leaderboard to top 100 maybe?
         if (leaderboard.length > 100) leaderboard = leaderboard.slice(0, 100);
 
@@ -230,7 +237,9 @@ class AuthSystem {
                             <span style="color: var(--neon-cyan); font-weight: bold; font-size: 1rem;">${user.displayName}</span>
                             <span style="color: #666; font-size: 0.8rem;">${user.username}</span>
                         </div>
-                        <button onclick="event.stopPropagation(); AuthSystem.logout()" class="logout-btn" style="margin-left: 10px; font-size: 0.8rem;"><i class="fas fa-sign-out-alt"></i></button>
+                        <button onclick="event.stopPropagation(); AuthSystem.logout()" class="logout-btn" style="margin-left: 10px; font-size: 0.8rem;">
+                            ${typeof ICONS_LIB !== 'undefined' ? ICONS_LIB.get(ICONS_LIB.logout, window.Layout?.basePath || '') : '<i class="fas fa-sign-out-alt"></i>'}
+                        </button>
                     </div>
                 `;
             } else {
@@ -239,11 +248,11 @@ class AuthSystem {
                 section.innerHTML = `
                     <div style="display: flex; gap: 10px; align-items: center;">
                         <div id="auth-quick-options" class="auth-quick-options">
-                            <button class="btn-small" onclick="AuthSystem.openModal('login')"><i class="fas fa-sign-in-alt"></i> Ingresar</button>
-                            <button class="btn-small btn-highlight" onclick="AuthSystem.openModal('register')"><i class="fas fa-user-plus"></i> Registrarse</button>
+                            <button class="btn-small" onclick="AuthSystem.openModal('login')">${typeof ICONS_LIB !== 'undefined' ? ICONS_LIB.get(ICONS_LIB.login, window.Layout?.basePath || '') : '<i class="fas fa-sign-in-alt"></i>'} Ingresar</button>
+                            <button class="btn-small btn-highlight" onclick="AuthSystem.openModal('register')">${typeof ICONS_LIB !== 'undefined' ? ICONS_LIB.get(ICONS_LIB.user_add, window.Layout?.basePath || '') : '<i class="fas fa-user-plus"></i>'} Registrarse</button>
                         </div>
                         <button id="btn-access-header" class="btn-access" onclick="AdaptiveNav.toggleAccessMenu()">
-                            <i class="fas fa-user-circle"></i> <span class="btn-text">Acceder</span>
+                            ${typeof ICONS_LIB !== 'undefined' ? ICONS_LIB.get(ICONS_LIB.user, window.Layout?.basePath || '') : '<i class="fas fa-user-circle"></i>'} <span class="btn-text">Acceder</span>
                         </button>
                     </div>
                 `;

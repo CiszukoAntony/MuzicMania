@@ -1,21 +1,29 @@
 # Security Policy
 
 ## Supported Versions
-
-Use this section to tell people about which versions of your project are
-currently being supported with security updates.
+At MuzicMania, we prioritize the safety of our users. Only the latest version of the main website is supported for security updates.
 
 | Version | Supported          |
 | ------- | ------------------ |
-| 5.1.x   | :white_check_mark: |
-| 5.0.x   | :x:                |
-| 4.0.x   | :white_check_mark: |
-| < 4.0   | :x:                |
+| 1.x     | :white_check_mark: |
+| < 1.0   | :x:                |
 
 ## Reporting a Vulnerability
+If you find a security hole, please report it privately.
+**Contact Email:** fplayersoffcial@gmail.com
 
-Use this section to tell people how to report a vulnerability.
+---
 
-Tell them where to go, how often they can expect to get an update on a
-reported vulnerability, what to expect if the vulnerability is accepted or
-declined, etc.
+# Política de Seguridad
+
+## Versiones Soportadas
+En MuzicMania, priorizamos la seguridad de nuestros usuarios. Solo la última versión del sitio web principal cuenta con soporte para actualizaciones de seguridad.
+
+| Versión | Soporte            |
+| ------- | ------------------ |
+| 1.x     | :white_check_mark: |
+| < 1.0   | :x:                |
+
+## Informar una Vulnerabilidad
+Si encuentras un fallo de seguridad, por favor infórmalo de forma privada.
+**Email de Contacto:** fplayersoffcial@gmail.com

@@ -11,27 +11,27 @@
   --bg-black: #000000;
   --bg-dark: #0a0a14;
   --bg-darker: #050508;
-  
+
   /* Azules (Predominantes) */
   --neon-blue: #00d4ff;
   --neon-cyan: #00f0ff;
   --neon-electric: #0099ff;
   --neon-sky: #33ccff;
-  
+
   /* Verdes (Para Transiciones) */
   --neon-green: #00ff88;
   --neon-emerald: #00ff44;
   --neon-lime: #ccff00;
-  
+
   /* Rosas Pastel */
   --neon-pink: #ff33cc;
   --neon-rose: #ff66d9;
   --neon-accent: #ffccee;
-  
+
   /* Púrpuras */
   --neon-purple: #8000ff;
   --neon-violet: #a855f7;
-  
+
   /* Gradientes */
   --gradient-main: linear-gradient(135deg, var(--neon-cyan), var(--neon-purple), var(--neon-pink));
   --gradient-accent: linear-gradient(90deg, var(--neon-purple), var(--neon-pink));
@@ -40,28 +40,28 @@
   /* Gradiente de transición azul-verde */
   --gradient-transition: linear-gradient(90deg, var(--neon-blue), var(--neon-green), var(--neon-blue), var(--neon-green));
   --gradient-transition-angle: linear-gradient(135deg, var(--neon-blue), var(--neon-green));
-  
+
   /* Sombras/Glow (reducidas en texto) */
   --glow-blue: 0 0 20px rgba(0, 213, 255, 0.681);
   --glow-pink: 0 0 20px #ff9dce80;
   --glow-multi: 0 0 20px rgba(0, 68, 255, 0.4), 0 0 40px rgba(255, 179, 217, 0.2);
   --glow-soft: 0 0 10px rgba(0, 55, 255, 0.3);
-  
+
   /* Tipografía - Bold Futurística */
   --font-header: 'Exo 2', sans-serif;
   --font-body: 'Rajdhani', sans-serif;
-  
+
   /* Espaciado */
   --spacing-xs: 0.5rem;
   --spacing-sm: 1rem;
   --spacing-md: 2rem;
   --spacing-lg: 3rem;
   --spacing-xl: 5rem;
-  
+
   /* Espaciado de Layout */
   --header-height: 110px;
   --footer-padding: 3rem;
-  
+
   /* Transiciones */
   --transition-fast: 0.2s ease;
   --transition-normal: 0.3s ease;
@@ -93,7 +93,7 @@ body {
   line-height: 1.6;
   font-size: 1.1rem;
   font-weight: 600;
-  
+
   /* Restricciones de interacción para aspecto profesional */
   -webkit-user-select: none;
   -moz-user-select: none;
@@ -157,7 +157,8 @@ h1 {
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
-  filter: drop-shadow(0 0 15px rgba(8, 0, 255, 0.3));
+  text-align: center; /* Petición Phase 5: Centrado global */
+  margin-bottom: 2.5rem;
 }
 
 h2 {
@@ -212,8 +213,8 @@ header::after {
   left: 0;
   width: 100%;
   height: 2px;
-  background: linear-gradient(90deg, 
-    var(--neon-blue), var(--neon-purple), var(--neon-pink), 
+  background: linear-gradient(90deg,
+    var(--neon-blue), var(--neon-purple), var(--neon-pink),
     var(--neon-blue), var(--neon-purple), var(--neon-pink));
   background-size: 200% 100%;
   animation: borderFlow 3s linear infinite;
@@ -227,6 +228,46 @@ body.page-transitioning header::after {
   animation: borderFlowGreen 1.2s linear infinite;
 }
 
+/* Transition Loading Icon */
+.transition-icon {
+  position: fixed;
+  bottom: 2rem;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 70px;
+  height: 70px;
+  background: var(--bg-darker);
+  border: 3px solid var(--neon-green);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  pointer-events: none;
+  z-index: 9999;
+  transition: opacity 0.3s ease;
+  box-shadow: 0 0 25px rgba(0, 255, 136, 0.5);
+}
+
+.transition-icon.visible {
+  opacity: 1;
+  animation: pulseIcon 1s ease-in-out infinite;
+}
+
+.transition-icon i,
+.transition-icon svg {
+  font-size: 1.8rem;
+  color: var(--neon-green);
+  display: block;
+  margin: 0 !important;
+  line-height: 1;
+}
+
+@keyframes pulseIcon {
+  0%, 100% { transform: translateX(-50%) scale(1); }
+  50% { transform: translateX(-50%) scale(1.1); }
+}
+
 .header-content {
   display: flex;
   justify-content: space-between;
@@ -234,13 +275,13 @@ body.page-transitioning header::after {
   width: 100%;
   max-width: none;
   margin: 0;
-  padding: 0 1rem;
+  padding: 0 2rem;
 }
 
 .logo-container {
   display: flex;
   align-items: center;
-  gap: 0.6rem;
+  gap: 12px; /* Un poco más de espacio entre isotipo y logotipo */
   cursor: pointer;
   text-decoration: none;
   transition: var(--transition-normal);
@@ -248,43 +289,60 @@ body.page-transitioning header::after {
   border-radius: 10px;
   border: 1px solid transparent;
   position: relative;
-  margin-right: 1.5rem; /* Espacio para el separador */
+  margin-right: 0.5rem; /* Separación ajustada para el nuevo divisor */
 }
 
 /* Separador sutil vertical */
-.logo-container::after {
-  content: '';
-  position: absolute;
-  right: -0.8rem;
-  top: 20%;
-  height: 60%;
+.header-divider {
   width: 1px;
-  background: rgba(255, 255, 255, 0.2);
+  height: 24px;
+  background: rgba(255, 255, 255, 0.4);
+  margin: 0 1rem;
+  flex-shrink: 0;
+  display: block;
 }
 
 .logo-container:hover {
   background: rgba(0, 89, 255, 0.08);
-  border-color: rgba(4, 0, 255, 0.3);
+  transform: scale(1.03); /* Escala suave */
   box-shadow: 0 0 12px rgba(0, 213, 255, 0.639);
 }
 
-.logo-container:active {
-  transform: scale(0.95);
+.logo-container:active,
+.footer-brand:active {
   box-shadow: inset 0 0 20px rgba(0, 0, 0, 0.6);
 }
 
+/* Animación sincronizada para elementos internos */
+.logo-container:hover .logo-img,
+.logo-container:hover .header-text-logotipo,
+.footer-brand:hover .logo-img,
+.footer-brand:hover .footer-text-logotipo {
+    transform: scale(1.08);
+}
+
+/* Ajustes para el sistema de avisos de desarrollo */
+.security-warning.dev-warning {
+    border-color: var(--neon-cyan) !important;
+    background: rgba(0, 255, 255, 0.05) !important;
+}
+
+.security-warning.dev-warning i {
+    color: var(--neon-cyan) !important;
+}
+
 .logo-img {
-  width: 40px;
-  height: 40px;
+  width: 52px; /* Agrandado de 40px a 52px */
+  height: 52px;
   transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
 
-.header-text-logotipo, 
+.header-text-logotipo,
 .footer-text-logotipo {
-    height: 30px;
+    height: 38px;
     width: auto;
     display: block;
-    transition: transform 0.4s ease;
+    transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
 
 .logo-text {
@@ -299,14 +357,7 @@ body.page-transitioning header::after {
   transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
 
-/* Efecto de Zoom y Flotado al pasar el mouse por el contenedor */
-.logo-container:hover .logo-img {
-  transform: translateY(-2px) scale(1.08);
-}
-
-.logo-container:hover .logo-text {
-  transform: translateY(-2px) scale(1.05);
-}
+/* Eliminado bloque redundante de hover */
 
 nav {
   display: flex;
@@ -319,7 +370,7 @@ nav {
 nav ul {
   display: flex;
   list-style: none;
-  gap: 0.3rem; /* Aún más compacto */
+  gap: 1.2rem; /* Aumentado gap para legibilidad */
   align-items: center;
 }
 
@@ -347,6 +398,8 @@ nav a {
   gap: 8px; /* Espacio entre icono y texto */
 }
 
+/* Botón Volver Arriba */
+
 nav a i {
   color: #ffffff;
   font-size: 1rem;
@@ -355,7 +408,7 @@ nav a i {
 nav a:hover {
   color: var(--neon-cyan);
   border-color: var(--neon-blue);
-  box-shadow: var(--glow-blue);
+  /* Brillo eliminado por petición */
   transform: translateY(-2px);
 }
 
@@ -542,7 +595,26 @@ nav a.active {
 .search-btn.active, .menu-toggle-btn.active {
     background: var(--neon-blue) !important;
     color: #000 !important;
-    box-shadow: 0 0 20px var(--neon-blue) !important;
+    box-shadow: 0 0 20px rgba(0, 212, 255, 0.6) !important;
+    border-color: var(--neon-blue) !important;
+    transform: none !important;
+}
+
+/* LEY: Negro sobre Azul en hover activo */
+.search-btn.active:hover, .menu-toggle-btn.active:hover {
+    box-shadow: 0 0 25px var(--neon-blue) !important;
+    background: var(--neon-blue) !important;
+    color: #000 !important;
+    transform: none !important;
+}
+
+.search-btn i, .menu-toggle-btn i {
+    color: inherit;
+    display: flex !important;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
 }
 
 /* === LOCAL SEARCH CONTAINER (FAQ, HELP) === */
@@ -723,9 +795,14 @@ nav a.active {
     margin-bottom: 4px;
 }
 
-.nav-menu-item-header i {
-    color: var(--neon-blue); /* Iconos azules */
+.nav-menu-item-header i, .nav-menu-item-header svg {
+    color: #fff; /* Blanco por defecto */
     width: 20px;
+    height: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
 }
 
 .nav-menu-item-header span {
@@ -790,13 +867,21 @@ nav a.active {
 
 .zoom-warning .close-warning {
     position: absolute;
-    top: -10px;
-    right: -10px;
-    background: var(--bg-dark);
-    border: 2px solid #fff;
-    box-shadow: 0 0 10px rgba(0,0,0,0.5);
+    top: 10px;
+    right: 15px; /* Movido a la derecha arriba */
+    background: rgba(255, 255, 255, 0.2);
+    border: none;
+    color: white;
     width: 28px;
     height: 28px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    font-size: 1.2rem;
+    transition: 0.2s;
+    z-index: 10;
 }
 
 /* Nivel 1: Informativo (Azul) */
@@ -839,6 +924,7 @@ nav a.active {
 .zoom-warning .close-warning:hover {
     background: white;
     color: var(--neon-pink);
+    transform: scale(1.1);
 }
 
 
@@ -882,8 +968,8 @@ nav a.active {
    color: var(--neon-cyan);
    font-size: 1.1rem;
    font-weight: 800;
-   display: flex; 
-   gap: 10px; 
+   display: flex;
+   gap: 10px;
    align-items: center;
    letter-spacing: 1px;
 }
@@ -898,8 +984,9 @@ nav a.active {
    display: flex; align-items: center; justify-content: center;
    font-size: 1.2rem;
    transition: 0.2s;
+   order: 2; /* Asegurar que se mantenga a la derecha */
 }
-.close-warning-simple:hover { background: #ff3366; color: #fff; }
+.close-warning-simple:hover { background: #ff3366; color: #fff; transform: scale(1.1); }
 
 .debug-warning-sub {
     width: 100%;
@@ -1230,8 +1317,8 @@ footer::before {
   left: 0;
   width: 100%;
   height: 2px;
-  background: linear-gradient(90deg, 
-    var(--neon-blue), var(--neon-purple), var(--neon-pink), 
+  background: linear-gradient(90deg,
+    var(--neon-blue), var(--neon-purple), var(--neon-pink),
     var(--neon-blue), var(--neon-purple), var(--neon-pink));
   background-size: 200% 100%;
   animation: borderFlow 3s linear infinite;
@@ -1252,9 +1339,22 @@ body.page-transitioning footer::before {
 
 .footer-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  grid-template-columns: 1fr 1.8fr 1fr; /* Más espacio para la columna central de navegación */
   gap: var(--spacing-lg);
   margin-bottom: var(--spacing-md);
+}
+
+/* Responsividad para el grid del footer */
+@media (max-width: 900px) {
+  .footer-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media (max-width: 600px) {
+  .footer-grid {
+    grid-template-columns: 1fr;
+  }
 }
 
 .footer-section h4 {
@@ -1284,32 +1384,87 @@ body.page-transitioning footer::before {
   padding-left: 5px;
 }
 
+/* === BACK TO TOP BUTTON === */
+.back-to-top {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    width: 60px;
+    height: 60px;
+    background: rgba(0, 0, 0, 0.4);
+    border: 2px solid var(--neon-blue);
+    border-radius: 50%;
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    backdrop-filter: blur(10px);
+    z-index: 1001;
+    box-shadow: 0 0 15px rgba(0, 212, 255, 0.2);
+}
+
+.back-to-top:hover {
+    background: var(--neon-blue);
+    color: #000;
+    box-shadow: 0 0 25px var(--neon-blue);
+    transform: translateY(-5px);
+}
+
+.back-to-top .nav-icon-svg {
+    width: 28px;
+    height: 28px;
+    fill: #fff;
+    transition: all 0.3s ease;
+    margin: 0;
+    /* Forcing perfect center */
+    display: block;
+}
+
+.back-to-top:hover .nav-icon-svg {
+    fill: #000;
+}
+
+/* Navigation List refine */
+.footer-comprehensive-list {
+  columns: 2;
+  gap: 2.5rem;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.footer-comprehensive-list li {
+  break-inside: avoid;
+  margin-bottom: 0.6rem;
+}
+
+.footer-comprehensive-list li a {
+  white-space: nowrap; /* Evitar que Terms and Conditions se rompa */
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
 .footer-section ul li a.active {
   color: #ffffff;
   font-weight: 700;
   text-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
 }
 
+/* Estilos de Branding del Footer (Consolidados arriba) */
 .footer-logo-sync {
-  width: 50px;
-  height: 50px;
+  width: 52px;
+  height: 52px;
   vertical-align: middle;
   transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-}
-
-/* Sincronizar con el header .logo-container:hover .logo-img */
-.footer-brand:hover .logo-img {
-  transform: translateY(-2px) scale(1.08);
-}
-
-.footer-brand:hover h3 {
-  transform: translateY(-2px) scale(1.05);
 }
 
 .footer-brand {
   display: flex;
   align-items: center;
-  gap: 0.6rem;
+  gap: 12px;
   margin-bottom: 0.5rem;
   text-decoration: none;
   cursor: pointer;
@@ -1321,25 +1476,9 @@ body.page-transitioning footer::before {
 }
 
 .footer-brand:hover {
-  background: rgba(0, 85, 255, 0.08);
-  border-color: rgba(0, 85, 255, 0.3);
-  box-shadow: 0 0 12px rgba(107, 230, 255, 0.4);
-}
-
-.footer-brand:active {
-  transform: scale(0.95);
-  box-shadow: inset 0 0 20px rgba(0, 0, 0, 0.6);
-}
-
-.footer-brand h3 {
-  display: inline-block;
-  margin: 0;
-  font-size: 2rem;
-  background: var(--gradient-main);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-  transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  background: rgba(0, 89, 255, 0.08);
+  border-color: rgba(4, 0, 255, 0.3);
+  box-shadow: 0 0 12px rgba(0, 213, 255, 0.639);
 }
 
 .social-icons {
@@ -1435,43 +1574,43 @@ body.page-transitioning footer::before {
   h1 {
     font-size: 3rem;
   }
-  
+
   h2 {
     font-size: 2rem;
   }
-  
+
   h3 {
     font-size: 1.5rem;
   }
-  
+
   .header-content {
     flex-direction: column;
     gap: var(--spacing-sm);
   }
-  
+
   nav ul {
     flex-wrap: wrap;
     justify-content: center;
     gap: var(--spacing-sm);
   }
-  
+
   .logo-text {
     font-size: 1.5rem;
   }
-  
+
   .grid, .stats-grid {
     grid-template-columns: 1fr;
   }
-  
+
   .btn {
     padding: 0.9rem 2rem;
     font-size: 1rem;
   }
-  
+
   .hero {
     text-align: center;
   }
-  
+
   .footer-grid {
     grid-template-columns: 1fr;
   }
@@ -2071,8 +2210,8 @@ body.page-transitioning footer::before {
   user-select: none;
 }
 
-.rate-item:hover { 
-    transform: scale(1.15); 
+.rate-item:hover {
+    transform: scale(1.15);
     color: #fff;
 }
 
@@ -2702,15 +2841,31 @@ body.page-transitioning footer::before {
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    gap: 8px;
+    gap: 10px; /* Un poco más de espacio */
     text-decoration: none;
     color: #aaa;
-    padding: 10px 20px;
+    padding: 12px 15px;
     border-radius: 12px;
     transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
     min-width: 100px;
     position: relative;
     border: 1px solid transparent;
+}
+
+.qa-btn .nav-icon-svg {
+    width: 28px; /* Un poco más grandes para el dock */
+    height: 28px;
+    fill: #ffffff !important;
+    display: block;
+    margin: 0 auto; /* Centrado absoluto */
+}
+
+.qa-btn span {
+    font-size: 0.8rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-top: 5px;
 }
 
 .qa-btn i {
@@ -2885,6 +3040,107 @@ body.page-transitioning footer::before {
     font-size: 0.85rem !important;
 }
 
+/* === CUSTOM SELECT (HIGH CONTRAST) === */
+.custom-select-container {
+    position: relative;
+    user-select: none;
+    min-width: 180px;
+}
+
+.custom-select-trigger {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: rgba(10, 10, 20, 0.95) !important; /* Fondo oscuro Profundo */
+    border: 1px solid var(--neon-blue) !important; /* Borde Neón */
+    padding: 10px 15px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: #fff !important; /* Texto blanco */
+    cursor: pointer;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+    box-shadow: 0 0 10px rgba(0, 212, 255, 0.1) !important;
+}
+
+.custom-select-trigger:hover {
+    background: rgba(10, 10, 20, 1) !important;
+    box-shadow: 0 0 15px rgba(0, 212, 255, 0.3) !important;
+    border-color: var(--neon-cyan) !important;
+}
+
+.custom-select-options {
+    position: absolute;
+    top: 110%;
+    left: 0;
+    right: 0;
+    background: rgba(10, 10, 25, 0.98) !important; /* Casi opaco */
+    border: 1px solid var(--neon-blue) !important;
+    border-radius: 8px;
+    overflow: hidden;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-10px);
+    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    z-index: 100;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.8) !important;
+}
+
+.custom-select-container.active .custom-select-options {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
+.custom-option {
+    padding: 10px 15px;
+    color: #ccc !important;
+    cursor: pointer;
+    transition: all 0.2s;
+    font-size: 0.85rem;
+    display: flex;
+    align-items: center;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05) !important;
+}
+
+.custom-option:last-child {
+    border-bottom: none !important;
+}
+
+.custom-option:hover {
+    background: rgba(0, 212, 255, 0.15) !important;
+    color: #fff !important;
+    padding-left: 18px; /* Efecto de desplazamiento suave */
+}
+
+.custom-option.selected {
+    background: var(--neon-blue) !important;
+    color: #000 !important; /* Texto negro sobre fondo brillante para máximo contraste */
+    font-weight: 800;
+}
+
+.sort-direction-btn {
+    background: rgba(10, 10, 20, 0.95) !important;
+    border: 1px solid var(--neon-blue) !important;
+    color: var(--neon-cyan) !important;
+    min-width: 42px; /* Ancho fijo para ser cuadrado */
+    height: 42px; /* Altura igual al select (ajustar si es necesario) */
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 1.1rem;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.sort-direction-btn:hover {
+    background: var(--neon-blue) !important;
+    color: #000 !important;
+    box-shadow: 0 0 15px rgba(0, 212, 255, 0.6) !important;
+    transform: translateY(-2px);
+}
+
 @media (max-width: 600px) {
     .security-warning {
         padding: 10px 15px !important;
@@ -2894,18 +3150,17 @@ body.page-transitioning footer::before {
     }
 }
 
-/* === ICONOS SVG PERSONALIZADOS === */
-/* === ICONOS SVG PERSONALIZADOS === */
+/* === ICONOS SVG PERSONALIZADOS (Sistema Unificado) === */
 .nav-icon-svg {
     width: 20px;
     height: 20px;
-    margin-right: 8px;
-    transition: all 0.3s ease;
+    margin-right: 8px; /* Margen para iconos con texto */
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     vertical-align: middle;
     display: inline-block;
     flex-shrink: 0;
     overflow: visible !important;
-    color: #00f0ff; /* Neon Cyan default for currentColor */
+    fill: #ffffff; /* Blanco por defecto */
 }
 
 /* Hover Effects (White Glow) */
@@ -2931,8 +3186,13 @@ nav a:hover .nav-icon-svg path,
 }
 
 /* === HEADER ACTIONS ICONS COLOR === */
-.search-btn, 
-.menu-toggle-btn {
+.search-btn,
+.menu-toggle-btn,
+.theme-toggle-btn,
+.lang-toggle-btn,
+.config-btn,
+.back-to-top,
+.go-to-bottom {
     color: var(--neon-cyan);
     background: transparent;
     border: none;
@@ -2942,62 +3202,371 @@ nav a:hover .nav-icon-svg path,
     justify-content: center;
 }
 
-.search-btn:hover, 
+.search-btn:hover,
 .menu-toggle-btn:hover {
     color: #ffffff;
 }
 
-.search-btn .nav-icon-svg, 
-.menu-toggle-btn .nav-icon-svg {
-    margin: 0; /* Centered */
+.search-btn .nav-icon-svg,
+.menu-toggle-btn .nav-icon-svg,
+.theme-toggle-btn .nav-icon-svg,
+.lang-toggle-btn .nav-icon-svg,
+.config-btn .nav-icon-svg,
+.back-to-top .nav-icon-svg,
+.go-to-bottom .nav-icon-svg {
+    margin: 0 !important; /* Centrado absoluto para botones circulares (sin texto) */
+    display: block;
 }
 
 /* Specific adjustment for Navbar links to ensure flex alignment */
-nav ul li a, 
+nav ul li a,
 .nav-menu-item .nav-menu-item-header {
     display: flex;
     align-items: center;
 }
+/* Social Icons Adjustment (Centered circles) */
+/* Social Icons Adjustment (Centered circles) */
+.social-icons {
+    display: flex;
+    gap: 15px;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-top: 1.5rem;
+}
 
-/* Social Icons Adjustment */
 .social-icons a {
     display: flex;
     justify-content: center;
     align-items: center;
-    padding: 10px;
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    position: relative;
+    overflow: hidden;
 }
+
 .social-icons .nav-icon-svg {
-    margin-right: 0;
+    width: 22px;
+    height: 22px;
+    fill: #ffffff;
+    transition: all 0.3s ease;
+    z-index: 2;
+    margin: 0;
+}
+
+/* Remoción de redundancia global */
+
+/* Specific Hover Effects (Footer Brands) */
+.social-icons a {
+    border: 1.5px solid rgba(255,255,255,0.1); /* Borde base suave */
+}
+
+/* Bordes de marca específicos (Petición Phase 3) */
+.social-icons a.social-x { border-color: rgba(255, 255, 255, 0.4); }
+.social-icons a.social-discord { border-color: #5865F2; }
+.social-icons a.social-github { border-color: rgba(255, 255, 255, 0.4); }
+.social-icons a.social-facebook { border-color: #1877F2; }
+.social-icons a.social-reddit { border-color: #FF4500; }
+.social-icons a.social-youtube { border-color: #ff0000; }
+.social-icons a.social-instagram { border-color: #d6249f; }
+.social-icons a.social-tiktok { border-color: #fe2c55; }
+.social-icons a.social-twitch { border-color: #9146FF; }
+
+.social-icons a:hover {
+    transform: translateY(-8px) scale(1.15);
+    /* El hover ya define su propio background y border-color !important */
+}
+
+/* Contrast Fix for X and GitHub */
+/* Petición #1: X negro en hover (fondo blanco) */
+.social-icons a.social-x:hover {
+    background-color: #ffffff !important;
+    box-shadow: 0 0 20px rgba(255, 255, 255, 0.8) !important;
+    border-color: #ffffff !important;
+}
+.social-icons a.social-x:hover .nav-icon-svg {
+    fill: #000000 !important;
+    filter: none !important; /* Quitar glow azul en hover blanco */
+}
+
+.social-icons a.social-github:hover {
+    background-color: #ffffff !important;
+    box-shadow: 0 0 20px #fff !important;
+}
+.social-icons a.social-github:hover .nav-icon-svg {
+    fill: #000000 !important;
+    filter: none !important;
+}
+
+.social-icons a.social-facebook:hover {
+    background-color: #1877F2 !important;
+    box-shadow: 0 0 20px #1877F2 !important;
+    border-color: #1877F2 !important;
+}
+.social-icons a.social-facebook:hover .nav-icon-svg {
+    fill: #ffffff !important;
+}
+
+/* Brand Colors for others */
+.social-icons a.social-discord:hover { background-color: #5865F2 !important; box-shadow: 0 0 20px #5865F2 !important; border-color: #5865F2 !important; }
+.social-icons a.social-reddit:hover { background-color: #FF4500 !important; box-shadow: 0 0 20px #FF4500 !important; border-color: #FF4500 !important; }
+.social-icons a.social-youtube:hover { background-color: #ff0000 !important; box-shadow: 0 0 20px #ff0000 !important; border-color: #ff0000 !important; }
+.social-icons a.social-instagram:hover {
+    background-image: radial-gradient(circle at 30% 107%, #fdf497 0%, #fdf497 5%, #fd5949 45%, #d6249f 60%, #285AEB 90%) !important;
+    box-shadow: 0 0 20px #d6249f !important;
+    border-color: transparent !important;
+}
+.social-icons a.social-tiktok:hover { background-color: #010101 !important; box-shadow: 0 0 20px #fe2c55 !important; border: 1px solid #fe2c55 !important; }
+.social-icons a.social-twitch:hover { background-color: #9146FF !important; box-shadow: 0 0 20px #9146FF !important; border-color: #9146FF !important; }
+
+/* Contact Pill refinements */
+.contact-pill:hover {
+    background: rgba(37, 211, 102, 0.2) !important;
+    border-color: #25D366 !important;
+    box-shadow: 0 0 15px rgba(37, 211, 102, 0.3);
+    transform: scale(1.05);
+}
+
+/* === ICON SYSTEM COLORS === */
+.nav-comprehensive ul li a .nav-icon-svg,
+.nav-overlay-content .nav-menu-item .nav-icon-svg,
+.footer-comprehensive-list li a .nav-icon-svg,
+.icon-btn .nav-icon-svg,
+.search-btn .nav-icon-svg,
+.menu-toggle-btn .nav-icon-svg,
+.qa-btn .nav-icon-svg {
+    fill: #ffffff !important;
+    filter: drop-shadow(0 0 1px rgba(255, 255, 255, 0.4));
+}
+
+.nav-comprehensive ul li a:hover .nav-icon-svg,
+.nav-overlay-content .nav-menu-item:hover .nav-icon-svg,
+.footer-comprehensive-list li a:hover .nav-icon-svg,
+.icon-btn:hover .nav-icon-svg,
+.search-btn:hover .nav-icon-svg,
+.menu-toggle-btn:hover .nav-icon-svg,
+.qa-btn:hover .nav-icon-svg,
+.nav-dropdown-trigger:hover .nav-icon-svg {
+    fill: var(--neon-blue) !important;
+    filter: none !important; /* Petición Phase 5: Quitar glow en hover */
+}
+
+/* LEY DE CONTRASTE: Icono NEGRO sobre fondo NEÓN BLUE (Solo botones con fondo azul SÓLIDO) */
+.search-btn.active .nav-icon-svg,
+.menu-toggle-btn.active .nav-icon-svg,
+.qa-btn.active .nav-icon-svg,
+.search-btn.active:hover .nav-icon-svg,
+.menu-toggle-btn.active:hover .nav-icon-svg,
+.qa-btn.active:hover .nav-icon-svg {
+    fill: #000000 !important;
+    filter: none !important;
+}
+
+/* Iconos AZULES para elementos con fondo semi-transparente (Navbar) */
+.nav-comprehensive ul li a.active .nav-icon-svg,
+.nav-comprehensive ul li a.active:hover .nav-icon-svg,
+.nav-overlay-content .nav-menu-item.active .nav-icon-svg,
+.nav-overlay-content .nav-menu-item.active:hover .nav-icon-svg {
+    fill: var(--neon-blue) !important;
+    filter: drop-shadow(0 0 8px var(--neon-blue)) !important;
+}
+
+/* Color de texto en hover (Headers) */
+.nav-overlay-content .nav-menu-item:hover span {
+    color: var(--neon-blue) !important;
+    text-shadow: none !important; /* Petición #2: Sin glow en el título */
+}
+
+/* Otros hovers con brillo desactivado */
+.qa-btn:hover span,
+.nav-dropdown-trigger:hover {
+    color: var(--neon-blue) !important;
+    text-shadow: none !important; /* Petición Phase 5 */
+}
+
+/* === CONFIG MENU FOOTER (Centrado) === */
+.nav-menu-footer {
+    margin-top: auto;
+    padding-top: 2rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.5rem;
+}
+
+.menu-config-row {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    width: 100%;
+}
+
+.config-btn {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    width: 55px;
+    height: 55px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    padding: 0;
+}
+
+.config-btn:hover {
+    background: rgba(0, 212, 255, 0.1);
+    border-color: var(--neon-blue);
+    transform: scale(1.15);
+    box-shadow: 0 0 20px rgba(0, 212, 255, 0.3);
+}
+
+/* Petición #4: Sol negro en sun-mode para contraste */
+.config-btn.sun-mode .nav-icon-svg,
+.theme-toggle-btn.sun-mode .nav-icon-svg {
+    fill: #000000 !important;
+}
+
+.config-btn .nav-icon-svg {
     width: 24px;
     height: 24px;
+    margin: 0 !important; /* Centrado absoluto */
 }
 
+.menu-footer-links {
+    display: flex;
+    gap: 1rem;
+    font-size: 0.85rem;
+    color: #666;
+}
 
+.menu-footer-links a {
+    color: #888;
+    text-decoration: none;
+    transition: 0.2s;
+}
 
-/* === CORRECCIÓN COLORES MENÚ PRINCIPAL (BURGER OVERLAY) === */
-/* Color base de los iconos: Azul Neón */
-.nav-overlay-content .nav-menu-item .nav-icon-svg {
-    color: var(--neon-blue) !important;
-    stroke: var(--neon-blue) !important;
+.menu-footer-links a:hover {
+    color: #fff;
+    text-shadow: 0 0 5px rgba(255, 255, 255, 0.5);
+}
+
+/* === QUICK ACCESS DOCK (Premium Navigation) === */
+.quick-access-dock {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.8rem;
+    padding: 2rem 1rem;
+    background: linear-gradient(to top, rgba(0,0,0,0.8), transparent);
+    margin-top: 3rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+    position: relative;
+    z-index: 5;
+}
+
+.qa-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 0.6rem 1.2rem;
+    background: rgba(15, 15, 30, 0.6);
+    border: 1px solid rgba(0, 212, 255, 0.15);
+    border-radius: 30px;
+    color: #aaa;
+    text-decoration: none;
+    font-size: 0.85rem;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    backdrop-filter: blur(5px);
+    justify-content: center; /* Centering fix */
+}
+
+.qa-btn:hover {
+    background: rgba(0, 212, 255, 0.1);
+    border-color: var(--neon-cyan);
+    color: #fff;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 212, 255, 0.15);
+}
+
+.qa-btn .nav-icon-svg {
+    width: 16px;
+    height: 16px;
+    fill: currentColor !important;
+    margin: 0 !important; /* Reset margin for perfect center */
+    display: block; /* Remove inline-block spacing */
+    transition: transform 0.3s;
+}
+
+.qa-btn:hover .nav-icon-svg {
+    transform: rotate(10deg) scale(1.1);
+    filter: drop-shadow(0 0 5px var(--neon-cyan)) !important;
+}
+
+.qa-btn.active {
+    background: var(--neon-blue);
+    border-color: var(--neon-blue);
+    color: #050505;
+    box-shadow: 0 0 15px rgba(0, 212, 255, 0.4);
+}
+
+.qa-btn.active .nav-icon-svg {
+    fill: #000 !important;
+}
+
+/* === LEADERBOARD FILTERS (Refined) === */
+.filter-btn {
+    background: transparent !important; /* Outline default */
+    border: 1px solid var(--neon-blue) !important;
+    color: var(--neon-cyan) !important;
+    box-shadow: none !important;
+    font-weight: 600;
     transition: all 0.3s ease;
 }
 
-/* Estado Hover: Todo el botón se vuelve vibrante y blanco */
-.nav-overlay-content .nav-menu-item:hover {
+.filter-btn:hover {
     background: rgba(0, 212, 255, 0.1) !important;
+    box-shadow: 0 0 10px rgba(0, 212, 255, 0.2) !important;
+    transform: translateY(-2px);
+}
+
+.filter-btn.active {
+    background: var(--neon-blue) !important; /* Filled active */
+    color: #000 !important;
+    font-weight: 800;
+    box-shadow: 0 0 20px rgba(0, 212, 255, 0.6) !important;
     border-color: var(--neon-blue) !important;
-    transform: translateX(10px) scale(1.02);
 }
 
-.nav-overlay-content .nav-menu-item:hover .nav-icon-svg {
-    color: #ffffff !important;
-    stroke: #ffffff !important;
-    filter: drop-shadow(0 0 12px #ffffff);
+.filter-btn.active i {
+    color: #000 !important;
 }
 
-.nav-overlay-content .nav-menu-item:hover span {
-    color: #ffffff !important;
-    text-shadow: 0 0 10px #ffffff;
+/* === LEADERBOARD INTERACTION === */
+.profile-icon {
+    transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
 
+.profile-icon:hover {
+    transform: scale(1.15);
+    box-shadow: 0 0 15px var(--neon-cyan);
+    border-color: #fff;
+}
 
+.player-info:hover .display-name {
+    color: #fff !important;
+    transform: scale(1.05);
+    display: inline-block; /* Necesario para transform */
+    text-shadow: 0 0 10px var(--neon-blue);
+}
+
+.display-name {
+    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    transform-origin: left center;
+}

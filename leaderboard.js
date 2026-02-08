@@ -1,141 +1,171 @@
 // ================================
-// MUZICMANIA - LEADERBOARD CONTROLLER
+// MUZICMANIA - LEADERBOARD CONTROLLER (REFINDED)
 // ================================
 
-let currentFilter = 'all';
+let state = {
+    sortBy: 'highScore',
+    sortDir: 'desc', // 'desc' o 'asc'
+    currentPage: 1,
+    itemsPerPage: 10,
+    data: []
+};
 
-// === INICIALIZACIÓN ===
 document.addEventListener('DOMContentLoaded', () => {
-    // Asegurar que AuthSystem esté inicializado
     if (typeof AuthSystem === 'undefined') {
         console.error('AuthSystem no cargado');
         return;
     }
-    
-    // Inicializar Auth si no lo ha hecho por su cuenta (aunque debería)
-    // AuthSystem.init(); // Ya se llama en auth.js al cargar
-    
-    loadLeaderboard();
-    updateStats();
+
+    initLeaderboard();
 });
 
-// === CARGAR LEADERBOARD ===
-function loadLeaderboard() {
-    // Obtener datos unificados del AuthSystem
-    const leaderboardData = AuthSystem.getLeaderboard();
-    
-    displayLeaderboard(leaderboardData);
+function initLeaderboard() {
+    state.data = AuthSystem.getLeaderboard();
+
+    // Simular datos de bots si es necesario para QA
+    fillEmptyStats();
+
+    render();
 }
 
-function displayLeaderboard(data) {
-    const tbody = document.getElementById('leaderboard-body');
-    const currentUser = AuthSystem.getCurrentUser();
-    
-    // Simular que los bots jugaron diferentes canciones para el filtro
-    const songs = ['Neon Nights', 'Synthwave Dreams', 'Cyberpunk Rush', 'Electric Paradise'];
-    
-    // Asignar canciones aleatorias a los bots si no tienen (solo para visualización)
-    const processedData = data.map(entry => {
-        if (!entry.song) {
-            // Determinista basado en el nombre para que no cambie al recargar
-            const nameSum = entry.username.split('').reduce((a,c) => a + c.charCodeAt(0), 0);
-            entry.song = songs[nameSum % songs.length];
+function fillEmptyStats() {
+    state.data = state.data.map(user => {
+        if (user.isBot) {
+            // Bots simulados con stats creíbles
+            if (!user.playTime) user.playTime = Math.floor(Math.random() * 5000) + 1000;
+            if (!user.maxCombo) user.maxCombo = Math.floor(user.highScore / 500);
+            if (!user.accuracy) user.accuracy = Math.floor(Math.random() * 20) + 80;
         }
-        
-        // Simular fecha si no tiene
-        if (!entry.date) {
-            entry.date = new Date().toISOString();
-        }
-        
-        return entry;
-    });
-
-    // Filtrar por canción si aplica
-    let filteredData = currentFilter === 'all' 
-        ? processedData 
-        : processedData.filter(entry => entry.song === currentFilter);
-    
-    // Asegurar ordenamiento
-    filteredData.sort((a, b) => b.highScore - a.highScore);
-    
-    // Mostrar mensaje si no hay datos
-    if (filteredData.length === 0) {
-        tbody.innerHTML = '<tr><td colspan="6" class="no-data">No hay datos disponibles para este filtro</td></tr>';
-        return;
-    }
-    
-    // Generar filas
-    tbody.innerHTML = '';
-    
-    // Limitar a top 100 para rendimiento
-    const displayData = filteredData.slice(0, 100);
-    
-    displayData.forEach((entry, index) => {
-        const rank = index + 1;
-        const isCurrentUser = currentUser && entry.username === currentUser.username;
-        const date = new Date(entry.createdAt || Date.now()).toLocaleDateString('es-ES', {
-            day: '2-digit',
-            month: '2-digit',
-            year: 'numeric'
-        });
-        
-        const row = document.createElement('tr');
-        if (isCurrentUser) {
-            row.classList.add('user-row');
-        }
-        
-        let rankClass = '';
-        if (rank === 1) rankClass = 'rank-1';
-        else if (rank === 2) rankClass = 'rank-2';
-        else if (rank === 3) rankClass = 'rank-3';
-        
-        let botBadge = entry.isBot ? '<i class="fas fa-robot" title="Bot" style="color: #888; font-size: 0.8rem; margin-right: 5px;"></i>' : '';
-        
-        row.innerHTML = `
-            <td class="rank ${rankClass}">#${rank}</td>
-            <td class="username">${botBadge}${entry.username}${isCurrentUser ? ' (Tú)' : ''}</td>
-            <td class="score">${entry.highScore.toLocaleString()}</td>
-            <td class="accuracy">${entry.accuracy || 0}%</td>
-            <td>${entry.song}</td>
-            <td class="date">${date}</td>
-        `;
-        
-        tbody.appendChild(row);
+        return user;
     });
 }
 
-// === FILTROS ===
-function filterBySong(song) {
-    currentFilter = song;
-    
-    // Actualizar botones activos
+function setSort(criteria) {
+    state.sortBy = criteria;
+    state.currentPage = 1; // Reset a pág 1 al cambiar filtro
+
+    // Actualizar botones UI
     document.querySelectorAll('.filter-btn').forEach(btn => {
         btn.classList.remove('active');
+        if (btn.getAttribute('onclick').includes(criteria)) {
+            btn.classList.add('active');
+        }
     });
-    
-    // Encontrar el botón clickeado
-    const clickedBtn = Array.from(document.querySelectorAll('.filter-btn')).find(b => b.innerText.includes(song === 'all' ? 'Todas' : song));
-    if (clickedBtn) clickedBtn.classList.add('active');
-    
-    // Recargar leaderboard
-    loadLeaderboard();
+
+    render();
 }
 
-// === ACTUALIZAR STATS ===
-function updateStats() {
-    const data = AuthSystem.getLeaderboard();
-    
-    // Total de jugadores únicos
-    document.getElementById('total-players').textContent = data.length.toLocaleString();
-    
-    // Total de partidas (suma de todos)
-    const totalGames = data.reduce((sum, p) => sum + (p.gamesPlayed || 0), 0);
-    document.getElementById('total-games').textContent = totalGames.toLocaleString();
-    
-    // Puntuación más alta
-    const highestScore = data.length > 0 ? data[0].highScore : 0;
-    document.getElementById('highest-score').textContent = highestScore.toLocaleString();
+function toggleSortDir() {
+    state.sortDir = state.sortDir === 'desc' ? 'asc' : 'desc';
+    state.currentPage = 1;
+
+    // Actualizar icono del botón
+    const icon = document.querySelector('#btn-toggle-dir i');
+    if (icon) {
+        icon.className = state.sortDir === 'desc' ? 'fas fa-sort-amount-down' : 'fas fa-sort-amount-up';
+    }
+
+    render();
 }
 
-// Exportar funciones globales
-window.filterBySong = filterBySong;
+function render() {
+    const container = document.getElementById('leaderboard-body');
+
+    // 1. Ordenar datos
+    let sortedData = [...state.data].sort((a, b) => {
+        const valA = a[state.sortBy] || 0;
+        const valB = b[state.sortBy] || 0;
+        return state.sortDir === 'desc' ? valB - valA : valA - valB;
+    });
+
+    // 2. Paginación
+    const totalPages = Math.ceil(sortedData.length / state.itemsPerPage);
+    const startIndex = (state.currentPage - 1) * state.itemsPerPage;
+    const paginatedData = sortedData.slice(startIndex, startIndex + state.itemsPerPage);
+
+    // 3. Renderizar Filas
+    if (paginatedData.length === 0) {
+        container.innerHTML = '<div style="padding: 3rem; text-align: center; color: #666;">No hay registros para mostrar.</div>';
+        return;
+    }
+
+    container.innerHTML = paginatedData.map((user, index) => {
+        const absoluteRank = startIndex + index + 1;
+        const topClass = absoluteRank <= 3 ? `top-${absoluteRank}` : '';
+        const initials = user.displayName.substring(0, 2).toUpperCase();
+
+        // Formato para tiempo (Solo minutos para el leaderboard según petición)
+        const formatTimeMin = (seconds) => {
+            const m = Math.floor((seconds || 0) / 60);
+            return `${m}m`;
+        };
+
+        const isBot = user.isBot;
+        const cleanHandle = user.username.startsWith('@') ? user.username : `@${user.username}`;
+
+        return `
+            <div class="ranking-row ${topClass}">
+                <div class="rank-badge">${absoluteRank}</div>
+                <div class="hide-mobile" style="display: flex; justify-content: center;">
+                    <div class="profile-icon" onclick="Layout.showDevelopmentWarning('Perfil de Jugador (En Proceso)')" style="width: 45px; height: 45px; font-size: 0.9rem; cursor: pointer;">
+                        <span class="user-initials">${initials}</span>
+                    </div>
+                </div>
+                <div class="player-info" onclick="Layout.showDevelopmentWarning('Perfil de Jugador (En Proceso)')" style="cursor: pointer;">
+                    <span class="display-name">${user.displayName} ${isBot ? '🤖' : ''}</span>
+                    <span class="user-handle">${cleanHandle}</span>
+                </div>
+                <div class="stat-value score-val">${(user.highScore || 0).toLocaleString()}</div>
+                <div class="stat-value hide-mobile" style="color: var(--neon-pink); opacity: 0.8;">${(user.maxCombo || 0)}x</div>
+                <div class="stat-value hide-mobile" style="color: var(--neon-cyan); opacity: 0.7;">${formatTimeMin(user.playTime)}</div>
+                <div class="stat-value accuracy-val">${(user.accuracy || 0)}%</div>
+            </div>
+        `;
+    }).join('');
+
+    renderPagination(totalPages);
+}
+
+function renderPagination(totalPages) {
+    const pagination = document.getElementById('pagination');
+    if (totalPages <= 1) {
+        pagination.innerHTML = '';
+        return;
+    }
+
+    let html = '';
+
+    // Botón Anterior
+    html += `<div class="page-btn ${state.currentPage === 1 ? 'disabled' : ''}" onclick="changePage(${state.currentPage - 1})"><i class="fas fa-chevron-left"></i></div>`;
+
+    // Botones numéricos
+    for (let i = 1; i <= totalPages; i++) {
+        if (totalPages > 7) {
+            if (i > 2 && i < totalPages - 1 && Math.abs(i - state.currentPage) > 1) {
+                if (i === 3 || i === totalPages - 2) html += `<div class="page-btn disabled">...</div>`;
+                continue;
+            }
+        }
+        html += `<div class="page-btn ${state.currentPage === i ? 'active' : ''}" onclick="changePage(${i})">${i}</div>`;
+    }
+
+    // Botón Siguiente
+    html += `<div class="page-btn ${state.currentPage === totalPages ? 'disabled' : ''}" onclick="changePage(${state.currentPage + 1})"><i class="fas fa-chevron-right"></i></div>`;
+
+    pagination.innerHTML = html;
+}
+
+function changePage(page) {
+    const totalPages = Math.ceil(state.data.length / state.itemsPerPage);
+    if (page < 1 || page > totalPages) return;
+
+    state.currentPage = page;
+    render();
+
+    document.querySelector('.leaderboard-table-container').scrollIntoView({ behavior: 'smooth', block: 'start' });
+}
+
+// Globales
+window.setSort = setSort;
+window.toggleSortDir = toggleSortDir;
+window.changePage = changePage;

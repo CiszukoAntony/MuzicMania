@@ -6,7 +6,7 @@
     <title>MuzicMania - Contacto</title>
     <link rel="icon" type="image/svg+xml" href="content/logos/imagen/not outline/isotipo/degradado/color/muzicmania_logo_isotipo_notoutline_degradado_color.svg">
     <link rel="apple-touch-icon" href="content/logos/imagen/not outline/isotipo/degradado/color/muzicmania_logo_isotipo_notoutline_degradado_color.svg">
-    <link rel="stylesheet" href="styles.css?v=UPDATE_INDEX_RESTRUCTURE_V1">
+    <link rel="stylesheet" href="styles.css?v=UI_FIX_1770507253885">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <style>
         .contact-grid {
@@ -337,7 +337,7 @@
     </style>
 </head>
 <body>
-    
+
     <!-- Main -->
     <main class="container mt-3">
         <div class="section-header text-center">
@@ -351,7 +351,9 @@
                 <h2 class="mb-3 text-center" style="color: var(--neon-cyan); letter-spacing: 2px;">INFORMACIÓN DIRECTA</h2>
                 <div class="card" style="display: grid; gap: 0.5rem;">
                     <div class="contact-info-item copyable" onclick="copyToClipboard('Caracas, Venezuela', 'Ubicación')" title="Click para copiar">
-                        <i class="fas fa-map-marker-alt"></i>
+                        <div style="width: 28px; height: 28px; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">
+                            <svg class="nav-icon-svg"><use href="content/icons/sprites/sprite-filled.svg#ri-filled-map-pin"></use></svg>
+                        </div>
                         <div style="flex-grow: 1;">
                             <strong>Sede Central:</strong><br>
                             Caracas, Venezuela
@@ -360,7 +362,9 @@
                     </div>
 
                     <div class="contact-info-item copyable" onclick="copyToClipboard('fplayersoffcial@gmail.com', 'Email')" title="Click para copiar">
-                        <i class="fas fa-envelope"></i>
+                        <div style="width: 28px; height: 28px; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">
+                            <svg class="nav-icon-svg"><use href="content/icons/sprites/sprite-filled.svg#ri-filled-mail"></use></svg>
+                        </div>
                         <div style="flex-grow: 1;">
                             <strong>Email:</strong><br>
                             fplayersoffcial@gmail.com
@@ -369,7 +373,9 @@
                     </div>
 
                     <div class="contact-info-item copyable" onclick="copyToClipboard('+58 4126858111', 'WhatsApp / Teléfono')" title="Click para copiar">
-                        <i class="fab fa-whatsapp"></i>
+                        <div style="width: 28px; height: 28px; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">
+                            <svg class="nav-icon-svg"><use href="content/icons/sprites/sprite-filled.svg#ri-filled-whatsapp"></use></svg>
+                        </div>
                         <div style="flex-grow: 1;">
                             <strong>WhatsApp / Teléfono:</strong><br>
                             +58 412-6858111
@@ -378,7 +384,9 @@
                     </div>
 
                     <div class="contact-info-item">
-                        <i class="fas fa-clock"></i>
+                        <div style="width: 28px; height: 28px; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">
+                            <svg class="nav-icon-svg"><use href="content/icons/sprites/sprite-filled.svg#ri-filled-time"></use></svg>
+                        </div>
                         <div style="flex-grow: 1;">
                             <strong>Horario Regional (VET):</strong><br>
                             Lun - Sáb: 10:00 AM - 8:30 PM
@@ -389,67 +397,85 @@
                 <div class="card mt-3">
                     <h3 class="mb-3 text-center" style="font-size: 1.1rem; color: var(--neon-blue); letter-spacing: 2px;">CANALES OFICIALES</h3>
                     <div class="social-interactive-grid">
-                        <a href="https://x.com/CiszukoAntony" target="_blank" class="social-item" style="--social-color: #ffffff;">
-                            <i class="fab fa-x-twitter"></i>
+                        <a href="https://x.com/CiszukoAntony" target="_blank" class="social-item" style="--social-color: #ffffff;" onclick="Layout.showDevelopmentWarning('Redes Sociales / Social Media')">
+                            <svg class="nav-icon-svg" style="width: 1.8rem; height: 1.8rem;"><use href="content/icons/sprites/sprite-filled.svg#ri-filled-twitter-x"></use></svg>
                             <span class="social-name">X (Twitter)</span>
                             <span class="social-tag">@CiszukoAntony</span>
                         </a>
-                        <a href="https://discord.gg/muzicmania" target="_blank" class="social-item" style="--social-color: #5865F2;">
-                            <i class="fab fa-discord"></i>
+                        <a href="https://discord.gg/muzicmania" target="_blank" class="social-item" style="--social-color: #5865F2;" onclick="Layout.showDevelopmentWarning('Redes Sociales / Social Media')">
+                            <svg class="nav-icon-svg" style="width: 1.8rem; height: 1.8rem;"><use href="content/icons/sprites/sprite-filled.svg#ri-filled-discord"></use></svg>
                             <span class="social-name">Discord</span>
                             <span class="social-tag">MuzicMania Official</span>
                         </a>
-                        <a href="https://instagram.com/CiszukoAntony" target="_blank" class="social-item" style="--social-color: #E4405F;">
-                            <i class="fab fa-instagram"></i>
+                        <a href="https://facebook.com/muzicmaniaofficial" target="_blank" class="social-item" style="--social-color: #1877F2;" onclick="Layout.showDevelopmentWarning('Redes Sociales / Social Media')">
+                            <svg class="nav-icon-svg" style="width: 1.8rem; height: 1.8rem;"><use href="content/icons/sprites/sprite-filled.svg#ri-filled-facebook-circle"></use></svg>
+                            <span class="social-name">Facebook</span>
+                            <span class="social-tag">MuzicMania Official</span>
+                        </a>
+                        <a href="https://instagram.com/CiszukoAntony" target="_blank" class="social-item" style="--social-color: #d6249f;" onclick="Layout.showDevelopmentWarning('Redes Sociales / Social Media')">
+                            <svg class="nav-icon-svg" style="width: 1.8rem; height: 1.8rem;"><use href="content/icons/sprites/sprite-filled.svg#ri-filled-instagram"></use></svg>
                             <span class="social-name">Instagram</span>
                             <span class="social-tag">@CiszukoAntony</span>
                         </a>
-                        <a href="https://github.com/CiszukoAntony" target="_blank" class="social-item" style="--social-color: #ffffff;">
-                            <i class="fab fa-github"></i>
+                        <a href="https://github.com/CiszukoAntony" target="_blank" class="social-item" style="--social-color: #ffffff;" onclick="Layout.showDevelopmentWarning('Redes Sociales / Social Media')">
+                            <svg class="nav-icon-svg" style="width: 1.8rem; height: 1.8rem;"><use href="content/icons/sprites/sprite-filled.svg#ri-filled-github"></use></svg>
                             <span class="social-name">GitHub</span>
                             <span class="social-tag">CiszukoAntony</span>
                         </a>
-                        <a href="https://youtube.com/@CiszukoAntony" target="_blank" class="social-item" style="--social-color: #ff0000;">
-                            <i class="fab fa-youtube"></i>
+                        <a href="https://youtube.com/@CiszukoAntony" target="_blank" class="social-item" style="--social-color: #ff0000;" onclick="Layout.showDevelopmentWarning('Redes Sociales / Social Media')">
+                            <svg class="nav-icon-svg" style="width: 1.8rem; height: 1.8rem;"><use href="content/icons/sprites/sprite-filled.svg#ri-filled-youtube"></use></svg>
                             <span class="social-name">YouTube</span>
                             <span class="social-tag">@CiszukoAntony</span>
                         </a>
-                        <a href="https://tiktok.com/@CiszukoAntony" target="_blank" class="social-item" style="--social-color: #00f2ea;">
-                            <i class="fab fa-tiktok"></i>
+                        <a href="https://tiktok.com/@CiszukoAntony" target="_blank" class="social-item" style="--social-color: #fe2c55;" onclick="Layout.showDevelopmentWarning('Redes Sociales / Social Media')">
+                            <svg class="nav-icon-svg" style="width: 1.8rem; height: 1.8rem;"><use href="content/icons/sprites/sprite-filled.svg#ri-filled-tiktok"></use></svg>
                             <span class="social-name">TikTok</span>
                             <span class="social-tag">@CiszukoAntony</span>
                         </a>
-                        <a href="https://twitch.tv/CiszukoAntony" target="_blank" class="social-item" style="--social-color: #9146FF;">
-                            <i class="fab fa-twitch"></i>
+                        <a href="https://twitch.tv/CiszukoAntony" target="_blank" class="social-item" style="--social-color: #9146FF;" onclick="Layout.showDevelopmentWarning('Redes Sociales / Social Media')">
+                            <svg class="nav-icon-svg" style="width: 1.8rem; height: 1.8rem;"><use href="content/icons/sprites/sprite-filled.svg#ri-filled-twitch"></use></svg>
                             <span class="social-name">Twitch</span>
                             <span class="social-tag">CiszukoAntony</span>
                         </a>
-                        <a href="https://reddit.com/u/CiszukoAntony" target="_blank" class="social-item" style="--social-color: #FF4500;">
-                            <i class="fab fa-reddit"></i>
+                        <a href="https://reddit.com/u/CiszukoAntony" target="_blank" class="social-item" style="--social-color: #FF4500;" onclick="Layout.showDevelopmentWarning('Redes Sociales / Social Media')">
+                            <svg class="nav-icon-svg" style="width: 1.8rem; height: 1.8rem;"><use href="content/icons/sprites/sprite-filled.svg#ri-filled-reddit"></use></svg>
                             <span class="social-name">Reddit</span>
                             <span class="social-tag">u/CiszukoAntony</span>
+                        </a>
+                    </div>
+
+                    <!-- WhatsApp Pill (Footer Style Sync) -->
+                    <div style="display: flex; justify-content: center; margin-top: 2rem; border-top: 1px solid rgba(255,255,255,0.05); padding-top: 1.5rem;">
+                        <a href="https://wa.me/584126858111" target="_blank" class="contact-pill" style="display: flex; align-items: center; gap: 12px; text-decoration: none; color: #fff; background: rgba(37, 211, 102, 0.1); padding: 0.8rem 1.8rem; border-radius: 50px; border: 1px solid rgba(37, 211, 102, 0.3); width: fit-content; transition: 0.3s;">
+                            <span style="width: 24px; height: 24px; display: flex; align-items: center; justify-content: center;">
+                                <svg class="nav-icon-svg" style="fill: #25D366;"><use href="content/icons/sprites/sprite-filled.svg#ri-filled-whatsapp"></use></svg>
+                            </span>
+                            <div style="display: flex; flex-direction: column; align-items: flex-start;">
+                                <span style="font-size: 0.7rem; opacity: 0.8; text-transform: uppercase; letter-spacing: 1px;">WhatsApp Live Support</span>
+                                <span style="font-weight: 700; letter-spacing: 0.5px;">+58 4126858111</span>
+                            </div>
                         </a>
                     </div>
                 </div>
 
                 <!-- Soporte Urgente -->
                 <div class="card mt-3" style="border: 2px solid #ff4444; background: rgba(255, 68, 68, 0.08); padding: 1.5rem; position: relative; overflow: hidden; box-shadow: 0 0 20px rgba(255, 68, 68, 0.1);">
-                    <h3 style="color: #ff4444; font-size: 1.2rem; margin-bottom: 1rem; text-align: center; text-shadow: 0 0 10px rgba(255, 68, 68, 0.3);">
-                        <i class="fas fa-headset" style="margin-right: 8px;"></i>¿Buscas contacto directo ya?
+                    <h3 style="color: #ff4444; font-size: 1.2rem; margin-bottom: 1rem; text-align: center; text-shadow: 0 0 10px rgba(255, 68, 68, 0.3); display: flex; align-items: center; justify-content: center; gap: 10px;">
+                        <svg class="nav-icon-svg" style="fill: #ff4444;"><use href="content/icons/sprites/sprite-filled.svg#ri-filled-customer-service-2"></use></svg>¿Buscas contacto directo ya?
                     </h3>
                     <p style="color: #eee; font-size: 0.85rem; margin-bottom: 1.2rem; line-height: 1.5; text-align: center;">
                         Si experimentas fallos críticos en tu cuenta o compras, nuestro equipo técnico te atenderá con máxima prioridad.
                     </p>
                     <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 1.5rem; text-align: left; background: rgba(0,0,0,0.2); padding: 10px; border-radius: 8px;">
-                        <div style="font-size: 0.75rem; color: #bbb;">
-                            <i class="fas fa-bolt" style="color: #ffaa00; margin-right: 5px;"></i> Respuesta: <strong style="color: #fff;"> < 2h</strong>
+                        <div style="font-size: 0.75rem; color: #bbb; display: flex; align-items: center; gap: 5px;">
+                            <svg class="nav-icon-svg" style="width: 14px; height: 14px; fill: #ffaa00;"><use href="content/icons/sprites/sprite-filled.svg#ri-filled-flashlight"></use></svg> Respuesta: <strong style="color: #fff;"> &lt; 2h</strong>
                         </div>
-                        <div style="font-size: 0.75rem; color: #bbb;">
-                            <i class="fas fa-calendar-check" style="color: #00ff88; margin-right: 5px;"></i> Disponibilidad: <strong style="color: #fff;">24/7</strong>
+                        <div style="font-size: 0.75rem; color: #bbb; display: flex; align-items: center; gap: 5px;">
+                            <svg class="nav-icon-svg" style="width: 14px; height: 14px; fill: #00ff88;"><use href="content/icons/sprites/sprite-filled.svg#ri-filled-calendar-check"></use></svg> Disponibilidad: <strong style="color: #fff;">24/7</strong>
                         </div>
                     </div>
                     <a href="support.html" class="btn btn-red-gradient" style="width: 100%; display: flex; align-items: center; justify-content: center; gap: 10px; padding: 14px;">
-                        <i class="fas fa-ticket-alt"></i> IR A SOPORTE
+                        <svg class="nav-icon-svg" style="fill: #fff;"><use href="content/icons/sprites/sprite-filled.svg#ri-filled-coupon-3"></use></svg> IR A SOPORTE
                     </a>
                 </div>
 
@@ -458,7 +484,7 @@
                     <h3 style="color: var(--neon-green); font-size: 1.1rem; margin-bottom: 1rem; text-align: center; text-shadow: 0 0 10px rgba(0, 255, 136, 0.3);">
                         <i class="fas fa-server" style="margin-right: 8px;"></i> ESTADO DEL SISTEMA
                     </h3>
-                    
+
                     <div id="contact-status-grid" style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 1rem;">
                         <!-- Cargando info... -->
                         <div style="grid-column: span 2; text-align: center; font-size: 0.8rem; color: #888; padding: 10px;">
@@ -478,7 +504,7 @@
                         const modules = e.detail;
                         const grid = document.getElementById('contact-status-grid');
                         const card = document.getElementById('server-status-card');
-                        
+
                         if (!grid) return;
 
                         // Determinar si hay algún fallo
@@ -488,7 +514,7 @@
                             card.style.background = 'rgba(255, 77, 77, 0.05)';
                             card.style.boxShadow = '0 0 20px rgba(255, 77, 77, 0.1)';
                         }
-                        
+
                         grid.innerHTML = `
                             <div style="background: rgba(0, 255, 136, 0.05); border: 1px solid rgba(0, 255, 136, 0.2); padding: 10px; border-radius: 8px; text-align: center;">
                                 <div style="font-size: 0.65rem; color: #888; text-transform: uppercase;">Servidores</div>
@@ -521,12 +547,12 @@
             </section>
 
             <!-- Valoración y Reseñas (Se mantiene como Social Proof) -->
-            <section>
+            <section id="reviews-section">
                 <h2 class="mb-3 text-center" style="color: var(--neon-pink); letter-spacing: 2px;">OPINIÓN DE LA COMUNIDAD</h2>
                 <div class="card" style="height: fit-content;">
                     <h3 class="mb-2 text-center" style="color: var(--neon-pink); letter-spacing: 1px;">DANOS TU VALORACIÓN</h3>
                     <p class="text-center" style="font-size: 0.85rem; color: #888; margin-bottom: 1.5rem;">Cuéntale a otros jugadores qué tal es la experiencia en MuzicMania.</p>
-                    
+
                     <div id="review-form-container">
                         <div style="display: flex; align-items: center; justify-content: center; margin-bottom: 1.5rem;">
                             <div class="star-rating-input" id="rating-input-stars">
@@ -540,7 +566,7 @@
                             </div>
                         </div>
                         <input type="hidden" id="rating-value" value="0">
-                        
+
                         <div class="form-group mt-3">
                             <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 5px;">
                                 <label style="margin: 0;">Tu Mensaje</label>
@@ -548,25 +574,26 @@
                             </div>
                             <textarea id="review-text" class="premium-textarea" placeholder="Escribe aquí tu opinión oficial..." maxlength="500"></textarea>
                         </div>
-                        
+
                         <div id="auth-warning-review" style="display: none; padding: 1rem; background: rgba(255, 166, 0, 0.1); border: 1px solid orange; color: orange; border-radius: 8px; margin-bottom: 1rem; font-size: 0.9rem;">
                             <i class="fas fa-exclamation-triangle"></i> Debes <strong>iniciar sesión</strong> para publicar una valoración.
                         </div>
 
-                        <button class="btn btn-full" id="submit-review-btn" style="margin-top: 0.5rem;">
+                        <button class="btn btn-full" id="submit-review-btn" style="margin-top: 0.5rem;" onclick="Layout.showDevelopmentWarning('Publicar Valoración')">
                             <i class="fas fa-paper-plane" style="margin-right: 8px;"></i> PUBLICAR VALORACIÓN
                         </button>
+
                     </div>
                 </div>
 
                 <div class="mt-5 pt-4 mb-5" style="border-top: 1px solid rgba(255, 255, 255, 0.05); position: relative; margin-top: 80px !important;">
                     <!-- Línea decorativa eliminada o simplificada para mejor limpieza -->
-                    
+
                     <div class="review-sort-bar" style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 2.5rem; flex-wrap: wrap; gap: 2rem;">
                         <h3 style="margin: 0; font-size: 1.4rem; letter-spacing: 2px;">
                             <i class="fas fa-comments" style="margin-right: 15px; color: var(--neon-cyan);"></i>RESEÑAS RECIENTES
                         </h3>
-                        
+
                         <div class="sort-controls-wrapper" style="display: flex; align-items: center; gap: 20px;">
                             <div style="display: flex; flex-direction: column; align-items: flex-end; gap: 5px;">
                                 <label class="filter-label" style="font-size: 0.75rem; letter-spacing: 2px; margin: 0; color: var(--neon-cyan); opacity: 0.8;">
@@ -613,6 +640,15 @@
             width: 25px;
         }
         /* Reseñas y Textarea Premium */
+        .interactive-review-element {
+            transition: transform 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            cursor: pointer;
+        }
+        .interactive-review-element:hover {
+            transform: scale(1.15);
+            text-shadow: 0 0 8px var(--neon-cyan);
+        }
+
         .premium-textarea {
             width: 100%;
             background: rgba(0,0,0,0.3);
@@ -725,7 +761,7 @@
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            gap: 5px;
+            gap: 10px;
             padding: 1.5rem;
             background: rgba(255, 255, 255, 0.03);
             border: 1px solid rgba(255, 255, 255, 0.1);
@@ -734,18 +770,22 @@
             transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
             position: relative;
             overflow: hidden;
-            min-height: 100px;
+            min-height: 120px;
         }
-        .social-item i {
-            font-size: 1.8rem;
+        .social-item .nav-icon-svg {
+            width: 1.8rem;
+            height: 1.8rem;
             color: #fff;
+            fill: #fff;
             transition: all 0.3s ease;
+            margin: 0 auto;
         }
         .social-name {
             font-size: 0.85rem;
             color: #ccc;
             font-weight: 500;
             transition: all 0.3s ease;
+            text-align: center;
         }
         .social-tag {
             font-size: 0.75rem;
@@ -756,6 +796,9 @@
             opacity: 0;
             transition: all 0.3s ease;
             text-transform: none;
+            width: 100%;
+            text-align: center;
+            left: 0;
         }
         .social-item:hover {
             border-color: var(--social-color);
@@ -763,8 +806,9 @@
             box-shadow: 0 0 20px var(--social-color);
             transform: translateY(-8px);
         }
-        .social-item:hover i {
+        .social-item:hover .nav-icon-svg {
             color: var(--social-color);
+            fill: var(--social-color);
             transform: scale(1.1) translateY(-10px);
         }
         .social-item:hover .social-name {
@@ -816,7 +860,7 @@
     </style>
 
     <!-- Layout System -->
-    <script src="layout.js?v=UPDATE_INDEX_RESTRUCTURE_V1"></script>
+    <script src="scripts/layout.js?v=UI_FIX_1770507253885"></script>
 
     <script>
         // --- Advanced Review System ---
@@ -824,11 +868,11 @@
             storageKey: 'muzicmania_reviews',
             sortDirection: 1, // 1 Desc (Newest), -1 Asc (Oldest)
             reviews: [
-                { id: 1, user: 'CyberGamer42', initials: 'CG', rating: 5, text: '¡Increíble juego! Los visuales son espectaculares.', date: '2026-01-28T10:00:00Z', likes: 45, isBot: true },
-                { id: 2, user: 'NeonQueen', initials: 'NQ', rating: 4, text: 'Me encanta la estética futurista, las canciones son geniales.', date: '2026-01-25T15:30:00Z', likes: 12, isBot: true },
-                { id: 3, user: 'RhythmMaster', initials: 'RM', rating: 5, text: 'La detección de teclas es perfecta. Súper satisfactorio.', date: '2026-01-20T09:00:00Z', likes: 89, isBot: true },
-                { id: 4, user: 'SynthWaveKid', initials: 'SK', rating: 3, text: 'El arte es genial pero necesito más variedad de canciones.', date: '2026-01-15T12:00:00Z', likes: 5, isBot: true },
-                { id: 5, user: 'DigitalDreamer', initials: 'DD', rating: 5, text: 'MuzicMania ha redefinido lo que espero de un juego de ritmo de navegador.', date: '2026-01-29T18:45:00Z', likes: 32, isBot: true }
+                { id: 1, user: 'CyberGamer42', displayName: 'Elite Jugador', initials: 'CG', rating: 5, text: '¡Increíble juego! Los visuales son espectaculares.', date: '2026-01-28T10:00:00Z', likes: 45, isBot: true },
+                { id: 2, user: 'NeonQueen', displayName: 'Reina del Neón', initials: 'NQ', rating: 4, text: 'Me encanta la estética futurista, las canciones son geniales.', date: '2026-01-25T15:30:00Z', likes: 12, isBot: true },
+                { id: 3, user: 'RhythmMaster', displayName: 'Maestro del Ritmo', initials: 'RM', rating: 5, text: 'La detección de teclas es perfecta. Súper satisfactorio.', date: '2026-01-20T09:00:00Z', likes: 89, isBot: true },
+                { id: 4, user: 'SynthWaveKid', displayName: 'Niño Synthwave', initials: 'SK', rating: 3, text: 'El arte es genial pero necesito más variedad de canciones.', date: '2026-01-15T12:00:00Z', likes: 5, isBot: true },
+                { id: 5, user: 'DigitalDreamer', displayName: 'Soñador Digital', initials: 'DD', rating: 5, text: 'MuzicMania ha redefinido lo que espero de un juego de ritmo de navegador.', date: '2026-01-29T18:45:00Z', likes: 32, isBot: true }
             ],
 
             init: function() {
@@ -846,23 +890,23 @@
                 const text = document.getElementById('rating-text');
                 const valInput = document.getElementById('rating-value');
                 if (!container || !filler) return;
-                
+
                 const update = (e, isClick = false) => {
                     const starsOuter = container.querySelector('.stars-outer');
                     const rect = starsOuter.getBoundingClientRect();
                     const x = e.clientX - rect.left;
                     let percent = (x / rect.width) * 100;
-                    
+
                     let rating = Math.ceil(percent / 10) * 0.5;
                     rating = Math.max(0.5, Math.min(5, rating));
-                    
+
                     const fillPercent = (rating / 5) * 100;
                     filler.style.width = fillPercent + '%';
                     text.innerText = rating.toFixed(1);
-                    
+
                     // Actualizar Color de Estrellas y Número
                     const levelClass = rating <= 2 ? 'level-low' : (rating <= 3.5 ? 'level-mid' : (rating <= 4.5 ? 'level-high' : 'level-max'));
-                    
+
                     filler.className = 'stars-inner ' + levelClass;
                     text.className = 'rating-display-val ' + levelClass;
                     text.style.color = ''; // Limpiar estilos inline
@@ -871,7 +915,7 @@
                     if (isClick) {
                         valInput.value = rating;
                         container.setAttribute('data-selected', rating);
-                        
+
                         // Trigger Animation
                         filler.classList.remove('animate-pop');
                         text.classList.remove('animate-pop');
@@ -889,7 +933,7 @@
                     text.innerText = selected.toFixed(1);
                     filler.className = 'stars-inner';
                     text.className = 'rating-display-val';
-                    
+
                     if (selected > 0) {
                         const levelClass = selected <= 2 ? 'level-low' : (selected <= 3.5 ? 'level-mid' : (selected <= 4.5 ? 'level-high' : 'level-max'));
                         filler.classList.add(levelClass);
@@ -920,12 +964,12 @@
                 options.forEach(opt => {
                     opt.addEventListener('click', () => {
                         const val = opt.getAttribute('data-value');
-                        
+
                         // UI Update
                         document.getElementById('selected-text').innerHTML = opt.innerHTML;
                         options.forEach(o => o.classList.remove('selected'));
                         opt.classList.add('selected');
-                        
+
                         document.querySelector('.custom-select-container').classList.remove('active');
                         this.render(val);
                     });
@@ -949,7 +993,7 @@
                 this.sortDirection *= -1;
                 const btn = document.getElementById('sort-dir-btn');
                 btn.classList.toggle('inverted');
-                
+
                 const currentSort = document.querySelector('.custom-option.selected').getAttribute('data-value');
                 this.render(currentSort);
             },
@@ -983,17 +1027,17 @@
                     const text = document.getElementById('review-text').value.trim();
 
                     if (rating === 0) {
-                        alert('Selecciona una puntuación con las estrellas.');
+                        Layout.showNotification('PUNTUACIÓN REQUERIDA', 'Selecciona una puntuación con las estrellas.', 'fa-star');
                         return;
                     }
 
                     if (text.length < 10) {
-                        alert('La reseña es obligatoria y debe tener al menos 10 caracteres.');
+                        Layout.showNotification('MENSAJE CORTO', 'La reseña es obligatoria y debe tener al menos 10 caracteres.', 'fa-comment-slash');
                         return;
                     }
 
                     if (text.length > 500) {
-                        alert('La reseña no puede superar los 500 caracteres.');
+                        Layout.showNotification('MENSAJE LARGO', 'La reseña no puede superar los 500 caracteres.', 'fa-comment-dots');
                         return;
                     }
 
@@ -1008,28 +1052,28 @@
                     };
 
                     this.reviews.unshift(newReview);
-                    
+
                     const sortBy = document.querySelector('.custom-option.selected').getAttribute('data-value');
                     this.render(sortBy);
-                    
+
                     document.getElementById('rating-value').value = 0;
                     document.getElementById('review-text').value = '';
                     document.getElementById('char-counter').innerText = '0 / 500';
                     document.getElementById('stars-filler').style.width = '0%';
                     document.getElementById('rating-text').innerText = '0.0';
-                    alert('¡Gracias por tu valoración! Se ha publicado con éxito.');
+                    Layout.showNotification('¡VALORACIÓN RECIBIDA!', 'Tu reseña ha sido publicada con éxito en el sistema.');
                 });
             },
 
             render: function(sortBy = 'newest') {
                 const container = document.getElementById('reviews-container');
                 if(!container) return;
-                
+
                 let sorted = [...this.reviews];
-                
+
                 sorted.sort((a,b) => {
                     let valA, valB;
-                    
+
                     if (sortBy === 'newest') {
                         valA = new Date(a.date).getTime();
                         valB = new Date(b.date).getTime();
@@ -1050,9 +1094,10 @@
                     const botBadge = (r.isBot && isDebug) ? '<span class="bot-badge">[BOT] 🤖</span>' : '';
                     return `
                     <div class="review-card" data-id="${r.id}" style="padding: 1.5rem; border: 1px solid rgba(255,255,255,0.05); background: rgba(0,0,0,0.2);">
-                        <div class="review-header" style="display: flex; align-items: center; gap: 15px; margin-bottom: 1.2rem;">
+                    <div class="review-header" style="display: flex; align-items: center; gap: 15px; margin-bottom: 1.2rem;">
                             <div style="display: flex; flex-direction: column; gap: 4px; order: 1; text-align: left;">
-                                <strong style="color: #fff; font-size: 1.1rem; line-height: 1;">${r.user}${botBadge}</strong>
+                                <strong class="interactive-review-element" onclick="Layout.showDevelopmentWarning('Perfil de Jugador (En Proceso)')" style="color: #fff; font-size: 1.1rem; line-height: 1;">${r.displayName || r.user} ${botBadge}</strong>
+                                <span style="color: #666; font-size: 0.85rem;">@${r.user}</span>
                                 <div style="display: flex; align-items: center; gap: 8px; margin-top: 4px;">
                                     <div class="rating-stars" style="font-size: 0.7rem; display: flex; gap: 2px;">
                                         ${this.renderStars(r.rating)}
@@ -1060,11 +1105,11 @@
                                     <span style="font-size: 0.8rem; font-weight: bold; color: ${this.getStarColor(r.rating)}; opacity: 0.9;">${r.rating.toFixed(1)}</span>
                                 </div>
                             </div>
-                            <div class="review-avatar" style="width: 42px; height: 42px; font-size: 1rem; flex-shrink: 0; border: 2px solid var(--neon-cyan); box-shadow: 0 0 10px rgba(0, 212, 255, 0.2); order: 2;">${r.initials}</div>
+                            <div class="review-avatar interactive-review-element" onclick="Layout.showDevelopmentWarning('Perfil de Jugador (En Proceso)')" style="width: 42px; height: 42px; font-size: 1rem; flex-shrink: 0; border: 2px solid var(--neon-cyan); box-shadow: 0 0 10px rgba(0, 212, 255, 0.2); order: 2;">${r.initials}</div>
                         </div>
-                        
+
                         <p style="color: #ccc; line-height: 1.6; margin-bottom: 1.5rem; font-size: 0.95rem;">"${r.text}"</p>
-                        
+
                         <div class="review-footer" style="display: flex; justify-content: space-between; align-items: center; border-top: 1px solid rgba(255,255,255,0.03); padding-top: 12px;">
                             <span style="color: #666; font-size: 0.75rem;">
                                 <i class="far fa-calendar-alt" style="margin-right: 5px;"></i> ${this.formatDate(r.date)}
@@ -1111,9 +1156,7 @@
 
             handleLike: function(element, id) {
                 if (typeof AuthSystem !== 'undefined' && !AuthSystem.getCurrentUser()) {
-                    if(confirm("Debes iniciar sesión para dar Like. ¿Ir al Login?")) {
-                        AuthSystem.openModal('login');
-                    }
+                    Layout.showAuthModal('dar Like a esta valoración');
                     return;
                 }
 
@@ -1121,7 +1164,7 @@
                 const count = element.querySelector('.rate-count');
                 const review = this.reviews.find(r => r.id === id);
                 if (!review) return;
-                
+
                 if (icon.classList.contains('far')) {
                     icon.classList.replace('far', 'fas');
                     icon.style.color = 'var(--neon-pink)';
@@ -1153,10 +1196,10 @@
         window.addEventListener('authChange', initializeContactPage);
 
     </script>
-    <script src="auth.js?v=UPDATE_INDEX_RESTRUCTURE_V1"></script>
-    <script src="utils.js?v=UPDATE_INDEX_RESTRUCTURE_V1"></script>
-    <script src="search.js?v=UPDATE_INDEX_RESTRUCTURE_V1"></script>
-    <script src="navigation.js?v=UPDATE_INDEX_RESTRUCTURE_V1"></script>
+    <script src="scripts/auth.js?v=UI_FIX_1770507253885"></script>
+    <script src="scripts/utils.js?v=UI_FIX_1770507253885"></script>
+    <script src="scripts/search.js?v=UI_FIX_1770507253885"></script>
+    <script src="scripts/navigation.js?v=UI_FIX_1770507253885"></script>
 </body>
 </html>
 

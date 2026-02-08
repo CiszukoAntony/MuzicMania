@@ -379,15 +379,15 @@ const Layout = {
                 <div class="footer-section divider">
                     <h4>Community</h4>
                     <div class="social-icons">
-                        <a href="https://x.com/muzicmaniaofficial" target="_blank" title="X (Twitter)" class="social-x">${ICONS.social_x}</a>
-                        <a href="https://discord.gg/muzicmaniaofficial" target="_blank" title="Discord" class="social-discord">${ICONS.social_discord}</a>
-                        <a href="https://github.com/CiszukoAntony/MuzicMania" target="_blank" title="GitHub" class="social-github">${ICONS.social_github}</a>
-                        <a href="https://facebook.com/muzicmaniaofficial" target="_blank" title="Facebook" class="social-facebook">${ICONS.social_facebook}</a>
-                        <a href="https://reddit.com/r/muzicmania" target="_blank" title="Reddit" class="social-reddit">${ICONS.social_reddit}</a>
-                        <a href="https://youtube.com/@muzicmania" target="_blank" title="YouTube" class="social-youtube">${ICONS.social_youtube}</a>
-                        <a href="https://instagram.com/muzicmaniaofficial" target="_blank" title="Instagram" class="social-instagram">${ICONS.social_instagram}</a>
-                        <a href="https://tiktok.com/@muzicmania" target="_blank" title="TikTok" class="social-tiktok">${ICONS.social_tiktok}</a>
-                        <a href="https://twitch.tv/muzicmania" target="_blank" title="Twitch" class="social-twitch">${ICONS.social_twitch}</a>
+                        <a href="https://x.com/muzicmaniaofficial" target="_blank" title="X (Twitter)" class="social-x" onclick="Layout.showDevelopmentWarning('Redes Sociales / Social Media')">${ICONS.social_x}</a>
+                        <a href="https://discord.gg/muzicmaniaofficial" target="_blank" title="Discord" class="social-discord" onclick="Layout.showDevelopmentWarning('Redes Sociales / Social Media')">${ICONS.social_discord}</a>
+                        <a href="https://github.com/CiszukoAntony/MuzicMania" target="_blank" title="GitHub" class="social-github" onclick="Layout.showDevelopmentWarning('Redes Sociales / Social Media')">${ICONS.social_github}</a>
+                        <a href="https://facebook.com/muzicmaniaofficial" target="_blank" title="Facebook" class="social-facebook" onclick="Layout.showDevelopmentWarning('Redes Sociales / Social Media')">${ICONS.social_facebook}</a>
+                        <a href="https://reddit.com/r/muzicmania" target="_blank" title="Reddit" class="social-reddit" onclick="Layout.showDevelopmentWarning('Redes Sociales / Social Media')">${ICONS.social_reddit}</a>
+                        <a href="https://youtube.com/@muzicmania" target="_blank" title="YouTube" class="social-youtube" onclick="Layout.showDevelopmentWarning('Redes Sociales / Social Media')">${ICONS.social_youtube}</a>
+                        <a href="https://instagram.com/muzicmaniaofficial" target="_blank" title="Instagram" class="social-instagram" onclick="Layout.showDevelopmentWarning('Redes Sociales / Social Media')">${ICONS.social_instagram}</a>
+                        <a href="https://tiktok.com/@muzicmania" target="_blank" title="TikTok" class="social-tiktok" onclick="Layout.showDevelopmentWarning('Redes Sociales / Social Media')">${ICONS.social_tiktok}</a>
+                        <a href="https://twitch.tv/muzicmania" target="_blank" title="Twitch" class="social-twitch" onclick="Layout.showDevelopmentWarning('Redes Sociales / Social Media')">${ICONS.social_twitch}</a>
                     </div>
 
                     <div class="footer-contact-line" style="margin-top: 2rem; border-top: 1px solid rgba(255,255,255,0.05); padding-top: 1.5rem;">

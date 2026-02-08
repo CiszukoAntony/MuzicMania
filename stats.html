@@ -6,7 +6,7 @@
     <title>MuzicMania - Estadísticas Globales</title>
     <link rel="icon" type="image/svg+xml" href="content/logos/imagen/not outline/isotipo/degradado/color/muzicmania_logo_isotipo_notoutline_degradado_color.svg">
     <link rel="apple-touch-icon" href="content/logos/imagen/not outline/isotipo/degradado/color/muzicmania_logo_isotipo_notoutline_degradado_color.svg">
-    <link rel="stylesheet" href="styles.css?v=UPDATE_INDEX_RESTRUCTURE_V1">
+    <link rel="stylesheet" href="styles.css?v=UI_FIX_1770507253885">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <style>
         .detail-grid {
@@ -122,20 +122,57 @@
     </main>
 
     <!-- Layout System -->
-    <script src="layout.js?v=UPDATE_INDEX_RESTRUCTURE_V1"></script>
-    <script src="auth.js?v=UPDATE_INDEX_RESTRUCTURE_V1"></script>
-    <script src="utils.js?v=UPDATE_INDEX_RESTRUCTURE_V1"></script>
-    <script src="search.js?v=UPDATE_INDEX_RESTRUCTURE_V1"></script>
-    <script src="navigation.js?v=UPDATE_INDEX_RESTRUCTURE_V1"></script>
+    <script src="scripts/layout.js?v=UI_FIX_1770507253885"></script></script>
+    <script src="scripts/auth.js?v=UI_FIX_1770507253885"></script>
+    <script src="scripts/utils.js?v=UI_FIX_1770507253885"></script>
+    <script src="scripts/search.js?v=UI_FIX_1770507253885"></script>
+    <script src="scripts/navigation.js?v=UI_FIX_1770507253885"></script>
 
     <script>
-        // Simulación de actualización de estadísticas
-        function updateExtendedStats() {
-            const players = 1200 + Math.floor(Math.random() * 50);
-            document.getElementById('stats-active-now').textContent = players;
+        // Simulación o carga real de estadísticas
+        function updateStats() {
+            const isDebug = localStorage.getItem('debugStats');
+            const leaderboard = typeof AuthSystem !== 'undefined' ? AuthSystem.getLeaderboard() : [];
+
+            if (isDebug) {
+                // MODO DEBUG: Cifras aleatorias (Simuladas)
+                const randomUsers = 10000 + Math.floor(Math.random() * 50000);
+                const randomActive = 800 + Math.floor(Math.random() * 2000);
+                const randomGames = (randomUsers * 15) + Math.floor(Math.random() * 10000);
+
+                document.getElementById('stats-total-users').textContent = randomUsers.toLocaleString();
+                document.getElementById('stats-active-now').textContent = randomActive.toLocaleString();
+                document.getElementById('stats-total-games').textContent = `${(randomGames / 1000).toFixed(1)}k`;
+            } else {
+                // MODO REAL: Basado en lo guardado localmente (Backend simulado)
+                const totalUsers = leaderboard.length;
+                const totalGames = leaderboard.reduce((sum, u) => sum + (u.gamesPlayed || 0), 0);
+                const avgAccuracy = leaderboard.length > 0
+                    ? Math.round(leaderboard.reduce((sum, u) => sum + (u.accuracy || 0), 0) / leaderboard.length)
+                    : 0;
+
+                // Estos datos son reales del "backend" local
+                document.getElementById('stats-total-users').textContent = totalUsers.toLocaleString();
+                document.getElementById('stats-active-now').textContent = "0"; // Sin backend real no podemos saber juegos activos reales
+                document.getElementById('stats-total-games').textContent = totalGames.toLocaleString();
+
+                // Actualizar precisión si existe el elemento (está en el HTML pero sin ID en el código original)
+                const accuracyEl = document.querySelector('.stat-card:nth-child(4) .stat-value');
+                if (accuracyEl) accuracyEl.textContent = `${avgAccuracy}%`;
+            }
         }
-        setInterval(updateExtendedStats, 3000);
-        updateExtendedStats();
+
+        // Ejecutar al cargar
+        document.addEventListener('DOMContentLoaded', updateStats);
+
+        // Mantener actualización visual para "Jugadores en Línea" si es debug
+        setInterval(() => {
+            if (localStorage.getItem('debugStats')) {
+                const base = parseInt(document.getElementById('stats-active-now').textContent.replace(/,/g, ''));
+                const variacion = Math.floor(Math.random() * 21) - 10; // +/- 10
+                document.getElementById('stats-active-now').textContent = (base + variacion).toLocaleString();
+            }
+        }, 3000);
     </script>
 </body>
 </html>

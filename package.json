@@ -2,10 +2,15 @@
   "name": "muzicmania",
   "version": "1.0.0",
   "description": "> **El Juego de Ritmo Definitivo en la Web.**\r > Domina el beat en una dimensión online con estética futurista.",
-  "main": "auth.js",
+  "main": "scripts/auth.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "generate-icons": "node debug/repair_scripts/generate-sprites.js"
+    "icons:organize": "node scripts/organize-icons.js",
+    "icons:convert": "node scripts/export-icons.js",
+    "icons:generate": "node scripts/generate-sprites.js",
+    "icons:build": "npm run icons:organize && npm run icons:generate",
+    "icons:full-build": "npm run icons:organize && npm run icons:convert && npm run icons:generate",
+    "icons:watch": "chokidar \"debug/download/**/*.svg\" -c \"npm run icons:build\""
   },
   "repository": {
     "type": "git",
@@ -20,6 +25,9 @@
   },
   "homepage": "https://github.com/CiszukoAntony/MuzicMania#readme",
   "devDependencies": {
+    "chokidar-cli": "^3.0.0",
+    "remixicon": "^4.9.1",
+    "sharp": "^0.34.5",
     "svg-sprite": "^2.0.4"
   }
 }

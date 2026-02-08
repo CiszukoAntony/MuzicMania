@@ -1,80 +1,55 @@
-# 🎵 MuzicMania
+# MuzicMania - The Ultimate Web Rhythm Portal
 
-> **El Juego de Ritmo Definitivo en la Web.**
-> Domina el beat en una dimensión online con estética futurista.
-
-![License](https://img.shields.io/badge/license-MIT-blue.svg)
-![Status](https://img.shields.io/badge/status-Active_Development-green.svg)
-![Version](https://img.shields.io/badge/version-2.0.0-purple.svg)
-
-## 📖 Descripción
-MuzicMania es un juego de ritmo tipo "Mania" (VSRG - Vertical Scrolling Rhythm Game) que se ejecuta directamente en el navegador. Combina mecánicas clásicas de 4 teclas con una estética Cyberpunk/Neon moderna.
-
-### ✨ Características Principales
-- **Web-Based**: Juega instantáneamente sin descargas.
-- **Sistema de Cuentas**: Login, Registro y Perfiles de Usuario.
-- **Leaderboards Globales**: Compite por la puntuación más alta.
-- **Visualizadores de Audio**: Efectos que reaccionan a la música en tiempo real.
-- **Diseño Responsivo**: Interfaz moderna adaptable.
+> **Master the beat in a futuristic online dimension.**
+> **Unleashing visual excellence and rhythmic precision since 2024.**
 
 ---
 
-## 🚀 Instalación y Uso Local
+### [English Version]
 
-Este proyecto no requiere un backend complejo (actualmente usa `localStorage` para persistencia simulada), por lo que es fácil de correr.
+## 🚀 Introduction
+Welcome to **MuzicMania**, a high-performance, web-based rhythm game designed with a "Mania" style philosophy. This project combines a futuristic neon aesthetic with precise mechanics to deliver a premium gaming experience directly in your browser.
 
-### Requisitos
-- Un navegador web moderno (Chrome, Firefox, Edge).
-- (Opcional) Un servidor local simple como `Live Server` de VS Code o Python `http.server`.
+## 🎵 Why MuzicMania?
+- **Zero Latency Engine**: Built on top of WebAudio API for instant response.
+- **Neon-Futuristic Aesthetics**: A curated dark mode with cyan and pink accents.
+- **Community Focused**: Open documentation, technical guides, and competitive leaderboards.
 
-### Pasos
-1.  **Clonar el repositorio**:
-    ```bash
-    git clone https://github.com/CiszukoAntony/MuzicMania.git
-    cd MuzicMania
-    ```
+## 🎮 Quick Start
+1. Visit [MuzicMania Web](index.html).
+2. Click **PLAY NOW**.
+3. Use **Arrow Keys** or **WASD** to hit the notes.
+4. Scale your combo and climb the leaderboard!
 
-2.  **Ejecutar**:
-    Simplemente abre el archivo `index.html` en tu navegador.
-    *Recomendado: Usar una extensión como "Live Server" para evitar problemas con CORS en módulos JS.*
-
----
-
-## 🛠️ Tecnologías
-
-- **Frontend**: HTML5, CSS3 (Variables, Flexbox, Grid), JavaScript (ES6+).
-- **Audio**: Web Audio API para análisis de espectro.
-- **Datos**: LocalStorage (Simulación de Base de Datos).
-- **Iconos**: FontAwesome.
+## 📂 Documentation Hub
+For detailed technical info, rules, and legal terms, check our **[Documentation Hub](content/documents/DOCUMENTATION.md)**.
+- [About the Project](content/documents/ABOUT.md)
+- [Changelog](content/documents/CHANGELOG.md)
+- [Rules & Guidelines](content/documents/RULES.md)
 
 ---
 
-## 📁 Estructura del Proyecto
+### [Versión en Español]
 
-```
-MuzicMania/
-├── assets/          # Imágenes y recursos estáticos
-├── debug/           # Scripts de desarrollo y bots (Ignorado en producción)
-├── ia/              # Documentación interna del proyecto (Ignorado en prod)
-├── index.html       # Landing Page
-├── game.html        # Core del juego
-├── styles.css       # Estilos globales
-├── script.js        # Lógica principal
-├── layout.js        # Componente compartido (Header/Footer)
-└── ...
-```
+## 🚀 Introducción
+Bienvenido a **MuzicMania**, un juego de ritmo basado en web de alto rendimiento diseñado con una filosofía de estilo "Mania". Este proyecto combina una estética neón futurista con mecánicas precisas para ofrecer una experiencia de juego premium directamente en tu navegador.
 
----
+## 🎵 ¿Por qué MuzicMania?
+- **Motor de Latencia Cero**: Construido sobre WebAudio API para una respuesta instantánea.
+- **Estética Neón-Futurista**: Un modo oscuro curado con acentos cian y rosa.
+- **Enfoque en la Comunidad**: Documentación abierta, guías técnicas y tablas de clasificación competitivas.
 
-## 🤝 Contribución
+## 🎮 Inicio Rápido
+1. Visita la web de MuzicMania.
+2. Haz clic en **JUGAR AHORA**.
+3. Usa las **Flechas** o **WASD** para golpear las notas.
+4. ¡Aumenta tu combo y sube en la clasificación!
 
-¡Las contribuciones son bienvenidas! Por favor, abre un issue o envía un Pull Request para mejoras.
-
----
-
-## 📄 Licencia
-
-Este proyecto está bajo la Licencia MIT - ver el archivo [LICENSE](LICENSE) para más detalles.
+## 📂 Centro de Documentación
+Para información técnica detallada, reglas y términos legales, consulta nuestro **[Centro de Documentación](content/documents/DOCUMENTATION.md)**.
+- [Sobre el Proyecto](content/documents/ABOUT.md)
+- [Historial de Cambios](content/documents/CHANGELOG.md)
+- [Reglas y Directrices](content/documents/RULES.md)
 
 ---
-*Desarrollado con ❤️ por el equipo de MuzicMania.*
+© 2024-2026 Ciszuko Antony. All rights reserved.

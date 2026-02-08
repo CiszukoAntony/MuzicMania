@@ -80,7 +80,7 @@ function copyToClipboard(text, description) {
             const successful = document.execCommand('copy');
             if (successful) {
                 if (window.showNotification) showNotification(`¡${description} copiado!`, 'success');
-                else alert(`¡${description} copiado!`);
+                else Layout.showNotification('¡COPIADO!', `¡${description} copiado al portapapeles!`, 'fa-copy');
             }
         } catch (err) {
             console.error('Fallback: Error al copiar', err);

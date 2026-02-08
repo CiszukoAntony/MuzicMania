@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MuzicMania - Créditos</title>
+    <link rel="icon" type="image/svg+xml" href="content/logos/imagen/not outline/isotipo/degradado/color/muzicmania_logo_isotipo_notoutline_degradado_color.svg">
+    <link rel="stylesheet" href="styles.css?v=UI_FIX_1770507253885">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        .credits-container {
+            max-width: 900px;
+            margin: 4rem auto;
+            padding: 2rem;
+            background: rgba(10, 10, 20, 0.8);
+            backdrop-filter: blur(15px);
+            border: 1px solid rgba(0, 212, 255, 0.2);
+            border-radius: 20px;
+            box-shadow: 0 0 50px rgba(0, 0, 0, 0.5);
+            text-align: center;
+        }
+
+        .credit-category {
+            margin-bottom: 3rem;
+        }
+
+        .credit-category h2 {
+            color: var(--neon-cyan);
+            font-family: 'Exo 2', sans-serif;
+            font-size: 1.8rem;
+            text-transform: uppercase;
+            letter-spacing: 4px;
+            margin-bottom: 1.5rem;
+        }
+
+        .credit-item {
+            margin-bottom: 1.5rem;
+        }
+
+        .credit-name {
+            font-size: 1.4rem;
+            color: #fff;
+            font-weight: 700;
+            margin-bottom: 0.2rem;
+        }
+
+        .credit-role {
+            font-size: 1rem;
+            color: var(--neon-cyan);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .credits-scroll {
+            animation: creditsFloat 20s linear infinite;
+        }
+
+        @keyframes creditsFloat {
+            0% { transform: translateY(20px); opacity: 0; }
+            10% { opacity: 1; }
+            90% { opacity: 1; }
+            100% { transform: translateY(-20px); opacity: 0; }
+        }
+    </style>
+</head>
+<body class="bg-futuristic">
+
+    <main class="container">
+        <div class="credits-container">
+            <h1 class="text-neon-blue mb-5">CRÉDITOS</h1>
+
+            <div class="credit-category">
+                <h2>Dirección y Desarrollo</h2>
+                <div class="credit-item">
+                    <div class="credit-name">Francisco Garcia</div>
+                    <div class="credit-role">Creador, Arquitecto y Desarrollador Principal (Ciszuko Antony)</div>
+                </div>
+            </div>
+
+            <div class="credit-category">
+                <h2>Diseño Audiovisual</h2>
+                <div class="credit-item">
+                    <div class="credit-name">MuzicMania Audio Team</div>
+                    <div class="credit-role">Composición y Diseño de Sonido</div>
+                </div>
+            </div>
+
+            <div class="credit-category">
+                <h2>Soporte Técnico</h2>
+                <div class="credit-item">
+                    <div class="credit-name">Antigravity AI</div>
+                    <div class="credit-role">Soporte en Codificación y Estructura</div>
+                </div>
+            </div>
+
+            <div class="mt-5">
+                <p class="text-muted">Desarrollado con pasión en Caracas, Venezuela.</p>
+            </div>
+        </div>
+    </main>
+
+    <script src="scripts/layout.js?v=UI_FIX_1770507253885"></script>
+    <script src="scripts/auth.js?v=UI_FIX_1770507253885"></script>
+    <script src="scripts/utils.js?v=UI_FIX_1770507253885"></script>
+    <script src="scripts/search.js?v=UI_FIX_1770507253885"></script>
+    <script src="scripts/navigation.js?v=UI_FIX_1770507253885"></script>
+</body>
+</html>
