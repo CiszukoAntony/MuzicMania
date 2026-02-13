@@ -5,7 +5,7 @@
 
 const ICONS_LIB = {
     // Helper to generate sprite reference with dynamic base path
-    get: (id, bp = '') => `<svg class="nav-icon-svg"><use href="${bp}content/icons/sprites/sprite-filled.svg#${id}"></use></svg>`,
+    get: (id, bp = '') => `<svg class="icon nav-icon-svg"><use href="${bp}content/icons/sprites/sprite-filled.svg#${id}"></use></svg>`,
     flag: (code, bp = '') => `<svg class="flag-icon-svg"><use href="${bp}content/icons/sprites/sprite-flags.svg#flag-${code}"></use></svg>`,
 
     // Navigation (Mapping to library icons)
@@ -15,7 +15,7 @@ const ICONS_LIB = {
     stats: 'ri-filled-bar-chart-box',
     changelog: 'ri-filled-history',
     info: 'ri-filled-information',
-    team: 'ri-filled-group',
+    team: 'fa-filled-users',
     help: 'ri-filled-question',
     policy: 'ri-filled-shield-check',
     contact: 'ri-filled-mail',
@@ -25,8 +25,8 @@ const ICONS_LIB = {
     credits: 'ri-filled-star',
     guidelines: 'ri-filled-file-list-2',
     rules: 'fa-filled-list-check',
-    license: 'fa-filled-file-contract',
-    terms: 'fa-filled-file-lines',
+    license: 'ri-filled-file-paper-2',
+    terms: 'ri-filled-file-text',
 
     // Social Media
     social_x: 'ri-filled-twitter-x',
@@ -41,15 +41,8 @@ const ICONS_LIB = {
     whatsapp: 'ri-filled-whatsapp',
 
     // UI Utilities
-    search: 'ri-filled-search',
-    user: 'ri-filled-user-3',
-    menu: 'ri-filled-menu-4',
-    close: 'ri-filled-close-large',
-    arrow_right: 'fa-filled-arrow-right',
     chevron_down: 'fa-filled-angle-down',
     chevron_up: 'fa-filled-angle-up',
-    sun: 'ri-filled-sun',
-    moon: 'ri-filled-moon',
     language: 'ri-filled-global',
     zoom_in: 'ri-filled-zoom-in',
     flask: 'ri-filled-flask',
@@ -57,12 +50,14 @@ const ICONS_LIB = {
     trophy: 'ri-filled-trophy',
     terminal: 'ri-filled-terminal-box',
     code: 'ri-filled-code',
-    tools: 'ri-filled-tools',
     user_lock: 'ri-filled-user-settings',
-    logout: 'ri-filled-logout-box-r',
-    login: 'ri-filled-login-box-r',
-    user_add: 'ri-filled-user-add',
     restart: 'fa-filled-arrow-rotate-right',
+    search: 'ri-filled-search',
+    menu: 'ri-filled-menu',
+    close: 'fa-filled-xmark',
+    moon: 'fa-filled-moon',
+    arrow_right: 'ri-filled-arrow-right',
+    info: 'ri-filled-information',
 };
 
 const Layout = {
@@ -70,23 +65,35 @@ const Layout = {
 
     // Detectar profundidad de la carpeta para ajustar rutas relativas
     setBasePath: function() {
-        const path = window.location.pathname.replace(/\\/g, '/');
+        let path = window.location.pathname.replace(/\\/g, '/');
+
+        // Normalizar: eliminar el nombre del archivo si existe al final
+        if (path.includes('.') || !path.endsWith('/')) {
+            const lastPart = path.split('/').pop();
+            if (lastPart.includes('.')) {
+                path = path.substring(0, path.lastIndexOf('/'));
+            }
+        }
+
         const parts = path.split('/').filter(p => p.length > 0);
 
         // Buscar el índice de la carpeta raíz del proyecto
         const rootIndex = parts.findIndex(p => p.toLowerCase() === 'muzicmania');
 
         if (rootIndex !== -1) {
-            // El número de niveles por debajo de la raíz es: (total de partes - 1) - índice de la raíz
-            const depth = (parts.length - 1) - rootIndex;
-            // Solo aplicamos si estamos en una subcarpeta
+            // El número de carpetas reales por debajo de la raíz
+            const depth = (parts.length - rootIndex) - 1;
             this.basePath = depth > 0 ? '../'.repeat(depth) : '';
         } else {
-            // Fallback: si no encuentra "MuzicMania", asumimos que está en la raíz
-            // a menos que detectemos una carpeta conocida de subnivel (como /debug/)
-            this.basePath = path.includes('/debug/') ? '../' : '';
+            // Fallback: si no encuentra "MuzicMania" (ej: desarrollo local en raíz)
+            let fallbackDepth = 0;
+            // Solo contar carpetas específicas si no estamos en MuzicMania
+            if (path.includes('/content/documents/')) fallbackDepth = 2;
+            else if (path.includes('/debug/')) fallbackDepth = 1;
+
+            this.basePath = fallbackDepth > 0 ? '../'.repeat(fallbackDepth) : '';
         }
-        console.log(`Layout: basePath set to "${this.basePath}" (depth calculation)`);
+        console.log(`Layout: basePath set to "${this.basePath}" (Path evaluated: ${path})`);
     },
 
     // Templates (Centralizados)
@@ -111,22 +118,22 @@ const Layout = {
     </div>`,
 
             securityWarning: (id, icon, title, text) => `
-    <div class="zoom-warning security-warning" id="warning-${id}" style="border-color: var(--neon-pink); background: rgba(255, 0, 128, 0.05); top: calc(110px + (var(--warning-offset, 0) * 50px));">
-        <div style="display: flex; align-items: center; gap: 10px;">
+    <div class="zoom-warning security-warning" id="warning-${id}" style="top: calc(110px + (var(--warning-offset, 0) * 50px));">
+        <div style="display: flex; align-items: center; gap: 10px; color: #fff;">
             ${ICONS.policy}
-            <span><strong>${title}:</strong> ${text}</span>
+            <span style="color: #fff;"><strong style="color: #fff;">${title}:</strong> ${text}</span>
         </div>
-        <button class="close-warning" onclick="Layout.closeSecurityWarning('${id}')" title="Entendido">&times;</button>
+        <button class="close-warning" style="position: absolute; top: 10px; right: 15px;" onclick="Layout.closeSecurityWarning('${id}')" title="Entendido">&times;</button>
     </div>`,
 
             // Advertencia especial para modo debug - Diseño Vertical Premium
             debugWarning: (stats) => `
     <div class="zoom-warning security-warning debug-card" id="warning-debug">
-        <div class="debug-top-row">
-            <div class="debug-title-simple">
+        <div class="debug-top-row" style="position: relative;">
+            <div class="debug-title-simple" style="color: #fff;">
                 ${ICONS.flask} MODO DEV DEBUG
             </div>
-            <button class="close-warning-simple" onclick="Layout.closeSecurityWarning('debug')" title="Cerrar" style="position: absolute; top: 10px; right: 15px;">&times;</button>
+            <button class="close-warning-debug" onclick="Layout.closeSecurityWarning('debug')" title="Cerrar">${ICONS.close}</button>
         </div>
 
         <div class="debug-warning-sub">
@@ -379,19 +386,19 @@ const Layout = {
                 <div class="footer-section divider">
                     <h4>Community</h4>
                     <div class="social-icons">
-                        <a href="https://x.com/muzicmaniaofficial" target="_blank" title="X (Twitter)" class="social-x" onclick="Layout.showDevelopmentWarning('Redes Sociales / Social Media')">${ICONS.social_x}</a>
-                        <a href="https://discord.gg/muzicmaniaofficial" target="_blank" title="Discord" class="social-discord" onclick="Layout.showDevelopmentWarning('Redes Sociales / Social Media')">${ICONS.social_discord}</a>
-                        <a href="https://github.com/CiszukoAntony/MuzicMania" target="_blank" title="GitHub" class="social-github" onclick="Layout.showDevelopmentWarning('Redes Sociales / Social Media')">${ICONS.social_github}</a>
-                        <a href="https://facebook.com/muzicmaniaofficial" target="_blank" title="Facebook" class="social-facebook" onclick="Layout.showDevelopmentWarning('Redes Sociales / Social Media')">${ICONS.social_facebook}</a>
-                        <a href="https://reddit.com/r/muzicmania" target="_blank" title="Reddit" class="social-reddit" onclick="Layout.showDevelopmentWarning('Redes Sociales / Social Media')">${ICONS.social_reddit}</a>
-                        <a href="https://youtube.com/@muzicmania" target="_blank" title="YouTube" class="social-youtube" onclick="Layout.showDevelopmentWarning('Redes Sociales / Social Media')">${ICONS.social_youtube}</a>
-                        <a href="https://instagram.com/muzicmaniaofficial" target="_blank" title="Instagram" class="social-instagram" onclick="Layout.showDevelopmentWarning('Redes Sociales / Social Media')">${ICONS.social_instagram}</a>
-                        <a href="https://tiktok.com/@muzicmania" target="_blank" title="TikTok" class="social-tiktok" onclick="Layout.showDevelopmentWarning('Redes Sociales / Social Media')">${ICONS.social_tiktok}</a>
-                        <a href="https://twitch.tv/muzicmania" target="_blank" title="Twitch" class="social-twitch" onclick="Layout.showDevelopmentWarning('Redes Sociales / Social Media')">${ICONS.social_twitch}</a>
+                        <a href="#" title="X (Twitter)" class="social-x" onclick="event.preventDefault(); Layout.showDevelopmentWarning('Twitter (X)')">${ICONS.social_x}</a>
+                        <a href="#" title="Discord" class="social-discord" onclick="event.preventDefault(); Layout.showDevelopmentWarning('Discord')">${ICONS.social_discord}</a>
+                        <a href="#" title="GitHub" class="social-github" onclick="event.preventDefault(); Layout.showDevelopmentWarning('GitHub')">${ICONS.social_github}</a>
+                        <a href="#" title="Facebook" class="social-facebook" onclick="event.preventDefault(); Layout.showDevelopmentWarning('Facebook')">${ICONS.social_facebook}</a>
+                        <a href="#" title="Reddit" class="social-reddit" onclick="event.preventDefault(); Layout.showDevelopmentWarning('Reddit')">${ICONS.social_reddit}</a>
+                        <a href="#" title="YouTube" class="social-youtube" onclick="event.preventDefault(); Layout.showDevelopmentWarning('YouTube')">${ICONS.social_youtube}</a>
+                        <a href="#" title="Instagram" class="social-instagram" onclick="event.preventDefault(); Layout.showDevelopmentWarning('Instagram')">${ICONS.social_instagram}</a>
+                        <a href="#" title="TikTok" class="social-tiktok" onclick="event.preventDefault(); Layout.showDevelopmentWarning('TikTok')">${ICONS.social_tiktok}</a>
+                        <a href="#" title="Twitch" class="social-twitch" onclick="event.preventDefault(); Layout.showDevelopmentWarning('Twitch')">${ICONS.social_twitch}</a>
                     </div>
 
                     <div class="footer-contact-line" style="margin-top: 2rem; border-top: 1px solid rgba(255,255,255,0.05); padding-top: 1.5rem;">
-                        <a href="https://wa.me/584126858111" target="_blank" class="contact-pill" style="display: flex; align-items: center; gap: 10px; text-decoration: none; color: #fff; background: rgba(37, 211, 102, 0.1); padding: 0.8rem 1.2rem; border-radius: 50px; border: 1px solid rgba(37, 211, 102, 0.3); width: fit-content; transition: 0.3s;">
+                        <a href="#" class="contact-pill" onclick="event.preventDefault(); Layout.showDevelopmentWarning('WhatsApp Support')" style="display: flex; align-items: center; gap: 10px; text-decoration: none; color: #fff; background: rgba(37, 211, 102, 0.1); padding: 0.8rem 1.2rem; border-radius: 50px; border: 1px solid rgba(37, 211, 102, 0.3); width: fit-content; transition: 0.3s;">
                             <span style="width: 20px; height: 20px; display: flex; align-items: center;">${ICONS.whatsapp}</span>
                             <span style="font-weight: 600; letter-spacing: 0.5px;">+58 4126858111</span>
                         </a>
@@ -624,10 +631,34 @@ const Layout = {
             .footer-comprehensive-list a.active:hover i,
             .nav-dropdown-item.active:hover i,
             .nav-menu-item.active:hover i,
-            nav a.active:hover svg,
+            nav a:hover svg,
             .nav-menu-item.active:hover svg {
                 color: var(--neon-blue) !important;
                 fill: var(--neon-blue) !important;
+            }
+
+            /* Iconos de navegación más grandes y visibles */
+            nav a svg,
+            .nav-icon-svg {
+                width: 20px !important;
+                height: 20px !important;
+                min-width: 20px;
+                min-height: 20px;
+            }
+
+            /* QuickDock activo: iconos blancos por defecto (SIN hover) - FIX REFORZADO */
+            .qa-btn.active svg,
+            .qa-btn.active .nav-icon-svg,
+            .qa-btn.active use {
+                fill: #fff !important;
+                color: #fff !important;
+            }
+
+            /* Asegurar que el path interno también sea blanco */
+            .qa-btn.active svg path,
+            .qa-btn.active svg circle,
+            .qa-btn.active svg rect {
+                fill: #fff !important;
             }
 
             /* Solo el botón de QuickDock (QA) mantiene el negro sobre azul en hover */
@@ -727,6 +758,41 @@ const Layout = {
             }
             .stat-pill b {
                 color: #fff;
+            }
+            /* --- Close Button DevDebug (SVG + Neon Effects) --- */
+            .close-warning-debug {
+                position: absolute;
+                top: -5px;
+                right: -5px;
+                background: rgba(145, 70, 255, 0.2);
+                border: 1px solid rgba(145, 70, 255, 0.4);
+                border-radius: 50%;
+                width: 28px;
+                height: 28px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                cursor: pointer;
+                transition: all 0.3s ease;
+            }
+            .close-warning-debug svg {
+                width: 16px;
+                height: 16px;
+                fill: #fff !important;
+                /* FIX: Centrado absoluto del SVG para evitar desalineación */
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+            }
+            .close-warning-debug:hover {
+                background: rgba(255, 0, 128, 0.3);
+                border-color: var(--neon-pink);
+                transform: scale(1.1);
+                box-shadow: 0 0 15px rgba(255, 0, 128, 0.5);
+            }
+            .close-warning-debug:hover svg {
+                fill: var(--neon-pink) !important;
             }
 
             /* --- Auth Modal (Centered) --- */
@@ -1086,21 +1152,110 @@ const Layout = {
                 }
             }
 
+            const requirementsHTML = `
+            <!-- Programas y Recursos (Rediseño Estilo Lista con Botones Verdes) -->
+            <div class="docs-requirements-section container mt-5 mb-4">
+                <div class="requirements-card">
+                    <div class="req-header">
+                        <svg class="icon large" aria-hidden="true"><use href="${bp}content/icons/sprites/sprite-filled.svg#fa-filled-screwdriver-wrench"></use></svg>
+                        <h3>Programas y Recursos Necesarios</h3>
+                    </div>
+
+                    <div class="req-list">
+                        <!-- Navegadores -->
+                        <div class="req-row">
+                            <div class="req-main">
+                                <div class="req-title-group">
+                                    <span class="req-label">Navegadores Web</span>
+                                    <p class="req-desc">Visualización optimizada en Chromium para una experiencia sin lags.</p>
+                                </div>
+                                <div class="req-tools">
+                                    <span class="descargas-label" style="color: var(--neon-cyan); font-weight: 700; font-size: 0.8rem; margin-right: 10px;">Descargas:</span>
+                                    <a href="https://www.google.com/chrome/" target="_blank" class="btn-tool green">
+                                        <svg class="icon small" aria-hidden="true"><use href="${bp}content/icons/sprites/sprite-filled.svg#filled-chrome"></use></svg> Descargar Chrome
+                                    </a>
+                                    <a href="https://www.microsoft.com/edge" target="_blank" class="btn-tool green">
+                                        <svg class="icon small" aria-hidden="true"><use href="${bp}content/icons/sprites/sprite-filled.svg#ri-filled-edge-new"></use></svg> Descargar Edge
+                                    </a>
+                                    <a href="https://www.opera.com/" target="_blank" class="btn-tool green">
+                                        <svg class="icon small" aria-hidden="true"><use href="${bp}content/icons/sprites/sprite-filled.svg#filled-opera"></use></svg> Descargar Opera
+                                    </a>
+                                    <a href="https://brave.com/" target="_blank" class="btn-tool green">
+                                        <svg class="icon small" aria-hidden="true"><use href="${bp}content/icons/sprites/sprite-filled.svg#filled-brave"></use></svg> Descargar Brave
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Descompresores -->
+                        <div class="req-row">
+                            <div class="req-main">
+                                <div class="req-title-group">
+                                    <span class="req-label">Gestión de Archivos</span>
+                                    <p class="req-desc">Necesarios para abrir los paquetes de descarga .ZIP, .RAR y .7Z.</p>
+                                </div>
+                                <div class="req-tools">
+                                    <span class="descargas-label" style="color: var(--neon-cyan); font-weight: 700; font-size: 0.8rem; margin-right: 10px;">Descargas:</span>
+                                    <a href="https://www.winzip.com/" target="_blank" class="btn-tool green">
+                                        <svg class="icon small" aria-hidden="true"><use href="${bp}content/icons/sprites/sprite-filled.svg#fa-filled-file-zipper"></use></svg> Descargar WinZip
+                                    </a>
+                                    <a href="https://www.win-rar.com/" target="_blank" class="btn-tool green">
+                                        <svg class="icon small" aria-hidden="true"><use href="${bp}content/icons/sprites/sprite-filled.svg#filled-winrar"></use></svg> Descargar WinRAR
+                                    </a>
+                                    <a href="https://www.7-zip.org/" target="_blank" class="btn-tool green">
+                                        <svg class="icon small" aria-hidden="true"><use href="${bp}content/icons/sprites/sprite-filled.svg#filled-7zip"></use></svg> Descargar 7-Zip
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Visualizadores -->
+                        <div class="req-row">
+                            <div class="req-main">
+                                <div class="req-title-group">
+                                    <span class="req-label">Visualizadores y Editores</span>
+                                    <p class="req-desc">Para leer documentos .PDF y abrir guías en formato Markdown.</p>
+                                </div>
+                                <div class="req-tools">
+                                    <span class="descargas-label" style="color: var(--neon-cyan); font-weight: 700; font-size: 0.8rem; margin-right: 10px;">Descargas:</span>
+                                    <a href="https://www.adobe.com/acrobat/pdf-reader.html" target="_blank" class="btn-tool green">
+                                        <svg class="icon small" aria-hidden="true"><use href="${bp}content/icons/sprites/sprite-filled.svg#filled-acrobat"></use></svg> Descargar Acrobat
+                                    </a>
+                                    <a href="https://www.sublimetext.com/" target="_blank" class="btn-tool green">
+                                        <svg class="icon small" aria-hidden="true"><use href="${bp}content/icons/sprites/sprite-filled.svg#filled-sublime"></use></svg> Descargar Sublime
+                                    </a>
+                                    <a href="https://code.visualstudio.com/" target="_blank" class="btn-tool green">
+                                        <svg class="icon small" aria-hidden="true"><use href="${bp}content/icons/sprites/sprite-filled.svg#filled-vscode"></use></svg> Descargar VS Code
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        `;
+
             const dockHTML = `
-                <!-- Quick Access Dock (Premium & Unified) -->
-                <div class="quick-access-dock">
-                    <a href="${bp}index.html" class="qa-btn" title="Home">${ICONS.home} <span>Home</span></a>
-                    <a href="${bp}rules.html" class="qa-btn" title="Rules">${ICONS.rules} <span>Rules</span></a>
-                    <a href="${bp}guidelines.html" class="qa-btn" title="Guidelines">${ICONS.guidelines} <span>Guidelines</span></a>
-                    <a href="${bp}license.html" class="qa-btn" title="License">${ICONS.license} <span>License</span></a>
-                    <a href="${bp}policy.html" class="qa-btn" title="Policy">${ICONS.policy} <span>Policy</span></a>
-                    <a href="${bp}team.html" class="qa-btn" title="Team">${ICONS.team} <span>Team</span></a>
-                    <a href="${bp}credits.html" class="qa-btn" title="Credits">${ICONS.credits} <span>Credits</span></a>
-                    <a href="${bp}documentation.html" class="qa-btn" title="Documentation">${ICONS.documentation} <span>Docs</span></a>
-                    <a href="${bp}faq.html" class="qa-btn" title="FAQ">${ICONS.faq} <span>FAQ</span></a>
-                    <a href="${bp}help.html" class="qa-btn" title="Help">${ICONS.help} <span>Help</span></a>
-                    <a href="${bp}terms.html" class="qa-btn" title="Terms and Conditions">${ICONS.terms} <span>Terms</span></a>
-                    <a href="${bp}changelog.html" class="qa-btn" title="Changelog">${ICONS.changelog} <span>Changes</span></a>
+                <!-- Quick Access Dock (Expanded - 12 Items) -->
+                <div class="quick-access-dock" id="docs-quick-dock">
+                    <div class="dock-container expanded-grid">
+                        <div class="dock-row">
+                            <a href="${bp}index.html" class="qa-btn" data-page="index.html" title="Inicio">${ICONS.home} <span>INICIO</span></a>
+                            <a href="${bp}rules.html" class="qa-btn" data-page="rules.html" title="Reglas">${ICONS.rules} <span>REGLAS</span></a>
+                            <a href="${bp}guidelines.html" class="qa-btn" data-page="guidelines.html" title="Guías">${ICONS.guidelines} <span>GUÍAS</span></a>
+                            <a href="${bp}license.html" class="qa-btn" data-page="license.html" title="Licencia">${ICONS.license} <span>LICENCIA</span></a>
+                            <a href="${bp}policy.html" class="qa-btn" data-page="policy.html" title="Privacidad">${ICONS.policy} <span>POLÍTICA</span></a>
+                            <a href="${bp}team.html" class="qa-btn" data-page="team.html" title="Equipo">${ICONS.team} <span>EQUIPO</span></a>
+                            <a href="${bp}credits.html" class="qa-btn" data-page="credits.html" title="Créditos">${ICONS.credits} <span>CRÉDITOS</span></a>
+                        </div>
+                        <div class="dock-row">
+                            <a href="${bp}documentation.html" class="qa-btn" data-page="documentation.html" title="Documentos">${ICONS.documentation} <span>DOCS</span></a>
+                            <a href="${bp}faq.html" class="qa-btn" data-page="faq.html" title="FAQ">${ICONS.faq} <span>FAQ</span></a>
+                            <a href="${bp}help.html" class="qa-btn" data-page="help.html" title="Ayuda Técnia">${ICONS.help} <span>AYUDA</span></a>
+                            <a href="${bp}terms.html" class="qa-btn" data-page="terms.html" title="Términos">${ICONS.terms} <span>TÉRMINOS</span></a>
+                            <a href="${bp}changelog.html" class="qa-btn" data-page="changelog.html" title="Cambios">${ICONS.changelog} <span>CAMBIOS</span></a>
+                        </div>
+                    </div>
                 </div>
             `;
 
@@ -1117,32 +1272,30 @@ const Layout = {
             `;
 
             const main = document.querySelector('main');
-            if (main) {
-                // 1. Manejo del Dock
-                const existingDock = main.querySelector('.quick-access-dock');
-                if (existingDock) existingDock.remove();
-                main.insertAdjacentHTML('beforeend', dockHTML);
+            if (!main) return;
 
-                // 2. Manejo del Disclaimer (Eliminar viejos duplicados por clase o texto, e insertar el estandarizado)
+            // 1. Manejo del Dock y Requisitos (LIMPIEZA TOTAL ANTES DE INYECCIÓN)
+            document.querySelectorAll('.docs-requirements-section, .quick-access-dock, #docs-quick-dock, .support-disclaimer, #support-disclaimer').forEach(el => el.remove());
 
-                // Buscar disclaimers antiguos manuales y eliminarlos para evitar duplicados
-                const oldDisclaimers = Array.from(main.querySelectorAll('div')).filter(div =>
-                    div.textContent.includes('Contacta a soporte') && !div.classList.contains('support-disclaimer')
-                );
-                oldDisclaimers.forEach(el => el.remove());
+            // Detener inyección si no es la página correcta
+            const path = window.location.pathname.toLowerCase();
+            const isDocs = path.includes('documentation.html') || path.endsWith('/documentation');
 
-                // Eliminar disclaimer inyectado previamente si existe
-                const existingDisclaimer = main.querySelector('#support-disclaimer');
-                if (existingDisclaimer) existingDisclaimer.remove();
-
-                // Inyectar el nuevo al final
-                main.insertAdjacentHTML('beforeend', disclaimerHTML);
+            if (isDocs) {
+                main.insertAdjacentHTML('beforeend', requirementsHTML);
             }
+
+            // El dock y el disclaimer se inyectan siempre al final del main
+            main.insertAdjacentHTML('beforeend', dockHTML);
+            main.insertAdjacentHTML('beforeend', disclaimerHTML);
+
+            // Resaltar página actual inmediatamente después de inyectar
+            this.highlightActivePage();
         }
     },
 
     highlightActivePage: function() {
-        const path = window.location.pathname;
+        const path = window.location.pathname.replace(/\\/g, '/');
         const page = path.split("/").pop() || 'index.html';
 
         document.querySelectorAll('nav a, .nav-menu-item, .qa-btn').forEach(el => el.classList.remove('active'));
@@ -1184,8 +1337,8 @@ const Layout = {
 
         // Advertencias estándar (VPN, Incógnito)
         const standardWarnings = [
-            { id: 'vpn', check: results.vpn, icon: 'fa-globe', title: 'VPN/PROXY DETECTADO', text: 'La conexión puede ser inestable y afectar la latencia en el juego.' },
-            { id: 'incognito', check: results.incognito, icon: 'fa-user-secret', title: 'MODO INCÓGNITO', text: 'El progreso local no se guardará de forma persistente en esta sesión.' }
+            { id: 'vpn', check: results.vpn, icon: 'fa-filled-globe', title: 'VPN/PROXY DETECTADO', text: 'La conexión puede ser inestable y afectar la latencia en el juego.' },
+            { id: 'incognito', check: results.incognito, icon: 'fa-filled-user-secret', title: 'MODO INCÓGNITO', text: 'El progreso local no se guardará de forma persistente en esta sesión.' }
         ];
 
         standardWarnings.forEach(w => {
@@ -1199,16 +1352,13 @@ const Layout = {
             }
         });
 
-        // Advertencia especial para modo debug (más detallada)
+        // Advertencia especial para modo debug
         if (results.debug && !localStorage.getItem('dismissed_warning_debug')) {
-            let debugStats = { botsCreated: 0, leaderboardEntries: 0, version: '2.1.0-A' };
-            try {
-                const stored = JSON.parse(localStorage.getItem('debugStats') || '{}');
-                if (stored.botsCreated !== undefined) {
-                    debugStats = stored;
-                }
-            } catch (e) { /* Ignorar errores */ }
-
+            const debugStats = {
+                botsCreated: 25,
+                leaderboardEntries: localStorage.getItem('leaderboard_entries') || 0,
+                version: '2.1.0-A'
+            };
             const html = this.getTemplates().debugWarning(debugStats);
             document.body.insertAdjacentHTML('afterbegin', html);
         }
@@ -1218,7 +1368,7 @@ const Layout = {
         const id = 'dev-' + Math.random().toString(36).substr(2, 9);
         const html = this.getTemplates().securityWarning(
             id,
-            'fa-tools',
+            'fa-filled-screwdriver-wrench',
             'FUNCIONALIDAD EN DESARROLLO',
             `La opción "${feature}" estará disponible próximamente.`
         );
@@ -1234,7 +1384,7 @@ const Layout = {
         setTimeout(() => this.closeSecurityWarning(id), 5000);
     },
 
-    showNotification: function(title, message, icon = 'fa-check-circle') {
+    showNotification: function(title, message, icon = 'fa-filled-circle-check') {
         const id = 'notif-' + Math.random().toString(36).substr(2, 9);
         const html = this.getTemplates().securityWarning(id, icon, title, message);
         document.body.insertAdjacentHTML('afterbegin', html);
@@ -1270,16 +1420,29 @@ const Layout = {
 
     // --- Footer Sync Logic ---
     toggleFooterLanguage: function() {
-        // 1. Abrir el menú principal si no está abierto
+        // Prevenir doble clic y ejecuciones múltiples
+        if (this._languageToggling) return;
+        this._languageToggling = true;
+
+        // 1. Abrir el menú principal solo si está cerrado
         if (typeof AdaptiveNav !== 'undefined') {
-            AdaptiveNav.toggleMenu(true);
+            const menuBackdrop = document.querySelector('.menu-backdrop');
+            const isMenuOpen = menuBackdrop && menuBackdrop.classList.contains('active');
+
+            if (!isMenuOpen) {
+                AdaptiveNav.toggleMenu(true);
+            }
         }
 
-        // 2. Si el panel de idiomas no es el activo, cambiarlo
-        const langList = document.getElementById('lang-menu-list');
-        if (langList && !langList.classList.contains('active')) {
-            this.toggleMenuLanguage();
-        }
+        // 2. Pequeño delay para asegurar que el menú se abrió antes de cambiar panel
+        setTimeout(() => {
+            const langList = document.getElementById('lang-menu-list');
+            if (langList && !langList.classList.contains('active')) {
+                this.toggleMenuLanguage();
+            }
+            // Reset flag después de completar
+            this._languageToggling = false;
+        }, 100);
     },
 
     toggleFooterTheme: function(footerBtn) {

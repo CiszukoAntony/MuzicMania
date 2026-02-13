@@ -1,13 +1,32 @@
-# Legal Policy / Política Legal
+MUZICMANIA - DOCUMENTACIÓN OFICIAL
+Nombre: POLICY
+Versión: 1.0.0
+Actualización: 2026-01-31
+Identificador: POLICY_V1.0.0_2026_02_08_muzicmania
+------------------------------------------------------------
 
-### [English]
-MuzicMania is a private project. Any unauthorized use of its code, graphics, or assets is strictly prohibited. We respect intellectual property and expect the same from our users.
+# POLÍTICAS LEGALES / LEGAL POLICIES
 
-**Data Privacy:** We do not collect personal data beyond what is strictly necessary for gameplay and account management.
+[ESPAÑOL]
+Última actualización: 31 de Enero, 2026
 
----
+1. Licencia del Software: Uso personal y no comercial. Prohibida redistribución.
+2. Derechos de Autor (Música): Las pistas pertenecen a sus respectivos artistas.
+3. Protección de Datos: Recolectamos Username, Avatar y Stats para el Leaderboard.
+4. Almacenamiento Local: Usamos LocalStorage para ajustes y récords locales.
+5. Seguridad: Monitoreo contra ataques DDoS y vulnerabilidades XSS.
+6. Transparencia: Rankings basados 100% en habilidad.
+7. Anti-Comercial: Prohibida la venta de cuentas o servicios.
 
-### [Español]
-MuzicMania es un proyecto privado. Cualquier uso no autorizado de su código, gráficos o activos está estrictamente prohibido. Respetamos la propiedad intelectual y esperamos lo mismo de nuestros usuarios.
+------------------------------------------------------------
 
-**Privacidad de Datos:** No recopilamos datos personales más allá de lo estrictamente necesario para la jugabilidad y la gestión de cuentas.
+[ENGLISH]
+Last updated: January 31, 2026
+
+1. Software License: Personal and non-commercial use only. Redistribution prohibited.
+2. Copyright (Music): Tracks belong to their respective artists.
+3. Data Protection: We collect Username, Avatar, and Stats for the Leaderboard.
+4. Local Storage: We use LocalStorage for settings and local records.
+5. Security: Constant monitoring against DDoS attacks and XSS vulnerabilities.
+6. Transparency: Rankings are 100% skill-based.
+7. Anti-Commercial: Selling accounts or services is prohibited.

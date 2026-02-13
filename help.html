@@ -6,8 +6,7 @@
     <title>MuzicMania - Centro de Ayuda</title>
     <link rel="icon" type="image/svg+xml" href="content/logos/imagen/not outline/isotipo/degradado/color/muzicmania_logo_isotipo_notoutline_degradado_color.svg">
     <link rel="apple-touch-icon" href="content/logos/imagen/not outline/isotipo/degradado/color/muzicmania_logo_isotipo_notoutline_degradado_color.svg">
-    <link rel="stylesheet" href="styles.css?v=UI_FIX_1770507253885">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="styles.css?v=MM_FIX_ICONS_V1">
     <style>
         .help-grid {
             display: grid;
@@ -36,8 +35,9 @@
             box-shadow: var(--glow-blue);
         }
 
-        .help-icon {
-            font-size: 3rem;
+        .help-icon svg {
+            width: 3rem;
+            height: 3rem;
             color: var(--neon-cyan);
             margin-bottom: 1rem;
         }
@@ -68,69 +68,69 @@
         <div class="local-search-container mb-3">
             <input type="text" id="help-search" placeholder="Busca un tema de ayuda (ej: cuenta, lag, bugs)...">
             <button class="search-btn-local">
-                <i class="fas fa-search"></i>
+                <svg class="icon"><use href="content/icons/sprites/sprite-filled.svg#fa-filled-search"></use></svg>
             </button>
         </div>
 
         <div class="help-grid" id="help-container">
             <a href="#" class="help-card" onclick="Layout.showDevelopmentWarning('Manual de Ayuda')">
-                <div class="help-icon"><i class="fas fa-user-shield"></i></div>
+                <div class="help-icon"><svg class="icon"><use href="content/icons/sprites/sprite-filled.svg#fa-filled-user-shield"></use></svg></div>
                 <div class="help-title">Mi Cuenta</div>
                 <div class="help-desc">Recuperar contraseña, cambiar nombre de usuario, problemas de login.</div>
                 <span class="btn btn-sm btn-secondary">Ver Artículos</span>
             </a>
 
             <a href="#" class="help-card" onclick="Layout.showDevelopmentWarning('Manual de Ayuda')">
-                <div class="help-icon"><i class="fas fa-gamepad"></i></div>
+                <div class="help-icon"><svg class="icon"><use href="content/icons/sprites/sprite-filled.svg#fa-filled-gamepad"></use></svg></div>
                 <div class="help-title">Problemas del Juego</div>
                 <div class="help-desc">Lag, controles no responden, pantalla negra, errores de carga.</div>
                 <span class="btn btn-sm btn-secondary">Ver Artículos</span>
             </a>
 
             <a href="#" class="help-card" onclick="Layout.showDevelopmentWarning('Manual de Ayuda')">
-                <div class="help-icon"><i class="fas fa-coins"></i></div>
+                <div class="help-icon"><svg class="icon"><use href="content/icons/sprites/sprite-filled.svg#fa-filled-coins"></use></svg></div>
                 <div class="help-title">Puntuaciones</div>
                 <div class="help-desc">Leaderboard no actualiza, scores perdidos, cálculo de precisión.</div>
                 <span class="btn btn-sm btn-secondary">Ver Artículos</span>
             </a>
 
             <a href="#" class="help-card" onclick="Layout.showDevelopmentWarning('Manual de Ayuda')">
-                <div class="help-icon"><i class="fas fa-shield-halved"></i></div>
+                <div class="help-icon"><svg class="icon"><use href="content/icons/sprites/sprite-filled.svg#fa-filled-shield-halved"></use></svg></div>
                 <div class="help-title">Seguridad</div>
                 <div class="help-desc">Protección de cuenta, autenticación de dos pasos y seguridad.</div>
                 <span class="btn btn-sm btn-secondary">Ver Artículos</span>
             </a>
 
             <a href="#" class="help-card" onclick="Layout.showDevelopmentWarning('Manual de Ayuda')">
-                <div class="help-icon"><i class="fas fa-bug"></i></div>
+                <div class="help-icon"><svg class="icon"><use href="content/icons/sprites/sprite-filled.svg#fa-filled-bug"></use></svg></div>
                 <div class="help-title">Reportar Bug</div>
                 <div class="help-desc">¿Has encontrado un error? Infórmanos para que lo reparemos.</div>
                 <span class="btn btn-sm btn-secondary">Ver Artículos</span>
             </a>
 
             <a href="#" class="help-card" onclick="Layout.showDevelopmentWarning('Manual de Ayuda')">
-                <div class="help-icon"><i class="fas fa-users-slash"></i></div>
+                <div class="help-icon"><svg class="icon"><use href="content/icons/sprites/sprite-filled.svg#fa-filled-user-slash"></use></svg></div>
                 <div class="help-title">Reportar Jugador</div>
                 <div class="help-desc">Informa sobre comportamiento tóxico, trampas o nombres ofensivos.</div>
                 <span class="btn btn-sm btn-secondary">Ver Artículos</span>
             </a>
 
             <a href="#" class="help-card" onclick="Layout.showDevelopmentWarning('Manual de Ayuda')">
-                <div class="help-icon"><i class="fas fa-credit-card"></i></div>
+                <div class="help-icon"><svg class="icon"><use href="content/icons/sprites/sprite-filled.svg#fa-filled-credit-card"></use></svg></div>
                 <div class="help-title">Pagos y Premios</div>
                 <div class="help-desc">Problemas con transacciones, canje de premios y membresías.</div>
                 <span class="btn btn-sm btn-secondary">Ver Artículos</span>
             </a>
 
             <a href="#" class="help-card" onclick="Layout.showDevelopmentWarning('Manual de Ayuda')">
-                <div class="help-icon"><i class="fas fa-book-open"></i></div>
+                <div class="help-icon"><svg class="icon"><use href="content/icons/sprites/sprite-filled.svg#fa-filled-book-open"></use></svg></div>
                 <div class="help-title">Guías y Tutoriales</div>
                 <div class="help-desc">Aprende a jugar, configurar tu teclado y mejorar tu ritmo.</div>
                 <span class="btn btn-sm btn-secondary">Ver Artículos</span>
             </a>
 
             <a href="#" class="help-card" onclick="Layout.showDevelopmentWarning('Manual de Ayuda')">
-                <div class="help-icon"><i class="fas fa-scale-balanced"></i></div>
+                <div class="help-icon"><svg class="icon"><use href="content/icons/sprites/sprite-filled.svg#fa-filled-scale-balanced"></use></svg></div>
                 <div class="help-title">Reglas de Comunidad</div>
                 <div class="help-desc">Consulta nuestros términos, políticas de privacidad y conducta.</div>
                 <span class="btn btn-sm btn-secondary">Ver Artículos</span>
@@ -140,17 +140,15 @@
         <!-- Sección de Enlaces Rápidos -->
         <!-- Quick Access Dock (Premium) -->
 
-        <div class="text-center mt-4 mb-4">
-            <p>¿No encontraste lo que buscabas? <a href="support.html" style="color: var(--neon-pink);">Contacta a soporte directamente</a></p>
-        </div>
+
     </main>
 
     <!-- Layout System -->
-    <script src="scripts/layout.js?v=UI_FIX_1770507253885"></script>
-    <script src="scripts/auth.js?v=UI_FIX_1770507253885"></script>
-    <script src="scripts/utils.js?v=UI_FIX_1770507253885"></script>
-    <script src="scripts/search.js?v=UI_FIX_1770507253885"></script>
-    <script src="scripts/navigation.js?v=UI_FIX_1770507253885"></script>
+    <script src="scripts/layout.js?v=MM_FIX_ICONS_V1"></script>
+    <script src="scripts/auth.js?v=MM_FIX_ICONS_V1"></script>
+    <script src="scripts/utils.js?v=MM_FIX_ICONS_V1"></script>
+    <script src="scripts/search.js?v=MM_FIX_ICONS_V1"></script>
+    <script src="scripts/navigation.js?v=MM_FIX_ICONS_V1"></script>
     <script>
         document.getElementById('help-search').addEventListener('input', function(e) {
             const term = e.target.value.toLowerCase();
@@ -176,7 +174,7 @@
                     noResults.id = 'no-results-help';
                     noResults.className = 'text-center mt-5';
                     noResults.style.gridColumn = '1 / -1';
-                    noResults.innerHTML = `<i class="fas fa-search-minus" style="font-size: 3rem; color: var(--neon-pink); opacity: 0.5;"></i>
+                    noResults.innerHTML = `<svg class="icon" style="width: 3rem; height: 3rem; color: var(--neon-pink); opacity: 0.5;"><use href="content/icons/sprites/sprite-filled.svg#fa-filled-magnifying-glass-minus"></use></svg>
                                           <p style="color: #888; margin-top: 1rem;">No encontramos temas que coincidan con "${e.target.value}"</p>`;
                     container.appendChild(noResults);
                 }

@@ -10,7 +10,9 @@
     "icons:generate": "node scripts/generate-sprites.js",
     "icons:build": "npm run icons:organize && npm run icons:generate",
     "icons:full-build": "npm run icons:organize && npm run icons:convert && npm run icons:generate",
-    "icons:watch": "chokidar \"debug/download/**/*.svg\" -c \"npm run icons:build\""
+    "icons:watch": "chokidar \"debug/download/**/*.svg\" -c \"npm run icons:build\"",
+    "docs:export": "node scripts/export-docs.js",
+    "dev": "vite --config debug/vite.config.js"
   },
   "repository": {
     "type": "git",
@@ -26,8 +28,15 @@
   "homepage": "https://github.com/CiszukoAntony/MuzicMania#readme",
   "devDependencies": {
     "chokidar-cli": "^3.0.0",
+    "nodemon": "^3.1.11",
     "remixicon": "^4.9.1",
     "sharp": "^0.34.5",
-    "svg-sprite": "^2.0.4"
+    "svg-sprite": "^2.0.4",
+    "vite": "^7.3.1"
+  },
+  "dependencies": {
+    "@jinzhongjia/markdown-docx": "^1.0.4",
+    "jszip": "^3.10.1",
+    "md-to-pdf": "^5.2.5"
   }
 }

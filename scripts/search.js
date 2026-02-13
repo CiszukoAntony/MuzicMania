@@ -7,9 +7,9 @@ const SearchSystem = {
     // Database of searchable pages and keywords
     index: [
         { title: 'Inicio', url: 'index.html', keywords: ['home', 'empezar', 'novedades', 'estadisticas', 'bienvenido'], desc: 'Página principal con noticias y estadísticas.' },
-        { title: 'Jugar Ahora', url: 'game.html', keywords: ['play', 'game', 'canciones', 'ritmo', 'mania', 'gameplay'], desc: 'Sección del juego con selección de canciones.' },
+        { title: 'Jugar Ahora', url: 'play.html', keywords: ['play', 'game', 'canciones', 'ritmo', 'mania', 'gameplay'], desc: 'Sección del juego con selección de canciones.' },
         { title: 'Leaderboard', url: 'leaderboard.html', keywords: ['ranking', 'mejores', 'puntuaciones', 'top', 'global'], desc: 'Tabla de clasificación mundial de MuzicMania.' },
-        { title: 'Contacto y Soporte', url: 'contactanos.html', keywords: ['ayuda', 'soporte', 'staff', 'equipo', 'valoraciones'], desc: 'Formulario de contacto y soporte técnico.' },
+        { title: 'Contacto y Soporte', url: 'contact.html', keywords: ['ayuda', 'soporte', 'staff', 'equipo', 'valoraciones'], desc: 'Formulario de contacto y soporte técnico.' },
         { title: 'Tu Perfil', url: 'profile.html', keywords: ['cuenta', 'user', 'records', 'ajustes', 'mis datos'], desc: 'Gestiona tu cuenta y revisa tus récords personales.' },
         { title: 'Términos y Condiciones', url: 'terms.html', keywords: ['reglas', 'privacidad', 'legal', 'normas'], desc: 'Información legal y normas de la comunidad.' },
         { title: 'Changelog', url: 'changelog.html', keywords: ['updates', 'parches', 'novedades', 'roadmap', 'versiones'], desc: 'Historial de actualizaciones y parches de MuzicMania.' }
@@ -17,7 +17,7 @@ const SearchSystem = {
 
     init() {
         // Usar DELEGACIÓN DE EVENTOS para elementos dinámicos (inyectados por Layout.js)
-        
+
         // 1. Click en botón de búsqueda
         document.addEventListener('click', (e) => {
             const btn = e.target.closest('.search-btn');
@@ -51,7 +51,7 @@ const SearchSystem = {
                 }
             }
         });
-        
+
         console.log('SearchSystem: Event delegation initialized');
     },
 
@@ -60,15 +60,15 @@ const SearchSystem = {
         const wrapper = document.querySelector('.search-wrapper');
         const searchBtn = document.querySelector('.search-btn');
         const input = document.querySelector('.search-input');
-        
+
         if (!wrapper) return;
 
         // Toggle Local State
         const isActive = wrapper.classList.toggle('active');
-        
+
         // Toggle Global State for Layout Adjustments
         if (nav) nav.classList.toggle('searching', isActive);
-        
+
         // Update Button State
         if (searchBtn) searchBtn.classList.toggle('active', isActive);
 
@@ -79,7 +79,7 @@ const SearchSystem = {
                     input.value = '';
                 }
             }, 100);
-            
+
             // Close other menus
             if (window.AdaptiveNav && AdaptiveNav.toggleMenu) {
                 AdaptiveNav.toggleMenu(false);
@@ -93,7 +93,7 @@ const SearchSystem = {
         const nav = document.getElementById('main-nav');
         const wrapper = document.querySelector('.search-wrapper');
         const searchBtn = document.querySelector('.search-btn');
-        
+
         if (wrapper) wrapper.classList.remove('active');
         if (nav) nav.classList.remove('searching');
         if (searchBtn) searchBtn.classList.remove('active');
@@ -108,7 +108,7 @@ const SearchSystem = {
 
         const results = this.index.filter(item => {
             const lowQuery = query.toLowerCase();
-            return item.title.toLowerCase().includes(lowQuery) || 
+            return item.title.toLowerCase().includes(lowQuery) ||
                    item.keywords.some(k => k.includes(lowQuery)) ||
                    item.desc.toLowerCase().includes(lowQuery);
         });
@@ -119,6 +119,8 @@ const SearchSystem = {
     renderResults(results, query) {
         const dropdown = document.querySelector('.search-results-dropdown');
         dropdown.innerHTML = '';
+
+        const bp = (window.Layout && Layout.basePath) ? Layout.basePath : '';
 
         if (results.length === 0) {
             dropdown.innerHTML = `<div class="search-result-item" style="cursor: default;">
@@ -133,7 +135,7 @@ const SearchSystem = {
                     <div class="search-result-desc">${item.desc}</div>
                     <div class="search-result-count">${this.countMatches(item, query)} coincidencias</div>
                 `;
-                div.onclick = () => window.location.href = item.url;
+                div.onclick = () => window.location.href = bp + item.url;
                 dropdown.appendChild(div);
             });
         }

@@ -1,25 +1,50 @@
-# Changelog / Registro de Cambios
+MUZICMANIA - DOCUMENTACIÓN OFICIAL
+Nombre: CHANGELOG
+Versión: 1.0.0
+Actualización: 2026-02-07
+Identificador: CHANGELOG_V1.0.0_2026_02_08_muzicmania
+------------------------------------------------------------
 
-### [English]
-**v1.2.0 (Feb 2026)**
-- Refactored icon system for higher performance.
-- Reorganized project structure (moved scripts to /scripts).
-- Integrated all CSS into styles.css.
-- Added comprehensive bilingual documentation.
+# CHANGELOG - MUZICMANIA
 
-**v1.1.0**
-- Improved layout performance.
-- Fixed Twitter (X) icon hover state.
+[ESPAÑOL]
+## v2.1.0-A (07 Febrero 2026) - Sincronización de Documentación
+- [SYNC] Sincronización bilingüe (ESP/ENG) en formatos HTML, Markdown y TXT.
+- [SOCIAL] Alertas "En Desarrollo" para redes sociales no activas.
+- [UI] Refinamiento de iconos de Leaderboard (Trofeo) y Changelog (Historial).
+- [DOCS] Actualización completa de README.md como portal principal.
 
----
+## v2.3.0 (31 Enero 2026) - Pulido de UI y Estadísticas
+- [UI] Mejora visual de la barra de progreso en el Changelog.
+- [STATS] Integración de estadísticas dinámicas de GitHub.
+- [FIX] Ajustes menores en el posicionamiento de elementos del Hero.
 
-### [Español]
-**v1.2.0 (Feb 2026)**
-- Refactorización del sistema de iconos para mayor rendimiento.
-- Reorganización de la estructura del proyecto (scripts movidos a /scripts).
-- Integración de todo el CSS en styles.css.
-- Añadida documentación bilingüe completa.
+## v1.1.1 (25 Enero 2026) - Diferenciación de Iconos
+- [UI] Implementación de iconos únicos para cada sección de información (Reglas, Licencia, Términos).
+- [FIX] Corrección de colores de iconos en el Footer.
 
-**v1.1.0**
-- Mejora del rendimiento del diseño.
-- Corrección del estado hover del icono de Twitter (X).
+## v1.1.0 (22 Enero 2026) - Expansión de Banderas
+- [SYSTEM] Expansión masiva de banderas (31 países + ONU).
+- [UI] Unificación total de la interfaz y sistema de sprites global.
+
+------------------------------------------------------------
+
+[ENGLISH]
+## v2.1.0-A (February 07, 2026) - Documentation Sync
+- [SYNC] Bilingual synchronization (ESP/ENG) in HTML, Markdown, and TXT formats.
+- [SOCIAL] "Under Development" alerts for inactive social media links.
+- [UI] Refined icons for Leaderboard (Trophy) and Changelog (History).
+- [DOCS] Complete update of README.md as the main portal.
+
+## v2.3.0 (January 31, 2026) - UI Polish & Stats
+- [UI] Visual improvement of the progress bar in the Changelog.
+- [STATS] Integration of dynamic GitHub statistics.
+- [FIX] Minor adjustments to Hero section element positioning.
+
+## v1.1.1 (January 25, 2026) - Icon Differentiation
+- [UI] Implementation of unique icons for each info section (Rules, License, Terms).
+- [FIX] Icon color corrections in the Footer.
+
+## v1.1.0 (January 22, 2026) - Flag Expansion
+- [SYSTEM] Massive flag expansion (31 countries + UN).
+- [UI] Total UI unification and global sprite system.

@@ -53,10 +53,15 @@ class AdaptiveNav {
     static showTransition(type) {
         const icon = document.getElementById('transition-icon');
         if (!icon) return;
-        const bp = window.Layout?.basePath || '';
+
+        // ROBUST: Inlined SVG paths to guarantee rendering
+        // Better "Rotate/Refresh" icon (circular arrow)
+        const refreshPath = '<path d="M463.5 224H472c13.3 0 24-10.7 24-24V72c0-9.7-5.8-18.5-14.8-22.2s-19.3-1.7-26.2 5.2L413.4 96.6c-87.6-86.5-228.7-86.2-315.8 1c-87.5 87.5-87.5 229.3 0 316.8s229.3 87.5 316.8 0c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0c-62.5 62.5-163.8 62.5-226.3 0s-62.5-163.8 0-226.3c62.2-62.2 162.7-62.5 225.3-1L327 183c-6.9 6.9-8.9 17.2-5.2 26.2s12.5 14.8 22.2 14.8H463.5z" fill="currentColor"/>';
+        const arrowPath = '<path d="M16.1716 10.9999L10.8076 5.63589L12.2218 4.22168L20 11.9999L12.2218 19.778L10.8076 18.3638L16.1716 12.9999H4V10.9999H16.1716Z" fill="currentColor"/>';
+
         icon.innerHTML = type === 'reload'
-            ? (typeof ICONS_LIB !== 'undefined' ? ICONS_LIB.get(ICONS_LIB.restart || 'ri-filled-refresh-line', bp) : '<i class="fas fa-rotate-right"></i>')
-            : (typeof ICONS_LIB !== 'undefined' ? ICONS_LIB.get(ICONS_LIB.arrow_right, bp) : '<i class="fas fa-arrow-right"></i>');
+            ? `<svg class="icon" viewBox="0 0 512 512" style="width: 1.5em; height: 1.5em; fill: currentColor;">${refreshPath}</svg>`
+            : `<svg class="icon" viewBox="0 0 24 24" style="width: 1.5em; height: 1.5em; fill: currentColor;">${arrowPath}</svg>`;
         icon.classList.add('visible');
     }
 
@@ -66,19 +71,16 @@ class AdaptiveNav {
     }
 
     static checkZoom() {
+        // ... (existing checkZoom logic) ...
         const zoom = window.devicePixelRatio || 1;
         const warning = document.querySelector('.zoom-warning');
-        if (zoom > 1.25) {
-            warning.classList.add('visible');
-        } else {
-            warning.classList.remove('visible');
+        if (warning) { // Safety check
+             if (zoom > 1.25) warning.classList.add('visible');
+             else warning.classList.remove('visible');
         }
     }
 
-    static closeWarning() {
-        document.querySelector('.zoom-warning').classList.remove('visible');
-    }
-
+    // ... (existing setupMenu and toggleMenu) ...
     static setupMenu() {
         document.addEventListener('click', (e) => {
             // 1. Botón de Menú (Toggle)
@@ -110,8 +112,7 @@ class AdaptiveNav {
 
         // Toggle del botón
         if (menuBtn) {
-            if (finalShow) menuBtn.classList.add('active');
-            else menuBtn.classList.remove('active');
+            menuBtn.classList.toggle('active', finalShow);
         }
 
         if (finalShow) {
@@ -148,7 +149,6 @@ class AdaptiveNav {
     static checkOverflow() {
         // Placeholder robusto para evitar crash si Auth lo llama
         console.log('AdaptiveNav: Verificando overflow (placeholder)');
-        // Futura implementación: Ocultar items del nav si el ancho < 800px
     }
 
     static toggleAccessMenu() {
@@ -160,22 +160,27 @@ class AdaptiveNav {
 
         if (menu) {
             const isActive = menu.classList.toggle('active');
-            const bp = window.Layout?.basePath || '';
-            if (btn) btn.innerHTML = isActive
-                ? (typeof ICONS_LIB !== 'undefined' ? ICONS_LIB.get(ICONS_LIB.close, bp) + ' <span class="btn-text">Cancelar</span>' : '<i class="fas fa-times"></i> <span class="btn-text">Cancelar</span>')
-                : (typeof ICONS_LIB !== 'undefined' ? ICONS_LIB.get(ICONS_LIB.user, bp) + ' <span class="btn-text">Acceder</span>' : '<i class="fas fa-user-circle"></i> <span class="btn-text">Acceder</span>');
+            // INLINED ICONS
+            const closeIcon = '<svg class="icon" viewBox="0 0 24 24" style="width: 1em; height: 1em; fill: currentColor; vertical-align: middle;"><path d="M12.0007 10.5865L16.9504 5.63672L18.3646 7.05093L13.4149 12.0007L18.3646 16.9504L16.9504 18.3646L12.0007 13.4149L7.05093 18.3646L5.63672 16.9504L10.5865 12.0007L5.63672 7.05093L7.05093 5.63672L12.0007 10.5865Z"></path></svg>';
+            const userIcon = '<svg class="icon" viewBox="0 0 24 24" style="width: 1em; height: 1em; fill: currentColor; vertical-align: middle;"><path d="M4 22C4 17.5817 7.58172 14 12 14C16.4183 14 20 17.5817 20 22H18C18 18.6863 15.3137 16 12 16C8.68629 16 6 18.6863 6 22H4ZM12 13C8.685 13 6 10.315 6 7C6 3.685 8.685 1 12 1C15.315 1 18 3.685 18 7C18 10.315 15.315 13 12 13ZM12 11C14.21 11 16 9.21 16 7C16 4.79 14.21 3 12 3C9.79 3 8 4.79 8 7C8 9.21 9.79 11 12 11Z"></path></svg>';
 
-            if (btn) btn.classList.toggle('active', isActive);
+            if (btn) {
+                btn.innerHTML = isActive
+                    ? `${closeIcon} <span class="btn-text">Cancelar</span>`
+                    : `${userIcon} <span class="btn-text">Acceder</span>`;
+                btn.classList.toggle('active', isActive);
+            }
         }
     }
 
     static closeAccessMenu() {
         const menu = document.getElementById('auth-quick-options');
         const btn = document.getElementById('btn-access-header');
+        const userIcon = '<svg class="icon" viewBox="0 0 24 24" style="width: 1em; height: 1em; fill: currentColor; vertical-align: middle;"><path d="M4 22C4 17.5817 7.58172 14 12 14C16.4183 14 20 17.5817 20 22H18C18 18.6863 15.3137 16 12 16C8.68629 16 6 18.6863 6 22H4ZM12 13C8.685 13 6 10.315 6 7C6 3.685 8.685 1 12 1C15.315 1 18 3.685 18 7C18 10.315 15.315 13 12 13ZM12 11C14.21 11 16 9.21 16 7C16 4.79 14.21 3 12 3C9.79 3 8 4.79 8 7C8 9.21 9.79 11 12 11Z"></path></svg>';
 
         if (menu) menu.classList.remove('active');
         if (btn) {
-            btn.innerHTML = '<i class="fas fa-user-circle"></i> <span class="btn-text">Acceder</span>';
+            btn.innerHTML = `${userIcon} <span class="btn-text">Acceder</span>`;
             btn.classList.remove('active');
         }
     }

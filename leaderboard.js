@@ -60,9 +60,8 @@ function toggleSortDir() {
     state.currentPage = 1;
 
     // Actualizar icono del botón
-    const icon = document.querySelector('#btn-toggle-dir i');
     if (icon) {
-        icon.className = state.sortDir === 'desc' ? 'fas fa-sort-amount-down' : 'fas fa-sort-amount-up';
+        icon.innerHTML = Layout.ICONS_LIB.get(state.sortDir === 'desc' ? 'fa-filled-arrow-down-wide-short' : 'fa-filled-arrow-up-short-wide');
     }
 
     render();
@@ -112,7 +111,7 @@ function render() {
                     </div>
                 </div>
                 <div class="player-info" onclick="Layout.showDevelopmentWarning('Perfil de Jugador (En Proceso)')" style="cursor: pointer;">
-                    <span class="display-name">${user.displayName} ${isBot ? '🤖' : ''}</span>
+                    <span class="display-name">${user.displayName} ${isBot ? '<svg class="icon bot-icon" style="width: 1.1em; height: 1.1em; vertical-align: middle; margin-left: 5px;"><use href="content/icons/sprites/sprite-filled.svg#fa-filled-robot"></use></svg>' : ''}</span>
                     <span class="user-handle">${cleanHandle}</span>
                 </div>
                 <div class="stat-value score-val">${(user.highScore || 0).toLocaleString()}</div>
@@ -136,7 +135,7 @@ function renderPagination(totalPages) {
     let html = '';
 
     // Botón Anterior
-    html += `<div class="page-btn ${state.currentPage === 1 ? 'disabled' : ''}" onclick="changePage(${state.currentPage - 1})"><i class="fas fa-chevron-left"></i></div>`;
+    html += `<div class="page-btn ${state.currentPage === 1 ? 'disabled' : ''}" onclick="changePage(${state.currentPage - 1})">${Layout.ICONS_LIB.get('fa-filled-angle-left')}</div>`;
 
     // Botones numéricos
     for (let i = 1; i <= totalPages; i++) {
@@ -150,7 +149,7 @@ function renderPagination(totalPages) {
     }
 
     // Botón Siguiente
-    html += `<div class="page-btn ${state.currentPage === totalPages ? 'disabled' : ''}" onclick="changePage(${state.currentPage + 1})"><i class="fas fa-chevron-right"></i></div>`;
+    html += `<div class="page-btn ${state.currentPage === totalPages ? 'disabled' : ''}" onclick="changePage(${state.currentPage + 1})">${Layout.ICONS_LIB.get('fa-filled-angle-right')}</div>`;
 
     pagination.innerHTML = html;
 }

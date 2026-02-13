@@ -19,6 +19,7 @@ debug/
 repair_scripts/
 *.gemini/
 brain/
+nogithub/
 
 # Logs
 logs/
@@ -44,3 +45,6 @@ build/
 content/
 __pycache__/
 *.py[cod]
+
+# Development & Config
+debug/

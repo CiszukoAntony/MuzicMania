@@ -85,7 +85,7 @@ class AuthSystem {
         const finalUsername = '@' + cleanUsername;
 
         if (cleanUsername.length < 3) {
-            Layout.showNotification('ERROR DE VALIDACIÓN', 'El nombre de usuario debe tener al menos 3 caracteres alfanuméricos.', 'fa-exclamation-triangle');
+            Layout.showNotification('ERROR DE VALIDACIÓN', 'El nombre de usuario debe tener al menos 3 caracteres alfanuméricos.', 'fa-filled-triangle-exclamation');
             return false;
         }
 
@@ -93,11 +93,11 @@ class AuthSystem {
 
         // 2. Verificaciones de unicidad
         if (users.find(u => u.username === finalUsername)) {
-            Layout.showNotification('ERROR DE REGISTRO', 'Este nombre de usuario ya está ocupado.', 'fa-user-times');
+            Layout.showNotification('ERROR DE REGISTRO', 'Este nombre de usuario ya está ocupado.', 'fa-filled-user-xmark');
             return false;
         }
         if (users.find(u => u.email === email)) {
-            Layout.showNotification('ERROR DE REGISTRO', 'Este correo electrónico ya está registrado.', 'fa-envelope-open-text');
+            Layout.showNotification('ERROR DE REGISTRO', 'Este correo electrónico ya está registrado.', 'fa-filled-envelope-open-text');
             return false;
         }
 
@@ -145,14 +145,14 @@ class AuthSystem {
             if (typeof showNotification === 'function') {
                 showNotification(`¡Bienvenido de nuevo, ${user.displayName}!`, 'success');
             } else {
-                Layout.showNotification('¡BIENVENIDO!', `Bienvenido de nuevo, ${user.displayName}!`, 'fa-user-check');
+                Layout.showNotification('¡BIENVENIDO!', `Bienvenido de nuevo, ${user.displayName}!`, 'fa-filled-user-check');
             }
 
             // Recargar si estamos en perfil para actualizar datos
             if(window.location.pathname.includes('profile.html')) window.location.reload();
             return true;
         } else {
-            Layout.showNotification('ACCESO DENEGADO', 'Credenciales incorrectas.', 'fa-shield-alt');
+            Layout.showNotification('ACCESO DENEGADO', 'Credenciales incorrectas.', 'fa-filled-shield-halved');
             return false;
         }
     }

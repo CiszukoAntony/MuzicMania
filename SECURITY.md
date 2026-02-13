@@ -1,29 +1,24 @@
-# Security Policy
+MUZICMANIA - DOCUMENTACIÓN OFICIAL
+Nombre: SECURITY
+Versión: 1.0.0
+Actualización: 2026-02-07
+Identificador: SECURITY_V1.0.0_2026_02_08_muzicmania
+------------------------------------------------------------
 
-## Supported Versions
-At MuzicMania, we prioritize the safety of our users. Only the latest version of the main website is supported for security updates.
+# POLÍTICA DE SEGURIDAD / SECURITY POLICY
 
-| Version | Supported          |
-| ------- | ------------------ |
-| 1.x     | :white_check_mark: |
-| < 1.0   | :x:                |
+[ESPAÑOL]
+Nuestra prioridad es mantener MuzicMania seguro para todos los jugadores.
 
-## Reporting a Vulnerability
-If you find a security hole, please report it privately.
-**Contact Email:** fplayersoffcial@gmail.com
+- Reporte de Vulnerabilidades: Si encuentras un fallo crítico, por favor contacta a security@muzicmania.com antes de hacerlo público.
+- Medidas de Protección: Implementamos cifrado SSL, protección DDoS y sanitización de inputs para prevenir XSS.
+- Prácticas Recomendadas: Nunca compartas tu contraseña y usa navegadores actualizados.
 
----
+------------------------------------------------------------
 
-# Política de Seguridad
+[ENGLISH]
+Our priority is to keep MuzicMania safe for all players.
 
-## Versiones Soportadas
-En MuzicMania, priorizamos la seguridad de nuestros usuarios. Solo la última versión del sitio web principal cuenta con soporte para actualizaciones de seguridad.
-
-| Versión | Soporte            |
-| ------- | ------------------ |
-| 1.x     | :white_check_mark: |
-| < 1.0   | :x:                |
-
-## Informar una Vulnerabilidad
-Si encuentras un fallo de seguridad, por favor infórmalo de forma privada.
-**Email de Contacto:** fplayersoffcial@gmail.com
+- Vulnerability Reporting: If you find a critical flaw, please contact security@muzicmania.com before making it public.
+- Protection Measures: We implement SSL encryption, DDoS protection, and input sanitization to prevent XSS.
+- Recommended Practices: Never share your password and use updated browsers.

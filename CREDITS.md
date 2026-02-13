@@ -1,27 +1,40 @@
-# Project Credits / Créditos del Proyecto
+MUZICMANIA - DOCUMENTACIÓN OFICIAL
+Nombre: CREDITS
+Versión: 1.0.0
+Actualización: 2026-02-07
+Identificador: CREDITS_V1.0.0_2026_02_08_muzicmania
+------------------------------------------------------------
 
-### [English]
-MuzicMania is a passion project built by a small team dedicated to rhythm gaming excellence.
+# CRÉDITOS / CREDITS
 
-**Lead Developer & Artist:**
-- Francisco Garcia (Ciszuko Antony)
+[ESPAÑOL]
+Desarrollado con pasión en Caracas, Venezuela.
 
-**Sound Design:**
-- MuzicMania Audio Team
+DIRECCIÓN Y DESARROLLO:
+- Francisco Garcia (Ciszuko Antony): Creador, Arquitecto y Desarrollador Principal.
 
-**Community Management:**
-- MuzicMania Support Staff
+DISEÑO AUDIOVISUAL:
+- MuzicMania Audio Team: Composición y Diseño de Sonido.
 
----
+SOPORTE TÉCNICO:
+- Antigravity AI: Soporte en Codificación y Estructura.
 
-### [Español]
-MuzicMania es un proyecto apasionado construido por un pequeño equipo dedicado a la excelencia en los juegos de ritmo.
+AGRADECIMIENTOS:
+- A toda la comunidad de juegos de ritmo por inspirarnos cada día.
 
-**Desarrollador Principal y Artista:**
-- Francisco Garcia (Ciszuko Antony)
+------------------------------------------------------------
 
-**Diseño de Sonido:**
-- Equipo de Audio de MuzicMania
+[ENGLISH]
+Developed with passion in Caracas, Venezuela.
 
-**Gestión de Comunidad:**
-- Personal de Soporte de MuzicMania
+DIRECTION & DEVELOPMENT:
+- Francisco Garcia (Ciszuko Antony): Creator, Architect, and Lead Developer.
+
+AUDIOVISUAL DESIGN:
+- MuzicMania Audio Team: Composition and Sound Design.
+
+TECHNICAL SUPPORT:
+- Antigravity AI: Support in Coding and Structure.
+
+ACKNOWLEDGMENTS:
+- To the entire rhythm game community for inspiring us every day.

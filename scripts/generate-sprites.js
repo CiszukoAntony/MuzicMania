@@ -27,23 +27,24 @@ async function generateSprite(type) {
 
   console.log(`🚀 Procesando ${type}: ${files.length} iconos...`);
 
+  // Configurar transforamciones SVGO según el tipo
+  const svgoPlugins = (type === 'color' || type === 'flags')
+    ? [{ name: 'removeViewBox', active: false }] // Mantener colores
+    : [{ name: 'removeViewBox', active: false }, { name: 'removeAttrs', params: { attrs: '(stroke|fill)' } }]; // Eliminar colores para iconos monocromáticos
+
   const spriter = new SVGSprite({
     dest: outputDir,
     mode: {
       symbol: {
         dest: '.',
-        sprite: `sprite-${type}.svg`
+        sprite: type === 'filled' ? 'sprite-filled.svg' : `sprite-${type}.svg` // Renamed to force cache break
       }
     },
     shape: {
       id: { generator: (name) => path.basename(name, '.svg') },
-      transform: [{ svgo: { plugins: [{ name: 'removeViewBox', active: false }, { name: 'removeAttrs', params: { attrs: '(stroke|fill)' } }] } }]
+      transform: [{ svgo: { plugins: svgoPlugins } }]
     }
   });
-
-  if (type === 'color' || type === 'flags') {
-    spriter.config.shape.transform[0].svgo.plugins = [{ name: 'removeViewBox', active: false }];
-  }
 
   files.forEach(file => {
     const filePath = path.join(srcDir, file);

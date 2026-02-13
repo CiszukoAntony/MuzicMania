@@ -6,8 +6,7 @@
     <title>MuzicMania - Soporte</title>
     <link rel="icon" type="image/svg+xml" href="content/logos/imagen/not outline/isotipo/degradado/color/muzicmania_logo_isotipo_notoutline_degradado_color.svg">
     <link rel="apple-touch-icon" href="content/logos/imagen/not outline/isotipo/degradado/color/muzicmania_logo_isotipo_notoutline_degradado_color.svg">
-    <link rel="stylesheet" href="styles.css?v=UI_FIX_1770507253885">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="styles.css?v=MM_FIX_ICONS_V1">
     <style>
         .contact-grid {
             display: grid;
@@ -60,14 +59,15 @@
             margin: var(--spacing-sm) 0;
         }
 
-        .rating-stars i {
-            font-size: 2rem;
+        .rating-stars svg {
+            width: 2rem;
+            height: 2rem;
             color: #FFD700;
             cursor: pointer;
             transition: var(--transition-fast);
         }
 
-        .rating-stars i:hover {
+        .rating-stars svg:hover {
             transform: scale(1.2);
         }
 
@@ -96,8 +96,9 @@
             border-radius: 8px;
         }
 
-        .contact-info-item i {
-            font-size: 1.5rem;
+        .contact-info-item svg {
+            width: 1.5rem;
+            height: 1.5rem;
             color: var(--neon-cyan);
         }
 
@@ -324,7 +325,7 @@
             justify-content: center;
         }
 
-        .star-rating-input i.active { color: #FFD700; text-shadow: 0 0 15px rgba(255, 215, 0, 0.5); }
+        .star-rating-input svg.active { color: #FFD700; filter: drop-shadow(0 0 15px rgba(255, 215, 0, 0.5)); }
 
         .review-like-btn {
             background: rgba(255, 0, 128, 0.1);
@@ -396,28 +397,28 @@
         <!-- Panel de Disponibilidad -->
         <div class="availability-card mt-3">
             <div class="avail-item">
-                <i class="fas fa-clock"></i>
+                <svg class="icon"><use href="content/icons/sprites/sprite-filled.svg#fa-filled-clock"></use></svg>
                 <div class="avail-info">
                     <h4>Disponibilidad</h4>
                     <p>24/7 (Soporte Global)</p>
                 </div>
             </div>
             <div class="avail-item">
-                <i class="fas fa-bolt"></i>
+                <svg class="icon"><use href="content/icons/sprites/sprite-filled.svg#fa-filled-bolt"></use></svg>
                 <div class="avail-info">
                     <h4>Tiempo de Respuesta</h4>
                     <p>2h - 48h Máximo</p>
                 </div>
             </div>
             <div class="avail-item">
-                <i class="fas fa-shield-alt"></i>
+                <svg class="icon"><use href="content/icons/sprites/sprite-filled.svg#fa-filled-shield-halved"></use></svg>
                 <div class="avail-info">
                     <h4>Prioridad</h4>
                     <p>Usuarios Registrados</p>
                 </div>
             </div>
             <div class="avail-item">
-                <i class="fas fa-globe"></i>
+                <svg class="icon"><use href="content/icons/sprites/sprite-filled.svg#fa-filled-globe"></use></svg>
                 <div class="avail-info">
                     <h4>Región Central</h4>
                     <p>Latinoamérica (VET)</p>
@@ -467,7 +468,7 @@
                                     <div class="custom-select-container" id="container-country">
                                         <div class="custom-select-trigger" id="trigger-country">
                                             <span>Selecciona tu país</span>
-                                            <i class="fas fa-chevron-down"></i>
+                                            <svg class="icon"><use href="content/icons/sprites/sprite-filled.svg#fa-filled-chevron-down"></use></svg>
                                         </div>
                                         <div class="custom-select-options" id="options-country">
                                             <div class="custom-option" data-value="ES"><svg class="flag-icon-svg"><use href="content/icons/sprites/sprite-flags.svg#flag-es"></use></svg> España</div>
@@ -512,14 +513,14 @@
                                     <div class="custom-select-container" id="container-subject">
                                         <div class="custom-select-trigger" id="trigger-subject">
                                             <span>Selecciona un asunto</span>
-                                            <i class="fas fa-chevron-down"></i>
+                                            <svg class="icon"><use href="content/icons/sprites/sprite-filled.svg#fa-filled-chevron-down"></use></svg>
                                         </div>
                                         <div class="custom-select-options" id="options-subject">
-                                            <div class="custom-option" data-value="support"><i class="fas fa-headset" style="color: var(--neon-blue);"></i> Soporte Técnico</div>
-                                            <div class="custom-option" data-value="bug"><i class="fas fa-bug" style="color: var(--neon-pink);"></i> Reporte de Bug</div>
-                                            <div class="custom-option" data-value="suggestion"><i class="fas fa-lightbulb" style="color: var(--neon-green);"></i> Sugerencia</div>
-                                            <div class="custom-option" data-value="partnership"><i class="fas fa-handshake" style="color: var(--neon-cyan);"></i> Colaboración</div>
-                                            <div class="custom-option" data-value="other"><i class="fas fa-ellipsis-h" style="color: #888;"></i> Otro</div>
+                                            <div class="custom-option" data-value="support"><svg class="icon" style="color: var(--neon-blue);"><use href="content/icons/sprites/sprite-filled.svg#fa-filled-headset"></use></svg> Soporte Técnico</div>
+                                            <div class="custom-option" data-value="bug"><svg class="icon" style="color: var(--neon-pink);"><use href="content/icons/sprites/sprite-filled.svg#fa-filled-bug"></use></svg> Reporte de Bug</div>
+                                            <div class="custom-option" data-value="suggestion"><svg class="icon" style="color: var(--neon-green);"><use href="content/icons/sprites/sprite-filled.svg#fa-filled-lightbulb"></use></svg> Sugerencia</div>
+                                            <div class="custom-option" data-value="partnership"><svg class="icon" style="color: var(--neon-cyan);"><use href="content/icons/sprites/sprite-filled.svg#fa-filled-handshake"></use></svg> Colaboración</div>
+                                            <div class="custom-option" data-value="other"><svg class="icon" style="color: #888;"><use href="content/icons/sprites/sprite-filled.svg#fa-filled-ellipsis"></use></svg> Otro</div>
                                         </div>
                                         <input type="hidden" id="contact-subject" required>
                                     </div>
@@ -536,7 +537,7 @@
                                 <div class="error-message">Se requiere un mensaje más descriptivo (mín. 20 caracteres).</div>
                             </div>
                             <button type="submit" class="btn btn-red-gradient btn-full" id="submit-btn" style="margin-top: 1rem;" onclick="event.preventDefault(); Layout.showDevelopmentWarning('Soporte Técnico')">
-                                <i class="fas fa-paper-plane"></i> ENVIAR MENSAJE A SOPORTE
+                                <svg class="icon"><use href="content/icons/sprites/sprite-filled.svg#fa-filled-paper-plane"></use></svg> ENVIAR MENSAJE A SOPORTE
                             </button>
                         </form>
 
@@ -570,8 +571,7 @@
         <!-- Quick Access Dock (Premium) -->
     </main>
 
-    <!-- Layout System -->
-    <script src="scripts/layout.js?v=UI_FIX_1770507253885"></script>
+    <!-- Layout System (Load handled at end of body) -->
 
     <script>
         // --- Gestión de Tickets (Mock) ---
@@ -825,9 +825,10 @@
         window.addEventListener('authChange', initializeContactPage);
 
     </script>
-    <script src="scripts/auth.js?v=UI_FIX_1770507253885"></script>
-    <script src="scripts/utils.js?v=UI_FIX_1770507253885"></script>
-    <script src="scripts/search.js?v=UI_FIX_1770507253885"></script>
-    <script src="scripts/navigation.js?v=UI_FIX_1770507253885"></script>
+    <script src="scripts/layout.js?v=MM_FIX_ICONS_V1"></script>
+    <script src="scripts/auth.js?v=MM_FIX_ICONS_V1"></script>
+    <script src="scripts/utils.js?v=MM_FIX_ICONS_V1"></script>
+    <script src="scripts/search.js?v=MM_FIX_ICONS_V1"></script>
+    <script src="scripts/navigation.js?v=MM_FIX_ICONS_V1"></script>
 </body>
 </html>

@@ -5,122 +5,140 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>MuzicMania - Centro de Documentación</title>
     <link rel="icon" type="image/svg+xml" href="content/logos/imagen/not outline/isotipo/degradado/color/muzicmania_logo_isotipo_notoutline_degradado_color.svg">
-    <link rel="stylesheet" href="styles.css?v=UI_FIX_1770507253885">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="preload" href="content/icons/sprites/sprite-filled.svg?v=FORCE_FIX_FINAL_V2" as="image" type="image/svg+xml">
+    <link rel="stylesheet" href="styles.css?v=MM_FIX_ICONS_V1">
+    <!-- CDN Links Removed (Using local sprites) -->
     <style>
-        .docs-hub-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-            margin: 4rem 0;
-        }
-
-        .docs-category {
-            background: rgba(10, 10, 20, 0.8);
-            border: 1px solid rgba(0, 212, 255, 0.1);
-            border-radius: 20px;
+        /* Local overrides if necessary */
+        .sidebar-loading {
             padding: 2rem;
-            backdrop-filter: blur(10px);
-            transition: all 0.3s ease;
-        }
-
-        .docs-category:hover {
-            border-color: var(--neon-cyan);
-            box-shadow: 0 0 30px rgba(0, 212, 255, 0.1);
-            transform: translateY(-5px);
-        }
-
-        .docs-category h2 {
-            color: var(--neon-pink);
-            font-family: 'Exo 2', sans-serif;
-            font-size: 1.5rem;
-            margin-bottom: 1.5rem;
-            display: flex;
-            align-items: center;
-            gap: 12px;
-        }
-
-        .doc-link-item {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            color: #ccc;
-            text-decoration: none;
-            padding: 0.8rem;
-            border-radius: 10px;
-            background: rgba(255, 255, 255, 0.03);
-            margin-bottom: 0.8rem;
-            transition: all 0.2s ease;
-        }
-
-        .doc-link-item:hover {
-            color: #fff;
-            background: rgba(0, 212, 255, 0.1);
-            padding-left: 1.2rem;
-        }
-
-        .doc-link-item i {
             color: var(--neon-cyan);
-            font-size: 1.1rem;
-        }
-
-        .intro-hub {
+            font-size: 0.9rem;
             text-align: center;
-            max-width: 800px;
-            margin: 0 auto;
         }
     </style>
 </head>
 <body class="bg-futuristic">
 
-    <main class="container mt-5">
-        <div class="intro-hub">
-            <h1 class="text-neon-cyan mb-3">CENTRO DE DOCUMENTACIÓN</h1>
-            <p class="section-subtitle-alt">ACCEDE A TODA LA INFORMACIÓN Y PROTOCOLOS DE MUZICMANIA</p>
-        </div>
-
-        <div class="docs-hub-grid">
-            <!-- Categoría 1: Proyecto -->
-            <div class="docs-category">
-                <h2><i class="fas fa-project-diagram"></i> Información</h2>
-                <a href="ABOUT.md" class="doc-link-item"><i class="fas fa-file-alt"></i> Sobre el Proyecto</a>
-                <a href="TEAM.md" class="doc-link-item"><i class="fas fa-users"></i> Equipo</a>
-                <a href="credits.html" class="doc-link-item"><i class="fas fa-award"></i> Créditos</a>
-            </div>
-
-            <!-- Categoría 2: Soporte -->
-            <div class="docs-category">
-                <h2><i class="fas fa-life-ring"></i> Soporte y Ayuda</h2>
-                <a href="HELP.md" class="doc-link-item"><i class="fas fa-question-circle"></i> Ayuda General</a>
-                <a href="faq.html" class="doc-link-item"><i class="fas fa-comments"></i> Preguntas Frecuentes</a>
-                <a href="GUIDELINES.md" class="doc-link-item"><i class="fas fa-map-signs"></i> Directrices Técnicas</a>
-            </div>
-
-            <!-- Categoría 3: Legal -->
-            <div class="docs-category">
-                <h2><i class="fas fa-balance-scale"></i> Legal y Seguridad</h2>
-                <a href="license.html" class="doc-link-item"><i class="fas fa-certificate"></i> Licencia ISC</a>
-                <a href="POLICY.md" class="doc-link-item"><i class="fas fa-shield-alt"></i> Privacidad</a>
-                <a href="TERMS_AND_CONDITIONS.md" class="doc-link-item"><i class="fas fa-file-contract"></i> Términos de Uso</a>
-                <a href="RULES.md" class="doc-link-item"><i class="fas fa-gavel"></i> Reglas de la Comunidad</a>
-                <a href="SECURITY.md" class="doc-link-item"><i class="fas fa-lock"></i> Política de Seguridad</a>
-            </div>
-
-            <!-- Categoría 4: Desarrollo -->
-            <div class="docs-category">
-                <h2><i class="fas fa-code"></i> Desarrollo</h2>
-                <a href="CONTACT.md" class="doc-link-item"><i class="fas fa-envelope"></i> Contacto y Redes</a>
-                <a href="CHANGELOG.md" class="doc-link-item"><i class="fas fa-history"></i> Changelog</a>
-                <a href="SUPPORT.md" class="doc-link-item"><i class="fas fa-headset"></i> Soporte Técnico</a>
+    <main>
+        <div class="docs-hero-section">
+            <div class="hero-glow"></div>
+            <div class="container text-center">
+                <h1 class="neon-text-blue">CENTRO DE DOCUMENTACIÓN</h1>
+                <p class="lead">Manuales, Guías y Protocolos Oficiales de MuzicMania</p>
             </div>
         </div>
 
+        <div id="header-root"></div>
+
+        <div class="docs-portal-container">
+            <!-- Sidebar Navigation -->
+            <aside class="docs-sidebar">
+                <div class="sidebar-header">
+                    <h3><svg class="icon" aria-hidden="true"><use href="content/icons/sprites/sprite-filled.svg#fa-filled-magnifying-glass"></use></svg> BUSCAR DOCUMENTOS</h3>
+                </div>
+                <div class="sidebar-search">
+                    <input type="text" id="docs-local-search" placeholder="Escribe para buscar...">
+                    <svg class="icon" aria-hidden="true"><use href="content/icons/sprites/sprite-filled.svg#fa-filled-magnifying-glass"></use></svg>
+                </div>
+                <nav id="docs-sidebar-nav" class="docs-nav-menu">
+                    <!-- Dynamically populated by docs-manager.js -->
+                    <div class="sidebar-loading">Cargando índice...</div>
+                </nav>
+            </aside>
+
+            <!-- Main Content Area -->
+            <section class="docs-main-content">
+                <!-- Document header moved back to the TOP -->
+                <header class="doc-view-header">
+                    <!-- Breadcrumb REMOVED as per user request -->
+                    <h1 id="doc-display-title">Cargando documento...</h1>
+
+                    <div class="view-controls">
+                        <div class="format-selector">
+                            <button class="active" onclick="DocPortal.setFormat('md')">MD</button>
+                            <button onclick="DocPortal.setFormat('txt')">TXT</button>
+                            <button class="btn-disabled" disabled>PDF</button>
+                            <button class="btn-disabled" disabled>WORD</button>
+                        </div>
+                    </div>
+                </header>
+
+                <div id="doc-content-body" class="doc-article-canvas">
+                    <!-- Content injected here -->
+                </div>
+
+                <footer class="doc-nav-footer">
+                    <button class="btn btn-sm btn-outline nav-prev">
+                        <svg class="icon small" aria-hidden="true"><use href="content/icons/sprites/sprite-filled.svg#fa-filled-arrow-left"></use></svg> <span>Anterior Página</span>
+                    </button>
+                    <button class="btn btn-sm btn-outline nav-next">
+                        <span>Siguiente Página</span> <svg class="icon small" aria-hidden="true"><use href="content/icons/sprites/sprite-filled.svg#fa-filled-arrow-right"></use></svg>
+                    </button>
+                </footer>
+            </section>
+
+            <!-- Right Info Panel (Metadata) -->
+            <aside class="docs-info-panel">
+                <div class="info-card">
+                    <h4><svg class="icon small" aria-hidden="true"><use href="content/icons/sprites/sprite-filled.svg#ri-filled-information"></use></svg> Detalles del Documento</h4>
+                    <div class="info-item">
+                        <label>Descripción:</label>
+                        <p id="doc-desc">---</p>
+                    </div>
+                    <div class="info-item">
+                        <label>Última Actualización:</label>
+                        <p id="doc-last-update">---</p>
+                    </div>
+                    <div class="info-item">
+                        <label>Autor:</label>
+                        <p id="doc-author">---</p>
+                    </div>
+                </div>
+
+                <!-- Version Selector moved BEFORE Download (User Request) -->
+                <div class="version-selector-card">
+                    <h4><svg class="icon small" aria-hidden="true"><use href="content/icons/sprites/sprite-filled.svg#fa-filled-clock-rotate-left"></use></svg> Selector de Versiones</h4>
+                    <select class="version-select">
+                        <option value="current">Versión Actual (v1.0.0)</option>
+                    </select>
+                </div>
+
+                <!-- FIX 6: Sección 1 - Descargar Documento Independiente -->
+                <div class="download-card">
+                    <h4 id="download-doc-title"><svg class="icon small" aria-hidden="true"><use href="content/icons/sprites/sprite-filled.svg#fa-filled-file"></use></svg> Descargar Documento Independiente</h4>
+                    <div id="docs-formats-list" class="formats-grid mb-3">
+                        <!-- Injected by docs-manager.js -->
+                    </div>
+                </div>
+
+                <!-- FIX 6: Sección 2 - Descargar Paquetes Independientes -->
+                <div class="download-card">
+                    <h4><svg class="icon small" aria-hidden="true"><use href="content/icons/sprites/sprite-filled.svg#fa-filled-box-archive"></use></svg> Descargar Paquetes Independientes</h4>
+                    <div class="packages-grid">
+                        <button class="btn btn-full btn-export" onclick="DocPortal.exportToZIP()">
+                            <svg class="icon small" aria-hidden="true" style="margin-right: 8px;"><use href="content/icons/sprites/sprite-filled.svg#fa-filled-file-zipper"></use></svg> EXPORTAR A ZIP
+                        </button>
+                        <button class="btn btn-full btn-export" onclick="DocPortal.exportToRAR()">
+                            <svg class="icon small" aria-hidden="true" style="margin-right: 8px;"><use href="content/icons/sprites/sprite-filled.svg#fa-filled-box-archive"></use></svg> EXPORTAR A RAR
+                        </button>
+                        <button class="btn btn-full btn-export" onclick="DocPortal.exportTo7ZIP()">
+                            <svg class="icon small" aria-hidden="true" style="margin-right: 8px;"><use href="content/icons/sprites/sprite-filled.svg#fa-filled-file-zipper"></use></svg> EXPORTAR A 7ZIP
+                        </button>
+                    </div>
+                </div>
+
+                </div>
+            </aside>
+        </div>
     </main>
 
-    <script src="scripts/layout.js?v=UI_FIX_1770507253885"></script>
-    <script src="scripts/auth.js?v=UI_FIX_1770507253885"></script>
-    <script src="scripts/utils.js?v=UI_FIX_1770507253885"></script>
-    <script src="scripts/search.js?v=UI_FIX_1770507253885"></script>
-    <script src="scripts/navigation.js?v=UI_FIX_1770507253885"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
+    <script src="scripts/layout.js?v=MM_FIX_ICONS_V1"></script>
+    <script src="scripts/docs-manager.js?v=MM_FIX_ICONS_V1"></script>
+    <script src="scripts/auth.js?v=MM_FIX_ICONS_V1"></script>
+    <script src="scripts/utils.js?v=MM_FIX_ICONS_V1"></script>
+    <script src="scripts/search.js?v=MM_FIX_ICONS_V1"></script>
+    <script src="scripts/navigation.js?v=MM_FIX_ICONS_V1"></script>
 </body>
 </html>

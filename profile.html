@@ -6,8 +6,7 @@
     <title>MuzicMania - Perfil</title>
     <link rel="icon" type="image/svg+xml" href="content/logos/imagen/not outline/isotipo/degradado/color/muzicmania_logo_isotipo_notoutline_degradado_color.svg">
     <link rel="apple-touch-icon" href="content/logos/imagen/not outline/isotipo/degradado/color/muzicmania_logo_isotipo_notoutline_degradado_color.svg">
-    <link rel="stylesheet" href="styles.css?v=UI_FIX_1770507253885">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="styles.css?v=MM_FIX_ICONS_V1">
     <style>
         .profile-header {
             text-align: center;
@@ -98,6 +97,11 @@
         .achievement-icon {
             font-size: 3rem;
             margin-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 4rem; /* Altura fija para consistencia */
+            position: relative;
         }
 
         .achievement-name {
@@ -121,7 +125,7 @@
                 <p style="color: #888; font-size: 1.2rem;">Miembro desde <span id="member-since">2026</span></p>
                 <div style="margin-top: 1.5rem;">
                     <button class="btn btn-secondary" onclick="AuthSystem.logout()">
-                        <i class="fas fa-sign-out-alt"></i> Cerrar Sesión
+                        <svg class="icon"><use href="content/icons/sprites/sprite-filled.svg#fa-filled-right-from-bracket"></use></svg> Cerrar Sesión
                     </button>
                 </div>
             </div>
@@ -164,27 +168,27 @@
                 <h2 class="mb-2">Logros</h2>
                 <div class="achievement-grid">
                     <div class="achievement unlocked">
-                        <div class="achievement-icon">🥇</div>
+                        <div class="achievement-icon"><svg class="icon large" style="color: gold;"><use href="content/icons/sprites/sprite-filled.svg#fa-filled-medal"></use></svg></div>
                         <div class="achievement-name">Primera Partida</div>
                     </div>
                     <div class="achievement unlocked">
-                        <div class="achievement-icon">🥇</div>
+                        <div class="achievement-icon"><svg class="icon large" style="color: silver;"><use href="content/icons/sprites/sprite-filled.svg#fa-filled-medal"></use></svg></div>
                         <div class="achievement-name">Amante de la Música</div>
                     </div>
                     <div class="achievement locked">
-                        <div class="achievement-icon">🥇</div>
+                        <div class="achievement-icon"><svg class="icon large" style="color: #cd7f32;"><use href="content/icons/sprites/sprite-filled.svg#fa-filled-medal"></use></svg></div>
                         <div class="achievement-name">Top 10</div>
                     </div>
                     <div class="achievement locked">
-                        <div class="achievement-icon">?</div>
+                        <div class="achievement-icon"><svg class="icon large"><use href="content/icons/sprites/sprite-filled.svg#fa-filled-circle-question"></use></svg></div>
                         <div class="achievement-name">Perfección</div>
                     </div>
                     <div class="achievement locked">
-                        <div class="achievement-icon">?</div>
+                        <div class="achievement-icon"><svg class="icon large"><use href="content/icons/sprites/sprite-filled.svg#fa-filled-circle-question"></use></svg></div>
                         <div class="achievement-name">Velocidad</div>
                     </div>
                     <div class="achievement locked">
-                        <div class="achievement-icon">🥇</div>
+                        <div class="achievement-icon"><svg class="icon large" style="color: #ff4500;"><use href="content/icons/sprites/sprite-filled.svg#fa-filled-medal"></use></svg></div>
                         <div class="achievement-name">En Racha</div>
                     </div>
                 </div>
@@ -203,13 +207,15 @@
     </main>
 
     <!-- Layout System -->
-    <script src="scripts/layout.js?v=UI_FIX_1770507253885"></script>
-
-    <script src="scripts/auth.js?v=UI_FIX_1770507253885"></script>
+    <script src="scripts/layout.js?v=MM_FIX_ICONS_V1"></script>
+    <script src="scripts/auth.js?v=MM_FIX_ICONS_V1"></script>
+    <script src="scripts/utils.js?v=MM_FIX_ICONS_V1"></script>
+    <script src="scripts/search.js?v=MM_FIX_ICONS_V1"></script>
+    <script src="scripts/navigation.js?v=MM_FIX_ICONS_V1"></script>
     <script>
         // Verificar si el usuario está logueado
         const user = AuthSystem.getCurrentUser();
-        
+
         if (!user) {
             // Redirigir al inicio si no está logueado
             Layout.showAuthModal('ver tu perfil');
@@ -218,26 +224,23 @@
             // Mostrar información del usuario
             document.getElementById('profile-initials').textContent = user.initials;
             document.getElementById('profile-username').textContent = user.username;
-            
+
             // Fecha de miembro
             const memberDate = new Date(user.createdAt);
             const options = { year: 'numeric', month: 'long', day: 'numeric' };
             document.getElementById('member-since').textContent = memberDate.toLocaleDateString('es-ES', options);
-            
+
             // Estadísticas
             document.getElementById('stat-high-score').textContent = user.highScore.toLocaleString();
             document.getElementById('stat-games-played').textContent = user.gamesPlayed;
             document.getElementById('stat-accuracy').textContent = user.accuracy + '%';
-            
+
             // Calcular posición en leaderboard
             const leaderboard = AuthSystem.getLeaderboard();
             const userRank = leaderboard.findIndex(p => p.username === user.username) + 1;
             document.getElementById('stat-rank').textContent = userRank > 0 ? '#' + userRank : 'N/A';
         }
     </script>
-    <script src="scripts/utils.js?v=UI_FIX_1770507253885"></script>
-    <script src="scripts/search.js?v=UI_FIX_1770507253885"></script>
-    <script src="scripts/navigation.js?v=UI_FIX_1770507253885"></script>
 </body>
 </html>
 

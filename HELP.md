@@ -1,35 +1,32 @@
-# Help and FAQ / Ayuda y Preguntas Frecuentes
+MUZICMANIA - DOCUMENTACIÓN OFICIAL
+Nombre: HELP
+Versión: 1.0.0
+Actualización: 2026-02-07
+Identificador: HELP_V1.0.0_2026_02_08_muzicmania
+------------------------------------------------------------
 
-### [English]
-Welcome to the MuzicMania help center. Follow these steps to master the rhythm.
+# CENTRO DE AYUDA / HELP CENTER
 
-**1. Basic Controls:**
-- **Arrows / WASD:** Hit the notes when they reach the impact zone.
-- **F3 / F4:** Increase or decrease Scroll Speed (In Song Selection).
-- **Esc:** Pause the game.
+[ESPAÑOL]
+¿Cómo podemos guiarte?
 
-**2. Game Modes:**
-- **Play:** Standard mode where you can pick songs and set records.
-- **Practice:** (Development) Test specific patterns.
+TEMAS DISPONIBLES:
+- Mi Cuenta: Recuperación, login, nombre de usuario.
+- Problemas del Juego: Lag, controles, errores de carga.
+- Puntuaciones: Leaderboard, precisión, records.
+- Seguridad: Protección 2FA, privacidad.
+- Reportes: Bugs, comportamiento tóxico, trampas.
+- Guías: Tutoriales para principiantes y expertos.
 
-**3. Troubleshooting:**
-- **Lag:** Close other browser tabs and use a wired audio connection.
-- **Sync:** Check your internet stability for the leaderboards.
+------------------------------------------------------------
 
----
+[ENGLISH]
+How can we guide you?
 
-### [Español]
-Bienvenido al centro de ayuda de MuzicMania. Sigue estos pasos para dominar el ritmo.
-
-**1. Controles Básicos:**
-- **Flechas / WASD:** Golpea las notas cuando lleguen a la zona de impacto.
-- **F3 / F4:** Aumenta o disminuye la velocidad de las notas (En Selección de Canción).
-- **Esc:** Pausa el juego.
-
-**2. Modos de Juego:**
-- **Jugar:** Modo estándar para elegir canciones y establecer récords.
-- **Práctica:** (En desarrollo) Prueba patrones específicos.
-
-**3. Solución de Problemas:**
-- **Lag:** Cierra otras pestañas del navegador y usa una conexión de audio por cable.
-- **Sincronización:** Verifica la estabilidad de tu internet para las tablas de clasificación.
+AVAILABLE TOPICS:
+- My Account: Recovery, login, username.
+- Game Issues: Lag, controls, loading errors.
+- Scores: Leaderboard, accuracy, records.
+- Security: 2FA protection, privacy.
+- Reports: Bugs, toxic behavior, cheating.
+- Guides: Tutorials for beginners and experts.

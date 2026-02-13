@@ -1,23 +1,36 @@
-# FAQ / Preguntas Frecuentes
+MUZICMANIA - DOCUMENTACIÓN OFICIAL
+Nombre: FAQ
+Versión: 1.0.0
+Actualización: 2026-02-07
+Identificador: FAQ_V1.0.0_2026_02_08_muzicmania
+------------------------------------------------------------
 
-### [English]
-**1. Is MuzicMania free?**
-Yes, but you can support the project via donations.
+# PREGUNTAS FRECUENTES / FAQ
 
-**2. How do I play?**
-Use arrow keys or WASD to hit the falling notes. In Song Select, use F3/F4 to adjust Scroll Speed.
+[ESPAÑOL]
+Soporte de Autoservicio.
 
-**3. Is there a mobile version?**
-The game is optimized for desktop browsers, but we are working on mobile compatibility.
+1. ¿Cómo reporto un bug? Usa el formulario de contacto o Discord.
+2. ¿Puedo sugerir canciones? Sí, vía formulario de contacto (asunto "Sugerencia").
+3. ¿El juego es gratuito? Sí, completamente.
+4. ¿Habrá versión móvil? Puedes jugar en el navegador móvil. App nativa en 2026.
+5. ¿Cómo protejo mi cuenta? Usa contraseñas únicas; implementaremos 2FA pronto.
+6. ¿Cómo colaboro como artista? Envía un mensaje con tu portafolio.
+7. ¿Cómo cambio la velocidad de las notas? Usa F3/F4 durante la selección de canción.
+8. ¿Cómo juego? Selecciona canción, presiona Flechas o WASD en la zona de impacto.
+9. ¿Puedo jugar con mando? Sí, soporta Xbox y PlayStation.
 
----
+------------------------------------------------------------
 
-### [Español]
-**1. ¿MuzicMania es gratuito?**
-Sí, pero puedes apoyar el proyecto mediante donaciones.
+[ENGLISH]
+Self-Service Support.
 
-**2. ¿Cómo juego?**
-Usa las flechas del teclado o WASD para golpear las notas que caen. En la selección de canciones, usa F3/F4 para ajustar la Velocidad de Desplazamiento.
-
-**3. ¿Hay una versión móvil?**
-El juego está optimizado para navegadores de escritorio, pero estamos trabajando en la compatibilidad móvil.
+1. How do I report a bug? Use the contact form or Discord.
+2. Can I suggest songs? Yes, via contact form (subject "Suggestion").
+3. Is the game free? Yes, completely.
+4. Will there be a mobile version? You can play in your mobile browser. Native app in 2026.
+5. How do I protect my account? Use unique passwords; we'll implement 2FA soon.
+6. How do I collaborate as an artist? Send a message with your portfolio.
+7. How do I change note speed? Use F3/F4 during song selection.
+8. How do I play? Select a song, press Arrows or WASD at the impact zone.
+9. Can I play with a controller? Yes, it supports Xbox and PlayStation.

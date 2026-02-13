@@ -1,15 +1,38 @@
-# Terms and Conditions / Términos y Condiciones
+MUZICMANIA - DOCUMENTACIÓN OFICIAL
+Nombre: TERMS_AND_CONDITIONS
+Versión: 1.0.0
+Actualización: 2026-01-30
+Identificador: TERMS_AND_CONDITIONS_V1.0.0_2026_02_08_muzicmania
+------------------------------------------------------------
 
-### [English Version]
-1. **Acceptance of Terms**: By accessing MuzicMania, you agree to these terms.
-2. **Usage**: This is a personal project for entertainment. Commercial use of assets is prohibited without authorization.
-3. **Accounts**: Users are responsible for maintaining the confidentiality of their login information.
-4. **Behavior**: Respectful behavior is required in all competitive and community spaces.
+# TÉRMINOS Y CONDICIONES / TERMS AND CONDITIONS
 
----
+[ESPAÑOL]
+Última actualización: 30 de Enero, 2026
 
-### [Versión en Español]
-1. **Aceptación de Términos**: Al acceder a MuzicMania, aceptas estos términos.
-2. **Uso**: Este es un proyecto personal con fines de entretenimiento. El uso comercial de los activos está prohibido sin autorización.
-3. **Cuentas**: Los usuarios son responsables de mantener la confidencialidad de su información de inicio de sesión.
-4. **Comportamiento**: Se requiere un comportamiento respetuoso en todos los espacios competitivos y comunitarios.
+1. Aceptación: El uso de MuzicMania implica la aceptación de estos términos.
+2. Cuentas: Eres responsable de la seguridad de tus credenciales.
+3. Fair Play: El uso de métodos automatizados resultará en baneo permanente.
+4. Propiedad Intelectual: El diseño, código y artes son propiedad de sus creadores.
+5. Datos: Las estadísticas se usan para mejorar la experiencia y el ranking.
+6. Modificaciones: Nos reservamos el derecho de modificar el servicio sin aviso.
+7. Responsabilidad: El servicio se proporciona "tal cual" sin garantías.
+8. Moneda Virtual: Cualquier progresión no tiene valor real ni es transferible.
+9. Terminación: Podemos suspender el acceso por violaciones de conducta.
+10. Ley Aplicable: Se rige por leyes internacionales de comercio electrónico.
+
+------------------------------------------------------------
+
+[ENGLISH]
+Last updated: January 30, 2026
+
+1. Acceptance: Using MuzicMania implies acceptance of these terms.
+2. Accounts: You are responsible for the security of your credentials.
+3. Fair Play: Use of automated methods will result in a permanent ban.
+4. Intellectual Property: Design, code, and art are property of their creators.
+5. Data: Statistics are used to improve experience and ranking.
+6. Modifications: We reserve the right to modify the service without notice.
+7. Liability: The service is provided "as is" without warranties.
+8. Virtual Currency: Any progression has no real value and is not transferable.
+9. Termination: We may suspend access for conduct violations.
+10. Applicable Law: Governed by international e-commerce laws.

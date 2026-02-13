@@ -6,7 +6,7 @@ const svgSrcBase = path.resolve(__dirname, '../content/icons/svg-src');
 const pngDestBase = path.resolve(__dirname, '../content/icons/png');
 const aiDestBase = path.resolve(__dirname, '../content/icons/ai');
 
-const CATEGORIES = ['outline', 'filled', 'flags'];
+const CATEGORIES = ['outline', 'filled', 'flags', 'custom'];
 
 async function ensureDir(dir) {
     if (!fs.existsSync(dir)) fs.mkdirSync(dir, { recursive: true });
@@ -37,8 +37,10 @@ async function exportIcons() {
         await ensureDir(aiDir);
 
         const files = fs.readdirSync(srcDir).filter(f => f.endsWith('.svg'));
-        let countPng = 0;
-        let countAi = 0;
+        let countPngNew = 0;
+        let countPngUpd = 0;
+        let countAiNew = 0;
+        let countAiUpd = 0;
         let skipped = 0;
 
         for (const file of files) {
@@ -57,12 +59,13 @@ async function exportIcons() {
             }
 
             if (needsPng) {
+                const isNew = !fs.existsSync(pngPath);
                 try {
                     await sharp(srcPath)
                         .resize(512, 512, { fit: 'contain', background: { r:0, g:0, b:0, alpha:0 }})
                         .png()
                         .toFile(pngPath);
-                    countPng++;
+                    if (isNew) countPngNew++; else countPngUpd++;
                 } catch (err) {
                     console.error(`❌ Error PNG ${file}:`, err.message);
                 }
@@ -76,9 +79,10 @@ async function exportIcons() {
             }
 
             if (needsAi) {
+                const isNew = !fs.existsSync(aiPath);
                 try {
                     await generateAiFile(srcPath, aiPath);
-                    countAi++;
+                    if (isNew) countAiNew++; else countAiUpd++;
                 } catch (err) {
                     console.error(`❌ Error AI ${file}:`, err.message);
                 }
@@ -86,12 +90,18 @@ async function exportIcons() {
 
             if (!needsPng && !needsAi) skipped++;
 
-            if ((countPng + countAi) % 200 === 0 && (countPng + countAi) > 0) {
-                console.log(`⏳ Procesando... (${category}): ${countPng} PNGs, ${countAi} AIs actualizados.`);
+            if ((countPngNew + countPngUpd + countAiNew + countAiUpd) % 200 === 0 && (countPngNew + countPngUpd) > 0) {
+                console.log(`⏳ Procesando... (${category}): Exportados.`);
             }
         }
-        console.log(`✅ Categoría ${category}: Actualizados (${countPng} PNG, ${countAi} AI), Saltados: ${skipped}`);
+        console.log(`✅ Categoría ${category}:`);
+        console.log(`   - PNG: ${countPngNew} Nuevos | ${countPngUpd} Actualizados`);
+        console.log(`   - AI:  ${countAiNew} Nuevos | ${countAiUpd} Actualizados`);
+        console.log(`   - Sin Cambios: ${skipped}`);
     }
 }
 
-exportIcons().then(() => console.log('🏁 Proceso de exportación finalizado.'));
+exportIcons().then(() => {
+    console.log('🏁 Proceso de exportación finalizado.');
+    console.log('---------------------------------------------------');
+});

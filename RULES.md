@@ -1,23 +1,32 @@
-# Rules and Guidelines / Reglas y Directrices
+MUZICMANIA - DOCUMENTACIÓN OFICIAL
+Nombre: RULES
+Versión: 1.0.0
+Actualización: 2026-01-31
+Identificador: RULES_V1.0.0_2026_02_08_muzicmania
+------------------------------------------------------------
 
-### [English]
-**Core Rules:**
-- No Cheating: Use of external software to manipulate scores is prohibited.
-- Respect: Harassment or toxic behavior will result in a ban.
-- Fair Play: Compete with integrity.
+# REGLAS DE LA COMUNIDAD / COMMUNITY RULES
 
-**Guidelines:**
-- Use high-quality audio setups for the best experience.
-- Report bugs via the support channel.
+[ESPAÑOL]
+Última actualización: 31 de Enero, 2026
 
----
+1. Conducta y Respeto: Prohibido el acoso, odio o toxicidad.
+2. Juego Limpio: Prohibido el uso de bots, macros o scripts. El "Cheating" conlleva baneo.
+3. Identidad: Nombres de usuario no ofensivos ni suplantación.
+4. Seguridad y Bugs: Obligatorio reportar fallos; prohibido explotarlos.
+5. Multicuentas: No se permiten múltiples cuentas para manipular rankings.
+6. Privacidad y Doxxing: Prohibido compartir info personal de otros usuarios.
+7. Moderación: Las decisiones de los moderadores son finales.
 
-### [Español]
-**Reglas Principales:**
-- No Trampas: El uso de software externo para manipular puntuaciones está prohibido.
-- Respeto: El acoso o comportamiento tóxico resultará en una expulsión.
-- Juego Limpio: Compite con integridad.
+------------------------------------------------------------
 
-**Directrices:**
-- Usa equipos de audio de alta calidad para la mejor experiencia.
-- Informa errores a través del canal de soporte.
+[ENGLISH]
+Last updated: January 31, 2026
+
+1. Conduct and Respect: Harassment, hate speech, or toxicity is prohibited.
+2. Fair Play: Use of bots, macros, or scripts is prohibited. Cheating leads to a ban.
+3. Identity: No offensive usernames or impersonation.
+4. Security and Bugs: Mandatory to report bugs; exploiting them is prohibited.
+5. Multi-accounting: Multiple accounts to manipulate rankings are not allowed.
+6. Privacy and Doxxing: Sharing personal info of other users is prohibited.
+7. Moderation: Moderator decisions are final.
