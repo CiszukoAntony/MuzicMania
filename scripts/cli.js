@@ -46,6 +46,7 @@ const mainMenu = async () => {
             choices: [
                 { name: chalk.green('🚀 Iniciar Servidor de Desarrollo (Vite)'), value: 'dev' },
                 { name: chalk.yellow('🎨 Gestionar Iconos (Build Completo)'), value: 'icons' },
+                { name: chalk.green('✨ Optimizar SVGs (SVGO)'), value: 'optimize' },
                 { name: chalk.magenta('📄 Exportar Documentación (PDF/Docs)'), value: 'docs' },
                 { name: chalk.blue('🛡️ Verificar Integridad del Proyecto'), value: 'verify' },
                 new inquirer.Separator(),
@@ -65,6 +66,10 @@ const mainMenu = async () => {
 
         case 'icons':
             await runCommand('npm run icons:full-build', 'Procesando, optimizando y generando sprites de iconos...');
+            break;
+
+        case 'optimize':
+            await runCommand('npx svgo -f content/icons/src -o content/icons/optimized', 'Optimizando quirúrgicamente todos los archivos SVG...');
             break;
 
         case 'docs':
