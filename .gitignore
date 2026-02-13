@@ -7,7 +7,6 @@ ehthumbs.db
 # IDE & Configs
 .vscode/
 .idea/
-.editorconfig
 *.swp
 *.swo
 *.tmp
@@ -42,9 +41,12 @@ dist/
 build/
 
 # Assets & Icons
-content/
 __pycache__/
 *.py[cod]
 
 # Development & Config
 debug/
+.env
+.env.local
+backend/docs/
+PRIVATE_DOCS.md

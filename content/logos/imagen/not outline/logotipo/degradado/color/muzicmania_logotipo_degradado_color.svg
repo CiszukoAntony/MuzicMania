@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="MuzicMania_Logotipo" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 120">
+  <defs>
+    <linearGradient id="text_gradient" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#00d4ff"/>
+      <stop offset="35%" stop-color="#00d4ff"/>
+      <stop offset="50%" stop-color="#9b59b6"/>
+      <stop offset="65%" stop-color="#ff006e"/>
+      <stop offset="100%" stop-color="#ff006e"/>
+    </linearGradient>
+    <linearGradient id="accent_gradient" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#ff006e"/>
+      <stop offset="50%" stop-color="#9b59b6"/>
+      <stop offset="100%" stop-color="#00d4ff"/>
+    </linearGradient>
+    <filter id="text_glow">
+      <feGaussianBlur stdDeviation="2" result="coloredBlur"/>
+      <feMerge>
+        <feMergeNode in="coloredBlur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+    <filter id="strong_glow">
+      <feGaussianBlur stdDeviation="4" result="blur"/>
+      <feFlood flood-color="#00d4ff" flood-opacity="0.6"/>
+      <feComposite in2="blur" operator="in"/>
+      <feMerge>
+        <feMergeNode/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@700&amp;display=swap');
+      .logo-text {
+        font-family: 'Orbitron', 'Arial Black', sans-serif;
+        font-weight: 700;
+        font-size: 72px;
+        letter-spacing: 4px;
+      }
+    </style>
+  </defs>
+  
+  <!-- Main Text "MuzicMania" -->
+  <text x="300" y="80" 
+        class="logo-text" 
+        fill="url(#text_gradient)" 
+        text-anchor="middle"
+        filter="url(#text_glow)">
+    MuzicMania
+  </text>
+  
+  <!-- Decorative underline -->
+  <line x1="80" y1="100" x2="520" y2="100" 
+        stroke="url(#accent_gradient)" 
+        stroke-width="3" 
+        stroke-linecap="round"
+        filter="url(#strong_glow)"/>
+  
+  <!-- Sound wave decorations -->
+  <g stroke="url(#text_gradient)" stroke-width="2" fill="none" opacity="0.8">
+    <path d="M30 50 Q35 40, 40 50 Q45 60, 50 50"/>
+    <path d="M550 50 Q555 40, 560 50 Q565 60, 570 50"/>
+  </g>
+</svg>

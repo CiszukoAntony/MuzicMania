@@ -1,3 +1,4 @@
+export {};
 // ================================
 // MUZICMANIA - UTILITIES
 // ================================
@@ -6,6 +7,22 @@
 document.addEventListener('DOMContentLoaded', () => {
     console.log('🎵 MuzicMania Utilities initialized!');
 });
+
+// === DECLARACIONES GLOBALES ===
+declare global {
+    interface Window {
+        Layout: any;
+        AuthSystem: any;
+        SecurityChecker: any;
+        StatusEngine: any;
+        MuzicError: any;
+        showNotification: (message: string, type?: 'success' | 'error' | 'info') => void;
+        copyToClipboard: (text: string, description?: string) => void;
+    }
+}
+
+const Layout = window.Layout;
+const AuthSystem = window.AuthSystem;
 
 // === SISTEMA DE NOTIFICACIONES ===
 interface NotificationColors {
@@ -70,8 +87,10 @@ document.head.appendChild(style);
 window.showNotification = showNotification;
 
 // === SISTEMA DE COPIADO AL PORTAPAPELES ===
-function copyToClipboard(text, description) {
-    const fallbackCopy = (str) => {
+function copyToClipboard(text: string, description: string = "Contenido"): void {
+    const str = String(text);
+    if (!navigator.clipboard) {
+        // Fallback para navegadores antiguos
         const textArea = document.createElement("textarea");
         textArea.value = str;
         textArea.style.position = "fixed";
@@ -81,31 +100,19 @@ function copyToClipboard(text, description) {
         textArea.focus();
         textArea.select();
         try {
-            const successful = document.execCommand('copy');
-            if (successful) {
-                if (window.showNotification) showNotification(`¡${description} copiado!`, 'success');
-                else Layout.showNotification('¡COPIADO!', `¡${description} copiado al portapapeles!`, 'fa-copy');
-            }
+            document.execCommand('copy');
+            window.showNotification(`¡${description} copiado!`, 'success');
         } catch (err) {
-            console.error('Fallback: Error al copiar', err);
+            console.error('Fallback Copy Error:', err);
         }
         document.body.removeChild(textArea);
-    };
-
-    if (!navigator.clipboard) {
-        fallbackCopy(text);
         return;
     }
 
-    navigator.clipboard.writeText(text).then(() => {
-        if (window.showNotification) {
-            showNotification(`¡${description} copiado al portapapeles!`, 'success');
-        } else {
-            console.log(`${description} copiado.`);
-        }
+    navigator.clipboard.writeText(str).then(() => {
+        window.showNotification(`¡${description} copiado con éxito!`, 'success');
     }).catch(err => {
-        console.warn('Clipboard API falló, usando fallback...', err);
-        fallbackCopy(text);
+        console.error('Clipboard API Error:', err);
     });
 }
 
@@ -230,17 +237,35 @@ const SecurityChecker = {
         return results;
     },
 
+    async checkStorage() {
+        if (navigator.storage && navigator.storage.estimate) {
+            const estimate = await navigator.storage.estimate();
+            const quota = estimate.quota || 0;
+            const usage = estimate.usage || 0;
+            console.log(`Storage: ${(usage / 1024 / 1024).toFixed(2)}MB / ${(quota / 1024 / 1024).toFixed(2)}MB`);
+        }
+    },
+
+    getSystemInfo() {
+        return {
+            ua: navigator.userAgent,
+            lang: navigator.language,
+            platform: (navigator as any).platform
+        };
+    },
+
     async isIncognito() {
         if (!navigator.storage || !navigator.storage.estimate) return false;
-        const { quota } = await navigator.storage.estimate();
+        const estimate = await navigator.storage.estimate();
+        const quota = estimate.quota || 0;
         // Heurística: En modo incógnito de la mayoría de los navegadores, la cuota de almacenamiento es significativamente menor.
-        return quota < 120000000;
+        return quota > 0 && quota < 120000000;
     },
 
     isVPN() {
         // Heurística de zona horaria vs lenguaje
         const tz = Intl.DateTimeFormat().resolvedOptions().timeZone;
-        const lang = navigator.language || navigator.userLanguage;
+        const lang = navigator.language;
 
         // Si el lenguaje es español (común en este proyecto) pero la zona horaria no es de LATAM/España
         if (lang.startsWith('es') && !tz.includes('America') && !tz.includes('Atlantic/Canary') && !tz.includes('Europe/Madrid')) {

@@ -13,6 +13,7 @@
     "icons:watch": "chokidar \"debug/download/**/*.svg\" -c \"npm run icons:build\"",
     "docs:export": "node scripts/export-docs.js",
     "start": "node scripts/cli.js",
+    "build": "vite build --config debug/vite.config.js",
     "lint": "eslint \"scripts/**/*.{js,ts}\"",
     "lint:fix": "eslint \"scripts/**/*.{js,ts}\" --fix",
     "verify": "npx tsc --noEmit",
@@ -56,6 +57,7 @@
   },
   "dependencies": {
     "@jinzhongjia/markdown-docx": "^1.0.4",
+    "@supabase/supabase-js": "^2.95.3",
     "jszip": "^3.10.1",
     "md-to-pdf": "^5.2.5"
   }
