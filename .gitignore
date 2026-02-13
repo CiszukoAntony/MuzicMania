@@ -34,6 +34,7 @@ backups/
 *.disaster_backup
 *.old
 *.orig
+backend/
 
 # Node
 node_modules/
